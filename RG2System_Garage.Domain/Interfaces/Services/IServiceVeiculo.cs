@@ -1,8 +1,10 @@
-﻿using RG2System_Garage.Domain.Interfaces.Services.Base;
+﻿using RG2System_Garage.Domain.Commands;
+using RG2System_Garage.Domain.Interfaces.Services.Base;
 
 namespace RG2System_Garage.Domain.Interfaces.Services
 {
     public interface IServiceVeiculo : IServiceBase
     {
+        bool Adicionar(VeiculoRequest veiculoRequest);
     }
 }
