@@ -219,7 +219,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\VeiculoRequest.cs" />
+    <Compile Include="Commands\Veiculo\VeiculoRequest.cs" />
+    <Compile Include="Commands\Veiculo\VeiculoResponse.cs" />
     <Compile Include="Entities\Base\EntityBase.cs" />
     <Compile Include="Entities\Cliente.cs" />
     <Compile Include="Entities\Produto.cs" />
