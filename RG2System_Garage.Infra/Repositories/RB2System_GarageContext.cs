@@ -2,14 +2,15 @@
 using prmToolkit.NotificationPattern;
 using RG2System_Garage.Domain.Entities;
 using RG2System_Garage.Infra.Repositories.MAP;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace RG2System_Garage.Infra.Repositories
 {
     public class RB2System_GarageContext : DbContext
     {
-        public DbSet<Veiculo> Veiculos { get; set; }
-        public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Produto> Produtos { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Veiculo> Veiculos { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Cliente> Clientes { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Produto> Produtos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
