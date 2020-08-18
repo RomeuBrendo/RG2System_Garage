@@ -219,6 +219,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Cliente\AdicionarAlterarClienteRequest.cs" />
+    <Compile Include="Commands\Cliente\ClienteResponse.cs" />
     <Compile Include="Commands\Produto\AdionarAlterarProdutoRequest.cs" />
     <Compile Include="Commands\Produto\ProdutoResponse.cs" />
     <Compile Include="Commands\Veiculo\VeiculoRequest.cs" />
