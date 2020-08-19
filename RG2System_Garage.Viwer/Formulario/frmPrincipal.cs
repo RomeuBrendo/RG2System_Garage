@@ -30,6 +30,7 @@ namespace RG2System_Garage.Viwer.Formulario
                 label1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
                 pnMenu.Left += 16;
+                tabControl1.Left += 16;
                 if (pnMenu.Left == 0)
                 {
                     glb_HideMenu = false;
@@ -42,6 +43,7 @@ namespace RG2System_Garage.Viwer.Formulario
                 HideAllMenu();
                 label1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 pnMenu.Left -= 16;
+                tabControl1.Left -= 16;
                 if (pnMenu.Left == -304)
                 {
                     glb_HideMenu = true;
@@ -114,6 +116,31 @@ namespace RG2System_Garage.Viwer.Formulario
                 HideAllMenu();
             else
                 ShowSubMenu(pnConfiguracoes);
+        }
+
+        private void btnCadVeiculo_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 3;
+        }
+
+        private void btnCadCliente_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 1;
+        }
+
+        private void btnCadProduto_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 2;
+        }
+
+        private void btnLancServico_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 4;
+        }
+
+        private void btnConfigGeral_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 5;
         }
     }
 }
