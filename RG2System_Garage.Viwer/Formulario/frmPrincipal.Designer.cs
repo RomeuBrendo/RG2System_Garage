@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnMenu = new System.Windows.Forms.Panel();
             this.pnConfiguracoes = new System.Windows.Forms.Panel();
             this.btnConfigGeral = new System.Windows.Forms.Button();
@@ -48,25 +48,37 @@
             this.btnCadastro = new System.Windows.Forms.Button();
             this.tmMenu = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new MetroFramework.Controls.MetroTabControl();
-            this.tpCliente = new MetroFramework.Controls.MetroTabPage();
-            this.tpProduto = new MetroFramework.Controls.MetroTabPage();
+            this.tpHome = new MetroFramework.Controls.MetroTabPage();
             this.tpVeiculo = new MetroFramework.Controls.MetroTabPage();
-            this.tpLancamento = new MetroFramework.Controls.MetroTabPage();
-            this.tpConfig = new MetroFramework.Controls.MetroTabPage();
-            this.gridVeiculo = new System.Windows.Forms.DataGridView();
-            this.btnNovoVeiculo = new MetroFramework.Controls.MetroButton();
-            this.btnAlterarVeiculo = new MetroFramework.Controls.MetroButton();
-            this.btnExcluirVeiculo = new MetroFramework.Controls.MetroButton();
-            this.txtPlaca = new System.Windows.Forms.TextBox();
-            this.txtModelo = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnVerificaClienteVinculado = new MetroFramework.Controls.MetroButton();
             this.btnCancelarVeiculo = new MetroFramework.Controls.MetroButton();
             this.btnSalvarVeiculo = new MetroFramework.Controls.MetroButton();
-            this.btnVerificaClienteVinculado = new MetroFramework.Controls.MetroButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtModelo = new System.Windows.Forms.TextBox();
+            this.txtPlaca = new System.Windows.Forms.TextBox();
+            this.btnExcluirVeiculo = new MetroFramework.Controls.MetroButton();
+            this.btnAlterarVeiculo = new MetroFramework.Controls.MetroButton();
+            this.btnNovoVeiculo = new MetroFramework.Controls.MetroButton();
+            this.gridVeiculo = new System.Windows.Forms.DataGridView();
             this.clId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clPlaca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clModelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tpProduto = new MetroFramework.Controls.MetroTabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btnCancelarProduto = new MetroFramework.Controls.MetroButton();
+            this.btnSalvarProduto = new MetroFramework.Controls.MetroButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnExcluirProduto = new MetroFramework.Controls.MetroButton();
+            this.btnAlterarProduto = new MetroFramework.Controls.MetroButton();
+            this.btnNovoProduto = new MetroFramework.Controls.MetroButton();
+            this.gridProduto = new System.Windows.Forms.DataGridView();
+            this.clIdProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clDescricaoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clEstoqueProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tpCliente = new MetroFramework.Controls.MetroTabPage();
             this.btnCancelarCliente = new MetroFramework.Controls.MetroButton();
             this.btnSalvarCliente = new MetroFramework.Controls.MetroButton();
             this.label5 = new System.Windows.Forms.Label();
@@ -77,32 +89,20 @@
             this.gridCliente = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnCancelarProduto = new MetroFramework.Controls.MetroButton();
-            this.btnSalvarProduto = new MetroFramework.Controls.MetroButton();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnExcluirProduto = new MetroFramework.Controls.MetroButton();
-            this.btnAlterarProduto = new MetroFramework.Controls.MetroButton();
-            this.btnNovoProduto = new MetroFramework.Controls.MetroButton();
-            this.gridProduto = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.clIdProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clDescricaoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clEstoqueProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tpHome = new MetroFramework.Controls.MetroTabPage();
+            this.tpLancamento = new MetroFramework.Controls.MetroTabPage();
+            this.tpConfig = new MetroFramework.Controls.MetroTabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnMenu.SuspendLayout();
             this.pnConfiguracoes.SuspendLayout();
             this.pnLancamentos.SuspendLayout();
             this.pnCadastro.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tpCliente.SuspendLayout();
-            this.tpProduto.SuspendLayout();
             this.tpVeiculo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridVeiculo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridCliente)).BeginInit();
+            this.tpProduto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProduto)).BeginInit();
+            this.tpCliente.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCliente)).BeginInit();
             this.SuspendLayout();
             // 
             // pnMenu
@@ -119,7 +119,7 @@
             this.pnMenu.Controls.Add(this.btnCadastro);
             this.pnMenu.Location = new System.Drawing.Point(0, 4);
             this.pnMenu.Name = "pnMenu";
-            this.pnMenu.Size = new System.Drawing.Size(368, 717);
+            this.pnMenu.Size = new System.Drawing.Size(368, 410);
             this.pnMenu.TabIndex = 0;
             // 
             // pnConfiguracoes
@@ -136,7 +136,7 @@
             this.btnConfigGeral.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfigGeral.FlatAppearance.BorderSize = 0;
             this.btnConfigGeral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfigGeral.Font = new System.Drawing.Font("Baloo Tamma 2", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfigGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfigGeral.ForeColor = System.Drawing.Color.White;
             this.btnConfigGeral.Location = new System.Drawing.Point(0, 0);
             this.btnConfigGeral.Name = "btnConfigGeral";
@@ -162,7 +162,7 @@
             this.btnLancServico.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLancServico.FlatAppearance.BorderSize = 0;
             this.btnLancServico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLancServico.Font = new System.Drawing.Font("Baloo Tamma 2", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLancServico.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLancServico.ForeColor = System.Drawing.Color.White;
             this.btnLancServico.Location = new System.Drawing.Point(0, 0);
             this.btnLancServico.Name = "btnLancServico";
@@ -190,7 +190,7 @@
             this.btnCadVeiculo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadVeiculo.FlatAppearance.BorderSize = 0;
             this.btnCadVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadVeiculo.Font = new System.Drawing.Font("Baloo Tamma 2", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadVeiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadVeiculo.ForeColor = System.Drawing.Color.White;
             this.btnCadVeiculo.Location = new System.Drawing.Point(0, 80);
             this.btnCadVeiculo.Name = "btnCadVeiculo";
@@ -208,7 +208,7 @@
             this.btnCadProduto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadProduto.FlatAppearance.BorderSize = 0;
             this.btnCadProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadProduto.Font = new System.Drawing.Font("Baloo Tamma 2", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadProduto.ForeColor = System.Drawing.Color.White;
             this.btnCadProduto.Location = new System.Drawing.Point(0, 40);
             this.btnCadProduto.Name = "btnCadProduto";
@@ -226,7 +226,7 @@
             this.btnCadCliente.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadCliente.FlatAppearance.BorderSize = 0;
             this.btnCadCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadCliente.Font = new System.Drawing.Font("Baloo Tamma 2", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadCliente.ForeColor = System.Drawing.Color.White;
             this.btnCadCliente.Location = new System.Drawing.Point(0, 0);
             this.btnCadCliente.Name = "btnCadCliente";
@@ -254,7 +254,7 @@
             this.btnConfiguracao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfiguracao.FlatAppearance.BorderSize = 0;
             this.btnConfiguracao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfiguracao.Font = new System.Drawing.Font("Baloo Tamma 2", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfiguracao.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfiguracao.ForeColor = System.Drawing.Color.White;
             this.btnConfiguracao.Location = new System.Drawing.Point(1, 458);
             this.btnConfiguracao.Name = "btnConfiguracao";
@@ -272,7 +272,7 @@
             this.btnLancamento.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLancamento.FlatAppearance.BorderSize = 0;
             this.btnLancamento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLancamento.Font = new System.Drawing.Font("Baloo Tamma 2", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLancamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLancamento.ForeColor = System.Drawing.Color.White;
             this.btnLancamento.Location = new System.Drawing.Point(1, 378);
             this.btnLancamento.Name = "btnLancamento";
@@ -290,7 +290,7 @@
             this.btnCadastro.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastro.FlatAppearance.BorderSize = 0;
             this.btnCadastro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastro.Font = new System.Drawing.Font("Baloo Tamma 2", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastro.ForeColor = System.Drawing.Color.White;
             this.btnCadastro.Location = new System.Drawing.Point(1, 219);
             this.btnCadastro.Name = "btnCadastro";
@@ -323,47 +323,18 @@
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1086, 674);
+            this.tabControl1.Size = new System.Drawing.Size(710, 367);
             this.tabControl1.TabIndex = 1;
             // 
-            // tpCliente
+            // tpHome
             // 
-            this.tpCliente.Controls.Add(this.btnCancelarCliente);
-            this.tpCliente.Controls.Add(this.btnSalvarCliente);
-            this.tpCliente.Controls.Add(this.label5);
-            this.tpCliente.Controls.Add(this.txtNome);
-            this.tpCliente.Controls.Add(this.btnExcluirCliente);
-            this.tpCliente.Controls.Add(this.btnAlterarCliente);
-            this.tpCliente.Controls.Add(this.btnNovoCliente);
-            this.tpCliente.Controls.Add(this.gridCliente);
-            this.tpCliente.HorizontalScrollbarBarColor = true;
-            this.tpCliente.Location = new System.Drawing.Point(4, 38);
-            this.tpCliente.Name = "tpCliente";
-            this.tpCliente.Size = new System.Drawing.Size(1078, 632);
-            this.tpCliente.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tpCliente.TabIndex = 0;
-            this.tpCliente.Text = "metroTabPage1";
-            this.tpCliente.VerticalScrollbarBarColor = true;
-            // 
-            // tpProduto
-            // 
-            this.tpProduto.Controls.Add(this.label6);
-            this.tpProduto.Controls.Add(this.textBox2);
-            this.tpProduto.Controls.Add(this.btnCancelarProduto);
-            this.tpProduto.Controls.Add(this.btnSalvarProduto);
-            this.tpProduto.Controls.Add(this.label4);
-            this.tpProduto.Controls.Add(this.textBox1);
-            this.tpProduto.Controls.Add(this.btnExcluirProduto);
-            this.tpProduto.Controls.Add(this.btnAlterarProduto);
-            this.tpProduto.Controls.Add(this.btnNovoProduto);
-            this.tpProduto.Controls.Add(this.gridProduto);
-            this.tpProduto.HorizontalScrollbarBarColor = true;
-            this.tpProduto.Location = new System.Drawing.Point(4, 38);
-            this.tpProduto.Name = "tpProduto";
-            this.tpProduto.Size = new System.Drawing.Size(1078, 632);
-            this.tpProduto.TabIndex = 1;
-            this.tpProduto.Text = "metroTabPage2";
-            this.tpProduto.VerticalScrollbarBarColor = true;
+            this.tpHome.HorizontalScrollbarBarColor = true;
+            this.tpHome.Location = new System.Drawing.Point(4, 75);
+            this.tpHome.Name = "tpHome";
+            this.tpHome.Size = new System.Drawing.Size(702, 288);
+            this.tpHome.TabIndex = 5;
+            this.tpHome.Text = "metroTabPage1";
+            this.tpHome.VerticalScrollbarBarColor = true;
             // 
             // tpVeiculo
             // 
@@ -386,25 +357,89 @@
             this.tpVeiculo.Text = "metroTabPage3";
             this.tpVeiculo.VerticalScrollbarBarColor = true;
             // 
-            // tpLancamento
+            // btnVerificaClienteVinculado
             // 
-            this.tpLancamento.HorizontalScrollbarBarColor = true;
-            this.tpLancamento.Location = new System.Drawing.Point(4, 38);
-            this.tpLancamento.Name = "tpLancamento";
-            this.tpLancamento.Size = new System.Drawing.Size(1078, 632);
-            this.tpLancamento.TabIndex = 3;
-            this.tpLancamento.Text = "metroTabPage4";
-            this.tpLancamento.VerticalScrollbarBarColor = true;
+            this.btnVerificaClienteVinculado.Location = new System.Drawing.Point(18, 607);
+            this.btnVerificaClienteVinculado.Name = "btnVerificaClienteVinculado";
+            this.btnVerificaClienteVinculado.Size = new System.Drawing.Size(184, 23);
+            this.btnVerificaClienteVinculado.TabIndex = 14;
+            this.btnVerificaClienteVinculado.Text = "VERIFICAR CLIENTE VINCULADO";
             // 
-            // tpConfig
+            // btnCancelarVeiculo
             // 
-            this.tpConfig.HorizontalScrollbarBarColor = true;
-            this.tpConfig.Location = new System.Drawing.Point(4, 38);
-            this.tpConfig.Name = "tpConfig";
-            this.tpConfig.Size = new System.Drawing.Size(1078, 632);
-            this.tpConfig.TabIndex = 4;
-            this.tpConfig.Text = "metroTabPage5";
-            this.tpConfig.VerticalScrollbarBarColor = true;
+            this.btnCancelarVeiculo.Location = new System.Drawing.Point(18, 558);
+            this.btnCancelarVeiculo.Name = "btnCancelarVeiculo";
+            this.btnCancelarVeiculo.Size = new System.Drawing.Size(111, 23);
+            this.btnCancelarVeiculo.TabIndex = 13;
+            this.btnCancelarVeiculo.Text = "CANCELAR";
+            this.btnCancelarVeiculo.Visible = false;
+            // 
+            // btnSalvarVeiculo
+            // 
+            this.btnSalvarVeiculo.Location = new System.Drawing.Point(18, 511);
+            this.btnSalvarVeiculo.Name = "btnSalvarVeiculo";
+            this.btnSalvarVeiculo.Size = new System.Drawing.Size(111, 23);
+            this.btnSalvarVeiculo.TabIndex = 12;
+            this.btnSalvarVeiculo.Text = "SALVAR";
+            this.btnSalvarVeiculo.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(462, 488);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Modelo:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(473, 439);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Placa:";
+            // 
+            // txtModelo
+            // 
+            this.txtModelo.Location = new System.Drawing.Point(516, 485);
+            this.txtModelo.Name = "txtModelo";
+            this.txtModelo.Size = new System.Drawing.Size(100, 20);
+            this.txtModelo.TabIndex = 9;
+            // 
+            // txtPlaca
+            // 
+            this.txtPlaca.Location = new System.Drawing.Point(516, 436);
+            this.txtPlaca.Name = "txtPlaca";
+            this.txtPlaca.Size = new System.Drawing.Size(100, 20);
+            this.txtPlaca.TabIndex = 8;
+            // 
+            // btnExcluirVeiculo
+            // 
+            this.btnExcluirVeiculo.Location = new System.Drawing.Point(18, 467);
+            this.btnExcluirVeiculo.Name = "btnExcluirVeiculo";
+            this.btnExcluirVeiculo.Size = new System.Drawing.Size(111, 23);
+            this.btnExcluirVeiculo.TabIndex = 7;
+            this.btnExcluirVeiculo.Text = "EXCLUIR";
+            // 
+            // btnAlterarVeiculo
+            // 
+            this.btnAlterarVeiculo.Location = new System.Drawing.Point(18, 420);
+            this.btnAlterarVeiculo.Name = "btnAlterarVeiculo";
+            this.btnAlterarVeiculo.Size = new System.Drawing.Size(111, 23);
+            this.btnAlterarVeiculo.TabIndex = 6;
+            this.btnAlterarVeiculo.Text = "ALTERAR";
+            // 
+            // btnNovoVeiculo
+            // 
+            this.btnNovoVeiculo.Location = new System.Drawing.Point(18, 373);
+            this.btnNovoVeiculo.Name = "btnNovoVeiculo";
+            this.btnNovoVeiculo.Size = new System.Drawing.Size(111, 23);
+            this.btnNovoVeiculo.TabIndex = 5;
+            this.btnNovoVeiculo.Text = "NOVO";
             // 
             // gridVeiculo
             // 
@@ -428,96 +463,12 @@
             this.gridVeiculo.RowHeadersVisible = false;
             this.gridVeiculo.RowHeadersWidth = 137;
             this.gridVeiculo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.gridVeiculo.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.gridVeiculo.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridVeiculo.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.gridVeiculo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridVeiculo.Size = new System.Drawing.Size(1041, 324);
+            this.gridVeiculo.Size = new System.Drawing.Size(155, 324);
             this.gridVeiculo.TabIndex = 4;
-            // 
-            // btnNovoVeiculo
-            // 
-            this.btnNovoVeiculo.Location = new System.Drawing.Point(18, 373);
-            this.btnNovoVeiculo.Name = "btnNovoVeiculo";
-            this.btnNovoVeiculo.Size = new System.Drawing.Size(111, 23);
-            this.btnNovoVeiculo.TabIndex = 5;
-            this.btnNovoVeiculo.Text = "NOVO";
-            // 
-            // btnAlterarVeiculo
-            // 
-            this.btnAlterarVeiculo.Location = new System.Drawing.Point(18, 420);
-            this.btnAlterarVeiculo.Name = "btnAlterarVeiculo";
-            this.btnAlterarVeiculo.Size = new System.Drawing.Size(111, 23);
-            this.btnAlterarVeiculo.TabIndex = 6;
-            this.btnAlterarVeiculo.Text = "ALTERAR";
-            // 
-            // btnExcluirVeiculo
-            // 
-            this.btnExcluirVeiculo.Location = new System.Drawing.Point(18, 467);
-            this.btnExcluirVeiculo.Name = "btnExcluirVeiculo";
-            this.btnExcluirVeiculo.Size = new System.Drawing.Size(111, 23);
-            this.btnExcluirVeiculo.TabIndex = 7;
-            this.btnExcluirVeiculo.Text = "EXCLUIR";
-            // 
-            // txtPlaca
-            // 
-            this.txtPlaca.Location = new System.Drawing.Point(516, 436);
-            this.txtPlaca.Name = "txtPlaca";
-            this.txtPlaca.Size = new System.Drawing.Size(100, 20);
-            this.txtPlaca.TabIndex = 8;
-            // 
-            // txtModelo
-            // 
-            this.txtModelo.Location = new System.Drawing.Point(516, 485);
-            this.txtModelo.Name = "txtModelo";
-            this.txtModelo.Size = new System.Drawing.Size(100, 20);
-            this.txtModelo.TabIndex = 9;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(473, 439);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Placa:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(462, 488);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Modelo:";
-            // 
-            // btnCancelarVeiculo
-            // 
-            this.btnCancelarVeiculo.Location = new System.Drawing.Point(18, 558);
-            this.btnCancelarVeiculo.Name = "btnCancelarVeiculo";
-            this.btnCancelarVeiculo.Size = new System.Drawing.Size(111, 23);
-            this.btnCancelarVeiculo.TabIndex = 13;
-            this.btnCancelarVeiculo.Text = "CANCELAR";
-            this.btnCancelarVeiculo.Visible = false;
-            // 
-            // btnSalvarVeiculo
-            // 
-            this.btnSalvarVeiculo.Location = new System.Drawing.Point(18, 511);
-            this.btnSalvarVeiculo.Name = "btnSalvarVeiculo";
-            this.btnSalvarVeiculo.Size = new System.Drawing.Size(111, 23);
-            this.btnSalvarVeiculo.TabIndex = 12;
-            this.btnSalvarVeiculo.Text = "SALVAR";
-            this.btnSalvarVeiculo.Visible = false;
-            // 
-            // btnVerificaClienteVinculado
-            // 
-            this.btnVerificaClienteVinculado.Location = new System.Drawing.Point(18, 607);
-            this.btnVerificaClienteVinculado.Name = "btnVerificaClienteVinculado";
-            this.btnVerificaClienteVinculado.Size = new System.Drawing.Size(184, 23);
-            this.btnVerificaClienteVinculado.TabIndex = 14;
-            this.btnVerificaClienteVinculado.Text = "VERIFICAR CLIENTE VINCULADO";
             // 
             // clId
             // 
@@ -537,104 +488,42 @@
             this.clModelo.HeaderText = "MODELO";
             this.clModelo.Name = "clModelo";
             // 
-            // btnCancelarCliente
+            // tpProduto
             // 
-            this.btnCancelarCliente.Location = new System.Drawing.Point(18, 558);
-            this.btnCancelarCliente.Name = "btnCancelarCliente";
-            this.btnCancelarCliente.Size = new System.Drawing.Size(111, 23);
-            this.btnCancelarCliente.TabIndex = 24;
-            this.btnCancelarCliente.Text = "CANCELAR";
-            this.btnCancelarCliente.Visible = false;
+            this.tpProduto.Controls.Add(this.label6);
+            this.tpProduto.Controls.Add(this.textBox2);
+            this.tpProduto.Controls.Add(this.btnCancelarProduto);
+            this.tpProduto.Controls.Add(this.btnSalvarProduto);
+            this.tpProduto.Controls.Add(this.label4);
+            this.tpProduto.Controls.Add(this.textBox1);
+            this.tpProduto.Controls.Add(this.btnExcluirProduto);
+            this.tpProduto.Controls.Add(this.btnAlterarProduto);
+            this.tpProduto.Controls.Add(this.btnNovoProduto);
+            this.tpProduto.Controls.Add(this.gridProduto);
+            this.tpProduto.HorizontalScrollbarBarColor = true;
+            this.tpProduto.Location = new System.Drawing.Point(4, 38);
+            this.tpProduto.Name = "tpProduto";
+            this.tpProduto.Size = new System.Drawing.Size(1078, 632);
+            this.tpProduto.TabIndex = 1;
+            this.tpProduto.Text = "metroTabPage2";
+            this.tpProduto.VerticalScrollbarBarColor = true;
             // 
-            // btnSalvarCliente
+            // label6
             // 
-            this.btnSalvarCliente.Location = new System.Drawing.Point(18, 511);
-            this.btnSalvarCliente.Name = "btnSalvarCliente";
-            this.btnSalvarCliente.Size = new System.Drawing.Size(111, 23);
-            this.btnSalvarCliente.TabIndex = 23;
-            this.btnSalvarCliente.Text = "SALVAR";
-            this.btnSalvarCliente.Visible = false;
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(397, 473);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.TabIndex = 34;
+            this.label6.Text = "Estoque:";
             // 
-            // label5
+            // textBox2
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(411, 433);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 13);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Nome:";
-            // 
-            // txtNome
-            // 
-            this.txtNome.Location = new System.Drawing.Point(454, 430);
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(213, 20);
-            this.txtNome.TabIndex = 19;
-            // 
-            // btnExcluirCliente
-            // 
-            this.btnExcluirCliente.Location = new System.Drawing.Point(18, 467);
-            this.btnExcluirCliente.Name = "btnExcluirCliente";
-            this.btnExcluirCliente.Size = new System.Drawing.Size(111, 23);
-            this.btnExcluirCliente.TabIndex = 18;
-            this.btnExcluirCliente.Text = "EXCLUIR";
-            // 
-            // btnAlterarCliente
-            // 
-            this.btnAlterarCliente.Location = new System.Drawing.Point(18, 420);
-            this.btnAlterarCliente.Name = "btnAlterarCliente";
-            this.btnAlterarCliente.Size = new System.Drawing.Size(111, 23);
-            this.btnAlterarCliente.TabIndex = 17;
-            this.btnAlterarCliente.Text = "ALTERAR";
-            // 
-            // btnNovoCliente
-            // 
-            this.btnNovoCliente.Location = new System.Drawing.Point(18, 373);
-            this.btnNovoCliente.Name = "btnNovoCliente";
-            this.btnNovoCliente.Size = new System.Drawing.Size(111, 23);
-            this.btnNovoCliente.TabIndex = 16;
-            this.btnNovoCliente.Text = "NOVO";
-            // 
-            // gridCliente
-            // 
-            this.gridCliente.AllowUserToAddRows = false;
-            this.gridCliente.AllowUserToDeleteRows = false;
-            this.gridCliente.AllowUserToResizeColumns = false;
-            this.gridCliente.AllowUserToResizeRows = false;
-            this.gridCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridCliente.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(173)))), ((int)(((byte)(218)))));
-            this.gridCliente.ColumnHeadersHeight = 21;
-            this.gridCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.gridCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.clNome});
-            this.gridCliente.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.gridCliente.Location = new System.Drawing.Point(18, 26);
-            this.gridCliente.MultiSelect = false;
-            this.gridCliente.Name = "gridCliente";
-            this.gridCliente.RowHeadersVisible = false;
-            this.gridCliente.RowHeadersWidth = 137;
-            this.gridCliente.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.gridCliente.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.gridCliente.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.gridCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridCliente.Size = new System.Drawing.Size(1041, 324);
-            this.gridCliente.TabIndex = 15;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // clNome
-            // 
-            this.clNome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.clNome.HeaderText = "NOME";
-            this.clNome.Name = "clNome";
+            this.textBox2.Location = new System.Drawing.Point(460, 470);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(72, 20);
+            this.textBox2.TabIndex = 33;
             // 
             // btnCancelarProduto
             // 
@@ -717,29 +606,12 @@
             this.gridProduto.RowHeadersVisible = false;
             this.gridProduto.RowHeadersWidth = 137;
             this.gridProduto.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.gridProduto.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.gridProduto.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.gridProduto.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.gridProduto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridProduto.Size = new System.Drawing.Size(1041, 324);
+            this.gridProduto.Size = new System.Drawing.Size(155, 324);
             this.gridProduto.TabIndex = 25;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(397, 473);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
-            this.label6.TabIndex = 34;
-            this.label6.Text = "Estoque:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(460, 470);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(72, 20);
-            this.textBox2.TabIndex = 33;
             // 
             // clIdProduto
             // 
@@ -759,15 +631,143 @@
             this.clEstoqueProduto.HeaderText = "ESTOQUE";
             this.clEstoqueProduto.Name = "clEstoqueProduto";
             // 
-            // tpHome
+            // tpCliente
             // 
-            this.tpHome.HorizontalScrollbarBarColor = true;
-            this.tpHome.Location = new System.Drawing.Point(4, 38);
-            this.tpHome.Name = "tpHome";
-            this.tpHome.Size = new System.Drawing.Size(1078, 632);
-            this.tpHome.TabIndex = 5;
-            this.tpHome.Text = "metroTabPage1";
-            this.tpHome.VerticalScrollbarBarColor = true;
+            this.tpCliente.Controls.Add(this.btnCancelarCliente);
+            this.tpCliente.Controls.Add(this.btnSalvarCliente);
+            this.tpCliente.Controls.Add(this.label5);
+            this.tpCliente.Controls.Add(this.txtNome);
+            this.tpCliente.Controls.Add(this.btnExcluirCliente);
+            this.tpCliente.Controls.Add(this.btnAlterarCliente);
+            this.tpCliente.Controls.Add(this.btnNovoCliente);
+            this.tpCliente.Controls.Add(this.gridCliente);
+            this.tpCliente.HorizontalScrollbarBarColor = true;
+            this.tpCliente.Location = new System.Drawing.Point(4, 38);
+            this.tpCliente.Name = "tpCliente";
+            this.tpCliente.Size = new System.Drawing.Size(1078, 632);
+            this.tpCliente.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tpCliente.TabIndex = 0;
+            this.tpCliente.Text = "metroTabPage1";
+            this.tpCliente.VerticalScrollbarBarColor = true;
+            // 
+            // btnCancelarCliente
+            // 
+            this.btnCancelarCliente.Location = new System.Drawing.Point(18, 558);
+            this.btnCancelarCliente.Name = "btnCancelarCliente";
+            this.btnCancelarCliente.Size = new System.Drawing.Size(111, 23);
+            this.btnCancelarCliente.TabIndex = 24;
+            this.btnCancelarCliente.Text = "CANCELAR";
+            this.btnCancelarCliente.Visible = false;
+            // 
+            // btnSalvarCliente
+            // 
+            this.btnSalvarCliente.Location = new System.Drawing.Point(18, 511);
+            this.btnSalvarCliente.Name = "btnSalvarCliente";
+            this.btnSalvarCliente.Size = new System.Drawing.Size(111, 23);
+            this.btnSalvarCliente.TabIndex = 23;
+            this.btnSalvarCliente.Text = "SALVAR";
+            this.btnSalvarCliente.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(411, 433);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Nome:";
+            // 
+            // txtNome
+            // 
+            this.txtNome.Location = new System.Drawing.Point(454, 430);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(213, 20);
+            this.txtNome.TabIndex = 19;
+            // 
+            // btnExcluirCliente
+            // 
+            this.btnExcluirCliente.Location = new System.Drawing.Point(18, 467);
+            this.btnExcluirCliente.Name = "btnExcluirCliente";
+            this.btnExcluirCliente.Size = new System.Drawing.Size(111, 23);
+            this.btnExcluirCliente.TabIndex = 18;
+            this.btnExcluirCliente.Text = "EXCLUIR";
+            // 
+            // btnAlterarCliente
+            // 
+            this.btnAlterarCliente.Location = new System.Drawing.Point(18, 420);
+            this.btnAlterarCliente.Name = "btnAlterarCliente";
+            this.btnAlterarCliente.Size = new System.Drawing.Size(111, 23);
+            this.btnAlterarCliente.TabIndex = 17;
+            this.btnAlterarCliente.Text = "ALTERAR";
+            // 
+            // btnNovoCliente
+            // 
+            this.btnNovoCliente.Location = new System.Drawing.Point(18, 373);
+            this.btnNovoCliente.Name = "btnNovoCliente";
+            this.btnNovoCliente.Size = new System.Drawing.Size(111, 23);
+            this.btnNovoCliente.TabIndex = 16;
+            this.btnNovoCliente.Text = "NOVO";
+            // 
+            // gridCliente
+            // 
+            this.gridCliente.AllowUserToAddRows = false;
+            this.gridCliente.AllowUserToDeleteRows = false;
+            this.gridCliente.AllowUserToResizeColumns = false;
+            this.gridCliente.AllowUserToResizeRows = false;
+            this.gridCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridCliente.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(173)))), ((int)(((byte)(218)))));
+            this.gridCliente.ColumnHeadersHeight = 21;
+            this.gridCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.gridCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.clNome});
+            this.gridCliente.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.gridCliente.Location = new System.Drawing.Point(18, 26);
+            this.gridCliente.MultiSelect = false;
+            this.gridCliente.Name = "gridCliente";
+            this.gridCliente.RowHeadersVisible = false;
+            this.gridCliente.RowHeadersWidth = 137;
+            this.gridCliente.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.gridCliente.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.gridCliente.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.gridCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridCliente.Size = new System.Drawing.Size(155, 324);
+            this.gridCliente.TabIndex = 15;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // clNome
+            // 
+            this.clNome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.clNome.HeaderText = "NOME";
+            this.clNome.Name = "clNome";
+            // 
+            // tpLancamento
+            // 
+            this.tpLancamento.HorizontalScrollbarBarColor = true;
+            this.tpLancamento.Location = new System.Drawing.Point(4, 38);
+            this.tpLancamento.Name = "tpLancamento";
+            this.tpLancamento.Size = new System.Drawing.Size(1078, 632);
+            this.tpLancamento.TabIndex = 3;
+            this.tpLancamento.Text = "metroTabPage4";
+            this.tpLancamento.VerticalScrollbarBarColor = true;
+            // 
+            // tpConfig
+            // 
+            this.tpConfig.HorizontalScrollbarBarColor = true;
+            this.tpConfig.Location = new System.Drawing.Point(4, 38);
+            this.tpConfig.Name = "tpConfig";
+            this.tpConfig.Size = new System.Drawing.Size(1078, 632);
+            this.tpConfig.TabIndex = 4;
+            this.tpConfig.Text = "metroTabPage5";
+            this.tpConfig.VerticalScrollbarBarColor = true;
             // 
             // panel1
             // 
@@ -775,14 +775,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Location = new System.Drawing.Point(65, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1086, 58);
+            this.panel1.Size = new System.Drawing.Size(710, 58);
             this.panel1.TabIndex = 35;
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1151, 719);
+            this.ClientSize = new System.Drawing.Size(775, 412);
             this.Controls.Add(this.pnMenu);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
@@ -794,15 +794,15 @@
             this.pnLancamentos.ResumeLayout(false);
             this.pnCadastro.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
-            this.tpCliente.ResumeLayout(false);
-            this.tpCliente.PerformLayout();
-            this.tpProduto.ResumeLayout(false);
-            this.tpProduto.PerformLayout();
             this.tpVeiculo.ResumeLayout(false);
             this.tpVeiculo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridVeiculo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridCliente)).EndInit();
+            this.tpProduto.ResumeLayout(false);
+            this.tpProduto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProduto)).EndInit();
+            this.tpCliente.ResumeLayout(false);
+            this.tpCliente.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCliente)).EndInit();
             this.ResumeLayout(false);
 
         }
