@@ -289,9 +289,6 @@
     <Compile Include="Formulario\frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulario\Toast\Base\FormBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Formulario\Toast\frmToast.cs">
       <SubType>Form</SubType>
     </Compile>
