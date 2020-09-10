@@ -229,6 +229,7 @@
     <Compile Include="Entities\Cliente.cs" />
     <Compile Include="Entities\Produto.cs" />
     <Compile Include="Entities\Veiculo.cs" />
+    <Compile Include="Enum\EnumToast.cs" />
     <Compile Include="Interfaces\Repositories\Base\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryProduto.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryVeiculo.cs" />

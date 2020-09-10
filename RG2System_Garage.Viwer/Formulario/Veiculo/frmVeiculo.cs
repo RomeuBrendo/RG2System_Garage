@@ -1,17 +1,34 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using RG2System_Garage.Domain.Enum;
+using RG2System_Garage.Domain.Interfaces.Services;
+using RG2System_Garage.Infra.Repositories.Transactions;
+using RG2System_Garage.Viwer.Formulario.Toast;
+using RG2System_Garage.Viwer.Formulario.Toast.Base;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace RG2System_Garage.Viwer.Formulario.Veiculo
 {
-    public partial class frmVeiculo : MetroFramework.Forms.MetroForm
+    public partial class frmVeiculo :  MetroFramework.Forms.MetroForm
     {
+        private IServiceVeiculo _serviceVeiculo;
+        private IUnitOfWork _unitOfWork;
         public frmVeiculo()
         {
             InitializeComponent();
             TabControlVeiculo.SelectedIndex = 0;
+            ConsultarDepedencias();
+            
         }
 
-        private void frmVeiculo_PreviewKeyDown(object sender, System.Windows.Forms.PreviewKeyDownEventArgs e)
+        void ConsultarDepedencias()
+        {
+            _serviceVeiculo = (IServiceVeiculo)Program.ServiceProvider.GetService(typeof(IServiceVeiculo));
+            _unitOfWork = (IUnitOfWork)Program.ServiceProvider.GetService(typeof(IUnitOfWork));
+
+        }
+
+        private void frmVeiculo_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (TabControlVeiculo.SelectedIndex == 0)
             {
@@ -35,14 +52,12 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
 
                 if (e.KeyCode == Keys.F4)
                     btnSalvar.PerformClick();
-
             }
 
         }
 
         private void btnNovo_Click(object sender, System.EventArgs e)
-        {
-            MessageBox.Show("Novo");
+        {         
             TabControlVeiculo.SelectedIndex = 1;
         }
 

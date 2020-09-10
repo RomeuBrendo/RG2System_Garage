@@ -289,6 +289,15 @@
     <Compile Include="Formulario\frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formulario\Toast\Base\FormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulario\Toast\frmToast.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulario\Toast\frmToast.Designer.cs">
+      <DependentUpon>frmToast.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formulario\Veiculo\frmVeiculo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +308,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formulario\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulario\Toast\frmToast.resx">
+      <DependentUpon>frmToast.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulario\Veiculo\frmVeiculo.resx">
       <DependentUpon>frmVeiculo.cs</DependentUpon>
