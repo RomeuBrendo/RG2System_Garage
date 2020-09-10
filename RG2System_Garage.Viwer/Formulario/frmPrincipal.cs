@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using RG2System_Garage.Viwer.Formulario.Veiculo;
+using System;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RG2System_Garage.Viwer.Formulario
@@ -19,8 +15,20 @@ namespace RG2System_Garage.Viwer.Formulario
         {
             InitializeComponent();
             pnMenu.Left = -304;
+            panelformularios.Width -= (pnMenu.Width - 304);
+            panelformularios.Left += (pnMenu.Width - 304);
             glb_HideMenu = true;
             HideAllMenu();
+        }
+
+        private void AjustarPosicaoForms()
+        {
+            if (panelformularios.Controls.Count > 0)
+                for (int i = 0; i < panelformularios.Controls.Count; i++)
+                {
+                    panelformularios.Controls[i].Left = (panelformularios.Width - panelformularios.Controls[i].Width) / 2;                                      
+                    panelformularios.Controls[i].Top = (panelformularios.Height - panelformularios.Controls[i].Height) / 2; ;
+                }        
         }
 
         private void tmMenu_Tick(object sender, EventArgs e)
@@ -28,9 +36,13 @@ namespace RG2System_Garage.Viwer.Formulario
             if (glb_HideMenu)
             {
                 label1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-
+                
                 pnMenu.Left += 16;
-                tabControl1.Left += 16;
+
+                panelformularios.Width -= 16;
+                panelformularios.Left += 16;
+                AjustarPosicaoForms();
+
                 if (pnMenu.Left == 0)
                 {
                     glb_HideMenu = false;
@@ -43,11 +55,15 @@ namespace RG2System_Garage.Viwer.Formulario
                 HideAllMenu();
                 label1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 pnMenu.Left -= 16;
-                tabControl1.Left -= 16;
+
+                panelformularios.Left -= 16;
+                panelformularios.Width += 16;
+                AjustarPosicaoForms();
+
                 if (pnMenu.Left == -304)
                 {
                     glb_HideMenu = true;
-                    this.Refresh();
+                    this.Refresh();                
                     tmMenu.Stop();
 
                 }
@@ -120,27 +136,59 @@ namespace RG2System_Garage.Viwer.Formulario
 
         private void btnCadVeiculo_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 3;
+            AbrirFormulario<frmVeiculo>(true);
         }
 
         private void btnCadCliente_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 1;
+            //tabControl1.SelectedIndex = 1;
         }
 
         private void btnCadProduto_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 2;
+            //tabControl1.SelectedIndex = 2;
         }
 
         private void btnLancServico_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 4;
+            //tabControl1.SelectedIndex = 4;
         }
 
         private void btnConfigGeral_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 5;
+            //tabControl1.SelectedIndex = 5;
         }
+
+        private void AbrirFormulario<formNovo>(Boolean abrirEmShowModal) where formNovo : Form, new()
+        {
+
+            var frmForm = panelformularios.Controls.OfType<formNovo>().FirstOrDefault();
+
+            if (frmForm == null)
+            {
+                frmForm = new formNovo();
+                frmForm.TopLevel = false;
+                frmForm.FormBorderStyle = FormBorderStyle.None;
+                panelformularios.Controls.Add(frmForm);
+                panelformularios.Visible = true;
+              
+                if (abrirEmShowModal)
+                    frmForm.ShowDialog();
+                else
+                    frmForm.Show();
+
+                frmForm.BringToFront();
+          
+            }
+            else
+            {
+                frmForm.BringToFront();
+                frmForm.WindowState = FormWindowState.Normal;
+                
+            }
+
+            AjustarPosicaoForms();
+        }
+
     }
 }
