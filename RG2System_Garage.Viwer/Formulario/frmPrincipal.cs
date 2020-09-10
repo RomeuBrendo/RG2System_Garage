@@ -136,7 +136,7 @@ namespace RG2System_Garage.Viwer.Formulario
 
         private void btnCadVeiculo_Click(object sender, EventArgs e)
         {
-            AbrirFormulario<frmVeiculo>(true);
+            AbrirFormulario<frmVeiculo>(false);
         }
 
         private void btnCadCliente_Click(object sender, EventArgs e)

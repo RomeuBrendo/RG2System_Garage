@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.TabControlVeiculo = new MetroFramework.Controls.MetroTabControl();
             this.tpSelecionarVeiculo = new MetroFramework.Controls.MetroTabPage();
             this.btnExcluir = new MetroFramework.Controls.MetroButton();
             this.btnAlterar = new MetroFramework.Controls.MetroButton();
@@ -47,35 +47,38 @@
             this.tpCadastroVeiculo = new MetroFramework.Controls.MetroTabPage();
             this.btnCancelarNovo = new MetroFramework.Controls.MetroButton();
             this.btnSalvar = new MetroFramework.Controls.MetroButton();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtModelo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtPlaca = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtAno = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.metroTabControl1.SuspendLayout();
+            this.btnSair = new MetroFramework.Controls.MetroButton();
+            this.TabControlVeiculo.SuspendLayout();
             this.tpSelecionarVeiculo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCategoria)).BeginInit();
             this.tpCadastroVeiculo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // metroTabControl1
+            // TabControlVeiculo
             // 
-            this.metroTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TabControlVeiculo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroTabControl1.Controls.Add(this.tpSelecionarVeiculo);
-            this.metroTabControl1.Controls.Add(this.tpCadastroVeiculo);
-            this.metroTabControl1.Location = new System.Drawing.Point(3, 66);
-            this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
-            this.metroTabControl1.Size = new System.Drawing.Size(566, 443);
-            this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Red;
-            this.metroTabControl1.TabIndex = 0;
+            this.TabControlVeiculo.Controls.Add(this.tpSelecionarVeiculo);
+            this.TabControlVeiculo.Controls.Add(this.tpCadastroVeiculo);
+            this.TabControlVeiculo.Location = new System.Drawing.Point(3, 66);
+            this.TabControlVeiculo.Name = "TabControlVeiculo";
+            this.TabControlVeiculo.SelectedIndex = 0;
+            this.TabControlVeiculo.Size = new System.Drawing.Size(566, 443);
+            this.TabControlVeiculo.Style = MetroFramework.MetroColorStyle.Red;
+            this.TabControlVeiculo.TabIndex = 0;
+            this.TabControlVeiculo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
             // 
             // tpSelecionarVeiculo
             // 
+            this.tpSelecionarVeiculo.Controls.Add(this.btnSair);
             this.tpSelecionarVeiculo.Controls.Add(this.btnExcluir);
             this.tpSelecionarVeiculo.Controls.Add(this.btnAlterar);
             this.tpSelecionarVeiculo.Controls.Add(this.btnNovo);
@@ -95,31 +98,38 @@
             this.btnExcluir.Location = new System.Drawing.Point(447, 166);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(90, 23);
-            this.btnExcluir.TabIndex = 17;
+            this.btnExcluir.TabIndex = 4;
             this.btnExcluir.Text = "Excluir (DEL)";
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            this.btnExcluir.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
             // 
             // btnAlterar
             // 
             this.btnAlterar.Location = new System.Drawing.Point(447, 127);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(90, 23);
-            this.btnAlterar.TabIndex = 16;
+            this.btnAlterar.TabIndex = 3;
             this.btnAlterar.Text = "Alterar (F5)";
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
+            this.btnAlterar.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
             // 
             // btnNovo
             // 
             this.btnNovo.Location = new System.Drawing.Point(447, 88);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(90, 23);
-            this.btnNovo.TabIndex = 15;
+            this.btnNovo.TabIndex = 2;
             this.btnNovo.Text = "Novo (INS)";
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
+            this.btnNovo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
             // 
             // txtPesquisar
             // 
             this.txtPesquisar.Location = new System.Drawing.Point(58, 41);
             this.txtPesquisar.Name = "txtPesquisar";
             this.txtPesquisar.Size = new System.Drawing.Size(362, 20);
-            this.txtPesquisar.TabIndex = 13;
+            this.txtPesquisar.TabIndex = 0;
+            this.txtPesquisar.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
             // 
             // lblPesquisa
             // 
@@ -135,19 +145,19 @@
             // 
             this.dataGridCategoria.AllowUserToResizeColumns = false;
             this.dataGridCategoria.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            this.dataGridCategoria.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle67.BackColor = System.Drawing.Color.White;
+            this.dataGridCategoria.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle67;
             this.dataGridCategoria.BackgroundColor = System.Drawing.Color.White;
             this.dataGridCategoria.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridCategoria.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle68.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle68.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle68.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle68.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle68.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle68.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle68.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle68;
             this.dataGridCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modelo,
@@ -156,30 +166,31 @@
             this.dataGridCategoria.Location = new System.Drawing.Point(16, 87);
             this.dataGridCategoria.MultiSelect = false;
             this.dataGridCategoria.Name = "dataGridCategoria";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridCategoria.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle71.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle71.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle71.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle71.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle71.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle71.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle71.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridCategoria.RowHeadersDefaultCellStyle = dataGridViewCellStyle71;
             this.dataGridCategoria.RowHeadersVisible = false;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridCategoria.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle72.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle72.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle72.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle72.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridCategoria.RowsDefaultCellStyle = dataGridViewCellStyle72;
             this.dataGridCategoria.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridCategoria.Size = new System.Drawing.Size(404, 278);
-            this.dataGridCategoria.TabIndex = 3;
+            this.dataGridCategoria.TabIndex = 1;
+            this.dataGridCategoria.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
             // 
             // Modelo
             // 
             this.Modelo.DataPropertyName = "Modelo";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Modelo.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle69.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Modelo.DefaultCellStyle = dataGridViewCellStyle69;
             this.Modelo.HeaderText = "Modelo";
             this.Modelo.Name = "Modelo";
             this.Modelo.ReadOnly = true;
@@ -188,8 +199,8 @@
             // Placa
             // 
             this.Placa.DataPropertyName = "Placa";
-            dataGridViewCellStyle16.NullValue = "False";
-            this.Placa.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle70.NullValue = "False";
+            this.Placa.DefaultCellStyle = dataGridViewCellStyle70;
             this.Placa.HeaderText = "Placa";
             this.Placa.Name = "Placa";
             this.Placa.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -200,11 +211,11 @@
             // 
             this.tpCadastroVeiculo.Controls.Add(this.btnCancelarNovo);
             this.tpCadastroVeiculo.Controls.Add(this.btnSalvar);
-            this.tpCadastroVeiculo.Controls.Add(this.textBox3);
+            this.tpCadastroVeiculo.Controls.Add(this.txtModelo);
             this.tpCadastroVeiculo.Controls.Add(this.label3);
-            this.tpCadastroVeiculo.Controls.Add(this.textBox2);
+            this.tpCadastroVeiculo.Controls.Add(this.txtPlaca);
             this.tpCadastroVeiculo.Controls.Add(this.label2);
-            this.tpCadastroVeiculo.Controls.Add(this.textBox1);
+            this.tpCadastroVeiculo.Controls.Add(this.txtAno);
             this.tpCadastroVeiculo.Controls.Add(this.label1);
             this.tpCadastroVeiculo.HorizontalScrollbarBarColor = true;
             this.tpCadastroVeiculo.Location = new System.Drawing.Point(4, 35);
@@ -219,23 +230,29 @@
             this.btnCancelarNovo.Location = new System.Drawing.Point(299, 290);
             this.btnCancelarNovo.Name = "btnCancelarNovo";
             this.btnCancelarNovo.Size = new System.Drawing.Size(90, 23);
-            this.btnCancelarNovo.TabIndex = 22;
+            this.btnCancelarNovo.TabIndex = 4;
             this.btnCancelarNovo.Text = "Cancelar (ESC)";
+            this.btnCancelarNovo.Click += new System.EventHandler(this.btnCancelarNovo_Click);
+            this.btnCancelarNovo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
             // 
             // btnSalvar
             // 
             this.btnSalvar.Location = new System.Drawing.Point(173, 290);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(90, 23);
-            this.btnSalvar.TabIndex = 21;
+            this.btnSalvar.TabIndex = 3;
             this.btnSalvar.Text = "Salvar (F4)";
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
             // 
-            // textBox3
+            // txtModelo
             // 
-            this.textBox3.Location = new System.Drawing.Point(227, 117);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(162, 20);
-            this.textBox3.TabIndex = 19;
+            this.txtModelo.Location = new System.Drawing.Point(227, 117);
+            this.txtModelo.Name = "txtModelo";
+            this.txtModelo.Size = new System.Drawing.Size(162, 20);
+            this.txtModelo.TabIndex = 0;
+            this.txtModelo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
+            this.txtModelo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
             // 
             // label3
             // 
@@ -247,12 +264,14 @@
             this.label3.TabIndex = 20;
             this.label3.Text = "Ano:";
             // 
-            // textBox2
+            // txtPlaca
             // 
-            this.textBox2.Location = new System.Drawing.Point(227, 161);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(162, 20);
-            this.textBox2.TabIndex = 17;
+            this.txtPlaca.Location = new System.Drawing.Point(227, 161);
+            this.txtPlaca.Name = "txtPlaca";
+            this.txtPlaca.Size = new System.Drawing.Size(162, 20);
+            this.txtPlaca.TabIndex = 1;
+            this.txtPlaca.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPlaca_KeyDown);
+            this.txtPlaca.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
             // 
             // label2
             // 
@@ -264,12 +283,14 @@
             this.label2.TabIndex = 18;
             this.label2.Text = "Placa:";
             // 
-            // textBox1
+            // txtAno
             // 
-            this.textBox1.Location = new System.Drawing.Point(227, 205);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(162, 20);
-            this.textBox1.TabIndex = 15;
+            this.txtAno.Location = new System.Drawing.Point(227, 205);
+            this.txtAno.Name = "txtAno";
+            this.txtAno.Size = new System.Drawing.Size(162, 20);
+            this.txtAno.TabIndex = 2;
+            this.txtAno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAno_KeyDown);
+            this.txtAno.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
             // 
             // label1
             // 
@@ -288,19 +309,35 @@
             this.panel1.Size = new System.Drawing.Size(566, 43);
             this.panel1.TabIndex = 18;
             // 
+            // btnSair
+            // 
+            this.btnSair.Location = new System.Drawing.Point(447, 205);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(90, 22);
+            this.btnSair.TabIndex = 5;
+            this.btnSair.Text = "Sair (ESC)";
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
+            this.btnSair.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
+            // 
             // frmVeiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 532);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.metroTabControl1);
+            this.Controls.Add(this.TabControlVeiculo);
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmVeiculo";
+            this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.None;
             this.Style = MetroFramework.MetroColorStyle.Red;
             this.Text = "Selecionar Veículo";
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
-            this.metroTabControl1.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.frmVeiculo_Load);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
+            this.TabControlVeiculo.ResumeLayout(false);
             this.tpSelecionarVeiculo.ResumeLayout(false);
             this.tpSelecionarVeiculo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCategoria)).EndInit();
@@ -312,7 +349,7 @@
 
         #endregion
 
-        private MetroFramework.Controls.MetroTabControl metroTabControl1;
+        private MetroFramework.Controls.MetroTabControl TabControlVeiculo;
         private MetroFramework.Controls.MetroTabPage tpSelecionarVeiculo;
         private MetroFramework.Controls.MetroButton btnExcluir;
         private MetroFramework.Controls.MetroButton btnAlterar;
@@ -325,12 +362,13 @@
         private MetroFramework.Controls.MetroTabPage tpCadastroVeiculo;
         private MetroFramework.Controls.MetroButton btnCancelarNovo;
         private MetroFramework.Controls.MetroButton btnSalvar;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtModelo;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtPlaca;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtAno;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
+        private MetroFramework.Controls.MetroButton btnSair;
     }
 }
