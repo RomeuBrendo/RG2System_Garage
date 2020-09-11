@@ -23,7 +23,7 @@ namespace RG2System_Garage.Domain.Service
             {
                 if(request.Id > 0)
                 {
-                    var cliente = new Cliente(request.Nome, request.Id);
+                    var cliente = new Cliente(request.Nome);
                     
                     AddNotifications(cliente);
 

@@ -25,7 +25,7 @@ namespace RG2System_Garage.Domain.Service
                 
                 if (request.Id.Value > 0)
                 {
-                    var produto = new Produto(request.Descricao, request.Estoque, request.Id.Value);
+                    var produto = new Produto(request.Descricao, request.Estoque);
 
                     AddNotifications(produto);
 

@@ -1,5 +1,6 @@
 ﻿using prmToolkit.NotificationPattern;
 using RG2System_Garage.Domain.Entities.Base;
+using System;
 
 namespace RG2System_Garage.Domain.Entities
 {
@@ -15,7 +16,7 @@ namespace RG2System_Garage.Domain.Entities
 
         }
 
-        public Produto(string descricao, int estoque, int id)
+        public Produto(string descricao, int estoque, Guid id)
         {
             Id = id;
             Descricao = descricao;
@@ -24,8 +25,8 @@ namespace RG2System_Garage.Domain.Entities
             new AddNotifications<Produto>(this)
                  .IfNullOrInvalidLength(x => x.Descricao, 2, 50, "O campo descrição deve conter entre 2 e 50 caracteres");
 
-            if (id < 1)
-                AddNotification("Id", "Para realizar alteração, é necessario passar um ID valido");
+            //if (id < 1)
+            //    AddNotification("Id", "Para realizar alteração, é necessario passar um ID valido");
         }
 
         public string Descricao { get; private set; }

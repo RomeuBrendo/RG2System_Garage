@@ -142,7 +142,7 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
             DesabilitaEvento(e);
         }
 
-       void DesabilitaEvento(KeyPressEventArgs e)
+        void DesabilitaEvento(KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
                 e.Handled = true;

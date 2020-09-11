@@ -37,7 +37,7 @@ namespace RG2System_Garage.Domain.Service
                 else //Alterar
                 {
                     var vaeiculo = _repositoryVeiculo.ObterPorId(veiculoRequest.Id.Value);
-                    var veiculoNovo = new Veiculo(veiculoRequest.Placa, veiculoRequest.Modelo, veiculoRequest.Id.Value);
+                    var veiculoNovo = new Veiculo(veiculoRequest.Placa, veiculoRequest.Modelo);
                     _repositoryVeiculo.Adicionar(veiculoNovo);
                     return true;
                 }

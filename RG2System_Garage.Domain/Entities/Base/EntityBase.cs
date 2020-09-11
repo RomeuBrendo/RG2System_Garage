@@ -1,9 +1,15 @@
 ﻿using prmToolkit.NotificationPattern;
+using System;
 
 namespace RG2System_Garage.Domain.Entities.Base
 {
-    public class EntityBase : Notifiable
+    public abstract class EntityBase : Notifiable
     {
-        public int Id { get; set; }
+        protected EntityBase()
+        {
+            Id = Guid.NewGuid();
+        }
+
+        public Guid Id { get; set; }
     }
 }

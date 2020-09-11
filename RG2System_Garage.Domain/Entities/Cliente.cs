@@ -1,5 +1,6 @@
 ﻿using prmToolkit.NotificationPattern;
 using RG2System_Garage.Domain.Entities.Base;
+using System;
 
 namespace RG2System_Garage.Domain.Entities
 {
@@ -13,7 +14,7 @@ namespace RG2System_Garage.Domain.Entities
                 .IfNullOrInvalidLength(x => x.Nome, 2, 150, "Nome deve conter entre 2 e 150 caracteres.");
         }
 
-        public Cliente(string nome, int id)
+        public Cliente(string nome, Guid id)
         {
             Id = id;
             Nome = nome;
@@ -21,8 +22,8 @@ namespace RG2System_Garage.Domain.Entities
             new AddNotifications<Cliente>(this)
                 .IfNullOrInvalidLength(x => x.Nome, 2, 150, "Nome deve conter entre 2 e 150 caracteres.");
 
-            if (Id < 1)
-                AddNotification("Id", "Não pode ser menor que zero");
+            //if (Id < 1)
+            //    AddNotification("Id", "Não pode ser menor que zero");
         }
 
         public string Nome { get; private set; }

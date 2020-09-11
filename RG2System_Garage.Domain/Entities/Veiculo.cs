@@ -1,5 +1,6 @@
 ﻿using prmToolkit.NotificationPattern;
 using RG2System_Garage.Domain.Entities.Base;
+using System;
 
 namespace RG2System_Garage.Domain.Entities
 {
@@ -15,7 +16,7 @@ namespace RG2System_Garage.Domain.Entities
                 .IfNullOrEmpty(x => x.Modelo, "Campo Modelo não pode ser vazio");
         }
 
-        public Veiculo(string placa, string modelo, int id)
+        public Veiculo(string placa, string modelo, Guid id)
         {
             Id = id;
             Placa = placa;
