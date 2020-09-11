@@ -289,12 +289,6 @@
     <Compile Include="Formulario\frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulario\Toast\frmToast.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formulario\Toast\frmToast.Designer.cs">
-      <DependentUpon>frmToast.cs</DependentUpon>
-    </Compile>
     <Compile Include="Formulario\Veiculo\frmVeiculo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,9 +299,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formulario\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Formulario\Toast\frmToast.resx">
-      <DependentUpon>frmToast.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulario\Veiculo\frmVeiculo.resx">
       <DependentUpon>frmVeiculo.cs</DependentUpon>
@@ -345,6 +336,10 @@
     <ProjectReference Include="..\RG2System_Garage.Infra\RG2System_Garage.Infra.csproj">
       <Project>{5368D94C-3A87-477F-A2BD-43A51EC2A76C}</Project>
       <Name>RG2System_Garage.Infra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RG2System_Garage.Shared\RG2System_Garage.Shared.csproj">
+      <Project>{3c7b90b9-9d65-4f43-b87f-56137aaa7eaf}</Project>
+      <Name>RG2System_Garage.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

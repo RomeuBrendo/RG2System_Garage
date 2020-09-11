@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RG2System_Garage.Viwer.Formulario.Toast
+namespace RG2System_Garage.Shared.Formulario.Toast
 {
     public partial class frmToast : Form
     {

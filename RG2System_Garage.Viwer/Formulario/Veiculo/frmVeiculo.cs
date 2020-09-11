@@ -1,5 +1,7 @@
-﻿using RG2System_Garage.Domain.Interfaces.Services;
+﻿using RG2System_Garage.Domain.Enum;
+using RG2System_Garage.Domain.Interfaces.Services;
 using RG2System_Garage.Infra.Repositories.Transactions;
+using RG2System_Garage.Shared.Formulario.Toast;
 using System.Windows.Forms;
 
 namespace RG2System_Garage.Viwer.Formulario.Veiculo
@@ -8,6 +10,7 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
     {
         private IServiceVeiculo _serviceVeiculo;
         private IUnitOfWork _unitOfWork;
+        Toast toast = new Toast();
         public frmVeiculo()
         {
             InitializeComponent();
@@ -102,7 +105,7 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
 
         private void btnSalvar_Click(object sender, System.EventArgs e)
         {
-
+            toast.ShowToast("Tesste", EnumToast.Erro);
         }
     }
 }

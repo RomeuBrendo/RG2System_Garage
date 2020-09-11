@@ -1,4 +1,4 @@
-﻿namespace RG2System_Garage.Viwer.Formulario.Toast
+﻿namespace RG2System_Garage.Shared.Formulario.Toast
 {
     partial class frmToast
     {
@@ -74,7 +74,7 @@
             // 
             // TimerClose
             // 
-            this.TimerClose.Interval = 1000;
+            this.TimerClose.Interval = 3000;
             this.TimerClose.Tick += new System.EventHandler(this.TimerClose_Tick);
             // 
             // frmToast
