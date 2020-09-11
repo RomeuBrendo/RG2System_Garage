@@ -2,6 +2,7 @@
 using RG2System_Garage.Domain.Interfaces.Services;
 using RG2System_Garage.Infra.Repositories.Transactions;
 using RG2System_Garage.Shared.Formulario.Toast;
+using System;
 using System.Windows.Forms;
 
 namespace RG2System_Garage.Viwer.Formulario.Veiculo
@@ -15,6 +16,7 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
         {
             InitializeComponent();
             TabControlVeiculo.SelectedIndex = 0;
+            txtPesquisar.Focus();
             ConsultarDepedencias();
             
         }
@@ -57,6 +59,7 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
         private void btnNovo_Click(object sender, System.EventArgs e)
         {         
             TabControlVeiculo.SelectedIndex = 1;
+            txtModelo.Focus();
         }
 
         private void btnAlterar_Click(object sender, System.EventArgs e)
@@ -85,27 +88,74 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
 
         private void textBox3_KeyDown(object sender, KeyEventArgs e)
         {
-            txtPlaca.Focus();
+            if (e.KeyCode == Keys.Enter)
+                txtPlaca.Focus();
         }
 
         private void txtPlaca_KeyDown(object sender, KeyEventArgs e)
         {
-            txtAno.Focus();
+            if (e.KeyCode == Keys.Enter)
+                dateTimeAno.Focus();
         }
 
         private void txtAno_KeyDown(object sender, KeyEventArgs e)
         {
-            txtModelo.Focus();
+            if (e.KeyCode == Keys.Enter)
+                txtModelo.Focus();
         }
 
         private void btnCancelarNovo_Click(object sender, System.EventArgs e)
         {
             TabControlVeiculo.SelectedIndex = 0;
+            LimparCampos();
         }
 
         private void btnSalvar_Click(object sender, System.EventArgs e)
         {
-            toast.ShowToast("Tesste", EnumToast.Erro);
+            toast.ShowToast("Tesste", EnumToast.Erro);        
+        }
+
+        public void LimparCampos()
+        {
+            foreach (Control item in this.panelCadastroVeiculo.Controls)
+            {
+                if (item is TextBox)
+                    ((TextBox)item).Clear();
+            }
+
+            dateTimeAno.Value = DateTime.Now;
+        }
+
+        private void dateTimeAno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            DesabilitaEvento(e);
+        }
+
+        private void dateTimeAno_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                txtModelo.Focus();
+        }
+
+        private void txtModelo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            DesabilitaEvento(e);
+        }
+
+       void DesabilitaEvento(KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                e.Handled = true;
+        }
+
+        private void txtPlaca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            DesabilitaEvento(e);
+        }
+
+        private void txtPesquisar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            DesabilitaEvento(e);
         }
     }
 }
