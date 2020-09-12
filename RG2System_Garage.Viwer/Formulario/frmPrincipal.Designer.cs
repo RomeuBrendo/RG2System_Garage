@@ -55,7 +55,7 @@
             // 
             this.pnMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.pnMenu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnMenu.BackgroundImage")));
+            this.pnMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
             this.pnMenu.Controls.Add(this.pnConfiguracoes);
             this.pnMenu.Controls.Add(this.pnLancamentos);
             this.pnMenu.Controls.Add(this.pnCadastro);
@@ -65,7 +65,7 @@
             this.pnMenu.Controls.Add(this.btnCadastro);
             this.pnMenu.Location = new System.Drawing.Point(0, 4);
             this.pnMenu.Name = "pnMenu";
-            this.pnMenu.Size = new System.Drawing.Size(368, 410);
+            this.pnMenu.Size = new System.Drawing.Size(368, 540);
             this.pnMenu.TabIndex = 0;
             // 
             // pnConfiguracoes
@@ -78,7 +78,7 @@
             // 
             // btnConfigGeral
             // 
-            this.btnConfigGeral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(194)))), ((int)(((byte)(217)))));
+            this.btnConfigGeral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnConfigGeral.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfigGeral.FlatAppearance.BorderSize = 0;
             this.btnConfigGeral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -104,7 +104,7 @@
             // 
             // btnLancServico
             // 
-            this.btnLancServico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(194)))), ((int)(((byte)(217)))));
+            this.btnLancServico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnLancServico.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLancServico.FlatAppearance.BorderSize = 0;
             this.btnLancServico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -122,6 +122,7 @@
             // 
             // pnCadastro
             // 
+            this.pnCadastro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.pnCadastro.Controls.Add(this.btnCadVeiculo);
             this.pnCadastro.Controls.Add(this.btnCadProduto);
             this.pnCadastro.Controls.Add(this.btnCadCliente);
@@ -132,7 +133,7 @@
             // 
             // btnCadVeiculo
             // 
-            this.btnCadVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(194)))), ((int)(((byte)(217)))));
+            this.btnCadVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCadVeiculo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadVeiculo.FlatAppearance.BorderSize = 0;
             this.btnCadVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -150,7 +151,7 @@
             // 
             // btnCadProduto
             // 
-            this.btnCadProduto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(194)))), ((int)(((byte)(217)))));
+            this.btnCadProduto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCadProduto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadProduto.FlatAppearance.BorderSize = 0;
             this.btnCadProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -168,7 +169,7 @@
             // 
             // btnCadCliente
             // 
-            this.btnCadCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(194)))), ((int)(((byte)(217)))));
+            this.btnCadCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCadCliente.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadCliente.FlatAppearance.BorderSize = 0;
             this.btnCadCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -186,7 +187,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(173)))), ((int)(((byte)(218)))));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
             this.label1.Location = new System.Drawing.Point(305, 10);
             this.label1.Name = "label1";
@@ -196,7 +197,7 @@
             // 
             // btnConfiguracao
             // 
-            this.btnConfiguracao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(173)))), ((int)(((byte)(218)))));
+            this.btnConfiguracao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
             this.btnConfiguracao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfiguracao.FlatAppearance.BorderSize = 0;
             this.btnConfiguracao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -214,7 +215,7 @@
             // 
             // btnLancamento
             // 
-            this.btnLancamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(173)))), ((int)(((byte)(218)))));
+            this.btnLancamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
             this.btnLancamento.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLancamento.FlatAppearance.BorderSize = 0;
             this.btnLancamento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -232,7 +233,7 @@
             // 
             // btnCadastro
             // 
-            this.btnCadastro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(173)))), ((int)(((byte)(218)))));
+            this.btnCadastro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
             this.btnCadastro.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastro.FlatAppearance.BorderSize = 0;
             this.btnCadastro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -260,7 +261,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelformularios.Location = new System.Drawing.Point(3, 42);
             this.panelformularios.Name = "panelformularios";
-            this.panelformularios.Size = new System.Drawing.Size(769, 354);
+            this.panelformularios.Size = new System.Drawing.Size(769, 484);
             this.panelformularios.TabIndex = 36;
             this.panelformularios.Visible = false;
             // 
@@ -268,11 +269,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(775, 412);
+            this.ClientSize = new System.Drawing.Size(775, 542);
             this.Controls.Add(this.pnMenu);
             this.Controls.Add(this.panelformularios);
             this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.Name = "frmPrincipal";
+            this.Style = MetroFramework.MetroColorStyle.Red;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnMenu.ResumeLayout(false);
             this.pnConfiguracoes.ResumeLayout(false);
