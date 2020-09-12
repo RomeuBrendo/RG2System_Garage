@@ -3,6 +3,7 @@ using RG2System_Garage.Domain.Entities.Base;
 using System;
 using RG2System_Garage.Domain.Resources;
 using prmToolkit.NotificationPattern.Extensions;
+using RG2System_Garage.Domain.Commands.Veiculo;
 
 namespace RG2System_Garage.Domain.Entities
 {
@@ -10,6 +11,7 @@ namespace RG2System_Garage.Domain.Entities
     {
         public Veiculo(string placa, string modelo, DateTime ano)
         {
+            this.ClearNotifications();
             Placa = placa;
             Modelo = modelo;
             Ano = ano;
@@ -19,12 +21,13 @@ namespace RG2System_Garage.Domain.Entities
                 .IfNullOrEmpty(x => x.Modelo, MSG.X0_E_OBRIGATORIO.ToFormat("Modelo"));
         }
 
-        public Veiculo(string placa, string modelo, Guid id, DateTime ano)
+        public void AlterarVeiculo(VeiculoRequest novo)
         {
-            Id = id;
-            Placa = placa;
-            Modelo = modelo;
-            Ano = ano;
+            this.ClearNotifications();
+            Id = novo.Id.Value;
+            Placa = novo.Placa;
+            Modelo = novo.Modelo;
+            Ano = novo.Ano;
 
             new AddNotifications<Veiculo>(this)
                 .IfNullOrEmpty(x => x.Placa, "Campo Placa não pode ser vazio")

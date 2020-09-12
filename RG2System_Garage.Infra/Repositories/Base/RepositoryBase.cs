@@ -84,6 +84,7 @@ namespace RG2System_Garage.Infra.Repositories.Base
 
         public TEntidade Editar(TEntidade entidade)
         {
+
             _context.Entry(entidade).State = EntityState.Modified;
 
             return entidade;

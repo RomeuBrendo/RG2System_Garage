@@ -16,21 +16,25 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
         private IServiceVeiculo _serviceVeiculo;
         private IUnitOfWork _unitOfWork;
         Toast toast = new Toast();
+        Guid IdEstaSendoEditado;
         public frmVeiculo()
         {
             InitializeComponent();
             TabControlVeiculo.SelectedIndex = 0;
             txtPesquisar.Focus();
             ConsultarDepedencias();
-            carregarTelaSelecao();
-
+            dataGridVeiculo.AutoGenerateColumns = false;
+            dataGridVeiculo.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            CarregaGrid("");
+            IdEstaSendoEditado = Guid.Empty;
         }
 
-        void carregarTelaSelecao()
+        void CarregaGrid(string placa)
         {
-           dataGridVeiculo.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
             dataGridVeiculo.DataSource = null;
-            var veiculos = _serviceVeiculo.ListarVeiculo("");
+            
+            var veiculos = _serviceVeiculo.ListarVeiculo(placa);
 
             if (VerificaNotificacoes(_serviceVeiculo) && (veiculos != null))
             {
@@ -90,19 +94,77 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
         }
 
         private void btnNovo_Click(object sender, System.EventArgs e)
-        {         
+        {
+            this.Text = "Novo Veículo";
             TabControlVeiculo.SelectedIndex = 1;
             txtModelo.Focus();
+            this.Refresh();
+        }
+
+        private VeiculoResponse VeiculoSelecionado()
+        {
+            try
+            {
+                return dataGridVeiculo.SelectedRows[0].DataBoundItem as VeiculoResponse;
+            }
+            catch
+            {
+                toast.ShowToast("Nenhum veículo foi selecionado.", EnumToast.Erro);
+                return null;
+            }
         }
 
         private void btnAlterar_Click(object sender, System.EventArgs e)
         {
-            MessageBox.Show("Alterar");
+            var veiculoSelecionado = VeiculoSelecionado();
+
+            if (veiculoSelecionado == null)
+                return;
+
+            var veiculo = _serviceVeiculo.ObterVeiculoId(veiculoSelecionado.Id.Value);
+
+            if (VerificaNotificacoes(_serviceVeiculo))
+            {
+                this.Text = "Alterar Veículo";
+                TabControlVeiculo.SelectedIndex = 1;
+                IdEstaSendoEditado = veiculo.Id.Value;
+                txtModelo.Text = veiculo.Modelo;
+                txtPlaca.Text = veiculo.Placa;
+                dateTimeAno.Value = veiculo.Ano;
+                txtModelo.Focus();
+                this.Refresh();
+            }
         }
 
         private void btnExcluir_Click(object sender, System.EventArgs e)
         {
-            MessageBox.Show("Excluir");
+            var veiculoSelecionado = VeiculoSelecionado();
+          
+            if (veiculoSelecionado == null)
+                return;
+           
+            DialogResult dialogResult = MessageBox.Show("Deseja confirmar exclusão?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.No)
+                return;
+
+            try
+            {
+                _serviceVeiculo.Excluir(veiculoSelecionado.Id.Value);
+
+                if (VerificaNotificacoes(_serviceVeiculo))
+                {
+                    _unitOfWork.SaveChanges();
+                    CarregaGrid("");
+                    toast.ShowToast("Exclusão realizada com sucesso!", EnumToast.Sucesso);
+                    this.txtPesquisar.Focus();
+                }
+
+            }
+            catch
+            {
+                toast.ShowToast("Erro ao tentar Deletar. Tente Novamente!", EnumToast.Erro);
+            }
         }
 
         private void btnSair_Click(object sender, System.EventArgs e)
@@ -146,6 +208,14 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
         private void btnSalvar_Click(object sender, System.EventArgs e)
         {
             var veiculo = new VeiculoRequest();
+            var acao = "Cadastrado";
+
+            if (IdEstaSendoEditado != Guid.Empty)
+            {
+                veiculo.Id = IdEstaSendoEditado;
+                acao = "Alterado";
+            }
+                
 
             veiculo.Modelo = txtModelo.Text;
             veiculo.Placa = txtPlaca.Text;
@@ -158,9 +228,9 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
                 try
                 {
                     _unitOfWork.SaveChanges();
-                    toast.ShowToast("Veículo Cadastrado com Sucesso", EnumToast.Sucesso);
+                    toast.ShowToast("Veículo "+ acao+" com Sucesso", EnumToast.Sucesso);
                     TabControlVeiculo.SelectedIndex = 0;
-                    carregarTelaSelecao();
+                    CarregaGrid("");
                     txtPesquisar.Focus();
                 }
                 catch
@@ -169,6 +239,8 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
                 }
 
             }
+            else
+                txtModelo.Focus();
 
         }
 
@@ -181,6 +253,9 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
             }
 
             dateTimeAno.Value = DateTime.Now;
+            IdEstaSendoEditado = Guid.Empty;
+            this.Text = "Selecionar Veículo";
+            this.Refresh();
         }
 
         private void dateTimeAno_KeyPress(object sender, KeyPressEventArgs e)
@@ -213,6 +288,14 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
         private void txtPesquisar_KeyPress(object sender, KeyPressEventArgs e)
         {
             DesabilitaEvento(e);
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPesquisar.Text.Length > 0)
+                CarregaGrid(txtPesquisar.Text);
+            else
+                CarregaGrid("");
         }
     }
 }

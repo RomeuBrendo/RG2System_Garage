@@ -143,7 +143,7 @@
             this.btnCadVeiculo.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnCadVeiculo.Size = new System.Drawing.Size(368, 40);
             this.btnCadVeiculo.TabIndex = 7;
-            this.btnCadVeiculo.Text = "VEICULO";
+            this.btnCadVeiculo.Text = "VEÍCULO";
             this.btnCadVeiculo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCadVeiculo.UseVisualStyleBackColor = false;
             this.btnCadVeiculo.Click += new System.EventHandler(this.btnCadVeiculo_Click);

@@ -123,6 +123,9 @@
   <data name="DADOS_NAO_ENCONTRADOS" xml:space="preserve">
     <value>Dados não encontrados.</value>
   </data>
+  <data name="ESTA_X0_JA_EXISTE_CADASTRADA" xml:space="preserve">
+    <value>Esta {0} já existe cadastrada.</value>
+  </data>
   <data name="ESTE_X0_JA_EXISTE" xml:space="preserve">
     <value>Este {0} já existe.</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="JA_EXISTE_UM_X0_COM_O_X1_X2" xml:space="preserve">
     <value>Já existe um {0} com o {1} {2}</value>
+  </data>
+  <data name="NAO_E_POSSIVEL_EXCLUIR_ESTE_X0" xml:space="preserve">
+    <value>Não é possível excluir este {0}</value>
   </data>
   <data name="NAO_E_POSSIVEL_EXCLUIR_UMA_X0_ASSOCIADA_A_UMA_X1" xml:space="preserve">
     <value>Não é possível excluir uma {0} associada a uma {1}.</value>

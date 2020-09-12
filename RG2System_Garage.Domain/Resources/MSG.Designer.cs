@@ -79,6 +79,15 @@ namespace RG2System_Garage.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esta {0} já existe cadastrada..
+        /// </summary>
+        internal static string ESTA_X0_JA_EXISTE_CADASTRADA {
+            get {
+                return ResourceManager.GetString("ESTA_X0_JA_EXISTE_CADASTRADA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Este {0} já existe..
         /// </summary>
         internal static string ESTE_X0_JA_EXISTE {
@@ -138,6 +147,15 @@ namespace RG2System_Garage.Domain.Resources {
         internal static string JA_EXISTE_UMA_X0_COM_O_X1_X2 {
             get {
                 return ResourceManager.GetString("JA_EXISTE_UMA_X0_COM_O_X1_X2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Não é possível excluir este {0}.
+        /// </summary>
+        internal static string NAO_E_POSSIVEL_EXCLUIR_ESTE_X0 {
+            get {
+                return ResourceManager.GetString("NAO_E_POSSIVEL_EXCLUIR_ESTE_X0", resourceCulture);
             }
         }
         

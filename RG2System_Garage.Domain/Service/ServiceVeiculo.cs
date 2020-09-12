@@ -1,8 +1,11 @@
 ﻿using prmToolkit.NotificationPattern;
+using prmToolkit.NotificationPattern.Extensions;
 using RG2System_Garage.Domain.Commands.Veiculo;
 using RG2System_Garage.Domain.Entities;
 using RG2System_Garage.Domain.Interfaces.Repositories;
 using RG2System_Garage.Domain.Interfaces.Services;
+using RG2System_Garage.Domain.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,11 +25,15 @@ namespace RG2System_Garage.Domain.Service
             try
             {
                 this.ClearNotifications();
+
                 if (veiculoRequest.Id == null)
                 {
                     var veiculo = new Veiculo(veiculoRequest.Placa, veiculoRequest.Modelo, veiculoRequest.Ano);
 
                     AddNotifications(veiculo);
+
+                    if (_repositoryVeiculo.Existe(x => x.Placa == veiculo.Placa))
+                        AddNotification("Placa", MSG.ESTA_X0_JA_EXISTE_CADASTRADA.ToFormat("Placa"));
 
                     if (!IsValid())
                         return false;
@@ -37,17 +44,50 @@ namespace RG2System_Garage.Domain.Service
                 }
                 else //Alterar
                 {
-                    var vaeiculo = _repositoryVeiculo.ObterPorId(veiculoRequest.Id.Value);
-                    var veiculoNovo = new Veiculo(veiculoRequest.Placa, veiculoRequest.Modelo, veiculoRequest.Ano);
-                    _repositoryVeiculo.Adicionar(veiculoNovo);
+                    var veiculo = _repositoryVeiculo.ObterPorId(veiculoRequest.Id.Value);
+                    veiculo.AlterarVeiculo(veiculoRequest);
+
+                    AddNotifications(veiculo);
+
+                    if (!IsValid())
+                        return false;
+
+                    if (_repositoryVeiculo.Existe(x => x.Placa == veiculo.Placa && veiculo.Id != x.Id))
+                    {
+                        AddNotification("Placa", MSG.ESTA_X0_JA_EXISTE_CADASTRADA.ToFormat("Placa"));
+                        return false;
+                    }
+
+                    _repositoryVeiculo.Editar(veiculo);
                     return true;
                 }
 
             }
-            catch (System.Exception)
+            catch
             {
                 AddNotification("AdicionarOuAlterar","Erro ao atualizar Veiculo. Tente novamente.");
                 return false;
+            }
+        }
+
+        public void Excluir(Guid id)
+        {
+            try
+            {
+                this.ClearNotifications();
+                if (id == null)
+                {
+                    AddNotification("Id", MSG.X0_INVALIDO.ToFormat("ID"));
+                    return;
+                }
+
+                var veiculo = _repositoryVeiculo.ObterPorId(id);
+                _repositoryVeiculo.Remover(veiculo);
+            }
+            catch
+            {
+                AddNotification("Id", MSG.NAO_E_POSSIVEL_EXCLUIR_ESTE_X0.ToFormat("Veículo"));
+                return;
             }
         }
 
@@ -76,7 +116,30 @@ namespace RG2System_Garage.Domain.Service
             }
 
         }
-        
+
+        public VeiculoResponse ObterVeiculoId(Guid id)
+        {
+            try
+            {
+                this.ClearNotifications();
+                var veiculo = _repositoryVeiculo.ObterPorId(id);
+
+                if (veiculo == null)
+                {
+                    AddNotification("Veiculo", MSG.DADOS_NAO_ENCONTRADOS);
+                    return null;
+                }
+                else
+                    return (VeiculoResponse)veiculo;
+            }
+            catch
+            {
+
+                AddNotification("Veiculo", MSG.DADOS_NAO_ENCONTRADOS);
+                return null;
+            }
+        }
+
         private List<VeiculoResponse> VeiculosResponse(List<Veiculo> veiculos)
         {
             try
