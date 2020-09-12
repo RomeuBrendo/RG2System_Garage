@@ -148,7 +148,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
                     txtTelefone2.Text = request.Telefone2;
                     this.Refresh();
                     txtNome.Focus();
-                }
+                };
             }
             catch
             {
@@ -272,6 +272,8 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
                     CarregaGridCliente("");
                     txtPesquisar.Focus();
                 }
+                else
+                    txtNome.Focus();
             }
             catch
             {

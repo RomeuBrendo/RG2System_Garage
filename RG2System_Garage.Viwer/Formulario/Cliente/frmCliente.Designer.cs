@@ -49,24 +49,24 @@
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.lblPesquisa = new System.Windows.Forms.Label();
             this.dataGridCliente = new System.Windows.Forms.DataGridView();
-            this.tpCadastro = new MetroFramework.Controls.MetroTabPage();
-            this.btnCancelarNovo = new MetroFramework.Controls.MetroButton();
-            this.btnSalvar = new MetroFramework.Controls.MetroButton();
-            this.panelCadastroVeiculo = new MetroFramework.Controls.MetroPanel();
             this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Contato = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblNome = new MetroFramework.Controls.MetroLabel();
-            this.txtNome = new System.Windows.Forms.TextBox();
-            this.txtCPFCPNJ = new System.Windows.Forms.TextBox();
-            this.lblCpfCnpj = new MetroFramework.Controls.MetroLabel();
-            this.txtTelefone1 = new System.Windows.Forms.TextBox();
-            this.lblTelefone1 = new MetroFramework.Controls.MetroLabel();
-            this.txtTelefone2 = new System.Windows.Forms.TextBox();
+            this.tpCadastro = new MetroFramework.Controls.MetroTabPage();
+            this.panelCadastroVeiculo = new MetroFramework.Controls.MetroPanel();
             this.dataGridVeiculo = new System.Windows.Forms.DataGridView();
             this.Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtTelefone2 = new System.Windows.Forms.TextBox();
+            this.txtTelefone1 = new System.Windows.Forms.TextBox();
+            this.lblTelefone1 = new MetroFramework.Controls.MetroLabel();
+            this.txtCPFCPNJ = new System.Windows.Forms.TextBox();
+            this.lblCpfCnpj = new MetroFramework.Controls.MetroLabel();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.lblNome = new MetroFramework.Controls.MetroLabel();
+            this.btnCancelarNovo = new MetroFramework.Controls.MetroButton();
+            this.btnSalvar = new MetroFramework.Controls.MetroButton();
             this.tabControlCliente.SuspendLayout();
             this.tpSelecionar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCliente)).BeginInit();
@@ -217,60 +217,6 @@
             this.dataGridCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             this.dataGridCliente.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
             // 
-            // tpCadastro
-            // 
-            this.tpCadastro.Controls.Add(this.panelCadastroVeiculo);
-            this.tpCadastro.Controls.Add(this.btnCancelarNovo);
-            this.tpCadastro.Controls.Add(this.btnSalvar);
-            this.tpCadastro.HorizontalScrollbarBarColor = true;
-            this.tpCadastro.Location = new System.Drawing.Point(4, 35);
-            this.tpCadastro.Name = "tpCadastro";
-            this.tpCadastro.Size = new System.Drawing.Size(558, 404);
-            this.tpCadastro.TabIndex = 1;
-            this.tpCadastro.Text = "tpCadastro";
-            this.tpCadastro.VerticalScrollbarBarColor = true;
-            // 
-            // btnCancelarNovo
-            // 
-            this.btnCancelarNovo.Location = new System.Drawing.Point(299, 378);
-            this.btnCancelarNovo.Name = "btnCancelarNovo";
-            this.btnCancelarNovo.Size = new System.Drawing.Size(90, 23);
-            this.btnCancelarNovo.TabIndex = 1;
-            this.btnCancelarNovo.Text = "Cancelar (ESC)";
-            this.btnCancelarNovo.Click += new System.EventHandler(this.btnCancelarNovo_Click);
-            this.btnCancelarNovo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
-            // 
-            // btnSalvar
-            // 
-            this.btnSalvar.Location = new System.Drawing.Point(173, 378);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(90, 23);
-            this.btnSalvar.TabIndex = 0;
-            this.btnSalvar.Text = "Salvar (F4)";
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
-            this.btnSalvar.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
-            // 
-            // panelCadastroVeiculo
-            // 
-            this.panelCadastroVeiculo.Controls.Add(this.dataGridVeiculo);
-            this.panelCadastroVeiculo.Controls.Add(this.txtTelefone2);
-            this.panelCadastroVeiculo.Controls.Add(this.txtTelefone1);
-            this.panelCadastroVeiculo.Controls.Add(this.lblTelefone1);
-            this.panelCadastroVeiculo.Controls.Add(this.txtCPFCPNJ);
-            this.panelCadastroVeiculo.Controls.Add(this.lblCpfCnpj);
-            this.panelCadastroVeiculo.Controls.Add(this.txtNome);
-            this.panelCadastroVeiculo.Controls.Add(this.lblNome);
-            this.panelCadastroVeiculo.HorizontalScrollbarBarColor = true;
-            this.panelCadastroVeiculo.HorizontalScrollbarHighlightOnWheel = false;
-            this.panelCadastroVeiculo.HorizontalScrollbarSize = 10;
-            this.panelCadastroVeiculo.Location = new System.Drawing.Point(0, 0);
-            this.panelCadastroVeiculo.Name = "panelCadastroVeiculo";
-            this.panelCadastroVeiculo.Size = new System.Drawing.Size(555, 357);
-            this.panelCadastroVeiculo.TabIndex = 21;
-            this.panelCadastroVeiculo.VerticalScrollbarBarColor = true;
-            this.panelCadastroVeiculo.VerticalScrollbarHighlightOnWheel = false;
-            this.panelCadastroVeiculo.VerticalScrollbarSize = 10;
-            // 
             // Modelo
             // 
             this.Modelo.DataPropertyName = "Nome";
@@ -304,76 +250,39 @@
             this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Id.Visible = false;
             // 
-            // lblNome
+            // tpCadastro
             // 
-            this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(84, 24);
-            this.lblNome.Name = "lblNome";
-            this.lblNome.Size = new System.Drawing.Size(49, 19);
-            this.lblNome.TabIndex = 2;
-            this.lblNome.Text = "Nome:";
+            this.tpCadastro.Controls.Add(this.panelCadastroVeiculo);
+            this.tpCadastro.Controls.Add(this.btnCancelarNovo);
+            this.tpCadastro.Controls.Add(this.btnSalvar);
+            this.tpCadastro.HorizontalScrollbarBarColor = true;
+            this.tpCadastro.Location = new System.Drawing.Point(4, 35);
+            this.tpCadastro.Name = "tpCadastro";
+            this.tpCadastro.Size = new System.Drawing.Size(558, 404);
+            this.tpCadastro.TabIndex = 1;
+            this.tpCadastro.Text = "tpCadastro";
+            this.tpCadastro.VerticalScrollbarBarColor = true;
             // 
-            // txtNome
+            // panelCadastroVeiculo
             // 
-            this.txtNome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNome.Location = new System.Drawing.Point(139, 23);
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(362, 20);
-            this.txtNome.TabIndex = 0;
-            this.txtNome.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNome_KeyDown);
-            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
-            this.txtNome.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
-            // 
-            // txtCPFCPNJ
-            // 
-            this.txtCPFCPNJ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCPFCPNJ.Location = new System.Drawing.Point(139, 62);
-            this.txtCPFCPNJ.Name = "txtCPFCPNJ";
-            this.txtCPFCPNJ.Size = new System.Drawing.Size(111, 20);
-            this.txtCPFCPNJ.TabIndex = 1;
-            this.txtCPFCPNJ.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCPFCPNJ_KeyDown);
-            this.txtCPFCPNJ.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
-            this.txtCPFCPNJ.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
-            // 
-            // lblCpfCnpj
-            // 
-            this.lblCpfCnpj.AutoSize = true;
-            this.lblCpfCnpj.Location = new System.Drawing.Point(53, 62);
-            this.lblCpfCnpj.Name = "lblCpfCnpj";
-            this.lblCpfCnpj.Size = new System.Drawing.Size(80, 19);
-            this.lblCpfCnpj.TabIndex = 4;
-            this.lblCpfCnpj.Text = "CPF/CNPPJ:";
-            // 
-            // txtTelefone1
-            // 
-            this.txtTelefone1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtTelefone1.Location = new System.Drawing.Point(139, 99);
-            this.txtTelefone1.Name = "txtTelefone1";
-            this.txtTelefone1.Size = new System.Drawing.Size(111, 20);
-            this.txtTelefone1.TabIndex = 2;
-            this.txtTelefone1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTelefone1_KeyDown);
-            this.txtTelefone1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
-            this.txtTelefone1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
-            // 
-            // lblTelefone1
-            // 
-            this.lblTelefone1.AutoSize = true;
-            this.lblTelefone1.Location = new System.Drawing.Point(73, 100);
-            this.lblTelefone1.Name = "lblTelefone1";
-            this.lblTelefone1.Size = new System.Drawing.Size(60, 19);
-            this.lblTelefone1.TabIndex = 6;
-            this.lblTelefone1.Text = "Telefone:";
-            // 
-            // txtTelefone2
-            // 
-            this.txtTelefone2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtTelefone2.Location = new System.Drawing.Point(256, 99);
-            this.txtTelefone2.Name = "txtTelefone2";
-            this.txtTelefone2.Size = new System.Drawing.Size(111, 20);
-            this.txtTelefone2.TabIndex = 3;
-            this.txtTelefone2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTelefone2_KeyDown);
-            this.txtTelefone2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
-            this.txtTelefone2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
+            this.panelCadastroVeiculo.Controls.Add(this.dataGridVeiculo);
+            this.panelCadastroVeiculo.Controls.Add(this.txtTelefone2);
+            this.panelCadastroVeiculo.Controls.Add(this.txtTelefone1);
+            this.panelCadastroVeiculo.Controls.Add(this.lblTelefone1);
+            this.panelCadastroVeiculo.Controls.Add(this.txtCPFCPNJ);
+            this.panelCadastroVeiculo.Controls.Add(this.lblCpfCnpj);
+            this.panelCadastroVeiculo.Controls.Add(this.txtNome);
+            this.panelCadastroVeiculo.Controls.Add(this.lblNome);
+            this.panelCadastroVeiculo.HorizontalScrollbarBarColor = true;
+            this.panelCadastroVeiculo.HorizontalScrollbarHighlightOnWheel = false;
+            this.panelCadastroVeiculo.HorizontalScrollbarSize = 10;
+            this.panelCadastroVeiculo.Location = new System.Drawing.Point(0, 0);
+            this.panelCadastroVeiculo.Name = "panelCadastroVeiculo";
+            this.panelCadastroVeiculo.Size = new System.Drawing.Size(555, 357);
+            this.panelCadastroVeiculo.TabIndex = 21;
+            this.panelCadastroVeiculo.VerticalScrollbarBarColor = true;
+            this.panelCadastroVeiculo.VerticalScrollbarHighlightOnWheel = false;
+            this.panelCadastroVeiculo.VerticalScrollbarSize = 10;
             // 
             // dataGridVeiculo
             // 
@@ -455,6 +364,97 @@
             this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // txtTelefone2
+            // 
+            this.txtTelefone2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTelefone2.Location = new System.Drawing.Point(256, 99);
+            this.txtTelefone2.Name = "txtTelefone2";
+            this.txtTelefone2.Size = new System.Drawing.Size(111, 20);
+            this.txtTelefone2.TabIndex = 3;
+            this.txtTelefone2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTelefone2_KeyDown);
+            this.txtTelefone2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
+            this.txtTelefone2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
+            // 
+            // txtTelefone1
+            // 
+            this.txtTelefone1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTelefone1.Location = new System.Drawing.Point(139, 99);
+            this.txtTelefone1.Name = "txtTelefone1";
+            this.txtTelefone1.Size = new System.Drawing.Size(111, 20);
+            this.txtTelefone1.TabIndex = 2;
+            this.txtTelefone1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTelefone1_KeyDown);
+            this.txtTelefone1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
+            this.txtTelefone1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
+            // 
+            // lblTelefone1
+            // 
+            this.lblTelefone1.AutoSize = true;
+            this.lblTelefone1.Location = new System.Drawing.Point(73, 100);
+            this.lblTelefone1.Name = "lblTelefone1";
+            this.lblTelefone1.Size = new System.Drawing.Size(60, 19);
+            this.lblTelefone1.TabIndex = 6;
+            this.lblTelefone1.Text = "Telefone:";
+            // 
+            // txtCPFCPNJ
+            // 
+            this.txtCPFCPNJ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCPFCPNJ.Location = new System.Drawing.Point(139, 62);
+            this.txtCPFCPNJ.Name = "txtCPFCPNJ";
+            this.txtCPFCPNJ.Size = new System.Drawing.Size(111, 20);
+            this.txtCPFCPNJ.TabIndex = 1;
+            this.txtCPFCPNJ.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCPFCPNJ_KeyDown);
+            this.txtCPFCPNJ.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
+            this.txtCPFCPNJ.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
+            // 
+            // lblCpfCnpj
+            // 
+            this.lblCpfCnpj.AutoSize = true;
+            this.lblCpfCnpj.Location = new System.Drawing.Point(53, 62);
+            this.lblCpfCnpj.Name = "lblCpfCnpj";
+            this.lblCpfCnpj.Size = new System.Drawing.Size(80, 19);
+            this.lblCpfCnpj.TabIndex = 4;
+            this.lblCpfCnpj.Text = "CPF/CNPPJ:";
+            // 
+            // txtNome
+            // 
+            this.txtNome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNome.Location = new System.Drawing.Point(139, 23);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(362, 20);
+            this.txtNome.TabIndex = 0;
+            this.txtNome.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNome_KeyDown);
+            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
+            this.txtNome.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
+            // 
+            // lblNome
+            // 
+            this.lblNome.AutoSize = true;
+            this.lblNome.Location = new System.Drawing.Point(84, 24);
+            this.lblNome.Name = "lblNome";
+            this.lblNome.Size = new System.Drawing.Size(49, 19);
+            this.lblNome.TabIndex = 2;
+            this.lblNome.Text = "Nome:";
+            // 
+            // btnCancelarNovo
+            // 
+            this.btnCancelarNovo.Location = new System.Drawing.Point(299, 378);
+            this.btnCancelarNovo.Name = "btnCancelarNovo";
+            this.btnCancelarNovo.Size = new System.Drawing.Size(90, 23);
+            this.btnCancelarNovo.TabIndex = 1;
+            this.btnCancelarNovo.Text = "Cancelar (ESC)";
+            this.btnCancelarNovo.Click += new System.EventHandler(this.btnCancelarNovo_Click);
+            this.btnCancelarNovo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
+            // 
+            // btnSalvar
+            // 
+            this.btnSalvar.Location = new System.Drawing.Point(173, 378);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(90, 23);
+            this.btnSalvar.TabIndex = 0;
+            this.btnSalvar.Text = "Salvar (F4)";
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
             // 
             // frmCliente
             // 
