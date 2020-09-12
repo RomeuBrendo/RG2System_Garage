@@ -13,6 +13,8 @@ namespace RG2System_Garage.Infra.Repositories.MAP
             builder.Property(x => x.Placa).HasMaxLength(15);
 
             builder.Property(x => x.Modelo).HasMaxLength(150);
+
+            builder.Property(x => x.Ano);
             
         }
     }

@@ -21,13 +21,14 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
-                if (veiculoRequest.Id.Value > 0)
+                this.ClearNotifications();
+                if (veiculoRequest.Id == null)
                 {
-                    var veiculo = new Veiculo(veiculoRequest.Placa, veiculoRequest.Modelo);
+                    var veiculo = new Veiculo(veiculoRequest.Placa, veiculoRequest.Modelo, veiculoRequest.Ano);
 
                     AddNotifications(veiculo);
 
-                    if (IsValid())
+                    if (!IsValid())
                         return false;
 
                     _repositoryVeiculo.Adicionar(veiculo);
@@ -37,7 +38,7 @@ namespace RG2System_Garage.Domain.Service
                 else //Alterar
                 {
                     var vaeiculo = _repositoryVeiculo.ObterPorId(veiculoRequest.Id.Value);
-                    var veiculoNovo = new Veiculo(veiculoRequest.Placa, veiculoRequest.Modelo);
+                    var veiculoNovo = new Veiculo(veiculoRequest.Placa, veiculoRequest.Modelo, veiculoRequest.Ano);
                     _repositoryVeiculo.Adicionar(veiculoNovo);
                     return true;
                 }
@@ -54,6 +55,7 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
+                this.ClearNotifications();
                 var veiculos = new List<Veiculo>();
                 if (placa != "")
                    veiculos = _repositoryVeiculo.ListarPor(x => x.Placa.StartsWith(placa)).ToList();
@@ -66,10 +68,10 @@ namespace RG2System_Garage.Domain.Service
                 else
                     return null;
             }
-            catch (System.Exception)
+            catch
             {
 
-                AddNotification("Lista", "Erro ao listar Veiculo, tente novamente");
+                AddNotification("Listar", "Erro ao listar Veiculo, tente novamente");
                 return null;
             }
 

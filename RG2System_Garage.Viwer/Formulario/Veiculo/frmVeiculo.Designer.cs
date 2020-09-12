@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TabControlVeiculo = new MetroFramework.Controls.MetroTabControl();
             this.tpSelecionarVeiculo = new MetroFramework.Controls.MetroTabPage();
             this.btnSair = new MetroFramework.Controls.MetroButton();
@@ -42,9 +42,7 @@
             this.btnNovo = new MetroFramework.Controls.MetroButton();
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.lblPesquisa = new System.Windows.Forms.Label();
-            this.dataGridCategoria = new System.Windows.Forms.DataGridView();
-            this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridVeiculo = new System.Windows.Forms.DataGridView();
             this.tpCadastroVeiculo = new MetroFramework.Controls.MetroTabPage();
             this.btnCancelarNovo = new MetroFramework.Controls.MetroButton();
             this.btnSalvar = new MetroFramework.Controls.MetroButton();
@@ -56,9 +54,12 @@
             this.txtModelo = new System.Windows.Forms.TextBox();
             this.txtPlaca = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControlVeiculo.SuspendLayout();
             this.tpSelecionarVeiculo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridCategoria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridVeiculo)).BeginInit();
             this.tpCadastroVeiculo.SuspendLayout();
             this.panelCadastroVeiculo.SuspendLayout();
             this.SuspendLayout();
@@ -86,7 +87,7 @@
             this.tpSelecionarVeiculo.Controls.Add(this.btnNovo);
             this.tpSelecionarVeiculo.Controls.Add(this.txtPesquisar);
             this.tpSelecionarVeiculo.Controls.Add(this.lblPesquisa);
-            this.tpSelecionarVeiculo.Controls.Add(this.dataGridCategoria);
+            this.tpSelecionarVeiculo.Controls.Add(this.dataGridVeiculo);
             this.tpSelecionarVeiculo.HorizontalScrollbarBarColor = true;
             this.tpSelecionarVeiculo.Location = new System.Drawing.Point(4, 35);
             this.tpSelecionarVeiculo.Name = "tpSelecionarVeiculo";
@@ -155,71 +156,54 @@
             this.lblPesquisa.TabIndex = 14;
             this.lblPesquisa.Text = "Placa:";
             // 
-            // dataGridCategoria
+            // dataGridVeiculo
             // 
-            this.dataGridCategoria.AllowUserToResizeColumns = false;
-            this.dataGridCategoria.AllowUserToResizeRows = false;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.White;
-            this.dataGridCategoria.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
-            this.dataGridCategoria.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridCategoria.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridCategoria.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
-            this.dataGridCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridVeiculo.AllowUserToAddRows = false;
+            this.dataGridVeiculo.AllowUserToDeleteRows = false;
+            this.dataGridVeiculo.AllowUserToResizeColumns = false;
+            this.dataGridVeiculo.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dataGridVeiculo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridVeiculo.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridVeiculo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridVeiculo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVeiculo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridVeiculo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridVeiculo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modelo,
-            this.Placa});
-            this.dataGridCategoria.EnableHeadersVisualStyles = false;
-            this.dataGridCategoria.Location = new System.Drawing.Point(16, 87);
-            this.dataGridCategoria.MultiSelect = false;
-            this.dataGridCategoria.Name = "dataGridCategoria";
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridCategoria.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
-            this.dataGridCategoria.RowHeadersVisible = false;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridCategoria.RowsDefaultCellStyle = dataGridViewCellStyle24;
-            this.dataGridCategoria.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridCategoria.Size = new System.Drawing.Size(404, 278);
-            this.dataGridCategoria.TabIndex = 1;
-            this.dataGridCategoria.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
-            // 
-            // Modelo
-            // 
-            this.Modelo.DataPropertyName = "Modelo";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Modelo.DefaultCellStyle = dataGridViewCellStyle21;
-            this.Modelo.HeaderText = "Modelo";
-            this.Modelo.Name = "Modelo";
-            this.Modelo.ReadOnly = true;
-            this.Modelo.Width = 250;
-            // 
-            // Placa
-            // 
-            this.Placa.DataPropertyName = "Placa";
-            dataGridViewCellStyle22.NullValue = "False";
-            this.Placa.DefaultCellStyle = dataGridViewCellStyle22;
-            this.Placa.HeaderText = "Placa";
-            this.Placa.Name = "Placa";
-            this.Placa.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Placa.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Placa.Width = 153;
+            this.Placa,
+            this.Id});
+            this.dataGridVeiculo.EnableHeadersVisualStyles = false;
+            this.dataGridVeiculo.Location = new System.Drawing.Point(16, 87);
+            this.dataGridVeiculo.MultiSelect = false;
+            this.dataGridVeiculo.Name = "dataGridVeiculo";
+            this.dataGridVeiculo.ReadOnly = true;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVeiculo.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridVeiculo.RowHeadersVisible = false;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridVeiculo.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridVeiculo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridVeiculo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridVeiculo.Size = new System.Drawing.Size(404, 278);
+            this.dataGridVeiculo.TabIndex = 1;
+            this.dataGridVeiculo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
             // 
             // tpCadastroVeiculo
             // 
@@ -347,6 +331,37 @@
             this.panel1.Size = new System.Drawing.Size(566, 43);
             this.panel1.TabIndex = 18;
             // 
+            // Modelo
+            // 
+            this.Modelo.DataPropertyName = "Modelo";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Modelo.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Modelo.HeaderText = "Modelo";
+            this.Modelo.Name = "Modelo";
+            this.Modelo.ReadOnly = true;
+            this.Modelo.Width = 250;
+            // 
+            // Placa
+            // 
+            this.Placa.DataPropertyName = "Placa";
+            dataGridViewCellStyle4.NullValue = "False";
+            this.Placa.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Placa.HeaderText = "Placa";
+            this.Placa.Name = "Placa";
+            this.Placa.ReadOnly = true;
+            this.Placa.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Placa.Width = 153;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Id.Visible = false;
+            // 
             // frmVeiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -368,7 +383,7 @@
             this.TabControlVeiculo.ResumeLayout(false);
             this.tpSelecionarVeiculo.ResumeLayout(false);
             this.tpSelecionarVeiculo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridCategoria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridVeiculo)).EndInit();
             this.tpCadastroVeiculo.ResumeLayout(false);
             this.tpCadastroVeiculo.PerformLayout();
             this.panelCadastroVeiculo.ResumeLayout(false);
@@ -386,9 +401,7 @@
         private MetroFramework.Controls.MetroButton btnNovo;
         private System.Windows.Forms.TextBox txtPesquisar;
         private System.Windows.Forms.Label lblPesquisa;
-        private System.Windows.Forms.DataGridView dataGridCategoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Modelo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Placa;
+        private System.Windows.Forms.DataGridView dataGridVeiculo;
         private MetroFramework.Controls.MetroTabPage tpCadastroVeiculo;
         private MetroFramework.Controls.MetroButton btnCancelarNovo;
         private MetroFramework.Controls.MetroButton btnSalvar;
@@ -401,5 +414,8 @@
         private MetroFramework.Controls.MetroButton btnSair;
         private MetroFramework.Controls.MetroPanel panelCadastroVeiculo;
         private System.Windows.Forms.DateTimePicker dateTimeAno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Modelo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Placa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
     }
 }
