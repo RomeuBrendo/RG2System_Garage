@@ -1,13 +1,12 @@
-﻿using RG2System_Garage.Domain.Enum;
+﻿using RG2System_Garage.Domain.Commands.Veiculo;
+using RG2System_Garage.Domain.Enum;
 using RG2System_Garage.Domain.Interfaces.Services;
+using RG2System_Garage.Domain.Interfaces.Services.Base;
 using RG2System_Garage.Infra.Repositories.Transactions;
 using RG2System_Garage.Shared.Formulario.Toast;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using prmToolkit.NotificationPattern;
-using RG2System_Garage.Domain.Interfaces.Services.Base;
-using RG2System_Garage.Domain.Commands.Veiculo;
 
 namespace RG2System_Garage.Viwer.Formulario.Veiculo
 {
@@ -143,7 +142,7 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
             if (veiculoSelecionado == null)
                 return;
            
-            DialogResult dialogResult = MessageBox.Show("Deseja confirmar exclusão?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MessageBox.Show("Deseja confirmar exclusão?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
             if (dialogResult == DialogResult.No)
                 return;

@@ -1,8 +1,11 @@
 ﻿using prmToolkit.NotificationPattern;
+using prmToolkit.NotificationPattern.Extensions;
 using RG2System_Garage.Domain.Commands.Cliente;
 using RG2System_Garage.Domain.Entities;
 using RG2System_Garage.Domain.Interfaces.Repositories;
 using RG2System_Garage.Domain.Interfaces.Services;
+using RG2System_Garage.Domain.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,14 +20,15 @@ namespace RG2System_Garage.Domain.Service
             _repositoryCliente = repositoryCliente;
         }
 
-        public bool AdicionarAlterar(AdicionarAlterarClienteRequest request)
+        public bool AdicionarAlterar(ClienteRequest request)
         {
             try
             {
-                if(request.Id > 0)
+                if(request.Id != null)
                 {
-                    var cliente = new Cliente(request.Nome);
-                    
+                    var cliente = _repositoryCliente.ObterPorId(request.Id.Value);
+                    cliente.AlterarCliente(request);
+
                     AddNotifications(cliente);
 
                     if (IsInvalid()) return false;
@@ -34,7 +38,7 @@ namespace RG2System_Garage.Domain.Service
                 }
                 else
                 {
-                    var cliente = new Cliente(request.Nome);
+                    var cliente = new Cliente(request);
                     
                     AddNotifications(cliente);
 
@@ -53,7 +57,7 @@ namespace RG2System_Garage.Domain.Service
             }
         }
 
-        public bool Deletar(int id)
+        public bool Deletar(Guid id)
         {
             try
             {
@@ -63,7 +67,7 @@ namespace RG2System_Garage.Domain.Service
             catch
             {
 
-                AddNotification("Erro", "Deletar cliente");
+                AddNotification("",MSG.NAO_E_POSSIVEL_EXCLUIR_ESTE_X0.ToFormat("Cliente"));
                 return false;
             }
         }
@@ -98,6 +102,10 @@ namespace RG2System_Garage.Domain.Service
 
                     clienteNovo.Id = item.Id;
                     clienteNovo.Nome = item.Nome;
+                    clienteNovo.CPFCNPJ = item.CPFCNPJ;
+                    clienteNovo.Telefone1 = item.Telefone1;
+                    clienteNovo.Telefone2 = item.Telefone2;
+
                     ClientesResponse.Add(clienteNovo);
                 }
 
@@ -105,7 +113,7 @@ namespace RG2System_Garage.Domain.Service
             }
             catch
             {
-
+                AddNotification("", MSG.ERRO_LISTAR_X0.ToFormat("Cliente"));
                 return null;
             }
 

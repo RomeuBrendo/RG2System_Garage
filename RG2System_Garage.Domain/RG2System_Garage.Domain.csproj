@@ -219,7 +219,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Cliente\AdicionarAlterarClienteRequest.cs" />
+    <Compile Include="Commands\Cliente\ClienteRequest.cs" />
     <Compile Include="Commands\Cliente\ClienteResponse.cs" />
     <Compile Include="Commands\Produto\AdionarAlterarProdutoRequest.cs" />
     <Compile Include="Commands\Produto\ProdutoResponse.cs" />

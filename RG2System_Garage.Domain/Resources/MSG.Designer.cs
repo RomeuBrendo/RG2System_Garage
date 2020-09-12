@@ -79,6 +79,15 @@ namespace RG2System_Garage.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Erro ao listar {0}..
+        /// </summary>
+        internal static string ERRO_LISTAR_X0 {
+            get {
+                return ResourceManager.GetString("ERRO_LISTAR_X0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Esta {0} já existe cadastrada..
         /// </summary>
         internal static string ESTA_X0_JA_EXISTE_CADASTRADA {

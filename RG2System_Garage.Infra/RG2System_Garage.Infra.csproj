@@ -311,6 +311,10 @@
     <Compile Include="Migrations\20200912003232_InclusaoAnoVeiculo.designer.cs">
       <DependentUpon>20200912003232_InclusaoAnoVeiculo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200912145230_InclusaoCamposCliente.cs" />
+    <Compile Include="Migrations\20200912145230_InclusaoCamposCliente.designer.cs">
+      <DependentUpon>20200912145230_InclusaoCamposCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\RepositoryBase.cs" />
