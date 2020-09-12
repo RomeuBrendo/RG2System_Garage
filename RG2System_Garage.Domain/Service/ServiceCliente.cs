@@ -24,9 +24,17 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
-                if(request.Id != null)
+                this.ClearNotifications();
+                if (request.Id != null)
                 {
                     var cliente = _repositoryCliente.ObterPorId(request.Id.Value);
+
+                    if (cliente == null)
+                    {
+                        AddNotification("Cliente", MSG.DADOS_NAO_ENCONTRADOS);
+                        return false;
+                    }
+
                     cliente.AlterarCliente(request);
 
                     AddNotifications(cliente);
@@ -51,8 +59,7 @@ namespace RG2System_Garage.Domain.Service
             }
             catch
             {
-
-                AddNotification("AdicionarOuAlterar", "Erro ao atualizar Cliente. Tente novamente.");
+                AddNotification("AdicionarOuAlterar", MSG.ERRO_REALIZAR_PROCEDIMENTO);
                 return false;
             }
         }
@@ -119,5 +126,26 @@ namespace RG2System_Garage.Domain.Service
 
         }
 
+        public ClienteResponse ObterClienteId(Guid id)
+        {
+            try
+            {
+                this.ClearNotifications();
+                var cliente = _repositoryCliente.ObterPorId(id);
+
+                if (cliente == null)
+                {
+                    AddNotification("Veiculo", MSG.DADOS_NAO_ENCONTRADOS);
+                    return null;
+                }
+                else
+                    return (ClienteResponse)cliente;
+            }
+            catch
+            {
+                AddNotification("cliente", MSG.DADOS_NAO_ENCONTRADOS);
+                return null;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using RG2System_Garage.Viwer.Formulario.Veiculo;
+﻿using RG2System_Garage.Viwer.Formulario.Cliente;
+using RG2System_Garage.Viwer.Formulario.Veiculo;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -141,7 +142,7 @@ namespace RG2System_Garage.Viwer.Formulario
 
         private void btnCadCliente_Click(object sender, EventArgs e)
         {
-            //tabControl1.SelectedIndex = 1;
+            AbrirFormulario<frmCliente>(false);
         }
 
         private void btnCadProduto_Click(object sender, EventArgs e)

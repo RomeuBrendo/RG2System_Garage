@@ -303,6 +303,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\MSG.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MSG.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Formulario\Cliente\frmCliente.resx">
       <DependentUpon>frmCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -321,6 +326,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Resources\MSG.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MSG.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="appsettings.json" />
     <None Include="packages.config" />

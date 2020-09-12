@@ -70,6 +70,24 @@ namespace RG2System_Garage.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cadastro alterado com sucesso!!.
+        /// </summary>
+        internal static string CADASTRO_ALTERADO_COM_SUCESSO {
+            get {
+                return ResourceManager.GetString("CADASTRO_ALTERADO_COM_SUCESSO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cadastro inserido com sucesso!!.
+        /// </summary>
+        internal static string CADASTRO_NOVO_COM_SUCESSO {
+            get {
+                return ResourceManager.GetString("CADASTRO_NOVO_COM_SUCESSO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dados não encontrados..
         /// </summary>
         internal static string DADOS_NAO_ENCONTRADOS {
@@ -84,6 +102,15 @@ namespace RG2System_Garage.Domain.Resources {
         internal static string ERRO_LISTAR_X0 {
             get {
                 return ResourceManager.GetString("ERRO_LISTAR_X0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erro ao realizar procedimento, tente novamente!.
+        /// </summary>
+        internal static string ERRO_REALIZAR_PROCEDIMENTO {
+            get {
+                return ResourceManager.GetString("ERRO_REALIZAR_PROCEDIMENTO", resourceCulture);
             }
         }
         

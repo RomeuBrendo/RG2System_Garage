@@ -12,6 +12,9 @@ namespace RG2System_Garage.Domain.Interfaces.Services
         List<ClienteResponse> Listar(string nome);
 
         bool Deletar(Guid id);
-        
+
+        ClienteResponse ObterClienteId(Guid id);
+
+
     }
 }

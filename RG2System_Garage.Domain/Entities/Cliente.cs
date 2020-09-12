@@ -21,10 +21,8 @@ namespace RG2System_Garage.Domain.Entities
 
         public void AlterarCliente(ClienteRequest request)
         {
+            this.ClearNotifications();
             Id = request.Id.Value;
-
-            new AddNotifications<Cliente>(this)
-                .IfNotGuid(x => x.Id.ToString(), MSG.X0_INVALIDO.ToFormat("ID"));
 
             ValidaCampos(request);
         }
@@ -55,9 +53,9 @@ namespace RG2System_Garage.Domain.Entities
             if (valor == "")
                 return;
 
-            valor.Replace("-", "");
-            valor.Replace(".", "");
-            valor.Replace("/", "");
+            valor = valor.Replace("-", "");
+            valor = valor.Replace(".", "");
+            valor = valor.Replace("/", "");
 
             if (valor.Length == 14)
             {
@@ -67,7 +65,7 @@ namespace RG2System_Garage.Domain.Entities
             else
             {
                 new AddNotifications<Cliente>(this)
-                     .IfNotCnpj(x => x.CPFCNPJ, MSG.X0_INVALIDO.ToFormat("CPF"));
+                     .IfNotCpf(x => x.CPFCNPJ, MSG.X0_INVALIDO.ToFormat("CPF"));
             }
 
         }
