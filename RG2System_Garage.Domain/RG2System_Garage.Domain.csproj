@@ -227,6 +227,8 @@
     <Compile Include="Commands\Veiculo\VeiculoResponse.cs" />
     <Compile Include="Entities\Base\EntityBase.cs" />
     <Compile Include="Entities\Cliente.cs" />
+    <Compile Include="Entities\ClienteVeiculo.cs" />
+    <Compile Include="Entities\ClienteVeiculoLista.cs" />
     <Compile Include="Entities\Produto.cs" />
     <Compile Include="Entities\Veiculo.cs" />
     <Compile Include="Enum\EnumToast.cs" />

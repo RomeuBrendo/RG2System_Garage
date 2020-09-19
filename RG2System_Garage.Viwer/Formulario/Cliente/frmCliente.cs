@@ -1,5 +1,6 @@
 ﻿using prmToolkit.NotificationPattern.Extensions;
 using RG2System_Garage.Domain.Commands.Cliente;
+using RG2System_Garage.Domain.Commands.Veiculo;
 using RG2System_Garage.Domain.Enum;
 using RG2System_Garage.Domain.Interfaces.Services;
 using RG2System_Garage.Domain.Interfaces.Services.Base;
@@ -7,6 +8,7 @@ using RG2System_Garage.Infra.Repositories.Transactions;
 using RG2System_Garage.Shared.Formulario.Toast;
 using RG2System_Garage.Viwer.Resources;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -16,10 +18,11 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
     public partial class frmCliente : MetroFramework.Forms.MetroForm
     {
         private IServiceCliente _serviceCliente;
+        private IServiceVeiculo _serviceVeiculo;
         private IUnitOfWork _unitOfWork;
         Toast toast = new Toast();
         Guid IdEstaSendoEditado;
-
+        List<VeiculoResponse> _veiculos = new List<VeiculoResponse>();
         public frmCliente()
         {
             InitializeComponent();
@@ -28,6 +31,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             dataGridCliente.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             CarregaGridCliente("");
             IdEstaSendoEditado = Guid.Empty;
+            
         }
 
         void CarregaGridCliente(string nome)
@@ -35,11 +39,11 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
 
             dataGridCliente.DataSource = null;
 
-            var veiculos = _serviceCliente.Listar(nome);
+            var clientes = _serviceCliente.Listar(nome);
 
             if (VerificaNotificacoes(_serviceCliente))
             {
-                dataGridCliente.DataSource = veiculos.OrderBy(x => x.Nome).ToList();
+                dataGridCliente.DataSource = clientes.OrderBy(x => x.Nome).ToList();
                 dataGridCliente.Update();
                 dataGridCliente.Refresh();
             }
@@ -62,6 +66,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
         void ConsultarDepedencias()
         {
             _serviceCliente = (IServiceCliente)Program.ServiceProvider.GetService(typeof(IServiceCliente));
+            _serviceVeiculo = (IServiceVeiculo)Program.ServiceProvider.GetService(typeof(IServiceVeiculo));
             _unitOfWork = (IUnitOfWork)Program.ServiceProvider.GetService(typeof(IUnitOfWork));
 
         }
@@ -101,7 +106,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             }
 
             if (tabControlCliente.SelectedIndex == 1)
-            {
+             {
                 if (e.KeyCode == Keys.Escape)
                     btnCancelarNovo.PerformClick();
 
@@ -114,6 +119,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
         {
             tabControlCliente.SelectedIndex = 1;
             this.Text = "Novo Cliente";
+            CarregarGridParcialVeiculo();
             this.Refresh();
             txtNome.Focus();
         }
@@ -129,7 +135,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             {
                 this.Text = "Alterar Cliente";
                 var clienteSelecionado = ClienteSelecionado();
-                var request = _serviceCliente.ObterClienteId(clienteSelecionado.Id.Value);
+                var response = _serviceCliente.ObterClienteId(clienteSelecionado.Id.Value);
 
                 if (_serviceCliente == null)
                 {
@@ -141,11 +147,19 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
                 if (VerificaNotificacoes(_serviceCliente))
                 {
                     tabControlCliente.SelectedIndex = 1;
-                    IdEstaSendoEditado = request.Id.Value;
-                    txtNome.Text = request.Nome;
-                    txtCPFCPNJ.Text = request.CPFCNPJ;
-                    txtTelefone1.Text = request.Telefone1;
-                    txtTelefone2.Text = request.Telefone2;
+                    IdEstaSendoEditado = response.Id.Value;
+                    txtNome.Text = response.Nome;
+                    txtCPFCPNJ.Text = response.CPFCNPJ;
+                    txtTelefone1.Text = response.Telefone1;
+                    txtTelefone2.Text = response.Telefone2;
+
+                    if (response.Veiculos.Count > 0)
+                    {
+                        _veiculos = response.Veiculos;
+                        dataGridVeiculo.DataSource = _veiculos;
+                    }
+                        
+
                     this.Refresh();
                     txtNome.Focus();
                 };
@@ -259,6 +273,10 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             request.Telefone1 = txtTelefone1.Text;
             request.Telefone2 = txtTelefone2.Text;
 
+
+            var veiculos = new VeiculoRequest();
+
+            request.Veiculos = veiculos.VeiculoPRequest(_veiculos);
             try
             {
                 _serviceCliente.AdicionarAlterar(request);
@@ -291,6 +309,8 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             }
 
             IdEstaSendoEditado = Guid.Empty;
+            dataGridVeiculo.DataSource = null;
+            _veiculos.Clear();
             this.Text = "Selecionar Cliente";
             this.Refresh();
         }
@@ -299,6 +319,75 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
         {
             if (e.KeyCode == Keys.Enter)
                 btnAlterar.PerformClick();
+        }
+
+        private void lblAdicionarVeiculo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var veiculo = _serviceVeiculo.ObterVeiculoPlaca(txtPlaca.Text);
+
+                if (veiculo != null)
+                    _veiculos.Add(veiculo);
+                else
+                {
+                    toast.ShowToast("Placa não localizada, veifique no cadastro de veículo.", EnumToast.Informacao);
+                    txtPlaca.Focus();
+                    return;
+                }
+
+                CarregarGridParcialVeiculo();
+                txtPlaca.Clear();
+            }
+            catch
+            {
+                toast.ShowToast("Erro ao localizar veículo pela placa", EnumToast.Erro);
+                txtPlaca.Focus();
+            }
+        }
+
+        private void CarregarGridParcialVeiculo()
+        {
+            dataGridVeiculo.AutoGenerateColumns = false;
+            dataGridVeiculo.DataSource = null;
+            if (_veiculos.Count > 0)
+                dataGridVeiculo.DataSource = _veiculos;
+            else
+                dataGridVeiculo.Rows.Add(4);
+
+            dataGridVeiculo.Update();
+            dataGridVeiculo.Refresh();
+        }
+
+        private void txtPlaca_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode ==  Keys.Enter)
+            {
+                lblAdicionarVeiculo.PerformLayout();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void dataGridVeiculo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+                RemoverVeiculo();
+
+        }
+
+        private void RemoverVeiculo()
+        {
+            try
+            {
+                var veiculoSelecionado = dataGridVeiculo.SelectedRows[0].DataBoundItem as VeiculoResponse;
+                
+                _veiculos.Remove(veiculoSelecionado);
+                CarregarGridParcialVeiculo();
+            }
+            catch
+            {
+                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+            }
         }
     }
 }

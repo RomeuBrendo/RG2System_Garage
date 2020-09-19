@@ -10,7 +10,7 @@ namespace RG2System_Garage.Domain.Interfaces.Services
         bool AdicionarOuAlterar(VeiculoRequest veiculoRequest);
         List<VeiculoResponse> ListarVeiculo(string placa);
         VeiculoResponse ObterVeiculoId(Guid id);
-
+        VeiculoResponse ObterVeiculoPlaca(string placa);
         void Excluir(Guid id);
     }
 }

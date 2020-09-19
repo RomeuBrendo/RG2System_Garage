@@ -1,6 +1,7 @@
 ﻿using prmToolkit.NotificationPattern;
 using prmToolkit.NotificationPattern.Extensions;
 using RG2System_Garage.Domain.Commands.Cliente;
+using RG2System_Garage.Domain.Commands.Veiculo;
 using RG2System_Garage.Domain.Entities;
 using RG2System_Garage.Domain.Interfaces.Repositories;
 using RG2System_Garage.Domain.Interfaces.Services;
@@ -8,16 +9,19 @@ using RG2System_Garage.Domain.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace RG2System_Garage.Domain.Service
 {
     public class ServiceCliente : Notifiable, IServiceCliente
     {
         private readonly IRepositoyCliente _repositoryCliente;
+        private readonly IRepositoryVeiculo _repositoryVeiculo;
 
-        public ServiceCliente(IRepositoyCliente repositoryCliente)
+        public ServiceCliente(IRepositoyCliente repositoryCliente, IRepositoryVeiculo repositoryVeiculo)
         {
             _repositoryCliente = repositoryCliente;
+            _repositoryVeiculo = repositoryVeiculo;
         }
 
         public bool AdicionarAlterar(ClienteRequest request)
@@ -42,17 +46,19 @@ namespace RG2System_Garage.Domain.Service
                     if (IsInvalid()) return false;
 
                     _repositoryCliente.Editar(cliente);
-                 
+                    _repositoryCliente.InserirPlacas(PreenchaListaVeiculos(cliente, request.Veiculos));
                 }
                 else
                 {
                     var cliente = new Cliente(request);
-                    
+ 
+
                     AddNotifications(cliente);
 
                     if (IsInvalid()) return false;
 
                     _repositoryCliente.Adicionar(cliente);
+                    _repositoryCliente.InserirPlacas(PreenchaListaVeiculos(cliente, request.Veiculos));
                 }
 
                 return true;
@@ -62,6 +68,26 @@ namespace RG2System_Garage.Domain.Service
                 AddNotification("AdicionarOuAlterar", MSG.ERRO_REALIZAR_PROCEDIMENTO);
                 return false;
             }
+        }
+
+        private ClienteVeiculoLista PreenchaListaVeiculos(Cliente cliente, List<VeiculoRequest> veiculos)
+        {
+            var clienteVeiculoLista = new ClienteVeiculoLista();
+
+            if (veiculos != null)
+            {
+                foreach (var item in veiculos)
+                {
+                    var veiculo = _repositoryVeiculo.ObterPorId(item.Id.Value);
+                    var clienteVeiculo = new ClienteVeiculo(cliente, veiculo);
+                    clienteVeiculoLista.Add(clienteVeiculo);
+
+                    AddNotifications(clienteVeiculo);
+                }
+
+                return clienteVeiculoLista;
+            }
+            return null;
         }
 
         public bool Deletar(Guid id)
@@ -98,6 +124,36 @@ namespace RG2System_Garage.Domain.Service
             }
         }
 
+        private List<VeiculoResponse> ListarVeiculosByCliente(Guid id)
+        {
+            try
+            {
+                var veiculos = _repositoryCliente.ListarVeiculosByCliente(id);
+                var veiculoResponse = new List<VeiculoResponse>();
+                if (veiculos != null)
+                {
+                    foreach (var item in veiculos)
+                    {
+                        var veiculoNovo = new VeiculoResponse();
+                        veiculoNovo.Id = item.Id;
+                        veiculoNovo.Placa = item.Placa;
+                        veiculoNovo.Modelo = item.Modelo;
+                        veiculoResponse.Add(veiculoNovo);
+                    }
+                    return veiculoResponse;
+                }
+                else
+                    AddNotification("Veiculo", MSG.ERRO_LISTAR_X0.ToFormat("Veículos"));
+
+                return null;
+            }
+            catch
+            {
+                AddNotification("Veiculo", MSG.ERRO_LISTAR_X0.ToFormat("Veículos"));
+                return null;
+            }
+        }
+
         private List<ClienteResponse> ClientesResponse(List<Cliente> clientes)
         {
             try
@@ -131,7 +187,7 @@ namespace RG2System_Garage.Domain.Service
             try
             {
                 this.ClearNotifications();
-                var cliente = _repositoryCliente.ObterPorId(id);
+                var cliente = _repositoryCliente.ObterPor(x => x.Id == id);
 
                 if (cliente == null)
                 {
@@ -139,7 +195,12 @@ namespace RG2System_Garage.Domain.Service
                     return null;
                 }
                 else
-                    return (ClienteResponse)cliente;
+                {
+                    var clienteCompleto = (ClienteResponse)cliente;
+                    clienteCompleto.Veiculos = ListarVeiculosByCliente(clienteCompleto.Id.Value);
+                    return clienteCompleto;
+                }
+                   
             }
             catch
             {

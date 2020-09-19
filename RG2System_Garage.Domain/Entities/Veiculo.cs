@@ -1,14 +1,19 @@
 ﻿using prmToolkit.NotificationPattern;
-using RG2System_Garage.Domain.Entities.Base;
-using System;
-using RG2System_Garage.Domain.Resources;
 using prmToolkit.NotificationPattern.Extensions;
 using RG2System_Garage.Domain.Commands.Veiculo;
+using RG2System_Garage.Domain.Entities.Base;
+using RG2System_Garage.Domain.Resources;
+using System;
+using System.Collections.Generic;
 
 namespace RG2System_Garage.Domain.Entities
 {
     public  class Veiculo : EntityBase
     {
+        protected Veiculo()
+        {
+
+        }
         public Veiculo(string placa, string modelo, DateTime ano)
         {
             this.ClearNotifications();

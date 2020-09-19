@@ -95,6 +95,7 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
+
                 this.ClearNotifications();
                 var veiculos = new List<Veiculo>();
                 if (placa != "")
@@ -111,7 +112,7 @@ namespace RG2System_Garage.Domain.Service
             catch
             {
 
-                AddNotification("Listar", "Erro ao listar Veiculo, tente novamente");
+                AddNotification("Listar", MSG.ERRO_LISTAR_X0.ToFormat("Veículos"));
                 return null;
             }
 
@@ -123,6 +124,29 @@ namespace RG2System_Garage.Domain.Service
             {
                 this.ClearNotifications();
                 var veiculo = _repositoryVeiculo.ObterPorId(id);
+
+                if (veiculo == null)
+                {
+                    AddNotification("Veiculo", MSG.DADOS_NAO_ENCONTRADOS);
+                    return null;
+                }
+                else
+                    return (VeiculoResponse)veiculo;
+            }
+            catch
+            {
+
+                AddNotification("Veiculo", MSG.DADOS_NAO_ENCONTRADOS);
+                return null;
+            }
+        }
+
+        public VeiculoResponse ObterVeiculoPlaca(string placa)
+        {
+            try
+            {
+                this.ClearNotifications();
+                var veiculo = _repositoryVeiculo.ObterPor(x => x.Placa == placa);
 
                 if (veiculo == null)
                 {
@@ -159,7 +183,6 @@ namespace RG2System_Garage.Domain.Service
             }
             catch
             {
-
                 return null;
             }
 

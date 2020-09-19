@@ -1,4 +1,7 @@
-﻿using System;
+﻿using RG2System_Garage.Domain.Commands.Veiculo;
+using RG2System_Garage.Domain.Entities;
+using System;
+using System.Collections.Generic;
 
 namespace RG2System_Garage.Domain.Commands.Cliente
 {
@@ -9,6 +12,7 @@ namespace RG2System_Garage.Domain.Commands.Cliente
         public string CPFCNPJ { get; set; }
         public string Telefone1 { get; set; }
         public string Telefone2 { get; set; }
+        public List<VeiculoResponse> Veiculos { get; set; }
 
         public static explicit operator ClienteResponse(Entities.Cliente v)
         {

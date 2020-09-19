@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RG2System_Garage.Infra.Repositories;
 
 namespace RG2System_Garage.Infra.Migrations
 {
     [DbContext(typeof(RB2System_GarageContext))]
-    partial class RB2System_GarageContextModelSnapshot : ModelSnapshot
+    [Migration("20200912210348_InclusaoClientePlaca")]
+    partial class InclusaoClientePlaca
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,9 +95,6 @@ namespace RG2System_Garage.Infra.Migrations
                     b.Property<DateTime>("Ano")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<Guid?>("ClienteId")
-                        .HasColumnType("char(36)");
-
                     b.Property<string>("Modelo")
                         .HasColumnType("varchar(150) CHARACTER SET utf8mb4")
                         .HasMaxLength(150);
@@ -105,8 +104,6 @@ namespace RG2System_Garage.Infra.Migrations
                         .HasMaxLength(15);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClienteId");
 
                     b.ToTable("Veiculos");
                 });
@@ -120,13 +117,6 @@ namespace RG2System_Garage.Infra.Migrations
                     b.HasOne("RG2System_Garage.Domain.Entities.Veiculo", "Veiculo")
                         .WithMany()
                         .HasForeignKey("VeiculoId");
-                });
-
-            modelBuilder.Entity("RG2System_Garage.Domain.Entities.Veiculo", b =>
-                {
-                    b.HasOne("RG2System_Garage.Domain.Entities.Cliente", null)
-                        .WithMany("Veiculos")
-                        .HasForeignKey("ClienteId");
                 });
 #pragma warning restore 612, 618
         }
