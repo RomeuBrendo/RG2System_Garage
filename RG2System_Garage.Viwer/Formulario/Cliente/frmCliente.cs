@@ -192,7 +192,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
                 if (VerificaNotificacoes(_serviceCliente))
                 {
                     _unitOfWork.SaveChanges();
-                    toast.ShowToast(MSG.OPERACAO_REALIZADA_COM_SUCESSO, EnumToast.Sucesso);
+                    toast.ShowToast(MSG.EXCLUSAO_REALIZADA_COM_SUCESSO, EnumToast.Sucesso);
                     tabControlCliente.SelectedIndex = 0;
                     CarregaGridCliente("");
                     txtPesquisar.Focus();

@@ -79,6 +79,15 @@ namespace RG2System_Garage.Viwer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exclusão realizada com sucesso..
+        /// </summary>
+        internal static string EXCLUSAO_REALIZADA_COM_SUCESSO {
+            get {
+                return ResourceManager.GetString("EXCLUSAO_REALIZADA_COM_SUCESSO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operação realizada com sucesso..
         /// </summary>
         internal static string OPERACAO_REALIZADA_COM_SUCESSO {

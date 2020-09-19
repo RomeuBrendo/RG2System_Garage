@@ -9,5 +9,6 @@ namespace RG2System_Garage.Domain.Interfaces.Repositories
     {
         bool InserirPlacas(ClienteVeiculoLista clienteVeiculos);
         List<Veiculo> ListarVeiculosByCliente(Guid idCliente);
+        void RemoverVeiculosCliente(Guid idCliente);
     }
 }

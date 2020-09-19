@@ -123,6 +123,9 @@
   <data name="ERRO_REALIZAR_PROCEDIMENTO" xml:space="preserve">
     <value>Erro ao realizar procedimento, tente novamente!</value>
   </data>
+  <data name="EXCLUSAO_REALIZADA_COM_SUCESSO" xml:space="preserve">
+    <value>Exclusão realizada com sucesso.</value>
+  </data>
   <data name="OPERACAO_REALIZADA_COM_SUCESSO" xml:space="preserve">
     <value>Operação realizada com sucesso.</value>
   </data>

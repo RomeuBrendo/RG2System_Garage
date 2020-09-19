@@ -94,6 +94,7 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
+                _repositoryCliente.RemoverVeiculosCliente(id);
                 _repositoryCliente.Remover(_repositoryCliente.ObterPorId(id));
                 return true;
             }

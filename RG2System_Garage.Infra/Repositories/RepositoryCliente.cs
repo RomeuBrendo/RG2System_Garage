@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RG2System_Garage.Domain.Commands.Cliente;
 using RG2System_Garage.Domain.Entities;
 using RG2System_Garage.Domain.Interfaces.Repositories;
 using RG2System_Garage.Infra.Repositories.Base;
@@ -44,6 +43,20 @@ namespace RG2System_Garage.Infra.Repositories
             {
 
                 return null;
+            }
+        }
+
+        public void RemoverVeiculosCliente(Guid idCliente)
+        {
+            try
+            {
+                var veiculos = _context.ClienteVeiculo.Where(x => x.Cliente.Id == idCliente);
+                _context.ClienteVeiculo.RemoveRange(veiculos);
+            }
+            catch
+            {
+
+                return;
             }
         }
 
