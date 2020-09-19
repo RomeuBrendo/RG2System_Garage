@@ -38,7 +38,7 @@ namespace RG2System_Garage.Viwer
             services.AddTransient<IRepositoryVeiculo, RepositoryVeiculo>();
             services.AddTransient<IRepositoryProduto, RepositoryProduto>();
             services.AddTransient<IRepositoyCliente, RepositoryCliente>();
-            services.AddTransient<IRepositoyCliente, RepositoryCliente>();
+            services.AddTransient<IRepositoyClienteVeiculo, RepositoryClienteVeiculo>();
 
             services.AddTransient<IServiceVeiculo, ServiceVeiculo>();
             services.AddTransient<IServiceProduto, ServiceProduto>();

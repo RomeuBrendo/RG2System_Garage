@@ -5,15 +5,12 @@ using System;
 
 namespace RG2System_Garage.Infra.Repositories
 {
-    public class RepositoryVeiculo : RepositoryBase<Veiculo, Guid>, IRepositoryVeiculo
+    public class RepositoryClienteVeiculo : RepositoryBase<ClienteVeiculo, Guid>, IRepositoyClienteVeiculo 
     {
         private readonly RB2System_GarageContext _context;
-        public RepositoryVeiculo(RB2System_GarageContext context) : base(context)
+        public RepositoryClienteVeiculo(RB2System_GarageContext context) : base(context)
         {
             _context = context;
         }
-
     }
-
-    
 }

@@ -332,6 +332,7 @@
     <Compile Include="Repositories\MAP\MapVeiculo.cs" />
     <Compile Include="Repositories\RB2System_GarageContext.cs" />
     <Compile Include="Repositories\RepositoryCliente.cs" />
+    <Compile Include="Repositories\RepositoryClienteVeiculo.cs" />
     <Compile Include="Repositories\RepositoryProduto.cs" />
     <Compile Include="Repositories\RepositoryVeiculo.cs" />
     <Compile Include="Repositories\Transactions\IUnitOfWork.cs" />

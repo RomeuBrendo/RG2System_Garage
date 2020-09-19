@@ -138,6 +138,12 @@
   <data name="ESTA_X0_JA_EXISTE_CADASTRADA" xml:space="preserve">
     <value>Esta {0} já existe cadastrada.</value>
   </data>
+  <data name="ESTE_X0_ESTA_ASSOCIADO_AO_X1_X2_EXCLUSAO_NAO_PERMITIDA" xml:space="preserve">
+    <value>Este {0} está associado ao {1} {2}. Exclusão não permitida!</value>
+  </data>
+  <data name="ESTE_X0_JA_ESTA_ASSOCIADO_AO_X1_X2" xml:space="preserve">
+    <value>Este {0} já está associado ao {1} {2}.</value>
+  </data>
   <data name="ESTE_X0_JA_EXISTE" xml:space="preserve">
     <value>Este {0} já existe.</value>
   </data>

@@ -82,7 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RG2System_Garage.Domain\RG2System_Garage.Domain.csproj">
-      <Project>{843718CA-9C1F-476A-81F0-D4A5A74F582D}</Project>
+      <Project>{843718ca-9c1f-476a-81f0-d4a5a74f582d}</Project>
       <Name>RG2System_Garage.Domain</Name>
     </ProjectReference>
   </ItemGroup>

@@ -124,6 +124,24 @@ namespace RG2System_Garage.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Este {0} está associado ao {1} {2}. Exclusão não permitida!.
+        /// </summary>
+        internal static string ESTE_X0_ESTA_ASSOCIADO_AO_X1_X2_EXCLUSAO_NAO_PERMITIDA {
+            get {
+                return ResourceManager.GetString("ESTE_X0_ESTA_ASSOCIADO_AO_X1_X2_EXCLUSAO_NAO_PERMITIDA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Este {0} já está associado ao {1} {2}..
+        /// </summary>
+        internal static string ESTE_X0_JA_ESTA_ASSOCIADO_AO_X1_X2 {
+            get {
+                return ResourceManager.GetString("ESTE_X0_JA_ESTA_ASSOCIADO_AO_X1_X2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Este {0} já existe..
         /// </summary>
         internal static string ESTE_X0_JA_EXISTE {

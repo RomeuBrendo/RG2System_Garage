@@ -154,12 +154,10 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
                     txtTelefone2.Text = response.Telefone2;
 
                     if (response.Veiculos.Count > 0)
-                    {
                         _veiculos = response.Veiculos;
-                        dataGridVeiculo.DataSource = _veiculos;
-                    }
-                        
 
+                    CarregarGridParcialVeiculo();
+                   
                     this.Refresh();
                     txtNome.Focus();
                 };
@@ -238,7 +236,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
         private void txtTelefone2_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                dataGridVeiculo.Focus();
+                txtPlaca.Focus();
         }
 
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
@@ -325,19 +323,24 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
         {
             try
             {
-                var veiculo = _serviceVeiculo.ObterVeiculoPlaca(txtPlaca.Text);
+                var veiculo = _serviceVeiculo.ObterVeiculoPlaca(txtPlaca.Text, IdEstaSendoEditado);
 
-                if (veiculo != null)
-                    _veiculos.Add(veiculo);
-                else
+                if (VerificaNotificacoes(_serviceVeiculo))
                 {
-                    toast.ShowToast("Placa não localizada, veifique no cadastro de veículo.", EnumToast.Informacao);
-                    txtPlaca.Focus();
-                    return;
+                    if (veiculo != null)
+                        _veiculos.Add(veiculo);
+                    else
+                    {
+                        toast.ShowToast("Placa não localizada, veifique no cadastro de veículo.", EnumToast.Informacao);
+                        txtPlaca.Focus();
+                        return;
+                    }
                 }
+
 
                 CarregarGridParcialVeiculo();
                 txtPlaca.Clear();
+                txtPlaca.Focus();
             }
             catch
             {
@@ -352,8 +355,8 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             dataGridVeiculo.DataSource = null;
             if (_veiculos.Count > 0)
                 dataGridVeiculo.DataSource = _veiculos;
-            else
-                dataGridVeiculo.Rows.Add(4);
+            //else
+            //    dataGridVeiculo.Rows.Add(4);
 
             dataGridVeiculo.Update();
             dataGridVeiculo.Refresh();
@@ -388,6 +391,11 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             {
                 toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
             }
+        }
+
+        private void dataGridCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            AlterarCliente();
         }
     }
 }

@@ -14,10 +14,12 @@ namespace RG2System_Garage.Domain.Service
     public class ServiceVeiculo : Notifiable, IServiceVeiculo
     {
         private readonly IRepositoryVeiculo  _repositoryVeiculo;
+        private readonly IRepositoyClienteVeiculo _repositoryClienteVeiculo;
 
-        public ServiceVeiculo(IRepositoryVeiculo repositoryVeiculo)
+        public ServiceVeiculo(IRepositoryVeiculo repositoryVeiculo, IRepositoyClienteVeiculo repositoryClienteVeiculo)
         {
             _repositoryVeiculo = repositoryVeiculo;
+            _repositoryClienteVeiculo = repositoryClienteVeiculo;
         }
 
         public bool AdicionarOuAlterar(VeiculoRequest veiculoRequest)
@@ -81,6 +83,14 @@ namespace RG2System_Garage.Domain.Service
                     return;
                 }
 
+                var veiculoAssociadoAoCliente = _repositoryClienteVeiculo.ObterPor(x => x.Veiculo.Id == id).Cliente;
+
+                if (veiculoAssociadoAoCliente != null)
+                {
+                    AddNotification("Veiculo", MSG.ESTE_X0_ESTA_ASSOCIADO_AO_X1_X2_EXCLUSAO_NAO_PERMITIDA.ToFormat("veículo", "cliente", veiculoAssociadoAoCliente.Nome));
+                    return;
+                }
+
                 var veiculo = _repositoryVeiculo.ObterPorId(id);
                 _repositoryVeiculo.Remover(veiculo);
             }
@@ -141,12 +151,20 @@ namespace RG2System_Garage.Domain.Service
             }
         }
 
-        public VeiculoResponse ObterVeiculoPlaca(string placa)
+        public VeiculoResponse ObterVeiculoPlaca(string placa, Guid idCliente)
         {
             try
             {
                 this.ClearNotifications();
                 var veiculo = _repositoryVeiculo.ObterPor(x => x.Placa == placa);
+
+                var veiculoJaAssociadoAoCliente = _repositoryClienteVeiculo.ObterPor(x => x.Cliente.Id != idCliente && x.Veiculo.Placa == placa);
+
+                if (veiculoJaAssociadoAoCliente != null)
+                {
+                    AddNotification("Veiculo", MSG.ESTE_X0_JA_ESTA_ASSOCIADO_AO_X1_X2.ToFormat("veículo", "cliente", veiculoJaAssociadoAoCliente.Cliente.Nome));
+                    return null;
+                }
 
                 if (veiculo == null)
                 {

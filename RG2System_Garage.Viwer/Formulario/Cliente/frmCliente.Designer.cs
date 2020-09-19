@@ -217,6 +217,7 @@
             this.dataGridCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridCliente.Size = new System.Drawing.Size(404, 278);
             this.dataGridCliente.TabIndex = 1;
+            this.dataGridCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridCliente_CellDoubleClick);
             this.dataGridCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridCliente_KeyDown);
             this.dataGridCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             this.dataGridCliente.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
