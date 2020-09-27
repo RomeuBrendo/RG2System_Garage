@@ -71,6 +71,7 @@
             this.lblNome = new MetroFramework.Controls.MetroLabel();
             this.btnCancelarNovo = new MetroFramework.Controls.MetroButton();
             this.btnSalvar = new MetroFramework.Controls.MetroButton();
+            this.panel = new MetroFramework.Controls.MetroPanel();
             this.tabControlCliente.SuspendLayout();
             this.tpSelecionar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCliente)).BeginInit();
@@ -89,7 +90,7 @@
             this.tabControlCliente.Location = new System.Drawing.Point(3, 63);
             this.tabControlCliente.Name = "tabControlCliente";
             this.tabControlCliente.SelectedIndex = 0;
-            this.tabControlCliente.Size = new System.Drawing.Size(566, 443);
+            this.tabControlCliente.Size = new System.Drawing.Size(566, 437);
             this.tabControlCliente.Style = MetroFramework.MetroColorStyle.Red;
             this.tabControlCliente.TabIndex = 1;
             // 
@@ -105,7 +106,7 @@
             this.tpSelecionar.HorizontalScrollbarBarColor = true;
             this.tpSelecionar.Location = new System.Drawing.Point(4, 35);
             this.tpSelecionar.Name = "tpSelecionar";
-            this.tpSelecionar.Size = new System.Drawing.Size(558, 404);
+            this.tpSelecionar.Size = new System.Drawing.Size(558, 398);
             this.tpSelecionar.TabIndex = 0;
             this.tpSelecionar.Text = "tpSelecionar";
             this.tpSelecionar.VerticalScrollbarBarColor = true;
@@ -113,7 +114,7 @@
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(447, 205);
+            this.btnSair.Location = new System.Drawing.Point(450, 183);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(90, 22);
             this.btnSair.TabIndex = 5;
@@ -123,7 +124,7 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(447, 166);
+            this.btnExcluir.Location = new System.Drawing.Point(450, 144);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(90, 23);
             this.btnExcluir.TabIndex = 4;
@@ -133,7 +134,7 @@
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Location = new System.Drawing.Point(447, 127);
+            this.btnAlterar.Location = new System.Drawing.Point(450, 105);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(90, 23);
             this.btnAlterar.TabIndex = 3;
@@ -143,7 +144,7 @@
             // 
             // btnNovo
             // 
-            this.btnNovo.Location = new System.Drawing.Point(447, 88);
+            this.btnNovo.Location = new System.Drawing.Point(450, 66);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(90, 23);
             this.btnNovo.TabIndex = 2;
@@ -154,7 +155,7 @@
             // txtPesquisar
             // 
             this.txtPesquisar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPesquisar.Location = new System.Drawing.Point(58, 41);
+            this.txtPesquisar.Location = new System.Drawing.Point(61, 19);
             this.txtPesquisar.Name = "txtPesquisar";
             this.txtPesquisar.Size = new System.Drawing.Size(362, 20);
             this.txtPesquisar.TabIndex = 0;
@@ -164,7 +165,7 @@
             // 
             this.lblPesquisa.AutoSize = true;
             this.lblPesquisa.BackColor = System.Drawing.Color.White;
-            this.lblPesquisa.Location = new System.Drawing.Point(15, 44);
+            this.lblPesquisa.Location = new System.Drawing.Point(18, 22);
             this.lblPesquisa.Name = "lblPesquisa";
             this.lblPesquisa.Size = new System.Drawing.Size(38, 13);
             this.lblPesquisa.TabIndex = 14;
@@ -195,7 +196,7 @@
             this.Contato,
             this.Id});
             this.dataGridCliente.EnableHeadersVisualStyles = false;
-            this.dataGridCliente.Location = new System.Drawing.Point(16, 87);
+            this.dataGridCliente.Location = new System.Drawing.Point(19, 65);
             this.dataGridCliente.MultiSelect = false;
             this.dataGridCliente.Name = "dataGridCliente";
             this.dataGridCliente.ReadOnly = true;
@@ -215,7 +216,7 @@
             this.dataGridCliente.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridCliente.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridCliente.Size = new System.Drawing.Size(404, 278);
+            this.dataGridCliente.Size = new System.Drawing.Size(404, 337);
             this.dataGridCliente.TabIndex = 1;
             this.dataGridCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridCliente_CellDoubleClick);
             this.dataGridCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridCliente_KeyDown);
@@ -263,7 +264,7 @@
             this.tpCadastro.HorizontalScrollbarBarColor = true;
             this.tpCadastro.Location = new System.Drawing.Point(4, 35);
             this.tpCadastro.Name = "tpCadastro";
-            this.tpCadastro.Size = new System.Drawing.Size(558, 404);
+            this.tpCadastro.Size = new System.Drawing.Size(558, 398);
             this.tpCadastro.TabIndex = 1;
             this.tpCadastro.Text = "tpCadastro";
             this.tpCadastro.VerticalScrollbarBarColor = true;
@@ -486,7 +487,7 @@
             // 
             // btnCancelarNovo
             // 
-            this.btnCancelarNovo.Location = new System.Drawing.Point(299, 378);
+            this.btnCancelarNovo.Location = new System.Drawing.Point(299, 372);
             this.btnCancelarNovo.Name = "btnCancelarNovo";
             this.btnCancelarNovo.Size = new System.Drawing.Size(90, 23);
             this.btnCancelarNovo.TabIndex = 1;
@@ -496,7 +497,7 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(173, 378);
+            this.btnSalvar.Location = new System.Drawing.Point(173, 372);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(90, 23);
             this.btnSalvar.TabIndex = 0;
@@ -504,11 +505,25 @@
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             this.btnSalvar.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCliente_PreviewKeyDown);
             // 
+            // panel
+            // 
+            this.panel.HorizontalScrollbarBarColor = true;
+            this.panel.HorizontalScrollbarHighlightOnWheel = false;
+            this.panel.HorizontalScrollbarSize = 10;
+            this.panel.Location = new System.Drawing.Point(7, 63);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(562, 48);
+            this.panel.TabIndex = 15;
+            this.panel.VerticalScrollbarBarColor = true;
+            this.panel.VerticalScrollbarHighlightOnWheel = false;
+            this.panel.VerticalScrollbarSize = 10;
+            // 
             // frmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 532);
+            this.ClientSize = new System.Drawing.Size(572, 505);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.tabControlCliente);
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -566,5 +581,6 @@
         private System.Windows.Forms.TextBox txtPlaca;
         private MetroFramework.Controls.MetroLabel lblPlaca;
         private MetroFramework.Controls.MetroLabel lblVeiculosAssociados;
+        private MetroFramework.Controls.MetroPanel panel;
     }
 }
