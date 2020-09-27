@@ -275,7 +275,7 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
 
         void DesabilitaEvento(KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            if ((e.KeyChar == 13) || (e.KeyChar == 27))
                 e.Handled = true;
         }
 
