@@ -296,5 +296,10 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
             else
                 CarregaGrid("");
         }
+
+        private void dataGridVeiculo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnAlterar.PerformClick();
+        }
     }
 }

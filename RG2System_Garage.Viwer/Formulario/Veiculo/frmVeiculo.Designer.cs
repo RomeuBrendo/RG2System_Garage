@@ -43,6 +43,9 @@
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.lblPesquisa = new System.Windows.Forms.Label();
             this.dataGridVeiculo = new System.Windows.Forms.DataGridView();
+            this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tpCadastroVeiculo = new MetroFramework.Controls.MetroTabPage();
             this.btnCancelarNovo = new MetroFramework.Controls.MetroButton();
             this.btnSalvar = new MetroFramework.Controls.MetroButton();
@@ -54,9 +57,6 @@
             this.txtModelo = new System.Windows.Forms.TextBox();
             this.txtPlaca = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControlVeiculo.SuspendLayout();
             this.tpSelecionarVeiculo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridVeiculo)).BeginInit();
@@ -74,7 +74,7 @@
             this.TabControlVeiculo.Location = new System.Drawing.Point(3, 66);
             this.TabControlVeiculo.Name = "TabControlVeiculo";
             this.TabControlVeiculo.SelectedIndex = 0;
-            this.TabControlVeiculo.Size = new System.Drawing.Size(566, 443);
+            this.TabControlVeiculo.Size = new System.Drawing.Size(566, 359);
             this.TabControlVeiculo.Style = MetroFramework.MetroColorStyle.Red;
             this.TabControlVeiculo.TabIndex = 0;
             this.TabControlVeiculo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
@@ -91,7 +91,7 @@
             this.tpSelecionarVeiculo.HorizontalScrollbarBarColor = true;
             this.tpSelecionarVeiculo.Location = new System.Drawing.Point(4, 35);
             this.tpSelecionarVeiculo.Name = "tpSelecionarVeiculo";
-            this.tpSelecionarVeiculo.Size = new System.Drawing.Size(558, 404);
+            this.tpSelecionarVeiculo.Size = new System.Drawing.Size(558, 320);
             this.tpSelecionarVeiculo.TabIndex = 0;
             this.tpSelecionarVeiculo.Text = "tpSelecionarVeiculo";
             this.tpSelecionarVeiculo.VerticalScrollbarBarColor = true;
@@ -202,135 +202,10 @@
             this.dataGridVeiculo.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridVeiculo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridVeiculo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridVeiculo.Size = new System.Drawing.Size(404, 278);
+            this.dataGridVeiculo.Size = new System.Drawing.Size(404, 132);
             this.dataGridVeiculo.TabIndex = 1;
+            this.dataGridVeiculo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridVeiculo_CellDoubleClick);
             this.dataGridVeiculo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
-            // 
-            // tpCadastroVeiculo
-            // 
-            this.tpCadastroVeiculo.Controls.Add(this.btnCancelarNovo);
-            this.tpCadastroVeiculo.Controls.Add(this.btnSalvar);
-            this.tpCadastroVeiculo.Controls.Add(this.label3);
-            this.tpCadastroVeiculo.Controls.Add(this.label2);
-            this.tpCadastroVeiculo.Controls.Add(this.label1);
-            this.tpCadastroVeiculo.Controls.Add(this.panelCadastroVeiculo);
-            this.tpCadastroVeiculo.HorizontalScrollbarBarColor = true;
-            this.tpCadastroVeiculo.Location = new System.Drawing.Point(4, 35);
-            this.tpCadastroVeiculo.Name = "tpCadastroVeiculo";
-            this.tpCadastroVeiculo.Size = new System.Drawing.Size(558, 404);
-            this.tpCadastroVeiculo.TabIndex = 1;
-            this.tpCadastroVeiculo.Text = "tpCadastroVeiculo";
-            this.tpCadastroVeiculo.VerticalScrollbarBarColor = true;
-            // 
-            // btnCancelarNovo
-            // 
-            this.btnCancelarNovo.Location = new System.Drawing.Point(299, 290);
-            this.btnCancelarNovo.Name = "btnCancelarNovo";
-            this.btnCancelarNovo.Size = new System.Drawing.Size(90, 23);
-            this.btnCancelarNovo.TabIndex = 1;
-            this.btnCancelarNovo.Text = "Cancelar (ESC)";
-            this.btnCancelarNovo.Click += new System.EventHandler(this.btnCancelarNovo_Click);
-            this.btnCancelarNovo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
-            // 
-            // btnSalvar
-            // 
-            this.btnSalvar.Location = new System.Drawing.Point(173, 290);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(90, 23);
-            this.btnSalvar.TabIndex = 0;
-            this.btnSalvar.Text = "Salvar (F4)";
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
-            this.btnSalvar.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(170, 212);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 13);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "Ano:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(170, 168);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Placa:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(170, 124);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 13);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Modelo:";
-            // 
-            // panelCadastroVeiculo
-            // 
-            this.panelCadastroVeiculo.Controls.Add(this.dateTimeAno);
-            this.panelCadastroVeiculo.Controls.Add(this.txtModelo);
-            this.panelCadastroVeiculo.Controls.Add(this.txtPlaca);
-            this.panelCadastroVeiculo.HorizontalScrollbarBarColor = true;
-            this.panelCadastroVeiculo.HorizontalScrollbarHighlightOnWheel = false;
-            this.panelCadastroVeiculo.HorizontalScrollbarSize = 10;
-            this.panelCadastroVeiculo.Location = new System.Drawing.Point(128, 34);
-            this.panelCadastroVeiculo.Name = "panelCadastroVeiculo";
-            this.panelCadastroVeiculo.Size = new System.Drawing.Size(320, 250);
-            this.panelCadastroVeiculo.TabIndex = 21;
-            this.panelCadastroVeiculo.VerticalScrollbarBarColor = true;
-            this.panelCadastroVeiculo.VerticalScrollbarHighlightOnWheel = false;
-            this.panelCadastroVeiculo.VerticalScrollbarSize = 10;
-            this.panelCadastroVeiculo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
-            // 
-            // dateTimeAno
-            // 
-            this.dateTimeAno.Checked = false;
-            this.dateTimeAno.CustomFormat = "yyyy";
-            this.dateTimeAno.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimeAno.Location = new System.Drawing.Point(99, 172);
-            this.dateTimeAno.Name = "dateTimeAno";
-            this.dateTimeAno.ShowUpDown = true;
-            this.dateTimeAno.Size = new System.Drawing.Size(56, 20);
-            this.dateTimeAno.TabIndex = 2;
-            this.dateTimeAno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimeAno_KeyDown);
-            this.dateTimeAno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateTimeAno_KeyPress);
-            this.dateTimeAno.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
-            // 
-            // txtModelo
-            // 
-            this.txtModelo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtModelo.Location = new System.Drawing.Point(99, 87);
-            this.txtModelo.Name = "txtModelo";
-            this.txtModelo.Size = new System.Drawing.Size(162, 20);
-            this.txtModelo.TabIndex = 0;
-            this.txtModelo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
-            this.txtModelo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtModelo_KeyPress);
-            this.txtModelo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
-            // 
-            // txtPlaca
-            // 
-            this.txtPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPlaca.Location = new System.Drawing.Point(99, 131);
-            this.txtPlaca.Name = "txtPlaca";
-            this.txtPlaca.Size = new System.Drawing.Size(162, 20);
-            this.txtPlaca.TabIndex = 1;
-            this.txtPlaca.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPlaca_KeyDown);
-            this.txtPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlaca_KeyPress);
-            this.txtPlaca.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
-            // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(3, 63);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(566, 43);
-            this.panel1.TabIndex = 18;
             // 
             // Modelo
             // 
@@ -365,11 +240,138 @@
             this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Id.Visible = false;
             // 
+            // tpCadastroVeiculo
+            // 
+            this.tpCadastroVeiculo.Controls.Add(this.btnCancelarNovo);
+            this.tpCadastroVeiculo.Controls.Add(this.btnSalvar);
+            this.tpCadastroVeiculo.Controls.Add(this.panelCadastroVeiculo);
+            this.tpCadastroVeiculo.HorizontalScrollbarBarColor = true;
+            this.tpCadastroVeiculo.Location = new System.Drawing.Point(4, 35);
+            this.tpCadastroVeiculo.Name = "tpCadastroVeiculo";
+            this.tpCadastroVeiculo.Size = new System.Drawing.Size(558, 320);
+            this.tpCadastroVeiculo.TabIndex = 1;
+            this.tpCadastroVeiculo.Text = "tpCadastroVeiculo";
+            this.tpCadastroVeiculo.VerticalScrollbarBarColor = true;
+            // 
+            // btnCancelarNovo
+            // 
+            this.btnCancelarNovo.Location = new System.Drawing.Point(299, 267);
+            this.btnCancelarNovo.Name = "btnCancelarNovo";
+            this.btnCancelarNovo.Size = new System.Drawing.Size(90, 23);
+            this.btnCancelarNovo.TabIndex = 1;
+            this.btnCancelarNovo.Text = "Cancelar (ESC)";
+            this.btnCancelarNovo.Click += new System.EventHandler(this.btnCancelarNovo_Click);
+            this.btnCancelarNovo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
+            // 
+            // btnSalvar
+            // 
+            this.btnSalvar.Location = new System.Drawing.Point(173, 267);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(90, 23);
+            this.btnSalvar.TabIndex = 0;
+            this.btnSalvar.Text = "Salvar (F4)";
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(50, 104);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Ano:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(42, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Placa:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(34, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Modelo:";
+            // 
+            // panelCadastroVeiculo
+            // 
+            this.panelCadastroVeiculo.Controls.Add(this.dateTimeAno);
+            this.panelCadastroVeiculo.Controls.Add(this.txtModelo);
+            this.panelCadastroVeiculo.Controls.Add(this.label3);
+            this.panelCadastroVeiculo.Controls.Add(this.txtPlaca);
+            this.panelCadastroVeiculo.Controls.Add(this.label2);
+            this.panelCadastroVeiculo.Controls.Add(this.label1);
+            this.panelCadastroVeiculo.HorizontalScrollbarBarColor = true;
+            this.panelCadastroVeiculo.HorizontalScrollbarHighlightOnWheel = false;
+            this.panelCadastroVeiculo.HorizontalScrollbarSize = 10;
+            this.panelCadastroVeiculo.Location = new System.Drawing.Point(128, 11);
+            this.panelCadastroVeiculo.Name = "panelCadastroVeiculo";
+            this.panelCadastroVeiculo.Size = new System.Drawing.Size(320, 147);
+            this.panelCadastroVeiculo.TabIndex = 21;
+            this.panelCadastroVeiculo.VerticalScrollbarBarColor = true;
+            this.panelCadastroVeiculo.VerticalScrollbarHighlightOnWheel = false;
+            this.panelCadastroVeiculo.VerticalScrollbarSize = 10;
+            this.panelCadastroVeiculo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
+            // 
+            // dateTimeAno
+            // 
+            this.dateTimeAno.Checked = false;
+            this.dateTimeAno.CustomFormat = "yyyy";
+            this.dateTimeAno.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimeAno.Location = new System.Drawing.Point(99, 97);
+            this.dateTimeAno.Name = "dateTimeAno";
+            this.dateTimeAno.ShowUpDown = true;
+            this.dateTimeAno.Size = new System.Drawing.Size(56, 20);
+            this.dateTimeAno.TabIndex = 2;
+            this.dateTimeAno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimeAno_KeyDown);
+            this.dateTimeAno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateTimeAno_KeyPress);
+            this.dateTimeAno.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
+            // 
+            // txtModelo
+            // 
+            this.txtModelo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtModelo.Location = new System.Drawing.Point(99, 12);
+            this.txtModelo.Name = "txtModelo";
+            this.txtModelo.Size = new System.Drawing.Size(162, 20);
+            this.txtModelo.TabIndex = 0;
+            this.txtModelo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
+            this.txtModelo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtModelo_KeyPress);
+            this.txtModelo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
+            // 
+            // txtPlaca
+            // 
+            this.txtPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPlaca.Location = new System.Drawing.Point(99, 56);
+            this.txtPlaca.Name = "txtPlaca";
+            this.txtPlaca.Size = new System.Drawing.Size(162, 20);
+            this.txtPlaca.TabIndex = 1;
+            this.txtPlaca.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPlaca_KeyDown);
+            this.txtPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlaca_KeyPress);
+            this.txtPlaca.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmVeiculo_PreviewKeyDown);
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(3, 63);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(566, 43);
+            this.panel1.TabIndex = 18;
+            // 
             // frmVeiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 532);
+            this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
+            this.ClientSize = new System.Drawing.Size(572, 432);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.TabControlVeiculo);
             this.KeyPreview = true;
@@ -388,7 +390,6 @@
             this.tpSelecionarVeiculo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridVeiculo)).EndInit();
             this.tpCadastroVeiculo.ResumeLayout(false);
-            this.tpCadastroVeiculo.PerformLayout();
             this.panelCadastroVeiculo.ResumeLayout(false);
             this.panelCadastroVeiculo.PerformLayout();
             this.ResumeLayout(false);
