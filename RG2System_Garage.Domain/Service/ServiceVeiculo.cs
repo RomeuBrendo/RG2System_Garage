@@ -83,11 +83,11 @@ namespace RG2System_Garage.Domain.Service
                     return;
                 }
 
-                var veiculoAssociadoAoCliente = _repositoryClienteVeiculo.ObterPor(x => x.Veiculo.Id == id).Cliente;
+                var veiculoAssociadoAoCliente = _repositoryClienteVeiculo.ObterPor(x => x.Veiculo.Id == id, x => x.Cliente);
 
                 if (veiculoAssociadoAoCliente != null)
                 {
-                    AddNotification("Veiculo", MSG.ESTE_X0_ESTA_ASSOCIADO_AO_X1_X2_EXCLUSAO_NAO_PERMITIDA.ToFormat("veículo", "cliente", veiculoAssociadoAoCliente.Nome));
+                    AddNotification("Veiculo", MSG.ESTE_X0_ESTA_ASSOCIADO_AO_X1_X2_EXCLUSAO_NAO_PERMITIDA.ToFormat("veículo", "cliente", veiculoAssociadoAoCliente.Cliente.Nome));
                     return;
                 }
 
