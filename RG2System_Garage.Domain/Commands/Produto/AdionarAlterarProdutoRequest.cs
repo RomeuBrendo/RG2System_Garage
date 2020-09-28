@@ -6,8 +6,8 @@ namespace RG2System_Garage.Domain.Commands.Produto
     {
         public Guid? Id { get; set; }
         public string Descricao { get;  set; }
-        public int Estoque { get;  set; }
-        public float PrecoCusto { get; set; }
-        public float PrecoVenda { get; set; }
+        public string Estoque { get;  set; }
+        public string PrecoCusto { get; set; }
+        public string PrecoVenda { get; set; }
     }
 }

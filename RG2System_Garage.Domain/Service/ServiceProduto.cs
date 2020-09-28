@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using prmToolkit.NotificationPattern;
 using RG2System_Garage.Domain.Commands.Produto;
 using RG2System_Garage.Domain.Entities;
@@ -23,7 +24,7 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
-                if (request.Id != Guid.Empty)
+                if (request.Id != null)
                 {
                     var produto = new Produto(request);
 
@@ -62,7 +63,7 @@ namespace RG2System_Garage.Domain.Service
                 if (descricao != "")
                     produtos = ProdutosResponse(_repositoryProduto.ListarPor(x => x.Descricao.StartsWith(descricao)).ToList());
                 else
-                    produtos = ProdutosResponse(_repositoryProduto.Listar().ToList());
+                    produtos = ProdutosResponse(_repositoryProduto.Listar().Include(x => x.EstoqueProduto).ToList());
 
                 return produtos;
 
@@ -86,7 +87,10 @@ namespace RG2System_Garage.Domain.Service
 
                     produtoNovo.Id = item.Id;
                     produtoNovo.Descricao = item.Descricao;
-                    //produtoNovo.Estoque = item.EstoqueAtual;
+                    produtoNovo.Estoque = item.EstoqueProduto.EstoqueAtual;
+                    produtoNovo.PrecoCusto = item.EstoqueProduto.PrecoCusto;
+                    produtoNovo.PrecoVenda = item.EstoqueProduto.PrecoVenda;
+
 
                     produtosResponse.Add(produtoNovo);
                 }

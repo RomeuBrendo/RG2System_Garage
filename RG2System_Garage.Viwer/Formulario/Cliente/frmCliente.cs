@@ -31,6 +31,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             dataGridCliente.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             CarregaGridCliente("");
             IdEstaSendoEditado = Guid.Empty;
+            tabControlCliente.SelectedIndex = 0;
             
         }
 
