@@ -89,7 +89,7 @@
             this.tabControlCliente.Controls.Add(this.tpCadastro);
             this.tabControlCliente.Location = new System.Drawing.Point(3, 63);
             this.tabControlCliente.Name = "tabControlCliente";
-            this.tabControlCliente.SelectedIndex = 0;
+            this.tabControlCliente.SelectedIndex = 1;
             this.tabControlCliente.Size = new System.Drawing.Size(566, 437);
             this.tabControlCliente.Style = MetroFramework.MetroColorStyle.Red;
             this.tabControlCliente.TabIndex = 1;
@@ -524,8 +524,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(572, 505);
-            this.Controls.Add(this.panel);
             this.Controls.Add(this.tabControlCliente);
+            this.Controls.Add(this.panel);
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

@@ -295,6 +295,12 @@
     <Compile Include="Formulario\frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formulario\Produto\frmProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulario\Produto\frmProduto.Designer.cs">
+      <DependentUpon>frmProduto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formulario\Veiculo\frmVeiculo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -313,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formulario\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulario\Produto\frmProduto.resx">
+      <DependentUpon>frmProduto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulario\Veiculo\frmVeiculo.resx">
       <DependentUpon>frmVeiculo.cs</DependentUpon>

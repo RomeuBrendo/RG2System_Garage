@@ -4,6 +4,7 @@ using RG2System_Garage.Domain.Commands.Produto;
 using RG2System_Garage.Domain.Entities;
 using RG2System_Garage.Domain.Interfaces.Repositories;
 using RG2System_Garage.Domain.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,10 +23,9 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
-                
-                if (request.Id.Value > 0)
+                if (request.Id != Guid.Empty)
                 {
-                    var produto = new Produto(request.Descricao, request.Estoque);
+                    var produto = new Produto(request);
 
                     AddNotifications(produto);
 
@@ -36,7 +36,7 @@ namespace RG2System_Garage.Domain.Service
                     return true;
                 }
 
-                var produtoNovo = new Produto(request.Descricao, request.Estoque);
+                var produtoNovo = new Produto(request);
                
                 AddNotifications(produtoNovo);
 
@@ -86,7 +86,7 @@ namespace RG2System_Garage.Domain.Service
 
                     produtoNovo.Id = item.Id;
                     produtoNovo.Descricao = item.Descricao;
-                    produtoNovo.Estoque = item.Estoque;
+                    //produtoNovo.Estoque = item.EstoqueAtual;
 
                     produtosResponse.Add(produtoNovo);
                 }
@@ -101,7 +101,7 @@ namespace RG2System_Garage.Domain.Service
 
         }
 
-        public bool Deletar(int id)
+        public bool Deletar(Guid id)
         {
             try
             {

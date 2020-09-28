@@ -1,5 +1,6 @@
 ﻿using RG2System_Garage.Domain.Commands.Produto;
 using RG2System_Garage.Domain.Interfaces.Services.Base;
+using System;
 using System.Collections.Generic;
 
 namespace RG2System_Garage.Domain.Interfaces.Services
@@ -10,6 +11,6 @@ namespace RG2System_Garage.Domain.Interfaces.Services
 
         List<ProdutoResponse> Listar(string descricao);
 
-        bool Deletar(int id);
+        bool Deletar(Guid id);
     }
 }

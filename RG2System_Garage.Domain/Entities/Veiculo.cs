@@ -4,7 +4,6 @@ using RG2System_Garage.Domain.Commands.Veiculo;
 using RG2System_Garage.Domain.Entities.Base;
 using RG2System_Garage.Domain.Resources;
 using System;
-using System.Collections.Generic;
 
 namespace RG2System_Garage.Domain.Entities
 {

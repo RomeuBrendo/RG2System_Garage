@@ -275,6 +275,7 @@
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "frmPrincipal";
+            this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Red;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnMenu.ResumeLayout(false);

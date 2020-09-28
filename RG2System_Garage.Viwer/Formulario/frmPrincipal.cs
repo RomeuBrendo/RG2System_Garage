@@ -1,4 +1,5 @@
 ﻿using RG2System_Garage.Viwer.Formulario.Cliente;
+using RG2System_Garage.Viwer.Formulario.Produto;
 using RG2System_Garage.Viwer.Formulario.Veiculo;
 using System;
 using System.Drawing;
@@ -22,7 +23,7 @@ namespace RG2System_Garage.Viwer.Formulario
             HideAllMenu();
         }
 
-        private void AjustarPosicaoForms()
+        public void AjustarPosicaoForms()
         {
             if (panelformularios.Controls.Count > 0)
                 for (int i = 0; i < panelformularios.Controls.Count; i++)
@@ -147,7 +148,7 @@ namespace RG2System_Garage.Viwer.Formulario
 
         private void btnCadProduto_Click(object sender, EventArgs e)
         {
-            //tabControl1.SelectedIndex = 2;
+            AbrirFormulario<frmProduto>(false);
         }
 
         private void btnLancServico_Click(object sender, EventArgs e)

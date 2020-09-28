@@ -1,26 +1,42 @@
 ﻿using prmToolkit.NotificationPattern;
+using prmToolkit.NotificationPattern.Extensions;
+using RG2System_Garage.Domain.Commands.Produto;
 using RG2System_Garage.Domain.Entities.Base;
+using RG2System_Garage.Domain.Resources;
 using System;
 
 namespace RG2System_Garage.Domain.Entities
 {
     public class Produto : EntityBase
     {
-        public Produto(string descricao, int estoque)
+        public Produto(AdionarAlterarProdutoRequest request)
         {
-            Descricao = descricao;
-            Estoque = estoque;
-
-            new AddNotifications<Produto>(this)
-                .IfNullOrInvalidLength(x => x.Descricao, 2, 50, "O campo descrição deve conter entre 2 e 50 caracteres");
-
+            this.ClearNotifications();
+            ProdutoBase(request);
         }
 
-        public Produto(string descricao, int estoque, Guid id)
+        private void ProdutoBase(AdionarAlterarProdutoRequest request)
+        {
+            Descricao = request.Descricao;
+
+            EstoqueProduto = new EstoqueProduto(Id, DateTime.Now, request.PrecoCusto, request.PrecoVenda, request.Estoque);
+
+            AddNotifications(EstoqueProduto);
+
+            new AddNotifications<Produto>(this)
+                .IfNullOrInvalidLength(x => x.Descricao, 2, 50, MSG.X0_OBRIGATORIA_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES.ToFormat("Descrição", "2", "50"));
+
+        }
+        public void AlterarProduto(AdionarAlterarProdutoRequest request)
+        {
+            this.ClearNotifications();
+            Id = request.Id.Value;
+            ProdutoBase(request);
+        }
+        public Produto(string descricao,  Guid id)
         {
             Id = id;
             Descricao = descricao;
-            Estoque = estoque;
 
             new AddNotifications<Produto>(this)
                  .IfNullOrInvalidLength(x => x.Descricao, 2, 50, "O campo descrição deve conter entre 2 e 50 caracteres");
@@ -30,6 +46,8 @@ namespace RG2System_Garage.Domain.Entities
         }
 
         public string Descricao { get; private set; }
-        public int Estoque { get; private set; }
+
+        public EstoqueProduto EstoqueProduto { get; private set; }
+
     }
 }

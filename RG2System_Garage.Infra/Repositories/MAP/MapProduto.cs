@@ -8,11 +8,10 @@ namespace RG2System_Garage.Infra.Repositories.MAP
     {
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
-            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Descricao).HasMaxLength(150);
             
-            builder.Property(x => x.Estoque).HasMaxLength(15000);
         }
     }
 }

@@ -2,6 +2,7 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using RG2System_Garage.Domain.Interfaces.Repositories;
+using RG2System_Garage.Domain.Interfaces.Repositories.Base;
 using RG2System_Garage.Domain.Interfaces.Services;
 using RG2System_Garage.Domain.Service;
 using RG2System_Garage.Infra.Repositories;
@@ -39,6 +40,7 @@ namespace RG2System_Garage.Viwer
             services.AddTransient<IRepositoryProduto, RepositoryProduto>();
             services.AddTransient<IRepositoyCliente, RepositoryCliente>();
             services.AddTransient<IRepositoyClienteVeiculo, RepositoryClienteVeiculo>();
+            services.AddTransient<IRepositoryEstoqueProduto, RepositoryEstoqueProduto>();
 
             services.AddTransient<IServiceVeiculo, ServiceVeiculo>();
             services.AddTransient<IServiceProduto, ServiceProduto>();
