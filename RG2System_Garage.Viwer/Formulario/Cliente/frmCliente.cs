@@ -31,8 +31,8 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             dataGridCliente.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             CarregaGridCliente("");
             IdEstaSendoEditado = Guid.Empty;
-            tabControlCliente.SelectedIndex = 0;
-            
+
+            tabControlCliente.SelectedIndex = 0;        
         }
 
         void CarregaGridCliente(string nome)
@@ -322,6 +322,11 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
 
         private void lblAdicionarVeiculo_Click(object sender, EventArgs e)
         {
+            ObterVeiculo();
+        }
+
+        private void ObterVeiculo()
+        {
             try
             {
                 var veiculo = _serviceVeiculo.ObterVeiculoPlaca(txtPlaca.Text, IdEstaSendoEditado);
@@ -366,10 +371,8 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
         private void txtPlaca_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode ==  Keys.Enter)
-            {
-                lblAdicionarVeiculo.PerformLayout();
-                e.SuppressKeyPress = true;
-            }
+                ObterVeiculo();
+
         }
 
         private void dataGridVeiculo_KeyDown(object sender, KeyEventArgs e)

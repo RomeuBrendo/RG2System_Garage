@@ -7,6 +7,7 @@ using RG2System_Garage.Infra.Repositories.Transactions;
 using RG2System_Garage.Shared.Formulario.Toast;
 using RG2System_Garage.Viwer.Resources;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -25,6 +26,8 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
             ConsultarDepedencias();
             IdEstaSendoEditado = Guid.Empty;
             CarregaGridProduto("");
+            AplicarEventos(txtPrecoCusto);
+            AplicarEventos(txtPrecoVenda);
         }
         void ConsultarDepedencias()
         {
@@ -112,10 +115,10 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
                 request.Id = IdEstaSendoEditado;
                 operacao = "alterado";
             }
-
+            
             request.Descricao = txtDescricao.Text;
-            request.PrecoCusto = txtPrecoCusto.Text;
-            request.PrecoVenda = txtPrecoVenda.Text;
+            request.PrecoCusto = txtPrecoCusto.Text.Replace("R$", "").Trim(); 
+            request.PrecoVenda = txtPrecoVenda.Text.Replace("R$", "").Trim();
             request.Estoque = txtEstoqueAtual.Text;
 
             try
@@ -150,6 +153,8 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
             dataGridProduto.DataSource = null;
             dataGridProduto.AutoGenerateColumns = false;
             dataGridProduto.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridProduto.Columns[2].DefaultCellStyle.Format = "C2";
+            dataGridProduto.Columns[1].DefaultCellStyle.Format = "N2";
             var clientes = _serviceProduto.Listar(nome);
 
             if (VerificaNotificacoes(_serviceProduto))
@@ -211,6 +216,47 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
         private void frmProduto_Load(object sender, EventArgs e)
         {
             txtPesquisar.Focus();
+        }
+
+        private void RetornarMascara(object sender, EventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            try
+            {              
+                txt.Text = double.Parse(txt.Text).ToString("C2");
+            }
+            catch
+            {
+                
+                txt.Text = "";
+            }
+
+        }
+
+        private void TirarMascara(object sender, EventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            txt.Text = txt.Text.Replace("R$", "").Trim();
+        }
+
+        private void ApenasValorNumerico(object sender, KeyPressEventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(Keys.Back))
+            {
+                if (e.KeyChar == ',')
+                {
+                    e.Handled = (txt.Text.Contains(','));
+                }
+                else
+                    e.Handled = true;
+            }
+        }
+        private void AplicarEventos(TextBox txt)
+        {
+            txt.Enter += TirarMascara;
+            txt.Leave += RetornarMascara;
+            txt.KeyPress += ApenasValorNumerico;
         }
     }
 }

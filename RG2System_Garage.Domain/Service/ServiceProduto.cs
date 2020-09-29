@@ -8,6 +8,7 @@ using RG2System_Garage.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace RG2System_Garage.Domain.Service
 {   
@@ -63,7 +64,7 @@ namespace RG2System_Garage.Domain.Service
                 if (descricao != "")
                     produtos = ProdutosResponse(_repositoryProduto.ListarPor(x => x.Descricao.StartsWith(descricao)).ToList());
                 else
-                    produtos = ProdutosResponse(_repositoryProduto.Listar().Include(x => x.EstoqueProduto).ToList());
+                    produtos = ProdutosResponse(_repositoryProduto.Listar().OrderByDescending(x => x.EstoqueProduto.DataLancamento).Include(x => x.EstoqueProduto).ToList());
 
                 return produtos;
 
