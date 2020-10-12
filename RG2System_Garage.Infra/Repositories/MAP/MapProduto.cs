@@ -11,7 +11,7 @@ namespace RG2System_Garage.Infra.Repositories.MAP
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Descricao).HasMaxLength(150);
-            
+
         }
     }
 }

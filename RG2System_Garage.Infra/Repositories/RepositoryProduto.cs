@@ -12,5 +12,18 @@ namespace RG2System_Garage.Infra.Repositories
         {
             _context = context;
         }
+
+        public bool InserirRegistroEstoqueProduto(EstoqueProduto estoqueProduto)
+        {
+            try
+            {
+                _context.EstoqueProdutos.Add(estoqueProduto);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

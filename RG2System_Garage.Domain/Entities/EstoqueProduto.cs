@@ -16,6 +16,11 @@ namespace RG2System_Garage.Domain.Entities
         {
             this.ClearNotifications();
             ProdutoId = produtoId;
+            EstoqueProdutoBase(dataLancamento, precoCusto, precoVenda, estoqueAtual);
+        }
+
+        private void EstoqueProdutoBase(DateTime dataLancamento, string precoCusto, string precoVenda, string estoqueAtual)
+        {
             DataLancamento = dataLancamento;
 
             ValidaNumerais(precoCusto, precoVenda, estoqueAtual);
@@ -24,7 +29,6 @@ namespace RG2System_Garage.Domain.Entities
                 .IfEqualsZero(x => x.PrecoCusto, MSG.O_X0_DEVE_SER_MAIOR_OU_IGUAL_A_X1.ToFormat("Preço de Custo", "0,1"))
                 .IfEqualsZero(x => x.PrecoVenda, MSG.O_X0_DEVE_SER_MAIOR_OU_IGUAL_A_X1.ToFormat("Preço de Venda", "0,1"));
         }
-
         void ValidaNumerais(string precocusto, string precoVenda, string estoque)
         {
             try
@@ -63,5 +67,7 @@ namespace RG2System_Garage.Domain.Entities
         public float PrecoCusto { get; private set; }
         public float PrecoVenda { get; private set; }
         public int EstoqueAtual { get; private set; }
+
+
     }
 }

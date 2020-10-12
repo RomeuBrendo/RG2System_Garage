@@ -12,5 +12,7 @@ namespace RG2System_Garage.Domain.Interfaces.Services
         List<ProdutoResponse> Listar(string descricao);
 
         bool Deletar(Guid id);
+
+        ProdutoResponse ObterProdutoId(Guid id);
     }
 }

@@ -7,7 +7,6 @@ using RG2System_Garage.Infra.Repositories.Transactions;
 using RG2System_Garage.Shared.Formulario.Toast;
 using RG2System_Garage.Viwer.Resources;
 using System;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -46,7 +45,51 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
 
         private void btnAlterar_Click(object sender, System.EventArgs e)
         {
+            Alterar();
+        }
 
+        private void Alterar()
+        {
+            try
+            {
+                _serviceProduto.ClearNotifications();
+                this.Text = "Alterar Produto";
+                var idProdutoSelecionado = IdProdutoSelecionado();
+                var produto = _serviceProduto.ObterProdutoId(idProdutoSelecionado);
+
+                if (VerificaNotificacoes(_serviceProduto))
+                {
+                    IdEstaSendoEditado = produto.Id;
+                    txtDescricao.Text = produto.Descricao;
+                    txtEstoqueAtual.Text = produto.Estoque.ToString();
+                    txtPrecoCusto.Text = double.Parse(produto.PrecoCusto.ToString()).ToString("C2");
+                    txtPrecoVenda.Text = double.Parse(produto.PrecoVenda.ToString()).ToString("C2");
+                    
+                    tabControlProduto.SelectedIndex = 1;
+                    this.Height = 340;
+                    
+                    txtDescricao.Focus();
+                }
+
+            }
+            catch
+            {
+                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+            }
+        }
+
+        private Guid IdProdutoSelecionado()
+        {
+            try
+            {
+                var produtoSelecionado = dataGridProduto.SelectedRows[0].DataBoundItem as ProdutoResponse;
+                return produtoSelecionado.Id;
+            }
+            catch
+            {
+                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+                return Guid.Empty;
+            }
         }
 
         private void btnExcluir_Click(object sender, System.EventArgs e)
@@ -139,7 +182,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
                     txtDescricao.Focus();
 
             }
-            catch 
+            catch(Exception ex) 
             {
 
                 toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
@@ -200,9 +243,8 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
             if (serviceBase.Notifications.Count > 0)
             {
                 foreach (var item in serviceBase.Notifications.ToList())
-                {
                     toast.ShowToast(item.Message, EnumToast.Erro);
-                }
+                
                 if (tabControlProduto.SelectedIndex == 0)
                     txtPesquisar.Focus();
                 else
@@ -257,6 +299,17 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
             txt.Enter += TirarMascara;
             txt.Leave += RetornarMascara;
             txt.KeyPress += ApenasValorNumerico;
+        }
+
+        private void dataGridProduto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Alterar();
+        }
+
+        private void dataGridProduto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                Alterar();
         }
     }
 }

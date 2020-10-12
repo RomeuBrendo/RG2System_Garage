@@ -138,6 +138,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
                 var clienteSelecionado = ClienteSelecionado();
                 var response = _serviceCliente.ObterClienteId(clienteSelecionado.Id.Value);
 
+                //Preciso revisar este trecho
                 if (_serviceCliente == null)
                 {
                     toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);

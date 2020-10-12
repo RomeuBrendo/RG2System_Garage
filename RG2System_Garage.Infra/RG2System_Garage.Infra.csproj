@@ -327,6 +327,10 @@
     <Compile Include="Migrations\20200927182305_InclusaoEstoqueProduto.designer.cs">
       <DependentUpon>20200927182305_InclusaoEstoqueProduto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20201006003536_Remocao.cs" />
+    <Compile Include="Migrations\20201006003536_Remocao.designer.cs">
+      <DependentUpon>20201006003536_Remocao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\RepositoryBase.cs" />

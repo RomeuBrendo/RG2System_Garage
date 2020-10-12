@@ -76,7 +76,7 @@
             this.tabControlProduto.Controls.Add(this.tpCadastro);
             this.tabControlProduto.Location = new System.Drawing.Point(3, 63);
             this.tabControlProduto.Name = "tabControlProduto";
-            this.tabControlProduto.SelectedIndex = 1;
+            this.tabControlProduto.SelectedIndex = 0;
             this.tabControlProduto.Size = new System.Drawing.Size(566, 437);
             this.tabControlProduto.Style = MetroFramework.MetroColorStyle.Red;
             this.tabControlProduto.TabIndex = 2;
@@ -205,6 +205,8 @@
             this.dataGridProduto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridProduto.Size = new System.Drawing.Size(404, 337);
             this.dataGridProduto.TabIndex = 1;
+            this.dataGridProduto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProduto_CellDoubleClick);
+            this.dataGridProduto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridProduto_KeyDown);
             this.dataGridProduto.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmProduto_PreviewKeyDown);
             // 
             // Modelo

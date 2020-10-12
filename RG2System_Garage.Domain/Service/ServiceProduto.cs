@@ -1,17 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using prmToolkit.NotificationPattern;
+using prmToolkit.NotificationPattern.Extensions;
 using RG2System_Garage.Domain.Commands.Produto;
 using RG2System_Garage.Domain.Entities;
 using RG2System_Garage.Domain.Interfaces.Repositories;
 using RG2System_Garage.Domain.Interfaces.Services;
+using RG2System_Garage.Domain.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
 namespace RG2System_Garage.Domain.Service
-{   
+{
     public class ServiceProduto : Notifiable, IServiceProduto
     {
         private readonly IRepositoryProduto _repositoryProduto;
@@ -25,16 +26,31 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
-                if (request.Id != null)
+                if (request == null)
                 {
-                    var produto = new Produto(request);
+                    AddNotification("Resquest", MSG.X0_INVALIDO.ToFormat("Request"));
+                }
+                if (request.Id != null) //Alteração
+                {
+                    var produto = _repositoryProduto.ObterPorId(request.Id.Value, x => x.EstoqueProduto);
+                    produto.AlterarProduto(request);
 
                     AddNotifications(produto);
 
                     if (IsInvalid()) return false;
 
-                    _repositoryProduto.Editar(produto);
+                    var estoque = new EstoqueProduto(produto.Id, DateTime.Now, request.PrecoCusto, request.PrecoVenda, request.Estoque);
 
+                    if (IsInvalid()) return false;
+
+                    //if ((estoque.EstoqueAtual != produto.EstoqueProduto.EstoqueAtual) ||
+                    //    (estoque.PrecoCusto != produto.EstoqueProduto.PrecoCusto) ||
+                    //    (estoque.PrecoVenda != produto.EstoqueProduto.PrecoVenda))
+                    //{
+                    //      _repositoryProduto.InserirRegistroEstoqueProduto(estoque);
+                    //    //produto.AlterarEstoqueProduto(estoque);
+                    //}
+                    _repositoryProduto.Editar(produto);
                     return true;
                 }
 
@@ -64,7 +80,7 @@ namespace RG2System_Garage.Domain.Service
                 if (descricao != "")
                     produtos = ProdutosResponse(_repositoryProduto.ListarPor(x => x.Descricao.StartsWith(descricao)).ToList());
                 else
-                    produtos = ProdutosResponse(_repositoryProduto.Listar().OrderByDescending(x => x.EstoqueProduto.DataLancamento).Include(x => x.EstoqueProduto).ToList());
+                    //produtos = ProdutosResponse(_repositoryProduto.ListarPor(x => x.Id != null)).ToList();
 
                 return produtos;
 
@@ -88,7 +104,7 @@ namespace RG2System_Garage.Domain.Service
 
                     produtoNovo.Id = item.Id;
                     produtoNovo.Descricao = item.Descricao;
-                    produtoNovo.Estoque = item.EstoqueProduto.EstoqueAtual;
+                    produtoNovo.Estoque = item.EstoqueProduto.OrderByDescending(x => x.DataLancamento).Select(x => x.EstoqueAtual).FirstOrDefault();
                     produtoNovo.PrecoCusto = item.EstoqueProduto.PrecoCusto;
                     produtoNovo.PrecoVenda = item.EstoqueProduto.PrecoVenda;
 
@@ -119,6 +135,19 @@ namespace RG2System_Garage.Domain.Service
 
                 AddNotification("Erro", "Deletar produto");
                 return false;
+            }
+        }
+
+        public ProdutoResponse ObterProdutoId(Guid id)
+        {
+            try
+            {
+                return (ProdutoResponse)_repositoryProduto.ObterPorId(id);
+            }
+            catch
+            {
+                AddNotification("Produto", MSG.ERRO_REALIZAR_PROCEDIMENTO);
+                return null;
             }
         }
     }

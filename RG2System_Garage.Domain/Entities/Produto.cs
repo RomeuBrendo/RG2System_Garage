@@ -1,14 +1,20 @@
-﻿using prmToolkit.NotificationPattern;
+﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+using prmToolkit.NotificationPattern;
 using prmToolkit.NotificationPattern.Extensions;
 using RG2System_Garage.Domain.Commands.Produto;
 using RG2System_Garage.Domain.Entities.Base;
 using RG2System_Garage.Domain.Resources;
 using System;
+using System.Collections.Generic;
 
 namespace RG2System_Garage.Domain.Entities
 {
     public class Produto : EntityBase
     {
+        protected Produto()
+        {
+
+        }
         public Produto(AdionarAlterarProdutoRequest request)
         {
             this.ClearNotifications();
@@ -19,7 +25,7 @@ namespace RG2System_Garage.Domain.Entities
         {
             Descricao = request.Descricao;
 
-            EstoqueProduto = new EstoqueProduto(Id, DateTime.Now, request.PrecoCusto, request.PrecoVenda, request.Estoque);
+            EstoqueProduto.Add(new EstoqueProduto(Id, DateTime.Now, request.PrecoCusto, request.PrecoVenda, request.Estoque));
 
             AddNotifications(EstoqueProduto);
 
@@ -31,23 +37,19 @@ namespace RG2System_Garage.Domain.Entities
         {
             this.ClearNotifications();
             Id = request.Id.Value;
-            ProdutoBase(request);
+            Descricao = request.Descricao;
+            //ProdutoBase(request);
         }
-        public Produto(string descricao,  Guid id)
+
+        public void AlterarEstoqueProduto(List<EstoqueProduto> request)
         {
-            Id = id;
-            Descricao = descricao;
-
-            new AddNotifications<Produto>(this)
-                 .IfNullOrInvalidLength(x => x.Descricao, 2, 50, "O campo descrição deve conter entre 2 e 50 caracteres");
-
-            //if (id < 1)
-            //    AddNotification("Id", "Para realizar alteração, é necessario passar um ID valido");
+            this.ClearNotifications();
+            EstoqueProduto = request;
+            AddNotifications(EstoqueProduto);
         }
-
         public string Descricao { get; private set; }
 
-        public EstoqueProduto EstoqueProduto { get; private set; }
+        public List<EstoqueProduto> EstoqueProduto { get; private set; }
 
     }
 }
