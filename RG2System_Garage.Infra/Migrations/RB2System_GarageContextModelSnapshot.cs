@@ -91,8 +91,7 @@ namespace RG2System_Garage.Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProdutoId")
-                        .IsUnique();
+                    b.HasIndex("ProdutoId");
 
                     b.ToTable("EstoqueProdutos");
                 });
@@ -153,8 +152,8 @@ namespace RG2System_Garage.Infra.Migrations
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.EstoqueProduto", b =>
                 {
                     b.HasOne("RG2System_Garage.Domain.Entities.Produto", null)
-                        .WithOne("EstoqueProduto")
-                        .HasForeignKey("RG2System_Garage.Domain.Entities.EstoqueProduto", "ProdutoId")
+                        .WithMany("EstoqueProduto")
+                        .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

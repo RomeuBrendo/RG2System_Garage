@@ -7,5 +7,6 @@ namespace RG2System_Garage.Domain.Interfaces.Repositories
     public interface IRepositoryProduto : IRepositoryBase<Produto, Guid>
     {
         bool InserirRegistroEstoqueProduto(EstoqueProduto estoqueProduto);
+        Produto ObterComEstoqueProdutoAtual(Guid id);
     }
 }

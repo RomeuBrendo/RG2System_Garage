@@ -9,8 +9,8 @@ using RG2System_Garage.Infra.Repositories;
 namespace RG2System_Garage.Infra.Migrations
 {
     [DbContext(typeof(RB2System_GarageContext))]
-    [Migration("20200927182305_InclusaoEstoqueProduto")]
-    partial class InclusaoEstoqueProduto
+    [Migration("20201012200217_Inicial2.0")]
+    partial class Inicial20
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -93,8 +93,7 @@ namespace RG2System_Garage.Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProdutoId")
-                        .IsUnique();
+                    b.HasIndex("ProdutoId");
 
                     b.ToTable("EstoqueProdutos");
                 });
@@ -155,8 +154,8 @@ namespace RG2System_Garage.Infra.Migrations
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.EstoqueProduto", b =>
                 {
                     b.HasOne("RG2System_Garage.Domain.Entities.Produto", null)
-                        .WithOne("EstoqueProduto")
-                        .HasForeignKey("RG2System_Garage.Domain.Entities.EstoqueProduto", "ProdutoId")
+                        .WithMany("EstoqueProduto")
+                        .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

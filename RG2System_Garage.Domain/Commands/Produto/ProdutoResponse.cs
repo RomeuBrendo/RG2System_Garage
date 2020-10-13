@@ -1,5 +1,5 @@
-﻿using RG2System_Garage.Domain.Entities;
-using System;
+﻿using System;
+using System.Linq;
 
 namespace RG2System_Garage.Domain.Commands.Produto
 {
@@ -17,9 +17,9 @@ namespace RG2System_Garage.Domain.Commands.Produto
             {
                 Id = v.Id,
                 Descricao = v.Descricao,
-                Estoque = v.EstoqueProduto.EstoqueAtual,
-                PrecoCusto = v.EstoqueProduto.PrecoCusto,
-                PrecoVenda = v.EstoqueProduto.PrecoVenda
+                Estoque = v.FichaEstoqueProduto.OrderByDescending(x => x.DataLancamento).Select(x => x.EstoqueAtual).FirstOrDefault(),
+                PrecoVenda = v.FichaEstoqueProduto.OrderByDescending(x => x.PrecoVenda).Select(x => x.PrecoVenda).FirstOrDefault(),
+                PrecoCusto = v.FichaEstoqueProduto.OrderByDescending(x => x.PrecoCusto).Select(x => x.PrecoCusto).FirstOrDefault(),
             };
         }
     }

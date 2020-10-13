@@ -299,37 +299,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\20200816230732_Inicial.cs" />
-    <Compile Include="Migrations\20200816230732_Inicial.designer.cs">
-      <DependentUpon>20200816230732_Inicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20200816231440_remocao´Cliente.cs" />
-    <Compile Include="Migrations\20200816231440_remocao´Cliente.designer.cs">
-      <DependentUpon>20200816231440_remocao´Cliente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20200912003232_InclusaoAnoVeiculo.cs" />
-    <Compile Include="Migrations\20200912003232_InclusaoAnoVeiculo.designer.cs">
-      <DependentUpon>20200912003232_InclusaoAnoVeiculo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20200912145230_InclusaoCamposCliente.cs" />
-    <Compile Include="Migrations\20200912145230_InclusaoCamposCliente.designer.cs">
-      <DependentUpon>20200912145230_InclusaoCamposCliente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20200912210348_InclusaoClientePlaca.cs" />
-    <Compile Include="Migrations\20200912210348_InclusaoClientePlaca.designer.cs">
-      <DependentUpon>20200912210348_InclusaoClientePlaca.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20200918223823_tESTE.cs" />
-    <Compile Include="Migrations\20200918223823_tESTE.designer.cs">
-      <DependentUpon>20200918223823_tESTE.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20200927182305_InclusaoEstoqueProduto.cs" />
-    <Compile Include="Migrations\20200927182305_InclusaoEstoqueProduto.designer.cs">
-      <DependentUpon>20200927182305_InclusaoEstoqueProduto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201006003536_Remocao.cs" />
-    <Compile Include="Migrations\20201006003536_Remocao.designer.cs">
-      <DependentUpon>20201006003536_Remocao.cs</DependentUpon>
+    <Compile Include="Migrations\20201012200217_Inicial2.0.cs" />
+    <Compile Include="Migrations\20201012200217_Inicial2.0.designer.cs">
+      <DependentUpon>20201012200217_Inicial2.0.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

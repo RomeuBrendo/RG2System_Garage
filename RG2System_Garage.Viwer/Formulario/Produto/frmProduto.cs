@@ -198,11 +198,14 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
             dataGridProduto.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridProduto.Columns[2].DefaultCellStyle.Format = "C2";
             dataGridProduto.Columns[1].DefaultCellStyle.Format = "N2";
-            var clientes = _serviceProduto.Listar(nome);
+            var produtos = _serviceProduto.Listar(nome);
+
+            if (produtos == null)
+                return;
 
             if (VerificaNotificacoes(_serviceProduto))
             {
-                dataGridProduto.DataSource = clientes.OrderBy(x => x.Descricao).ToList();
+                dataGridProduto.DataSource = produtos.OrderBy(x => x.Descricao).ToList();
                 dataGridProduto.Update();
                 dataGridProduto.Refresh();
             }

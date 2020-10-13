@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using prmToolkit.NotificationPattern;
+﻿using prmToolkit.NotificationPattern;
 using prmToolkit.NotificationPattern.Extensions;
 using RG2System_Garage.Domain.Commands.Produto;
 using RG2System_Garage.Domain.Entities;
@@ -9,7 +8,6 @@ using RG2System_Garage.Domain.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace RG2System_Garage.Domain.Service
 {
@@ -30,26 +28,35 @@ namespace RG2System_Garage.Domain.Service
                 {
                     AddNotification("Resquest", MSG.X0_INVALIDO.ToFormat("Request"));
                 }
-                if (request.Id != null) //Alteração
+                if ((request.Id != null) && (request.Id != Guid.Empty)) //Alteração
                 {
-                    var produto = _repositoryProduto.ObterPorId(request.Id.Value, x => x.EstoqueProduto);
-                    produto.AlterarProduto(request);
-
+                    var produto = _repositoryProduto.ObterComEstoqueProdutoAtual(request.Id.Value);
                     AddNotifications(produto);
 
-                    if (IsInvalid()) return false;
+                    if (produto == null)
+                    {
+                        AddNotification("Produto", MSG.DADOS_NAO_ENCONTRADOS);
+                        return false;
+                    }
 
                     var estoque = new EstoqueProduto(produto.Id, DateTime.Now, request.PrecoCusto, request.PrecoVenda, request.Estoque);
 
+                    if ((estoque.EstoqueAtual != produto.EstoqueProduto.EstoqueAtual) ||
+                        (estoque.PrecoCusto != produto.EstoqueProduto.PrecoCusto) ||
+                        (estoque.PrecoVenda != produto.EstoqueProduto.PrecoVenda))
+                    {
+                        //Sempre que alterado Estoque ou Preços, é inserido um novo registro para manter o estoque
+                        _repositoryProduto.InserirRegistroEstoqueProduto(estoque);
+
+                    }
+                    
+                    AddNotifications(estoque);
+
+                    //Altera somente descrição
+                    produto.AlterarProduto(request);
+
                     if (IsInvalid()) return false;
 
-                    //if ((estoque.EstoqueAtual != produto.EstoqueProduto.EstoqueAtual) ||
-                    //    (estoque.PrecoCusto != produto.EstoqueProduto.PrecoCusto) ||
-                    //    (estoque.PrecoVenda != produto.EstoqueProduto.PrecoVenda))
-                    //{
-                    //      _repositoryProduto.InserirRegistroEstoqueProduto(estoque);
-                    //    //produto.AlterarEstoqueProduto(estoque);
-                    //}
                     _repositoryProduto.Editar(produto);
                     return true;
                 }
@@ -67,7 +74,7 @@ namespace RG2System_Garage.Domain.Service
             }
             catch
             {
-                AddNotification("Erro", "Não foi possivél realizar Alteração/Inserção");
+                AddNotification("Produto", MSG.DADOS_NAO_ENCONTRADOS);
                 return false;
             }
         }
@@ -80,7 +87,7 @@ namespace RG2System_Garage.Domain.Service
                 if (descricao != "")
                     produtos = ProdutosResponse(_repositoryProduto.ListarPor(x => x.Descricao.StartsWith(descricao)).ToList());
                 else
-                    //produtos = ProdutosResponse(_repositoryProduto.ListarPor(x => x.Id != null)).ToList();
+                    produtos = ProdutosResponse(_repositoryProduto.Listar(x => x.FichaEstoqueProduto).ToList());
 
                 return produtos;
 
@@ -88,7 +95,7 @@ namespace RG2System_Garage.Domain.Service
             catch
             {
 
-                AddNotification("Erro", "Ao realizar consulta no banco");
+                AddNotification("Listar", MSG.DADOS_NAO_ENCONTRADOS);
                 return null;
             }
         }
@@ -101,20 +108,20 @@ namespace RG2System_Garage.Domain.Service
                 foreach (var item in produtos)
                 {
                     var produtoNovo = new ProdutoResponse();
-
+                    var ultimoEstoqueProduto = item.FichaEstoqueProduto.OrderByDescending(x => x.DataLancamento).ToList().FirstOrDefault();
+                    
                     produtoNovo.Id = item.Id;
                     produtoNovo.Descricao = item.Descricao;
-                    produtoNovo.Estoque = item.EstoqueProduto.OrderByDescending(x => x.DataLancamento).Select(x => x.EstoqueAtual).FirstOrDefault();
-                    produtoNovo.PrecoCusto = item.EstoqueProduto.PrecoCusto;
-                    produtoNovo.PrecoVenda = item.EstoqueProduto.PrecoVenda;
-
+                    produtoNovo.Estoque = ultimoEstoqueProduto.EstoqueAtual;
+                    produtoNovo.PrecoCusto = ultimoEstoqueProduto.PrecoCusto;
+                    produtoNovo.PrecoVenda = ultimoEstoqueProduto.PrecoVenda;
 
                     produtosResponse.Add(produtoNovo);
                 }
 
                 return produtosResponse;
             }
-            catch
+            catch(Exception ex)
             {
 
                 return null;
