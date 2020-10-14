@@ -39,10 +39,12 @@ namespace RG2System_Garage.Viwer
             services.AddTransient<IRepositoryProduto, RepositoryProduto>();
             services.AddTransient<IRepositoyCliente, RepositoryCliente>();
             services.AddTransient<IRepositoyClienteVeiculo, RepositoryClienteVeiculo>();
+            services.AddTransient<IRepositoryConfiguracaoDadosEmpresa, RepositoryConfiguracaoDadosEmpresa>();
 
             services.AddTransient<IServiceVeiculo, ServiceVeiculo>();
             services.AddTransient<IServiceProduto, ServiceProduto>();
             services.AddTransient<IServiceCliente, ServiceCliente>();
+            services.AddTransient<IServiceConfiguracaoDadosEmpresa, ServiceConfiguracaoDadosEmpresa>();
 
             ServiceProvider = services.BuildServiceProvider();
         }

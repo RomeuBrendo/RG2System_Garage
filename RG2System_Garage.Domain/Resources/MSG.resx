@@ -129,6 +129,9 @@
   <data name="DADOS_NAO_ENCONTRADOS" xml:space="preserve">
     <value>Dados não encontrados.</value>
   </data>
+  <data name="ERRO_AO_REALIZAR_PROCEDIMENTO_DE_X0" xml:space="preserve">
+    <value>Erro ao realizar procedimento de {0}. Tente Novamente.</value>
+  </data>
   <data name="ERRO_LISTAR_X0" xml:space="preserve">
     <value>Erro ao listar {0}.</value>
   </data>

@@ -49,6 +49,8 @@ namespace RG2System_Garage.Domain.Entities
 
         public string Nome { get; private set; }
         public string CPFCNPJ { get; private set; }
+
+        //Campos telefone posteriomente será um objeto de Valor
         public string Telefone1 { get; private set; }
         public string Telefone2 { get; private set; }
         public List<Veiculo> Veiculos { get; private set; }

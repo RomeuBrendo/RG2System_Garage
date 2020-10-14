@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RG2System_Garage.Infra.Repositories;
 
 namespace RG2System_Garage.Infra.Migrations
 {
     [DbContext(typeof(RB2System_GarageContext))]
-    partial class RB2System_GarageContextModelSnapshot : ModelSnapshot
+    [Migration("20201014014407_ConfDadosEmpresa")]
+    partial class ConfDadosEmpresa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -174,8 +176,8 @@ namespace RG2System_Garage.Infra.Migrations
                             b1.Property<string>("Endereco")
                                 .IsRequired()
                                 .HasColumnName("Email")
-                                .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
-                                .HasMaxLength(50);
+                                .HasColumnType("varchar(16) CHARACTER SET utf8mb4")
+                                .HasMaxLength(16);
 
                             b1.HasKey("ConfiguracaoDadosEmpresaId");
 

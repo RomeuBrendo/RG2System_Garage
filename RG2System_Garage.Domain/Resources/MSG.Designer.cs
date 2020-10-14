@@ -97,6 +97,15 @@ namespace RG2System_Garage.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Erro ao realizar procedimento de {0}. Tente Novamente..
+        /// </summary>
+        internal static string ERRO_AO_REALIZAR_PROCEDIMENTO_DE_X0 {
+            get {
+                return ResourceManager.GetString("ERRO_AO_REALIZAR_PROCEDIMENTO_DE_X0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erro ao listar {0}..
         /// </summary>
         internal static string ERRO_LISTAR_X0 {

@@ -221,6 +221,8 @@
   <ItemGroup>
     <Compile Include="Commands\Cliente\ClienteRequest.cs" />
     <Compile Include="Commands\Cliente\ClienteResponse.cs" />
+    <Compile Include="Commands\Configuracao\DadosEmpresaRequest.cs" />
+    <Compile Include="Commands\Configuracao\DadosEmpresaResponse.cs" />
     <Compile Include="Commands\Produto\AdionarAlterarProdutoRequest.cs" />
     <Compile Include="Commands\Produto\ProdutoResponse.cs" />
     <Compile Include="Commands\Veiculo\VeiculoRequest.cs" />
@@ -229,17 +231,20 @@
     <Compile Include="Entities\Cliente.cs" />
     <Compile Include="Entities\ClienteVeiculo.cs" />
     <Compile Include="Entities\ClienteVeiculoLista.cs" />
+    <Compile Include="Entities\ConfiguracaoDadosEmpresa.cs" />
     <Compile Include="Entities\EstoqueProduto.cs" />
     <Compile Include="Entities\Produto.cs" />
     <Compile Include="Entities\Veiculo.cs" />
     <Compile Include="Enum\EnumToast.cs" />
     <Compile Include="Interfaces\Repositories\Base\IRepositoryBase.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositoryConfiguracaoDadosEmpresa.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryProduto.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryVeiculo.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoyCliente.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoyClienteVeiculo.cs" />
     <Compile Include="Interfaces\Services\Base\IServiceBase.cs" />
     <Compile Include="Interfaces\Services\IServiceCliente.cs" />
+    <Compile Include="Interfaces\Services\IServiceConfiguracaoDadosEmpresa.cs" />
     <Compile Include="Interfaces\Services\IServiceProduto.cs" />
     <Compile Include="Interfaces\Services\IServiceVeiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -249,8 +254,12 @@
       <DependentUpon>MSG.resx</DependentUpon>
     </Compile>
     <Compile Include="Service\ServiceCliente.cs" />
+    <Compile Include="Service\ServiceConfiguracaoDadosEmpresa.cs" />
     <Compile Include="Service\ServiceProduto.cs" />
     <Compile Include="Service\ServiceVeiculo.cs" />
+    <Compile Include="ValueObjects\Email.cs" />
+    <Compile Include="ValueObjects\Nome.cs" />
+    <Compile Include="ValueObjects\Telefone.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -31,7 +31,6 @@ namespace RG2System_Garage.Domain.Service
                 if ((request.Id != null) && (request.Id != Guid.Empty)) //Alteração
                 {
                     var produto = _repositoryProduto.ObterComEstoqueProdutoAtual(request.Id.Value);
-                    AddNotifications(produto);
 
                     if (produto == null)
                     {
