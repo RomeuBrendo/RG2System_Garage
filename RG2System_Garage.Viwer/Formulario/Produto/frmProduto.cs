@@ -94,7 +94,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
 
         private void btnExcluir_Click(object sender, System.EventArgs e)
         {
-
+            MessageBox.Show("No momento não é possível realizar exclusão. Estamos criando ferramenta para inativar produto, em breve estará dísponivel.","", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSair_Click(object sender, System.EventArgs e)
@@ -313,6 +313,14 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
         {
             if (e.KeyCode == Keys.Enter)
                 Alterar();
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPesquisar.Text.Length > 0)
+                CarregaGridProduto(txtPesquisar.Text);
+            else
+                CarregaGridProduto("");
         }
     }
 }
