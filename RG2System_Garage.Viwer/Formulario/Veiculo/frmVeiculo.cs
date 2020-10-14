@@ -228,6 +228,7 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
                 {
                     _unitOfWork.SaveChanges();
                     toast.ShowToast("Veículo "+ acao+" com Sucesso", EnumToast.Sucesso);
+                    LimparCampos();
                     TabControlVeiculo.SelectedIndex = 0;
                     CarregaGrid("");
                     txtPesquisar.Focus();

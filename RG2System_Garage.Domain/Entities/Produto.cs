@@ -38,22 +38,27 @@ namespace RG2System_Garage.Domain.Entities
             
             FichaEstoqueProduto = estoqueProdutos;
             AddNotifications(FichaEstoqueProduto);
+            ValidaDescricao();
 
+        }
+
+        private void ValidaDescricao()
+        {
             new AddNotifications<Produto>(this)
                 .IfNullOrInvalidLength(x => x.Descricao, 2, 50, MSG.X0_OBRIGATORIA_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES.ToFormat("Descrição", "2", "50"));
 
         }
-
         public void AlterarProduto(AdionarAlterarProdutoRequest request)
         {
             this.ClearNotifications();
             Id = request.Id.Value;
             Descricao = request.Descricao;
+            ValidaDescricao();
         }
 
         public void AlterarPropriedade(Produto request)
         {
-            //Trecho abaixa é apenas para modificar propriedade quando nã quero o historico da tabela estoque produto, e sim somente o atual que no caso é o último.
+            //Trecho abaixo é apenas para modificar propriedade quando nã quero o historico da tabela estoque produto, e sim somente o atual que no caso é o último.
             EstoqueProduto = request.FichaEstoqueProduto.OrderByDescending(x => x.DataLancamento).FirstOrDefault();
         }
 
