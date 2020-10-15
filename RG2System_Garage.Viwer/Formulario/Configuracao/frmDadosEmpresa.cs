@@ -23,8 +23,6 @@ namespace RG2System_Garage.Viwer.Formulario.Configuracao
             ConsultarDepedencias();
             IdEstaSendoEditado = Guid.Empty;
             CarregaTela();
-            this.Refresh();
-            txtNomeFantasia.Focus();
         }
 
         private void CarregaTela()
@@ -68,9 +66,9 @@ namespace RG2System_Garage.Viwer.Formulario.Configuracao
                     request.Id = IdEstaSendoEditado;
 
                 request.NomeFantasia = txtNomeFantasia.Text;
+                txtNomeFantasia.Focus();
                 request.RazaoSocial = txtRazaoSocial.Text;
                 request.Celular = txtCelular.Text;
-                request.Fixo = txtFixo.Text;
                 request.Email = txtEmail.Text;
                 request.Endereco = txtEndereco.Text;
 

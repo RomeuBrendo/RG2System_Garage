@@ -89,7 +89,7 @@
             this.btnConfigGeral.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnConfigGeral.Size = new System.Drawing.Size(368, 40);
             this.btnConfigGeral.TabIndex = 5;
-            this.btnConfigGeral.Text = "Dados Empresa";
+            this.btnConfigGeral.Text = "Dados da Empresa";
             this.btnConfigGeral.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfigGeral.UseVisualStyleBackColor = false;
             this.btnConfigGeral.Click += new System.EventHandler(this.btnConfigGeral_Click);
@@ -115,7 +115,7 @@
             this.btnLancServico.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnLancServico.Size = new System.Drawing.Size(368, 40);
             this.btnLancServico.TabIndex = 5;
-            this.btnLancServico.Text = "PRODUTOS/SERVIÇOS";
+            this.btnLancServico.Text = "Produtos/Serviços";
             this.btnLancServico.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLancServico.UseVisualStyleBackColor = false;
             this.btnLancServico.Click += new System.EventHandler(this.btnLancServico_Click);
@@ -144,7 +144,7 @@
             this.btnCadVeiculo.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnCadVeiculo.Size = new System.Drawing.Size(368, 40);
             this.btnCadVeiculo.TabIndex = 7;
-            this.btnCadVeiculo.Text = "VEÍCULO";
+            this.btnCadVeiculo.Text = "Veículos";
             this.btnCadVeiculo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCadVeiculo.UseVisualStyleBackColor = false;
             this.btnCadVeiculo.Click += new System.EventHandler(this.btnCadVeiculo_Click);
@@ -162,7 +162,7 @@
             this.btnCadProduto.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnCadProduto.Size = new System.Drawing.Size(368, 40);
             this.btnCadProduto.TabIndex = 6;
-            this.btnCadProduto.Text = "PRODUTO";
+            this.btnCadProduto.Text = "Produtos";
             this.btnCadProduto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCadProduto.UseVisualStyleBackColor = false;
             this.btnCadProduto.Click += new System.EventHandler(this.btnCadProduto_Click);
@@ -180,7 +180,7 @@
             this.btnCadCliente.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnCadCliente.Size = new System.Drawing.Size(368, 40);
             this.btnCadCliente.TabIndex = 5;
-            this.btnCadCliente.Text = "CLIENTE";
+            this.btnCadCliente.Text = "Clientes";
             this.btnCadCliente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCadCliente.UseVisualStyleBackColor = false;
             this.btnCadCliente.Click += new System.EventHandler(this.btnCadCliente_Click);

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.lblNomeFantasia = new MetroFramework.Controls.MetroLabel();
-            this.txtNomeFantasia = new System.Windows.Forms.TextBox();
             this.txtRazaoSocial = new System.Windows.Forms.TextBox();
             this.lblRacaoSocial = new MetroFramework.Controls.MetroLabel();
             this.txtCelular = new System.Windows.Forms.TextBox();
@@ -42,32 +41,24 @@
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.btnCancelar = new MetroFramework.Controls.MetroButton();
             this.btnSalvar = new MetroFramework.Controls.MetroButton();
+            this.panel = new System.Windows.Forms.Panel();
+            this.txtNomeFantasia = new System.Windows.Forms.TextBox();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblNomeFantasia
             // 
             this.lblNomeFantasia.AutoSize = true;
-            this.lblNomeFantasia.Location = new System.Drawing.Point(53, 115);
+            this.lblNomeFantasia.Location = new System.Drawing.Point(31, 55);
             this.lblNomeFantasia.Name = "lblNomeFantasia";
             this.lblNomeFantasia.Size = new System.Drawing.Size(99, 19);
             this.lblNomeFantasia.TabIndex = 3;
             this.lblNomeFantasia.Text = "Nome Fantasia:";
             // 
-            // txtNomeFantasia
-            // 
-            this.txtNomeFantasia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNomeFantasia.Location = new System.Drawing.Point(158, 115);
-            this.txtNomeFantasia.Name = "txtNomeFantasia";
-            this.txtNomeFantasia.Size = new System.Drawing.Size(362, 20);
-            this.txtNomeFantasia.TabIndex = 0;
-            this.txtNomeFantasia.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNomeFantasia_KeyDown);
-            this.txtNomeFantasia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeFantasia_KeyPress);
-            this.txtNomeFantasia.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmDadosEmpresa_PreviewKeyDown);
-            // 
             // txtRazaoSocial
             // 
             this.txtRazaoSocial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtRazaoSocial.Location = new System.Drawing.Point(158, 159);
+            this.txtRazaoSocial.Location = new System.Drawing.Point(138, 99);
             this.txtRazaoSocial.Name = "txtRazaoSocial";
             this.txtRazaoSocial.Size = new System.Drawing.Size(362, 20);
             this.txtRazaoSocial.TabIndex = 1;
@@ -87,7 +78,7 @@
             // txtCelular
             // 
             this.txtCelular.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCelular.Location = new System.Drawing.Point(158, 247);
+            this.txtCelular.Location = new System.Drawing.Point(138, 187);
             this.txtCelular.Name = "txtCelular";
             this.txtCelular.Size = new System.Drawing.Size(87, 20);
             this.txtCelular.TabIndex = 3;
@@ -107,7 +98,7 @@
             // txtFixo
             // 
             this.txtFixo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtFixo.Location = new System.Drawing.Point(335, 247);
+            this.txtFixo.Location = new System.Drawing.Point(317, 187);
             this.txtFixo.Name = "txtFixo";
             this.txtFixo.Size = new System.Drawing.Size(87, 20);
             this.txtFixo.TabIndex = 4;
@@ -136,7 +127,7 @@
             // txtEmail
             // 
             this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.txtEmail.Location = new System.Drawing.Point(158, 203);
+            this.txtEmail.Location = new System.Drawing.Point(138, 143);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(266, 20);
             this.txtEmail.TabIndex = 2;
@@ -155,7 +146,7 @@
             // 
             // txtEndereco
             // 
-            this.txtEndereco.Location = new System.Drawing.Point(158, 291);
+            this.txtEndereco.Location = new System.Drawing.Point(138, 231);
             this.txtEndereco.Multiline = true;
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(362, 84);
@@ -184,6 +175,31 @@
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             this.btnSalvar.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmDadosEmpresa_PreviewKeyDown);
             // 
+            // panel
+            // 
+            this.panel.Controls.Add(this.txtNomeFantasia);
+            this.panel.Controls.Add(this.lblNomeFantasia);
+            this.panel.Controls.Add(this.txtRazaoSocial);
+            this.panel.Controls.Add(this.txtEmail);
+            this.panel.Controls.Add(this.txtEndereco);
+            this.panel.Controls.Add(this.txtFixo);
+            this.panel.Controls.Add(this.txtCelular);
+            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel.Location = new System.Drawing.Point(20, 60);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(532, 425);
+            this.panel.TabIndex = 14;
+            // 
+            // txtNomeFantasia
+            // 
+            this.txtNomeFantasia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNomeFantasia.Location = new System.Drawing.Point(138, 55);
+            this.txtNomeFantasia.Name = "txtNomeFantasia";
+            this.txtNomeFantasia.Size = new System.Drawing.Size(362, 20);
+            this.txtNomeFantasia.TabIndex = 6;
+            this.txtNomeFantasia.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNomeFantasia_KeyDown);
+            this.txtNomeFantasia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeFantasia_KeyPress);
+            // 
             // frmDadosEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,18 +208,12 @@
             this.ClientSize = new System.Drawing.Size(572, 505);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSalvar);
-            this.Controls.Add(this.txtEndereco);
             this.Controls.Add(this.lblEndereco);
-            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblFixo);
             this.Controls.Add(this.lblCelular);
             this.Controls.Add(this.lblRacaoSocial);
-            this.Controls.Add(this.lblNomeFantasia);
-            this.Controls.Add(this.txtFixo);
-            this.Controls.Add(this.txtCelular);
-            this.Controls.Add(this.txtRazaoSocial);
-            this.Controls.Add(this.txtNomeFantasia);
+            this.Controls.Add(this.panel);
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -215,6 +225,8 @@
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
             this.Load += new System.EventHandler(this.frmDadosEmpresa_Load);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmDadosEmpresa_PreviewKeyDown);
+            this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,7 +235,6 @@
         #endregion
 
         private MetroFramework.Controls.MetroLabel lblNomeFantasia;
-        private System.Windows.Forms.TextBox txtNomeFantasia;
         private System.Windows.Forms.TextBox txtRazaoSocial;
         private MetroFramework.Controls.MetroLabel lblRacaoSocial;
         private System.Windows.Forms.TextBox txtCelular;
@@ -236,5 +247,7 @@
         private System.Windows.Forms.TextBox txtEndereco;
         private MetroFramework.Controls.MetroButton btnCancelar;
         private MetroFramework.Controls.MetroButton btnSalvar;
+        private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.TextBox txtNomeFantasia;
     }
 }
