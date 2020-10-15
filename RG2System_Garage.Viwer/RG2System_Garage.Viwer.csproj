@@ -289,6 +289,12 @@
     <Compile Include="Formulario\Cliente\frmCliente.Designer.cs">
       <DependentUpon>frmCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formulario\Configuracao\frmDadosEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulario\Configuracao\frmDadosEmpresa.Designer.cs">
+      <DependentUpon>frmDadosEmpresa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formulario\frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -316,6 +322,9 @@
     </Compile>
     <EmbeddedResource Include="Formulario\Cliente\frmCliente.resx">
       <DependentUpon>frmCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulario\Configuracao\frmDadosEmpresa.resx">
+      <DependentUpon>frmDadosEmpresa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulario\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>

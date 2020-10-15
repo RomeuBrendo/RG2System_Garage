@@ -1,4 +1,5 @@
 ﻿using RG2System_Garage.Viwer.Formulario.Cliente;
+using RG2System_Garage.Viwer.Formulario.Configuracao;
 using RG2System_Garage.Viwer.Formulario.Produto;
 using RG2System_Garage.Viwer.Formulario.Veiculo;
 using System;
@@ -158,7 +159,7 @@ namespace RG2System_Garage.Viwer.Formulario
 
         private void btnConfigGeral_Click(object sender, EventArgs e)
         {
-            //tabControl1.SelectedIndex = 5;
+            AbrirFormulario<frmDadosEmpresa>(false);
         }
 
         private void AbrirFormulario<formNovo>(Boolean abrirEmShowModal) where formNovo : Form, new()

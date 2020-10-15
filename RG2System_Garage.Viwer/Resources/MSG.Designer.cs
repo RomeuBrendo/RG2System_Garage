@@ -70,6 +70,15 @@ namespace RG2System_Garage.Viwer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Erro ao consultar dados..
+        /// </summary>
+        internal static string ERRO_AO_CONSULTAR_DADOS {
+            get {
+                return ResourceManager.GetString("ERRO_AO_CONSULTAR_DADOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erro ao realizar procedimento, tente novamente!.
         /// </summary>
         internal static string ERRO_REALIZAR_PROCEDIMENTO {

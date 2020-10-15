@@ -49,6 +49,7 @@ namespace RG2System_Garage.Domain.Service
                     if (IsInvalid()) return;
 
                     _repositoryConfiguracaoDadosEmpresa.Editar(dadosEmpresa);
+                    return;
                 }
 
                 var dadosEmpresaNovo = new ConfiguracaoDadosEmpresa(nome, telefone, request.Endereco, email);
@@ -69,7 +70,12 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
-                return (DadosEmpresaResponse)_repositoryConfiguracaoDadosEmpresa.Listar().FirstOrDefault();
+                var response = _repositoryConfiguracaoDadosEmpresa.Listar().FirstOrDefault();
+
+                if (response == null)
+                    return null;
+
+                return (DadosEmpresaResponse)response;
             }
             catch
             {

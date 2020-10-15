@@ -89,7 +89,7 @@
             this.btnConfigGeral.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnConfigGeral.Size = new System.Drawing.Size(368, 40);
             this.btnConfigGeral.TabIndex = 5;
-            this.btnConfigGeral.Text = "GERAL";
+            this.btnConfigGeral.Text = "Dados Empresa";
             this.btnConfigGeral.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfigGeral.UseVisualStyleBackColor = false;
             this.btnConfigGeral.Click += new System.EventHandler(this.btnConfigGeral_Click);

@@ -182,7 +182,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
                     txtDescricao.Focus();
 
             }
-            catch(Exception ex) 
+            catch 
             {
 
                 toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
