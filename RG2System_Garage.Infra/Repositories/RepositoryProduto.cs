@@ -4,7 +4,6 @@ using RG2System_Garage.Infra.Repositories.Base;
 using System;
 using System.Data.Entity;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace RG2System_Garage.Infra.Repositories
 {

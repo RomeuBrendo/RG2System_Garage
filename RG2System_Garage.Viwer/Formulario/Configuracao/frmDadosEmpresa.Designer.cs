@@ -157,7 +157,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(304, 419);
+            this.btnCancelar.Location = new System.Drawing.Point(290, 359);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(90, 23);
             this.btnCancelar.TabIndex = 7;
@@ -167,7 +167,7 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(178, 419);
+            this.btnSalvar.Location = new System.Drawing.Point(152, 359);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(90, 23);
             this.btnSalvar.TabIndex = 6;
@@ -177,18 +177,19 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.btnCancelar);
             this.panel.Controls.Add(this.txtNomeFantasia);
+            this.panel.Controls.Add(this.btnSalvar);
             this.panel.Controls.Add(this.lblNomeFantasia);
             this.panel.Controls.Add(this.txtRazaoSocial);
             this.panel.Controls.Add(this.txtEmail);
             this.panel.Controls.Add(this.txtEndereco);
             this.panel.Controls.Add(this.txtFixo);
             this.panel.Controls.Add(this.txtCelular);
-            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(20, 60);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(532, 425);
-            this.panel.TabIndex = 14;
+            this.panel.TabIndex = 0;
             // 
             // txtNomeFantasia
             // 
@@ -196,9 +197,10 @@
             this.txtNomeFantasia.Location = new System.Drawing.Point(138, 55);
             this.txtNomeFantasia.Name = "txtNomeFantasia";
             this.txtNomeFantasia.Size = new System.Drawing.Size(362, 20);
-            this.txtNomeFantasia.TabIndex = 6;
+            this.txtNomeFantasia.TabIndex = 0;
             this.txtNomeFantasia.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNomeFantasia_KeyDown);
             this.txtNomeFantasia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeFantasia_KeyPress);
+            this.txtNomeFantasia.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmDadosEmpresa_PreviewKeyDown);
             // 
             // frmDadosEmpresa
             // 
@@ -206,8 +208,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(572, 505);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.lblEndereco);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblFixo);

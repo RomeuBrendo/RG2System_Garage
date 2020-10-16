@@ -14,6 +14,8 @@ namespace RG2System_Garage.Infra.Repositories
         public Microsoft.EntityFrameworkCore.DbSet<ClienteVeiculo> ClienteVeiculo { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<EstoqueProduto> EstoqueProdutos { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<ConfiguracaoDadosEmpresa> ConfiguracaoDadosEmpresa { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Orcamento> Orcamentos { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<OrcamentoItem> OrcamentoItens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -39,6 +41,8 @@ namespace RG2System_Garage.Infra.Repositories
             modelBuilder.ApplyConfiguration(new MapClienteVeiculo());
             modelBuilder.ApplyConfiguration(new MapEstoqueProduto());
             modelBuilder.ApplyConfiguration(new MapConfiguracaoDadosEmpresa());
+            modelBuilder.ApplyConfiguration(new MapOrcamento());
+            modelBuilder.ApplyConfiguration(new MapOrcamentoItens());
 
             base.OnModelCreating(modelBuilder);
         }

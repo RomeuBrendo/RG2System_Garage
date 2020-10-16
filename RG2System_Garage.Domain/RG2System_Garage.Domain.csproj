@@ -233,11 +233,14 @@
     <Compile Include="Entities\ClienteVeiculoLista.cs" />
     <Compile Include="Entities\ConfiguracaoDadosEmpresa.cs" />
     <Compile Include="Entities\EstoqueProduto.cs" />
+    <Compile Include="Entities\Orcamento.cs" />
+    <Compile Include="Entities\OrcamentoItem.cs" />
     <Compile Include="Entities\Produto.cs" />
     <Compile Include="Entities\Veiculo.cs" />
     <Compile Include="Enum\EnumToast.cs" />
     <Compile Include="Interfaces\Repositories\Base\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryConfiguracaoDadosEmpresa.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositoryOrcamento.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryProduto.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryVeiculo.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoyCliente.cs" />
