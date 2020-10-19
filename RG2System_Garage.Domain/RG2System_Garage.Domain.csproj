@@ -223,6 +223,8 @@
     <Compile Include="Commands\Cliente\ClienteResponse.cs" />
     <Compile Include="Commands\Configuracao\DadosEmpresaRequest.cs" />
     <Compile Include="Commands\Configuracao\DadosEmpresaResponse.cs" />
+    <Compile Include="Commands\Orcamento\OrcamentoItensRequest.cs" />
+    <Compile Include="Commands\Orcamento\OrcamentoRequest.cs" />
     <Compile Include="Commands\Produto\AdionarAlterarProdutoRequest.cs" />
     <Compile Include="Commands\Produto\ProdutoResponse.cs" />
     <Compile Include="Commands\Veiculo\VeiculoRequest.cs" />
