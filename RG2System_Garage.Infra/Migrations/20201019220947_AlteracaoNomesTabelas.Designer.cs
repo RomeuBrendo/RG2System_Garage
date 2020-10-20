@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RG2System_Garage.Infra.Repositories;
 
 namespace RG2System_Garage.Infra.Migrations
 {
     [DbContext(typeof(RB2System_GarageContext))]
-    partial class RB2System_GarageContextModelSnapshot : ModelSnapshot
+    [Migration("20201019220947_AlteracaoNomesTabelas")]
+    partial class AlteracaoNomesTabelas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,7 +103,10 @@ namespace RG2System_Garage.Infra.Migrations
                         .HasColumnName("PrecoVenda")
                         .HasColumnType("float");
 
-                    b.Property<Guid>("ProdutoServicoId")
+                    b.Property<Guid>("ProdutoId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("ProdutoServicoId")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
@@ -182,15 +187,6 @@ namespace RG2System_Garage.Infra.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("varchar(150) CHARACTER SET utf8mb4")
                         .HasMaxLength(150);
-
-                    b.Property<string>("Observacao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("varchar(2000) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2000)
-                        .HasDefaultValue("");
-
-                    b.Property<int>("Situacao")
-                        .HasColumnType("int");
 
                     b.Property<int>("Tipo")
                         .HasColumnType("int");
@@ -314,9 +310,7 @@ namespace RG2System_Garage.Infra.Migrations
                 {
                     b.HasOne("RG2System_Garage.Domain.Entities.ProdutoServico", null)
                         .WithMany("FichaMovimentacao")
-                        .HasForeignKey("ProdutoServicoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProdutoServicoId");
                 });
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.Orcamento", b =>

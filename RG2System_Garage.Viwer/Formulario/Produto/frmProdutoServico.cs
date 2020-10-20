@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace RG2System_Garage.Viwer.Formulario.Produto
 {
-    public partial class frmProduto : MetroFramework.Forms.MetroForm
+    public partial class frmProdutoServico : MetroFramework.Forms.MetroForm
     {
         private IServiceProduto _serviceProduto;
         private IUnitOfWork _unitOfWork;
         Toast toast = new Toast();
         Guid IdEstaSendoEditado;
-        public frmProduto()
+        public frmProdutoServico()
         {
             InitializeComponent();
             tabControlProduto.SelectedIndex = 0;
@@ -38,7 +38,9 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
         {
             this.Text = "Novo Produto";
             tabControlProduto.SelectedIndex = 1;
-            this.Height = 340;
+            cbTipo.Enabled = true;
+            cbTipo.SelectedIndex = 0;
+            cbSituacao.SelectedIndex = 0;
             this.Refresh();
             txtDescricao.Focus();
         }
@@ -64,11 +66,15 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
                     txtEstoqueAtual.Text = produto.Estoque.ToString();
                     txtPrecoCusto.Text = double.Parse(produto.PrecoCusto.ToString()).ToString("C2");
                     txtPrecoVenda.Text = double.Parse(produto.PrecoVenda.ToString()).ToString("C2");
+                    txtObservacao.Text = produto.Observacao;
+                    cbSituacao.SelectedIndex = Convert.ToInt32(produto.Situacao);
+                    cbTipo.SelectedIndex = Convert.ToInt32(produto.Tipo);
+                    cbTipo.Enabled = false;
                     
                     tabControlProduto.SelectedIndex = 1;
-                    this.Height = 340;
                     
                     txtDescricao.Focus();
+                    this.Refresh();
                 }
 
             }
@@ -143,51 +149,71 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
                     ((TextBox)item).Clear();
             }
 
-            this.Text = "Selecionar Produto";
+            this.Text = "Selecionar Produto/Serviço";
+            cbTipo.SelectedIndex = -1;
+            cbSituacao.SelectedIndex = -1;
             this.Height = 505;
             this.Refresh();
         }
 
         private void btnSalvar_Click(object sender, System.EventArgs e)
         {
-            var request = new AdionarAlterarProdutoRequest();
-           
-            var operacao = "inserido";
-            if (IdEstaSendoEditado != Guid.Empty)
-            {
-                request.Id = IdEstaSendoEditado;
-                operacao = "alterado";
-            }
-            
-            request.Descricao = txtDescricao.Text;
-            request.PrecoCusto = txtPrecoCusto.Text.Replace("R$", "").Trim(); 
-            request.PrecoVenda = txtPrecoVenda.Text.Replace("R$", "").Trim();
-            request.Estoque = txtEstoqueAtual.Text;
-
             try
             {
-                _serviceProduto.ClearNotifications();
-                _serviceProduto.AdionarAlterar(request);
+                var request = new AdionarAlterarProdutoServicoRequest();
 
-                if (VerificaNotificacoes(_serviceProduto))
+                var operacao = "inserido";
+                if (IdEstaSendoEditado != Guid.Empty)
                 {
-                    _unitOfWork.SaveChanges();
-                    toast.ShowToast(MSG.CADASTRO_X0_COM_SUCESSO.ToFormat(operacao), EnumToast.Sucesso);
-                    tabControlProduto.SelectedIndex = 0;
-                    CarregaGridProduto("");
-                    LimparCampos();
-                    dataGridProduto.Focus();
+                    request.Id = IdEstaSendoEditado;
+                    operacao = "alterado";
                 }
-                else
+
+                request.Descricao = txtDescricao.Text;
+                request.PrecoCusto = txtPrecoCusto.Text.Replace("R$", "").Trim();
+                request.PrecoVenda = txtPrecoVenda.Text.Replace("R$", "").Trim();
+                request.Estoque = txtEstoqueAtual.Text;
+                request.Observacao = txtObservacao.Text;
+                request.Tipo = (EnumTipo)cbTipo.SelectedIndex;
+                request.Situacao = (EnumSituacao)cbSituacao.SelectedIndex;
+
+                if (!txtPrecoCusto.Enabled)
+                {
+                    request.PrecoCusto = "0";
+                    request.Estoque = "0";
+                }
+
+                try
+                {
+                    _serviceProduto.ClearNotifications();
+                    _serviceProduto.AdionarAlterar(request);
+
+                    if (VerificaNotificacoes(_serviceProduto))
+                    {
+                        _unitOfWork.SaveChanges();
+                        toast.ShowToast(MSG.CADASTRO_X0_COM_SUCESSO.ToFormat(operacao), EnumToast.Sucesso);
+                        tabControlProduto.SelectedIndex = 0;
+                        CarregaGridProduto("");
+                        LimparCampos();
+                        dataGridProduto.Focus();
+                    }
+                    else
+                        txtDescricao.Focus();
+
+                }
+                catch
+                {
+
+                    toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
                     txtDescricao.Focus();
-
+                }
             }
-            catch 
+            catch
             {
-
                 toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
                 txtDescricao.Focus();
             }
+            
         }
 
         void CarregaGridProduto(string nome)
@@ -195,9 +221,13 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
 
             dataGridProduto.DataSource = null;
             dataGridProduto.AutoGenerateColumns = false;
+            dataGridProduto.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridProduto.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridProduto.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridProduto.Columns[2].DefaultCellStyle.Format = "C2";
-            dataGridProduto.Columns[1].DefaultCellStyle.Format = "N2";
+            
+            dataGridProduto.Columns[3].DefaultCellStyle.Format = "C2";
+            dataGridProduto.Columns[2].DefaultCellStyle.Format = "N2";
+
             var produtos = _serviceProduto.Listar(nome);
 
             if (produtos == null)
@@ -205,7 +235,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
 
             if (VerificaNotificacoes(_serviceProduto))
             {
-                dataGridProduto.DataSource = produtos.OrderBy(x => x.Descricao).ToList();
+                dataGridProduto.DataSource = produtos.OrderBy(x => x.Tipo).OrderBy(x => x.Descricao).ToList();
                 dataGridProduto.Update();
                 dataGridProduto.Refresh();
             }
@@ -220,7 +250,13 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
         private void txtDescricao_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                txtEstoqueAtual.Focus();
+            {
+                if (txtPrecoCusto.Enabled)
+                    txtEstoqueAtual.Focus();
+                else
+                    txtPrecoVenda.Focus();
+
+            }
         }
 
         private void txtEstoqueAtual_KeyDown(object sender, KeyEventArgs e)
@@ -238,7 +274,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
         private void txtPrecoVenda_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                txtDescricao.Focus();
+                txtObservacao.Focus();
         }
 
         bool VerificaNotificacoes(IServiceBase serviceBase)
@@ -249,7 +285,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
                     toast.ShowToast(item.Message, EnumToast.Erro);
                 
                 if (tabControlProduto.SelectedIndex == 0)
-                    txtPesquisar.Focus();
+                    dataGridProduto.Focus();
                 else
                     txtDescricao.Focus();
 
@@ -260,7 +296,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
 
         private void frmProduto_Load(object sender, EventArgs e)
         {
-            txtPesquisar.Focus();
+            dataGridProduto.Focus();
         }
 
         private void RetornarMascara(object sender, EventArgs e)
@@ -271,8 +307,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
                 txt.Text = double.Parse(txt.Text).ToString("C2");
             }
             catch
-            {
-                
+            {      
                 txt.Text = "";
             }
 
@@ -322,5 +357,37 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
             else
                 CarregaGridProduto("");
         }
+
+        private void cbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbTipo.SelectedIndex == 1)
+            {
+                txtEstoqueAtual.Enabled = false;
+                txtPrecoCusto.Enabled = false;
+                lblPrecoCusto.Enabled = false;
+                lblEstoque.Enabled = false;
+                this.Text = "Novo Serviço";
+                txtDescricao.Focus();
+            }
+            else if (cbTipo.SelectedIndex == 0)
+            {
+                txtEstoqueAtual.Enabled = true;
+                txtPrecoCusto.Enabled = true;
+                lblPrecoCusto.Enabled = true;
+                lblEstoque.Enabled = true;
+                this.Text = "Novo Produto";
+                txtDescricao.Focus();
+            }
+        }
+
+        private void txtObservacao_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtDescricao.Focus();
+                e.SuppressKeyPress = true;
+            }
+        }
+
     }
 }

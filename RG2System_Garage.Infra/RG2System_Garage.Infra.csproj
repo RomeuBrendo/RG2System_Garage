@@ -315,23 +315,43 @@
     <Compile Include="Migrations\20201016020919_Orcamento.designer.cs">
       <DependentUpon>20201016020919_Orcamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20201019220947_AlteracaoNomesTabelas.cs" />
+    <Compile Include="Migrations\20201019220947_AlteracaoNomesTabelas.designer.cs">
+      <DependentUpon>20201019220947_AlteracaoNomesTabelas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20201019221510_AlteracaoProdutoServico.cs" />
+    <Compile Include="Migrations\20201019221510_AlteracaoProdutoServico.designer.cs">
+      <DependentUpon>20201019221510_AlteracaoProdutoServico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20201019221942_Teste.cs" />
+    <Compile Include="Migrations\20201019221942_Teste.designer.cs">
+      <DependentUpon>20201019221942_Teste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20201019234520_CamposProduto.cs" />
+    <Compile Include="Migrations\20201019234520_CamposProduto.designer.cs">
+      <DependentUpon>20201019234520_CamposProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20201019235006_ValorPadrao.cs" />
+    <Compile Include="Migrations\20201019235006_ValorPadrao.designer.cs">
+      <DependentUpon>20201019235006_ValorPadrao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\RepositoryBase.cs" />
     <Compile Include="Repositories\MAP\MapCliente.cs" />
     <Compile Include="Repositories\MAP\MapClienteVeiculo.cs" />
     <Compile Include="Repositories\MAP\MapConfiguracaoDadosEmpresa.cs" />
-    <Compile Include="Repositories\MAP\MapEstoqueProduto.cs" />
+    <Compile Include="Repositories\MAP\MapMovimentacao.cs" />
     <Compile Include="Repositories\MAP\MapOrcamento.cs" />
     <Compile Include="Repositories\MAP\MapOrcamentoItens.cs" />
-    <Compile Include="Repositories\MAP\MapProduto.cs" />
+    <Compile Include="Repositories\MAP\MapProdutoServico.cs" />
     <Compile Include="Repositories\MAP\MapVeiculo.cs" />
     <Compile Include="Repositories\RB2System_GarageContext.cs" />
     <Compile Include="Repositories\RepositoryCliente.cs" />
     <Compile Include="Repositories\RepositoryClienteVeiculo.cs" />
     <Compile Include="Repositories\RepositoryConfiguracaoDadosEmpresa.cs" />
     <Compile Include="Repositories\RepositoryOrcamento.cs" />
-    <Compile Include="Repositories\RepositoryProduto.cs" />
+    <Compile Include="Repositories\RepositoryProdutoServico.cs" />
     <Compile Include="Repositories\RepositoryVeiculo.cs" />
     <Compile Include="Repositories\Transactions\IUnitOfWork.cs" />
     <Compile Include="Repositories\Transactions\UnitOfWork.cs" />

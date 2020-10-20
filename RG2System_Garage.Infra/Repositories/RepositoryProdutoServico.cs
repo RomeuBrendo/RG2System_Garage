@@ -7,19 +7,19 @@ using System.Linq;
 
 namespace RG2System_Garage.Infra.Repositories
 {
-    public class RepositoryProduto : RepositoryBase<Produto, Guid>, IRepositoryProduto
+    public class RepositoryProdutoServico : RepositoryBase<ProdutoServico, Guid>, IRepositoryProdutoServico
     {
         private readonly RB2System_GarageContext _context;
-        public RepositoryProduto(RB2System_GarageContext context) : base(context)
+        public RepositoryProdutoServico(RB2System_GarageContext context) : base(context)
         {
             _context = context;
         }
 
-        public bool InserirRegistroEstoqueProduto(EstoqueProduto estoqueProduto)
+        public bool InserirRegistroMovimentacao(Movimentacao estoqueProduto)
         {
             try
             {
-                _context.EstoqueProdutos.Add(estoqueProduto);
+                _context.Movimentacao.Add(estoqueProduto);
                 return true;
             }
             catch
@@ -28,12 +28,12 @@ namespace RG2System_Garage.Infra.Repositories
             }
         }
 
-        public Produto ObterComEstoqueProdutoAtual(Guid id)
+        public ProdutoServico ObterComEstoqueProdutoAtual(Guid id)
         {
             try
             {
 
-                var produto = _context.Produtos.Where(x => x.Id == id).AsNoTracking().FirstOrDefault();
+                var produto = _context.ProdutosServicos.Where(x => x.Id == id).AsNoTracking().FirstOrDefault();
 
                 // Apenas para preencher o campo EstoqueProduto que não consta a coluna no banco, apenas no código
                 produto.AlterarPropriedade(produto);

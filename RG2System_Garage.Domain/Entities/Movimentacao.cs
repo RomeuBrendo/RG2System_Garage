@@ -6,16 +6,16 @@ using System;
 
 namespace RG2System_Garage.Domain.Entities
 {
-    public class EstoqueProduto : EntityBase
+    public class Movimentacao : EntityBase
     {
-        protected EstoqueProduto()
+        protected Movimentacao()
         {
 
         }
-        public EstoqueProduto(Guid produtoId, DateTime dataLancamento, string precoCusto, string precoVenda, string estoqueAtual)
+        public Movimentacao(Guid produtoId, DateTime dataLancamento, string precoCusto, string precoVenda, string estoqueAtual)
         {
             this.ClearNotifications();
-            ProdutoId = produtoId;
+            ProdutoServicoId = produtoId;
             EstoqueProdutoBase(dataLancamento, precoCusto, precoVenda, estoqueAtual);
         }
 
@@ -25,8 +25,7 @@ namespace RG2System_Garage.Domain.Entities
 
             ValidaNumerais(precoCusto, precoVenda, estoqueAtual);
 
-            new AddNotifications<EstoqueProduto>(this)
-                .IfEqualsZero(x => x.PrecoCusto, MSG.O_X0_DEVE_SER_MAIOR_OU_IGUAL_A_X1.ToFormat("Preço de Custo", "0,1"))
+            new AddNotifications<Movimentacao>(this)
                 .IfEqualsZero(x => x.PrecoVenda, MSG.O_X0_DEVE_SER_MAIOR_OU_IGUAL_A_X1.ToFormat("Preço de Venda", "0,1"));
         }
         void ValidaNumerais(string precocusto, string precoVenda, string estoque)
@@ -62,7 +61,7 @@ namespace RG2System_Garage.Domain.Entities
               
         }
 
-        public Guid ProdutoId { get; private set; }
+        public Guid ProdutoServicoId { get; private set; }
         public DateTime DataLancamento { get; private set; }
         public float PrecoCusto { get; private set; }
         public float PrecoVenda { get; private set; }

@@ -301,11 +301,11 @@
     <Compile Include="Formulario\frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulario\Produto\frmProduto.cs">
+    <Compile Include="Formulario\Produto\frmProdutoServico.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulario\Produto\frmProduto.Designer.cs">
-      <DependentUpon>frmProduto.cs</DependentUpon>
+    <Compile Include="Formulario\Produto\frmProdutoServico.Designer.cs">
+      <DependentUpon>frmProdutoServico.cs</DependentUpon>
     </Compile>
     <Compile Include="Formulario\Veiculo\frmVeiculo.cs">
       <SubType>Form</SubType>
@@ -329,8 +329,8 @@
     <EmbeddedResource Include="Formulario\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulario\Produto\frmProduto.resx">
-      <DependentUpon>frmProduto.cs</DependentUpon>
+    <EmbeddedResource Include="Formulario\Produto\frmProdutoServico.resx">
+      <DependentUpon>frmProdutoServico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulario\Veiculo\frmVeiculo.resx">
       <DependentUpon>frmVeiculo.cs</DependentUpon>

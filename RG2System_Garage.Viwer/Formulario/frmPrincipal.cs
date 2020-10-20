@@ -149,7 +149,7 @@ namespace RG2System_Garage.Viwer.Formulario
 
         private void btnCadProduto_Click(object sender, EventArgs e)
         {
-            AbrirFormulario<frmProduto>(false);
+            AbrirFormulario<frmProdutoServico>(false);
         }
 
         private void btnLancServico_Click(object sender, EventArgs e)

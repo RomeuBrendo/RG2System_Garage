@@ -10,9 +10,9 @@ namespace RG2System_Garage.Infra.Repositories
     {
         public Microsoft.EntityFrameworkCore.DbSet<Veiculo> Veiculos { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<Cliente> Clientes { get; set; }
-        public Microsoft.EntityFrameworkCore.DbSet<Produto> Produtos { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<ProdutoServico> ProdutosServicos { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<ClienteVeiculo> ClienteVeiculo { get; set; }
-        public Microsoft.EntityFrameworkCore.DbSet<EstoqueProduto> EstoqueProdutos { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Movimentacao> Movimentacao { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<ConfiguracaoDadosEmpresa> ConfiguracaoDadosEmpresa { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<Orcamento> Orcamentos { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<OrcamentoItem> OrcamentoItens { get; set; }
@@ -37,9 +37,9 @@ namespace RG2System_Garage.Infra.Repositories
 
             modelBuilder.ApplyConfiguration(new MapVeiculo());
             modelBuilder.ApplyConfiguration(new MapCliente());
-            modelBuilder.ApplyConfiguration(new MapProduto());
+            modelBuilder.ApplyConfiguration(new MapProdutoServico());
             modelBuilder.ApplyConfiguration(new MapClienteVeiculo());
-            modelBuilder.ApplyConfiguration(new MapEstoqueProduto());
+            modelBuilder.ApplyConfiguration(new MapMovimentacao());
             modelBuilder.ApplyConfiguration(new MapConfiguracaoDadosEmpresa());
             modelBuilder.ApplyConfiguration(new MapOrcamento());
             modelBuilder.ApplyConfiguration(new MapOrcamentoItens());

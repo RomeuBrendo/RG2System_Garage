@@ -4,10 +4,12 @@ using RG2System_Garage.Domain.Entities;
 
 namespace RG2System_Garage.Infra.Repositories.MAP
 {
-    public class MapEstoqueProduto : IEntityTypeConfiguration<EstoqueProduto>
+    public class MapMovimentacao : IEntityTypeConfiguration<Movimentacao>
     {
-        public void Configure(EntityTypeBuilder<EstoqueProduto> builder)
+        public void Configure(EntityTypeBuilder<Movimentacao> builder)
         {
+            builder.ToTable("Movimentacao");
+
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.PrecoCusto).HasColumnName("PrecoCusto");

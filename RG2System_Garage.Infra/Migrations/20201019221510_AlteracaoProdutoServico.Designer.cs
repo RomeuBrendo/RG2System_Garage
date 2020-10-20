@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RG2System_Garage.Infra.Repositories;
 
 namespace RG2System_Garage.Infra.Migrations
 {
     [DbContext(typeof(RB2System_GarageContext))]
-    partial class RB2System_GarageContextModelSnapshot : ModelSnapshot
+    [Migration("20201019221510_AlteracaoProdutoServico")]
+    partial class AlteracaoProdutoServico
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,15 +184,6 @@ namespace RG2System_Garage.Infra.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("varchar(150) CHARACTER SET utf8mb4")
                         .HasMaxLength(150);
-
-                    b.Property<string>("Observacao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("varchar(2000) CHARACTER SET utf8mb4")
-                        .HasMaxLength(2000)
-                        .HasDefaultValue("");
-
-                    b.Property<int>("Situacao")
-                        .HasColumnType("int");
 
                     b.Property<int>("Tipo")
                         .HasColumnType("int");

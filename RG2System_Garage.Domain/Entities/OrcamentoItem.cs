@@ -9,6 +9,6 @@ namespace RG2System_Garage.Domain.Entities
 
         }
         public Orcamento Orcamento { get; set; }
-        public Produto Produto { get; set; }
+        public ProdutoServico Produto { get; set; }
     }
 }

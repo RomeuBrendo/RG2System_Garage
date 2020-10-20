@@ -6,6 +6,7 @@ using RG2System_Garage.Domain.Interfaces.Repositories;
 using RG2System_Garage.Domain.Interfaces.Services;
 using RG2System_Garage.Domain.Resources;
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,14 +14,14 @@ namespace RG2System_Garage.Domain.Service
 {
     public class ServiceProduto : Notifiable, IServiceProduto
     {
-        private readonly IRepositoryProduto _repositoryProduto;
+        private readonly IRepositoryProdutoServico _repositoryProdutoServico;
 
-        public ServiceProduto(IRepositoryProduto repositoryProduto)
+        public ServiceProduto(IRepositoryProdutoServico repositoryProdutoServico)
         {
-            _repositoryProduto = repositoryProduto;
+            _repositoryProdutoServico = repositoryProdutoServico;
         }
 
-        public bool AdionarAlterar(AdionarAlterarProdutoRequest request)
+        public bool AdionarAlterar(AdionarAlterarProdutoServicoRequest request)
         {
             try
             {
@@ -30,7 +31,7 @@ namespace RG2System_Garage.Domain.Service
                 }
                 if ((request.Id != null) && (request.Id != Guid.Empty)) //Alteração
                 {
-                    var produto = _repositoryProduto.ObterComEstoqueProdutoAtual(request.Id.Value);
+                    var produto = _repositoryProdutoServico.ObterComEstoqueProdutoAtual(request.Id.Value);
 
                     if (produto == null)
                     {
@@ -38,14 +39,14 @@ namespace RG2System_Garage.Domain.Service
                         return false;
                     }
 
-                    var estoque = new EstoqueProduto(produto.Id, DateTime.Now, request.PrecoCusto, request.PrecoVenda, request.Estoque);
+                    var estoque = new Movimentacao(produto.Id, DateTime.Now, request.PrecoCusto, request.PrecoVenda, request.Estoque);
 
-                    if ((estoque.EstoqueAtual != produto.EstoqueProduto.EstoqueAtual) ||
-                        (estoque.PrecoCusto != produto.EstoqueProduto.PrecoCusto) ||
-                        (estoque.PrecoVenda != produto.EstoqueProduto.PrecoVenda))
+                    if ((estoque.EstoqueAtual != produto.UltimaMovimentacao.EstoqueAtual) ||
+                        (estoque.PrecoCusto != produto.UltimaMovimentacao.PrecoCusto) ||
+                        (estoque.PrecoVenda != produto.UltimaMovimentacao.PrecoVenda))
                     {
                         //Sempre que alterado Estoque ou Preços, é inserido um novo registro para manter o estoque
-                        _repositoryProduto.InserirRegistroEstoqueProduto(estoque);
+                        _repositoryProdutoServico.InserirRegistroMovimentacao(estoque);
 
                     }
                     
@@ -56,17 +57,17 @@ namespace RG2System_Garage.Domain.Service
 
                     if (IsInvalid()) return false;
 
-                    _repositoryProduto.Editar(produto);
+                    _repositoryProdutoServico.Editar(produto);
                     return true;
                 }
 
-                var produtoNovo = new Produto(request);
+                var produtoNovo = new ProdutoServico(request);
                
                 AddNotifications(produtoNovo);
 
                 if (IsInvalid()) return false;
 
-                _repositoryProduto.Adicionar(produtoNovo);
+                _repositoryProdutoServico.Adicionar(produtoNovo);
 
                 return true;
 
@@ -84,9 +85,9 @@ namespace RG2System_Garage.Domain.Service
             {
                 var produtos = new List<ProdutoResponse>();
                 if (descricao != "")
-                    produtos = ProdutosResponse(_repositoryProduto.ListarPor(x => x.Descricao.StartsWith(descricao)).ToList());
+                    produtos = ProdutosResponse(_repositoryProdutoServico.ListarPor(x => x.Descricao.StartsWith(descricao)).ToList());
                 else
-                    produtos = ProdutosResponse(_repositoryProduto.Listar(x => x.FichaEstoqueProduto).ToList());
+                    produtos = ProdutosResponse(_repositoryProdutoServico.Listar(x => x.FichaMovimentacao).ToList());
 
                 return produtos;
 
@@ -99,7 +100,7 @@ namespace RG2System_Garage.Domain.Service
             }
         }
 
-        private List<ProdutoResponse> ProdutosResponse(List<Produto> produtos)
+        private List<ProdutoResponse> ProdutosResponse(List<ProdutoServico> produtos)
         {
             try
             {
@@ -107,9 +108,16 @@ namespace RG2System_Garage.Domain.Service
                 foreach (var item in produtos)
                 {
                     var produtoNovo = new ProdutoResponse();
-                    var ultimoEstoqueProduto = item.FichaEstoqueProduto.OrderByDescending(x => x.DataLancamento).ToList().FirstOrDefault();
+                    var ultimoEstoqueProduto = item.FichaMovimentacao.OrderByDescending(x => x.DataLancamento).ToList().FirstOrDefault();
                     
                     produtoNovo.Id = item.Id;
+                    produtoNovo.Tipo = item.Tipo;
+
+                    if (produtoNovo.Tipo == Enum.EnumTipo.Servico)
+                        produtoNovo.TipoDescricao = "Serviço";
+                    else
+                        produtoNovo.TipoDescricao = "Produto";
+
                     produtoNovo.Descricao = item.Descricao;
                     produtoNovo.Estoque = ultimoEstoqueProduto.EstoqueAtual;
                     produtoNovo.PrecoCusto = ultimoEstoqueProduto.PrecoCusto;
@@ -120,9 +128,8 @@ namespace RG2System_Garage.Domain.Service
 
                 return produtosResponse;
             }
-            catch(Exception ex)
+            catch
             {
-
                 return null;
             }
 
@@ -132,14 +139,14 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
-                _repositoryProduto.Remover(_repositoryProduto.ObterPorId(id));
+                _repositoryProdutoServico.Remover(_repositoryProdutoServico.ObterPorId(id));
                 return true;
 
             }
             catch
             {
 
-                AddNotification("Erro", "Deletar produto");
+                AddNotification("Erro", MSG.NAO_E_POSSIVEL_EXCLUIR_ESTE_X0.ToFormat("Produto/Serviço"));
                 return false;
             }
         }
@@ -148,7 +155,7 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
-                return (ProdutoResponse)_repositoryProduto.ObterPorId(id);
+                return (ProdutoResponse)_repositoryProdutoServico.ObterPorId(id);
             }
             catch
             {

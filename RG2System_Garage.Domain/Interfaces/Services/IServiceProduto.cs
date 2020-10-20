@@ -7,7 +7,7 @@ namespace RG2System_Garage.Domain.Interfaces.Services
 {
     public interface IServiceProduto : IServiceBase
     {
-        bool AdionarAlterar(AdionarAlterarProdutoRequest request);
+        bool AdionarAlterar(AdionarAlterarProdutoServicoRequest request);
 
         List<ProdutoResponse> Listar(string descricao);
 
