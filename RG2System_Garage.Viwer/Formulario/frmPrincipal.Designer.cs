@@ -115,7 +115,7 @@
             this.btnLancServico.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnLancServico.Size = new System.Drawing.Size(368, 40);
             this.btnLancServico.TabIndex = 5;
-            this.btnLancServico.Text = "Produtos/Serviços";
+            this.btnLancServico.Text = "Orçamentos";
             this.btnLancServico.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLancServico.UseVisualStyleBackColor = false;
             this.btnLancServico.Click += new System.EventHandler(this.btnLancServico_Click);
@@ -226,7 +226,7 @@
             this.btnLancamento.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.btnLancamento.Size = new System.Drawing.Size(364, 40);
             this.btnLancamento.TabIndex = 1;
-            this.btnLancamento.Text = "LANÇAMENTOS";
+            this.btnLancamento.Text = "MOVIMENTAÇÃO";
             this.btnLancamento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLancamento.UseVisualStyleBackColor = false;
             this.btnLancamento.Click += new System.EventHandler(this.btnLancamento_Click);
