@@ -301,6 +301,12 @@
     <Compile Include="Formulario\frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formulario\Orcamento\frmOrcamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulario\Orcamento\frmOrcamento.Designer.cs">
+      <DependentUpon>frmOrcamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formulario\Produto\frmProdutoServico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -328,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formulario\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulario\Orcamento\frmOrcamento.resx">
+      <DependentUpon>frmOrcamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulario\Produto\frmProdutoServico.resx">
       <DependentUpon>frmProdutoServico.cs</DependentUpon>
@@ -378,6 +387,7 @@
       <Name>RG2System_Garage.Shared</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

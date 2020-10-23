@@ -1,5 +1,6 @@
 ﻿using RG2System_Garage.Viwer.Formulario.Cliente;
 using RG2System_Garage.Viwer.Formulario.Configuracao;
+using RG2System_Garage.Viwer.Formulario.Orcamento;
 using RG2System_Garage.Viwer.Formulario.Produto;
 using RG2System_Garage.Viwer.Formulario.Veiculo;
 using System;
@@ -154,7 +155,7 @@ namespace RG2System_Garage.Viwer.Formulario
 
         private void btnLancServico_Click(object sender, EventArgs e)
         {
-            //tabControl1.SelectedIndex = 4;
+            AbrirFormulario<frmOrcamento>(false);
         }
 
         private void btnConfigGeral_Click(object sender, EventArgs e)
