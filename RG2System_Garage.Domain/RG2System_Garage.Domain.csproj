@@ -224,7 +224,9 @@
     <Compile Include="Commands\Configuracao\DadosEmpresaRequest.cs" />
     <Compile Include="Commands\Configuracao\DadosEmpresaResponse.cs" />
     <Compile Include="Commands\Orcamento\OrcamentoItensRequest.cs" />
+    <Compile Include="Commands\Orcamento\OrcamentoItensResponse.cs" />
     <Compile Include="Commands\Orcamento\OrcamentoRequest.cs" />
+    <Compile Include="Commands\Orcamento\OrcamentoResponse.cs" />
     <Compile Include="Commands\ProdutoServico\AdionarAlterarProdutoServicoRequest.cs" />
     <Compile Include="Commands\ProdutoServico\ProdutoServicoResponse.cs" />
     <Compile Include="Commands\Veiculo\VeiculoRequest.cs" />
@@ -252,6 +254,7 @@
     <Compile Include="Interfaces\Services\Base\IServiceBase.cs" />
     <Compile Include="Interfaces\Services\IServiceCliente.cs" />
     <Compile Include="Interfaces\Services\IServiceConfiguracaoDadosEmpresa.cs" />
+    <Compile Include="Interfaces\Services\IServiceOrcamento.cs" />
     <Compile Include="Interfaces\Services\IServiceProduto.cs" />
     <Compile Include="Interfaces\Services\IServiceVeiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -262,6 +265,7 @@
     </Compile>
     <Compile Include="Service\ServiceCliente.cs" />
     <Compile Include="Service\ServiceConfiguracaoDadosEmpresa.cs" />
+    <Compile Include="Service\ServiceOrcamento.cs" />
     <Compile Include="Service\ServiceProduto.cs" />
     <Compile Include="Service\ServiceVeiculo.cs" />
     <Compile Include="ValueObjects\Email.cs" />

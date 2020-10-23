@@ -335,6 +335,18 @@
     <Compile Include="Migrations\20201019235006_ValorPadrao.designer.cs">
       <DependentUpon>20201019235006_ValorPadrao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20201021004236_OrcamentoInclusaoCampos.cs" />
+    <Compile Include="Migrations\20201021004236_OrcamentoInclusaoCampos.designer.cs">
+      <DependentUpon>20201021004236_OrcamentoInclusaoCampos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20201021004720_AjusteTabelaCliente.cs" />
+    <Compile Include="Migrations\20201021004720_AjusteTabelaCliente.designer.cs">
+      <DependentUpon>20201021004720_AjusteTabelaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20201023132523_teste10.cs" />
+    <Compile Include="Migrations\20201023132523_teste10.designer.cs">
+      <DependentUpon>20201023132523_teste10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\RepositoryBase.cs" />

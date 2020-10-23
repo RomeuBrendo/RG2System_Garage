@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RG2System_Garage.Infra.Repositories;
 
 namespace RG2System_Garage.Infra.Migrations
 {
     [DbContext(typeof(RB2System_GarageContext))]
-    partial class RB2System_GarageContextModelSnapshot : ModelSnapshot
+    [Migration("20201021004720_AjusteTabelaCliente")]
+    partial class AjusteTabelaCliente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,16 +119,14 @@ namespace RG2System_Garage.Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("ClienteId")
+                    b.Property<Guid>("ClienteId")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("ExisteOrdemServico")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint(1)")
-                        .HasDefaultValue(false);
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("FormaPagamento")
                         .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
@@ -153,8 +153,6 @@ namespace RG2System_Garage.Infra.Migrations
                         .HasColumnType("double");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClienteId");
 
                     b.ToTable("Orcamento");
                 });
@@ -322,14 +320,6 @@ namespace RG2System_Garage.Infra.Migrations
                         .HasForeignKey("ProdutoServicoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("RG2System_Garage.Domain.Entities.Orcamento", b =>
-                {
-                    b.HasOne("RG2System_Garage.Domain.Entities.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.OrcamentoItem", b =>

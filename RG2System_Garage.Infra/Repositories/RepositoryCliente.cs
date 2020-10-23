@@ -55,7 +55,6 @@ namespace RG2System_Garage.Infra.Repositories
             }
             catch
             {
-
                 return;
             }
         }

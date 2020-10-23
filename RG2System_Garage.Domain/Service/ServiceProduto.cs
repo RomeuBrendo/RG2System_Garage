@@ -79,11 +79,11 @@ namespace RG2System_Garage.Domain.Service
             }
         }
 
-        public List<ProdutoResponse> Listar(string descricao)
+        public List<ProdutoServicoResponse> Listar(string descricao)
         {
             try
             {
-                var produtos = new List<ProdutoResponse>();
+                var produtos = new List<ProdutoServicoResponse>();
                 if (descricao != "")
                     produtos = ProdutosResponse(_repositoryProdutoServico.ListarPor(x => x.Descricao.StartsWith(descricao)).ToList());
                 else
@@ -100,14 +100,14 @@ namespace RG2System_Garage.Domain.Service
             }
         }
 
-        private List<ProdutoResponse> ProdutosResponse(List<ProdutoServico> produtos)
+        private List<ProdutoServicoResponse> ProdutosResponse(List<ProdutoServico> produtos)
         {
             try
             {
-                var produtosResponse = new List<ProdutoResponse>();
+                var produtosResponse = new List<ProdutoServicoResponse>();
                 foreach (var item in produtos)
                 {
-                    var produtoNovo = new ProdutoResponse();
+                    var produtoNovo = new ProdutoServicoResponse();
                     var ultimoEstoqueProduto = item.FichaMovimentacao.OrderByDescending(x => x.DataLancamento).ToList().FirstOrDefault();
                     
                     produtoNovo.Id = item.Id;
@@ -151,11 +151,11 @@ namespace RG2System_Garage.Domain.Service
             }
         }
 
-        public ProdutoResponse ObterProdutoId(Guid id)
+        public ProdutoServicoResponse ObterProdutoId(Guid id)
         {
             try
             {
-                return (ProdutoResponse)_repositoryProdutoServico.ObterPorId(id);
+                return (ProdutoServicoResponse)_repositoryProdutoServico.ObterPorId(id);
             }
             catch
             {

@@ -88,7 +88,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
         {
             try
             {
-                var produtoSelecionado = dataGridProduto.SelectedRows[0].DataBoundItem as ProdutoResponse;
+                var produtoSelecionado = dataGridProduto.SelectedRows[0].DataBoundItem as ProdutoServicoResponse;
                 return produtoSelecionado.Id;
             }
             catch

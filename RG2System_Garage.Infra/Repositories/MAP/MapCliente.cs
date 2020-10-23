@@ -8,6 +8,7 @@ namespace RG2System_Garage.Infra.Repositories.MAP
     {
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {
+            builder.ToTable("Cliente");
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Nome).HasMaxLength(300);

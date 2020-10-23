@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace RG2System_Garage.Domain.Commands.Produto
 {
-    public class ProdutoResponse
+    public class ProdutoServicoResponse
     {
         public Guid Id { get; set; }
         public string Descricao { get;  set; }
@@ -16,9 +16,9 @@ namespace RG2System_Garage.Domain.Commands.Produto
         public EnumSituacao Situacao { get; set; }
         public string Observacao { get; set; }
 
-        public static explicit operator ProdutoResponse(Entities.ProdutoServico v)
+        public static explicit operator ProdutoServicoResponse(Entities.ProdutoServico v)
         {
-            return new ProdutoResponse()
+            return new ProdutoServicoResponse()
             {
                 Id = v.Id,
                 Tipo = v.Tipo,

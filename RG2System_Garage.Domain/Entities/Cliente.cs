@@ -36,9 +36,6 @@ namespace RG2System_Garage.Domain.Entities
             Telefone2 = request.Telefone2;
             CPFCNPJ = request.CPFCNPJ;
 
-            //Veiculos.ForEach(x => x = (Veiculo)request.Veiculos);
-
-
             new AddNotifications<Cliente>(this)
                 .IfNullOrInvalidLength(x => x.Nome, 2, 150, "Nome deve conter entre 2 e 150 caracteres.")
                 .IfLengthGreaterThan(x => x.Telefone1, 15, MSG.X0_INVALIDO.ToFormat("Telefone 1"))

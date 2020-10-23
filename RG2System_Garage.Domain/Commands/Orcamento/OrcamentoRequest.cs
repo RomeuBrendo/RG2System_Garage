@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RG2System_Garage.Domain.Commands.Orcamento
 {
-    class OrcamentoRequest
+    public class OrcamentoRequest
     {
+        public Guid? Id { get; set; }
+        public Guid ClienteId { get; set; }
+        public string FormaPagamento { get;  set; }
+        public double ValorTotal { get;  set; }
+        public double ValorDesconto { get; set; }
+        public double ValorAcrescimo { get; set; }
+        public string Observacao { get; set; }
+        public bool ExisteOrdemServico { get; set; }
+        public DateTime DataCriacao { get; set; }
+        public List<OrcamentoItensRequest> Itens { get; set; }
     }
 }

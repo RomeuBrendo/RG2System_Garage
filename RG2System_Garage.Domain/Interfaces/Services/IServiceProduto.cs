@@ -9,10 +9,10 @@ namespace RG2System_Garage.Domain.Interfaces.Services
     {
         bool AdionarAlterar(AdionarAlterarProdutoServicoRequest request);
 
-        List<ProdutoResponse> Listar(string descricao);
+        List<ProdutoServicoResponse> Listar(string descricao);
 
         bool Deletar(Guid id);
 
-        ProdutoResponse ObterProdutoId(Guid id);
+        ProdutoServicoResponse ObterProdutoId(Guid id);
     }
 }
