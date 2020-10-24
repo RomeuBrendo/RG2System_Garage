@@ -23,6 +23,7 @@ namespace RG2System_Garage.Viwer.Formulario.Configuracao
             ConsultarDepedencias();
             IdEstaSendoEditado = Guid.Empty;
             CarregaTela();
+            txtNomeFantasia.Focus();
         }
 
         private void CarregaTela()
@@ -45,7 +46,7 @@ namespace RG2System_Garage.Viwer.Formulario.Configuracao
                     txtFixo.Text = response.Fixo;
                     txtEmail.Text = response.Email;
                     txtEndereco.Text = response.Endereco;
-                    txtNomeFantasia.Focus();
+                    
                 }
             }
             catch
@@ -170,9 +171,8 @@ namespace RG2System_Garage.Viwer.Formulario.Configuracao
             this.Close();
         }
 
-        private void frmDadosEmpresa_Load(object sender, EventArgs e)
+        private void frmDadosEmpresa_Shown(object sender, EventArgs e)
         {
-            this.Refresh();
             txtNomeFantasia.Focus();
         }
     }

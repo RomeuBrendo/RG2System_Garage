@@ -52,7 +52,7 @@
             this.lblNomeFantasia.Location = new System.Drawing.Point(31, 55);
             this.lblNomeFantasia.Name = "lblNomeFantasia";
             this.lblNomeFantasia.Size = new System.Drawing.Size(99, 19);
-            this.lblNomeFantasia.TabIndex = 3;
+            this.lblNomeFantasia.TabIndex = 8;
             this.lblNomeFantasia.Text = "Nome Fantasia:";
             // 
             // txtRazaoSocial
@@ -69,10 +69,10 @@
             // lblRacaoSocial
             // 
             this.lblRacaoSocial.AutoSize = true;
-            this.lblRacaoSocial.Location = new System.Drawing.Point(66, 159);
+            this.lblRacaoSocial.Location = new System.Drawing.Point(46, 99);
             this.lblRacaoSocial.Name = "lblRacaoSocial";
             this.lblRacaoSocial.Size = new System.Drawing.Size(86, 19);
-            this.lblRacaoSocial.TabIndex = 5;
+            this.lblRacaoSocial.TabIndex = 9;
             this.lblRacaoSocial.Text = "Razão Social:";
             // 
             // txtCelular
@@ -89,10 +89,10 @@
             // lblCelular
             // 
             this.lblCelular.AutoSize = true;
-            this.lblCelular.Location = new System.Drawing.Point(96, 247);
+            this.lblCelular.Location = new System.Drawing.Point(76, 188);
             this.lblCelular.Name = "lblCelular";
             this.lblCelular.Size = new System.Drawing.Size(54, 19);
-            this.lblCelular.TabIndex = 7;
+            this.lblCelular.TabIndex = 11;
             this.lblCelular.Text = "Celular:";
             // 
             // txtFixo
@@ -109,19 +109,19 @@
             // lblFixo
             // 
             this.lblFixo.AutoSize = true;
-            this.lblFixo.Location = new System.Drawing.Point(293, 247);
+            this.lblFixo.Location = new System.Drawing.Point(275, 188);
             this.lblFixo.Name = "lblFixo";
             this.lblFixo.Size = new System.Drawing.Size(36, 19);
-            this.lblFixo.TabIndex = 10;
+            this.lblFixo.TabIndex = 13;
             this.lblFixo.Text = "Fixo:";
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(106, 203);
+            this.lblEmail.Location = new System.Drawing.Point(86, 144);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(44, 19);
-            this.lblEmail.TabIndex = 11;
+            this.lblEmail.TabIndex = 10;
             this.lblEmail.Text = "Email:";
             // 
             // txtEmail
@@ -138,10 +138,10 @@
             // lblEndereco
             // 
             this.lblEndereco.AutoSize = true;
-            this.lblEndereco.Location = new System.Drawing.Point(85, 291);
+            this.lblEndereco.Location = new System.Drawing.Point(65, 231);
             this.lblEndereco.Name = "lblEndereco";
             this.lblEndereco.Size = new System.Drawing.Size(67, 19);
-            this.lblEndereco.TabIndex = 13;
+            this.lblEndereco.TabIndex = 12;
             this.lblEndereco.Text = "Endereço:";
             // 
             // txtEndereco
@@ -177,7 +177,12 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.lblFixo);
             this.panel.Controls.Add(this.btnCancelar);
+            this.panel.Controls.Add(this.lblRacaoSocial);
+            this.panel.Controls.Add(this.lblEmail);
+            this.panel.Controls.Add(this.lblEndereco);
+            this.panel.Controls.Add(this.lblCelular);
             this.panel.Controls.Add(this.txtNomeFantasia);
             this.panel.Controls.Add(this.btnSalvar);
             this.panel.Controls.Add(this.lblNomeFantasia);
@@ -208,11 +213,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(572, 505);
-            this.Controls.Add(this.lblEndereco);
-            this.Controls.Add(this.lblEmail);
-            this.Controls.Add(this.lblFixo);
-            this.Controls.Add(this.lblCelular);
-            this.Controls.Add(this.lblRacaoSocial);
             this.Controls.Add(this.panel);
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -223,12 +223,11 @@
             this.Style = MetroFramework.MetroColorStyle.Red;
             this.Text = "Dados da Empresa";
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
-            this.Load += new System.EventHandler(this.frmDadosEmpresa_Load);
+            this.Shown += new System.EventHandler(this.frmDadosEmpresa_Shown);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmDadosEmpresa_PreviewKeyDown);
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
