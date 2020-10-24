@@ -220,25 +220,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
         private void txtNome_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                txtCPFCPNJ.Focus();
-        }
-
-        private void txtCPFCPNJ_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                txtTelefone1.Focus();
-        }
-
-        private void txtTelefone1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                txtTelefone2.Focus();
-        }
-
-        private void txtTelefone2_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                txtPlaca.Focus();
+                SendKeys.Send("{TAB}");
         }
 
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
@@ -343,7 +325,6 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
                         return;
                     }
                 }
-
 
                 CarregarGridParcialVeiculo();
                 txtPlaca.Clear();

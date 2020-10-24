@@ -340,6 +340,24 @@ namespace RG2System_Garage.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} não encontrada..
+        /// </summary>
+        internal static string X0_NAO_ENCONTRADA {
+            get {
+                return ResourceManager.GetString("X0_NAO_ENCONTRADA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} não encontrado..
+        /// </summary>
+        internal static string X0_NAO_ENCONTRADO {
+            get {
+                return ResourceManager.GetString("X0_NAO_ENCONTRADO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} não informada..
         /// </summary>
         internal static string X0_NAO_INFORMADA {

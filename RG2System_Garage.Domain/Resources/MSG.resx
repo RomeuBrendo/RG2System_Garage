@@ -210,6 +210,12 @@
   <data name="X0_INVALIDO" xml:space="preserve">
     <value>{0} inválido.</value>
   </data>
+  <data name="X0_NAO_ENCONTRADA" xml:space="preserve">
+    <value>{0} não encontrada.</value>
+  </data>
+  <data name="X0_NAO_ENCONTRADO" xml:space="preserve">
+    <value>{0} não encontrado.</value>
+  </data>
   <data name="X0_NAO_INFORMADA" xml:space="preserve">
     <value>{0} não informada.</value>
   </data>

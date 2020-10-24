@@ -168,7 +168,7 @@ namespace RG2System_Garage.Domain.Service
 
                 if (veiculo == null)
                 {
-                    AddNotification("Veiculo", MSG.DADOS_NAO_ENCONTRADOS);
+                    AddNotification("Veiculo", MSG.X0_NAO_ENCONTRADA.ToFormat("Placa"));
                     return null;
                 }
                 else
