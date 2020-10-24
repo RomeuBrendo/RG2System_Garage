@@ -23,7 +23,6 @@ namespace RG2System_Garage.Viwer.Formulario.Configuracao
             ConsultarDepedencias();
             IdEstaSendoEditado = Guid.Empty;
             CarregaTela();
-            txtNomeFantasia.Focus();
         }
 
         private void CarregaTela()
@@ -67,7 +66,6 @@ namespace RG2System_Garage.Viwer.Formulario.Configuracao
                     request.Id = IdEstaSendoEditado;
 
                 request.NomeFantasia = txtNomeFantasia.Text;
-                txtNomeFantasia.Focus();
                 request.RazaoSocial = txtRazaoSocial.Text;
                 request.Celular = txtCelular.Text;
                 request.Email = txtEmail.Text;
@@ -115,33 +113,8 @@ namespace RG2System_Garage.Viwer.Formulario.Configuracao
         private void txtNomeFantasia_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                txtRazaoSocial.Focus();
+                SendKeys.Send("{TAB}");
         }
-
-        private void txtRazaoSocial_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                txtEmail.Focus();
-        }
-
-        private void txtEmail_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                txtCelular.Focus();
-        }
-
-        private void txtCelular_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                txtFixo.Focus();
-        }
-
-        private void txtFixo_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                txtEndereco.Focus();
-        }
-
         private void txtEndereco_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

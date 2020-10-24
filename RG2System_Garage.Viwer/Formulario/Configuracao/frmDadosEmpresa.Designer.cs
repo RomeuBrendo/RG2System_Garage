@@ -62,7 +62,7 @@
             this.txtRazaoSocial.Name = "txtRazaoSocial";
             this.txtRazaoSocial.Size = new System.Drawing.Size(362, 20);
             this.txtRazaoSocial.TabIndex = 1;
-            this.txtRazaoSocial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRazaoSocial_KeyDown);
+            this.txtRazaoSocial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNomeFantasia_KeyDown);
             this.txtRazaoSocial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeFantasia_KeyPress);
             this.txtRazaoSocial.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmDadosEmpresa_PreviewKeyDown);
             // 
@@ -82,7 +82,7 @@
             this.txtCelular.Name = "txtCelular";
             this.txtCelular.Size = new System.Drawing.Size(87, 20);
             this.txtCelular.TabIndex = 3;
-            this.txtCelular.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCelular_KeyDown);
+            this.txtCelular.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNomeFantasia_KeyDown);
             this.txtCelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeFantasia_KeyPress);
             this.txtCelular.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmDadosEmpresa_PreviewKeyDown);
             // 
@@ -102,7 +102,7 @@
             this.txtFixo.Name = "txtFixo";
             this.txtFixo.Size = new System.Drawing.Size(87, 20);
             this.txtFixo.TabIndex = 4;
-            this.txtFixo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFixo_KeyDown);
+            this.txtFixo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNomeFantasia_KeyDown);
             this.txtFixo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeFantasia_KeyPress);
             this.txtFixo.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmDadosEmpresa_PreviewKeyDown);
             // 
@@ -131,7 +131,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(266, 20);
             this.txtEmail.TabIndex = 2;
-            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
+            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNomeFantasia_KeyDown);
             this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeFantasia_KeyPress);
             this.txtEmail.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmDadosEmpresa_PreviewKeyDown);
             // 
