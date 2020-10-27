@@ -79,6 +79,24 @@ namespace RG2System_Garage.Viwer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Erro ao listar {0}.
+        /// </summary>
+        internal static string ERRO_AO_LISTA_X0 {
+            get {
+                return ResourceManager.GetString("ERRO_AO_LISTA_X0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erro ao selecionar {0}.
+        /// </summary>
+        internal static string ERRO_AO_SELECIONAR_X0 {
+            get {
+                return ResourceManager.GetString("ERRO_AO_SELECIONAR_X0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erro ao realizar procedimento, tente novamente!.
         /// </summary>
         internal static string ERRO_REALIZAR_PROCEDIMENTO {

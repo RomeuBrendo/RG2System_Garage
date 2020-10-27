@@ -1,6 +1,9 @@
-﻿using RG2System_Garage.Domain.Interfaces.Services;
+﻿using prmToolkit.NotificationPattern.Extensions;
+using RG2System_Garage.Domain.Enum;
+using RG2System_Garage.Domain.Interfaces.Services;
 using RG2System_Garage.Infra.Repositories.Transactions;
 using RG2System_Garage.Shared.Formulario.Toast;
+using RG2System_Garage.Viwer.Resources;
 using System;
 using System.Drawing;
 using System.Reflection;
@@ -95,22 +98,16 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             catch
             {
-
-                throw;
+                toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Orcamento"), EnumToast.Erro);
+                return;
             }
         }
         private void Passo_1() // Selecionar Cliente para criação do Orçamento
         {
             try
             {
-                dataGridCliente.AutoGenerateColumns = false;
-                dataGridCliente.DataSource = null;
-                dataGridCliente.DataSource = _serviceCliente.Listar("");
-                dataGridCliente.Columns[1].ReadOnly = true;
 
-                dataGridCliente.Update();
-                dataGridCliente.Refresh();
-
+                CarregarGridCliente("");
                 this.Text = "Selecionar Cliente p/ Orçamento";
                 tabControlOrcamento.SelectedIndex = 1;
 
@@ -122,10 +119,22 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             catch
             {
-
-                throw;
+                toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Clientes"), EnumToast.Erro);
+                return;
             }
 
+        }
+
+        private void CarregarGridCliente(string nome)
+        {
+            dataGridCliente.AutoGenerateColumns = false;
+            dataGridCliente.DataSource = null;
+
+            dataGridCliente.DataSource = _serviceCliente.Listar(nome);
+            dataGridCliente.Columns[1].ReadOnly = true;
+
+            dataGridCliente.Update();
+            dataGridCliente.Refresh();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -145,46 +154,59 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             dataGridOrcamento.Focus();
         }
 
-        private void dataGridCliente_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex != -1)
-                if (IndexLinhaSelecionada == -2)
-                    IndexLinhaSelecionada = e.RowIndex;
-                else if (IndexLinhaSelecionada != e.RowIndex)
-                {
-                    dataGridCliente.Rows[IndexLinhaSelecionada].Cells[0].Value = false;
-                    IndexLinhaSelecionada = IndexLinhaSelecionada = e.RowIndex;
-                }
-        }
-
-        private void dataGridCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            dataGridCliente.CommitEdit(DataGridViewDataErrorContexts.Commit);
-        }
+        //private void dataGridCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    dataGridCliente.CommitEdit(DataGridViewDataErrorContexts.Commit);
+        //}
 
         private void dataGridCliente_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
+            if ((e.KeyCode == Keys.Space) || (e.KeyCode == Keys.Enter))
             {
-                try
-                {
-                    var valor = Convert.ToBoolean(dataGridCliente.Rows[dataGridCliente.SelectedRows[0].Index].Cells[0].Value);
-                    if (valor)
-                        valor = false;
-                    else
-                    {
-                        valor = true;
-                        //dataGridCliente.Rows[dataGridCliente.SelectedRows[0].Index].Cells[1].Value = Properties.
-                    }
-
-                    dataGridCliente.Rows[dataGridCliente.SelectedRows[0].Index].Cells[0].Value = valor;
-                }
-                catch
-                {
-
-                    throw;
-                }
+                SelecionaGridCliente();
+                e.SuppressKeyPress = true;
             }
+        }
+
+        private void SelecionaGridCliente()
+        {
+            try
+            { 
+
+                var indexNovoSelecionado = dataGridCliente.SelectedRows[0].Index;
+                
+                if (indexNovoSelecionado < 0)
+                        return;
+
+                dataGridCliente.Rows[indexNovoSelecionado].Cells[0].Value = Properties.Resources.clienteSelecionado;
+
+                if ((IndexLinhaSelecionada > -1) && (indexNovoSelecionado != IndexLinhaSelecionada))
+                    dataGridCliente.Rows[IndexLinhaSelecionada].Cells[0].Value = Properties.Resources.Branco1;
+
+                IndexLinhaSelecionada = indexNovoSelecionado;
+
+            }
+            catch
+            {
+                MSG.ERRO_AO_SELECIONAR_X0.ToFormat("Cliente");
+                return;
+            }
+        }
+
+        private void dataGridCliente_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+            if (e.RowIndex == dataGridCliente.SelectedRows[0].Index)
+                SelecionaGridCliente();
+        }
+
+        private void textPesquisaCliente_TextChanged(object sender, EventArgs e)
+        {
+            //Preciso verificar melhor quando houver um cliente já selecionado
+            //if (textPesquisaCliente.Text.Length > 0)
+            //    CarregarGridCliente(textPesquisaCliente.Text);
+            //else
+            //    CarregarGridCliente("");
         }
     }
 }

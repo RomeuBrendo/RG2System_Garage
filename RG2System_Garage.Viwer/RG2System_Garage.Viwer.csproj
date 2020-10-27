@@ -388,6 +388,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\Branco1.png" />
+    <None Include="Resources\clienteSelecionado.png" />
     <None Include="Resources\tickSelecionado.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

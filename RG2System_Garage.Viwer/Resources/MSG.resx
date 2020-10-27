@@ -123,6 +123,12 @@
   <data name="ERRO_AO_CONSULTAR_DADOS" xml:space="preserve">
     <value>Erro ao consultar dados.</value>
   </data>
+  <data name="ERRO_AO_LISTA_X0" xml:space="preserve">
+    <value>Erro ao listar {0}</value>
+  </data>
+  <data name="ERRO_AO_SELECIONAR_X0" xml:space="preserve">
+    <value>Erro ao selecionar {0}</value>
+  </data>
   <data name="ERRO_REALIZAR_PROCEDIMENTO" xml:space="preserve">
     <value>Erro ao realizar procedimento, tente novamente!</value>
   </data>
