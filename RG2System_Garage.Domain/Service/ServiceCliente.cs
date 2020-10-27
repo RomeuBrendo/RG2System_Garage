@@ -120,8 +120,8 @@ namespace RG2System_Garage.Domain.Service
             }
             catch
             {
-
-                throw;
+                AddNotification("Cliente", MSG.ERRO_LISTAR_X0.ToFormat("Clientes"));
+                return null;
             }
         }
 

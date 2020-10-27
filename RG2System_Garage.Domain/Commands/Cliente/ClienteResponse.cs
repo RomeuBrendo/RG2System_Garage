@@ -12,6 +12,7 @@ namespace RG2System_Garage.Domain.Commands.Cliente
         public string CPFCNPJ { get; set; }
         public string Telefone1 { get; set; }
         public string Telefone2 { get; set; }
+        public bool Selecionado { get; set; }
         public List<VeiculoResponse> Veiculos { get; set; }
 
         public static explicit operator ClienteResponse(Entities.Cliente v)
@@ -22,7 +23,8 @@ namespace RG2System_Garage.Domain.Commands.Cliente
                 Nome = v.Nome,
                 CPFCNPJ = v.CPFCNPJ,
                 Telefone1 = v.Telefone1,
-                Telefone2 = v.Telefone2
+                Telefone2 = v.Telefone2,
+                Selecionado = false
             };
         }
     }

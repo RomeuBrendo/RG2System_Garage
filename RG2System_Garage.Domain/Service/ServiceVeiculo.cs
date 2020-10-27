@@ -121,7 +121,6 @@ namespace RG2System_Garage.Domain.Service
             }
             catch
             {
-
                 AddNotification("Listar", MSG.ERRO_LISTAR_X0.ToFormat("Veículos"));
                 return null;
             }
@@ -145,7 +144,6 @@ namespace RG2System_Garage.Domain.Service
             }
             catch
             {
-
                 AddNotification("Veiculo", MSG.DADOS_NAO_ENCONTRADOS);
                 return null;
             }
@@ -176,7 +174,6 @@ namespace RG2System_Garage.Domain.Service
             }
             catch
             {
-
                 AddNotification("Veiculo", MSG.DADOS_NAO_ENCONTRADOS);
                 return null;
             }
