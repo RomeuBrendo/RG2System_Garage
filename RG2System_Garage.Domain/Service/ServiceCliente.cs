@@ -9,7 +9,6 @@ using RG2System_Garage.Domain.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace RG2System_Garage.Domain.Service
 {
@@ -206,6 +205,19 @@ namespace RG2System_Garage.Domain.Service
             catch
             {
                 AddNotification("cliente", MSG.DADOS_NAO_ENCONTRADOS);
+                return null;
+            }
+        }
+
+        public List<VeiculoResponse> ListarVeiculos_byCliente(Guid id)
+        {
+            try
+            {
+                return ListarVeiculosByCliente(id);
+            }
+            catch 
+            {
+                AddNotification("Veiculo", MSG.ERRO_AO_REALIZAR_PROCEDIMENTO_DE_X0.ToFormat("Listar veiculos relacionado a este cliente."));
                 return null;
             }
         }

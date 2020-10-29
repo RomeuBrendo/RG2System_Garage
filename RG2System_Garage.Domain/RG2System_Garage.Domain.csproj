@@ -241,9 +241,11 @@
     <Compile Include="Entities\OrcamentoItem.cs" />
     <Compile Include="Entities\ProdutoServico.cs" />
     <Compile Include="Entities\Veiculo.cs" />
+    <Compile Include="Enum\EnumIcone.cs" />
     <Compile Include="Enum\EnumSituacao.cs" />
     <Compile Include="Enum\EnumTipo.cs" />
     <Compile Include="Enum\EnumToast.cs" />
+    <Compile Include="Enum\Orcamento\EnumListar.cs" />
     <Compile Include="Interfaces\Repositories\Base\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryConfiguracaoDadosEmpresa.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryOrcamento.cs" />

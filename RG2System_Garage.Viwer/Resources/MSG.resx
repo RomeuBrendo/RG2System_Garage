@@ -135,6 +135,12 @@
   <data name="EXCLUSAO_REALIZADA_COM_SUCESSO" xml:space="preserve">
     <value>Exclusão realizada com sucesso.</value>
   </data>
+  <data name="E_NECESSARIO_SELECIONAR_UMA_X0_PARA_PROSSEGUIR1" xml:space="preserve">
+    <value>É necessário selecionado uma {0} para prosseguir.</value>
+  </data>
+  <data name="E_NECESSARIO_SELECIONAR_UM_X0_PARA_PROSSEGUIR" xml:space="preserve">
+    <value>É necessário selecionado um {0} para prosseguir.</value>
+  </data>
   <data name="OPERACAO_REALIZADA_COM_SUCESSO" xml:space="preserve">
     <value>Operação realizada com sucesso.</value>
   </data>

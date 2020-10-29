@@ -1,4 +1,5 @@
 ﻿using RG2System_Garage.Domain.Commands.Cliente;
+using RG2System_Garage.Domain.Commands.Veiculo;
 using RG2System_Garage.Domain.Interfaces.Services.Base;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace RG2System_Garage.Domain.Interfaces.Services
 
         ClienteResponse ObterClienteId(Guid id);
 
+        List<VeiculoResponse> ListarVeiculos_byCliente(Guid id);
 
     }
 }

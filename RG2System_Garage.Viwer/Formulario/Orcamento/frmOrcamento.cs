@@ -1,12 +1,12 @@
 ﻿using prmToolkit.NotificationPattern.Extensions;
 using RG2System_Garage.Domain.Enum;
+using RG2System_Garage.Domain.Enum.Orcamento;
 using RG2System_Garage.Domain.Interfaces.Services;
 using RG2System_Garage.Infra.Repositories.Transactions;
 using RG2System_Garage.Shared.Formulario.Toast;
 using RG2System_Garage.Viwer.Resources;
 using System;
 using System.Drawing;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace RG2System_Garage.Viwer.Formulario.Orcamento
@@ -17,8 +17,9 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         private IUnitOfWork _unitOfWork;
         private IServiceCliente _serviceCliente;
         Toast toast = new Toast();
-        Guid IdEstaSendoEditado = Guid.Empty;
-        int IndexLinhaSelecionada = -2; //uso para mater somente um checkBox selecionado
+
+        Guid IdClienteSelecionado, IdVeiculoSelecionado = Guid.Empty;
+       
         public frmOrcamento()
         {
             InitializeComponent();
@@ -45,6 +46,12 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                     Passo_0("");
                     return;
                 }
+
+                if (tabControlOrcamento.SelectedIndex == 2)
+                {
+                    Passo_1(false);
+                    return;
+                }
             }
 
             if (e.KeyCode == Keys.Insert)
@@ -59,7 +66,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            Passo_1();
+            Passo_1(true);
             
         }
         public void LimparCampos(Panel panel)
@@ -102,12 +109,13 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 return;
             }
         }
-        private void Passo_1() // Selecionar Cliente para criação do Orçamento
+        private void Passo_1(bool atualizarGrid) // Selecionar Cliente para criação do Orçamento
         {
             try
             {
+                if (atualizarGrid)
+                    CarregaGrid(dataGridCliente, "", EnumListar.Cliente);
 
-                CarregarGridCliente("");
                 this.Text = "Selecionar Cliente p/ Orçamento";
                 tabControlOrcamento.SelectedIndex = 1;
 
@@ -125,16 +133,61 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
         }
 
-        private void CarregarGridCliente(string nome)
+        private void Passo_2()
         {
-            dataGridCliente.AutoGenerateColumns = false;
-            dataGridCliente.DataSource = null;
+            Passo_2(true);
+        }
+        private void Passo_2(bool atualizarGrid)
+        {
+            try
+            {
+                if (atualizarGrid)
+                    CarregaGrid(dataGridVeículo, EnumListar.Veiculo, IdClienteSelecionado);
 
-            dataGridCliente.DataSource = _serviceCliente.Listar(nome);
-            dataGridCliente.Columns[1].ReadOnly = true;
+                this.Text = "Selecionar Veículo p/ Orçamento";
 
-            dataGridCliente.Update();
-            dataGridCliente.Refresh();
+                lblClienteTitulo.Text = dataGridCliente.SelectedRows[0].Cells[1].Value.ToString();
+
+                tabControlOrcamento.SelectedIndex = 2;
+
+                if (!panelSubMenu.Visible)
+                    panelSubMenu.Visible = true;
+
+                this.Refresh();
+                dataGridVeículo.Focus();
+            }
+            catch
+            {
+                toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Veículos"), EnumToast.Erro);
+                return; ;
+            }
+        }
+        private DataGridView CarregaGrid(DataGridView grid, EnumListar acao, Guid id)
+        {
+            return CarregaGrid(grid, "", acao, id);
+        }
+        private DataGridView CarregaGrid(DataGridView grid, string pesquisar, EnumListar acao)
+        {
+            return CarregaGrid(grid, pesquisar, acao, null);
+        }
+        private DataGridView CarregaGrid(DataGridView grid, string pesquisar, EnumListar acao, Guid? id)
+        {
+            grid.AutoGenerateColumns = false;
+            grid.DataSource = null;
+
+            if (acao == EnumListar.Cliente)
+                grid.DataSource = _serviceCliente.Listar(pesquisar);
+
+            if (acao == EnumListar.Orcamento)
+                grid.DataSource = _serviceOrcamento.Listar(pesquisar);
+
+            if (acao == EnumListar.Veiculo)
+                grid.DataSource = _serviceCliente.ListarVeiculos_byCliente(id.Value);
+
+            grid.Update();
+            grid.Refresh();
+
+            return grid;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -146,7 +199,9 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         {
             if (tabControlOrcamento.SelectedIndex == 1)
                 Passo_0("");
-
+            else if (tabControlOrcamento.SelectedIndex == 2)
+                Passo_1(false);
+            
         }
 
         private void frmOrcamento_Shown(object sender, EventArgs e)
@@ -163,33 +218,70 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         {
             if ((e.KeyCode == Keys.Space) || (e.KeyCode == Keys.Enter))
             {
-                SelecionaGridCliente();
+                SelecionaGrid(dataGridCliente, EnumIcone.ClienteSelecionado);
                 e.SuppressKeyPress = true;
             }
         }
 
-        private void SelecionaGridCliente()
+        private void dataGridVeículo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Space) || (e.KeyCode == Keys.Enter))
+            {
+                SelecionaGrid(dataGridVeículo, EnumIcone.VeiculoSelecionado);
+                e.SuppressKeyPress = true;
+            }
+        }
+
+
+        private DataGridView SelecionaGrid(DataGridView grid, EnumIcone iconeNovo) //Uso essa função p/ Cliente e Veículos
         {
             try
-            { 
+            {
+                var linhaSelecionada = grid.SelectedRows[0].Index;
+                var linhaJaSelecionadaAntes = false;
 
-                var indexNovoSelecionado = dataGridCliente.SelectedRows[0].Index;
+                for (int x = 0; x <= grid.Rows.Count - 1; x++)
+                {
+                    if (((Bitmap)grid.Rows[x].Cells[0].Value).Flags != Properties.Resources.Branco1.Flags)
+                    {
+                        grid.Rows[x].Cells[0].Value = Properties.Resources.Branco1;
+
+                        if (grid.Rows[x].Index == linhaSelecionada)
+                        {
+                            linhaJaSelecionadaAntes = true;
+                            IdClienteSelecionado = Guid.Empty;
+                            IdVeiculoSelecionado = Guid.Empty;
+                        }
+                    }
+                }
+
+                var icone = Properties.Resources.Branco1;
                 
-                if (indexNovoSelecionado < 0)
-                        return;
+                if (iconeNovo == EnumIcone.ClienteSelecionado)
+                {
+                    icone = Properties.Resources.clienteSelecionado;
+                    if (!linhaJaSelecionadaAntes)
+                    {
+                        IdVeiculoSelecionado = Guid.Empty;
+                        IdClienteSelecionado = (Guid)grid.Rows[linhaSelecionada].Cells[2].Value;
+                    }
+                }
+                else if (iconeNovo == EnumIcone.VeiculoSelecionado)
+                {
+                    icone = Properties.Resources.VeiculoSelecionado;
+                    if (!linhaJaSelecionadaAntes)
+                        IdVeiculoSelecionado = (Guid)grid.Rows[linhaSelecionada].Cells[2].Value;
+                }
 
-                dataGridCliente.Rows[indexNovoSelecionado].Cells[0].Value = Properties.Resources.clienteSelecionado;
+                if (!linhaJaSelecionadaAntes)
+                    grid.Rows[linhaSelecionada].Cells[0].Value = icone;
 
-                if ((IndexLinhaSelecionada > -1) && (indexNovoSelecionado != IndexLinhaSelecionada))
-                    dataGridCliente.Rows[IndexLinhaSelecionada].Cells[0].Value = Properties.Resources.Branco1;
-
-                IndexLinhaSelecionada = indexNovoSelecionado;
-
+                return grid;
             }
             catch
             {
-                MSG.ERRO_AO_SELECIONAR_X0.ToFormat("Cliente");
-                return;
+                toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat(iconeNovo), EnumToast.Erro);
+                return null;
             }
         }
 
@@ -197,16 +289,31 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         {
            
             if (e.RowIndex == dataGridCliente.SelectedRows[0].Index)
-                SelecionaGridCliente();
+                SelecionaGrid(dataGridCliente, EnumIcone.ClienteSelecionado);
         }
 
-        private void textPesquisaCliente_TextChanged(object sender, EventArgs e)
+        private void dataGridVeículo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Preciso verificar melhor quando houver um cliente já selecionado
-            //if (textPesquisaCliente.Text.Length > 0)
-            //    CarregarGridCliente(textPesquisaCliente.Text);
-            //else
-            //    CarregarGridCliente("");
+            SelecionaGrid(dataGridVeículo, EnumIcone.VeiculoSelecionado);
+        }
+
+        private void lblProximo_Click(object sender, EventArgs e)
+        {
+            if (tabControlOrcamento.SelectedIndex == 1)
+            {
+                if ((IdClienteSelecionado != Guid.Empty) && (IdClienteSelecionado != null))
+                {
+                    if (IdVeiculoSelecionado == Guid.Empty)
+                        Passo_2();
+                    else
+                        Passo_2(false); //Atualiza grid
+                }
+                else
+                {
+                    toast.ShowToast(MSG.E_NECESSARIO_SELECIONAR_UM_X0_PARA_PROSSEGUIR.ToFormat("Cliente"), EnumToast.Informacao);
+                    dataGridCliente.Focus();
+                }
+            }
         }
     }
 }

@@ -70,6 +70,24 @@ namespace RG2System_Garage.Viwer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to É necessário selecionado um {0} para prosseguir..
+        /// </summary>
+        internal static string E_NECESSARIO_SELECIONAR_UM_X0_PARA_PROSSEGUIR {
+            get {
+                return ResourceManager.GetString("E_NECESSARIO_SELECIONAR_UM_X0_PARA_PROSSEGUIR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to É necessário selecionado uma {0} para prosseguir..
+        /// </summary>
+        internal static string E_NECESSARIO_SELECIONAR_UMA_X0_PARA_PROSSEGUIR1 {
+            get {
+                return ResourceManager.GetString("E_NECESSARIO_SELECIONAR_UMA_X0_PARA_PROSSEGUIR1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erro ao consultar dados..
         /// </summary>
         internal static string ERRO_AO_CONSULTAR_DADOS {
