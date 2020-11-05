@@ -39,7 +39,6 @@ namespace RG2System_Garage.Viwer.Formulario
             t1.Name = "Secundária";
             _threads.Add(t1);
             t1.Start();
-            //t1.Abort();
         }
 
         //Será necessario melhorar este processo posteriormente.
@@ -52,7 +51,7 @@ namespace RG2System_Garage.Viwer.Formulario
                 if (_threads.Count < 1)
                     return;
 
-                Thread.Sleep(300);
+                Thread.Sleep(100);
             }
         }
 

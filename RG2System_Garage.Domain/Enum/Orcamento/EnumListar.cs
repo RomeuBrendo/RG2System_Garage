@@ -4,6 +4,8 @@
     {
         Orcamento = 0,
         Cliente = 1,
-        Veiculo = 2
+        Veiculo = 2,
+        Produto = 3,
+        Servico = 4
     }
 }

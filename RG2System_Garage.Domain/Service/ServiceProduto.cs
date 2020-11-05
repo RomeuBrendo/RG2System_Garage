@@ -2,11 +2,11 @@
 using prmToolkit.NotificationPattern.Extensions;
 using RG2System_Garage.Domain.Commands.Produto;
 using RG2System_Garage.Domain.Entities;
+using RG2System_Garage.Domain.Enum;
 using RG2System_Garage.Domain.Interfaces.Repositories;
 using RG2System_Garage.Domain.Interfaces.Services;
 using RG2System_Garage.Domain.Resources;
 using System;
-using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -83,6 +83,7 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
+                this.ClearNotifications();
                 var produtos = new List<ProdutoServicoResponse>();
                 if (descricao != "")
                     produtos = ProdutosResponse(_repositoryProdutoServico.ListarPor(x => x.Descricao.StartsWith(descricao)).ToList());
@@ -96,6 +97,24 @@ namespace RG2System_Garage.Domain.Service
             {
 
                 AddNotification("Listar", MSG.DADOS_NAO_ENCONTRADOS);
+                return null;
+            }
+        }
+
+        public List<ProdutoServicoResponse> ListarProdutoOuServico(EnumTipo enumTipo)
+        {
+            try
+            {
+                this.ClearNotifications();
+
+                if (enumTipo == EnumTipo.Produto)
+                    return ProdutosResponse(_repositoryProdutoServico.ListarPor(x => x.Tipo == EnumTipo.Produto, j => j.FichaMovimentacao).OrderBy(x => x.Descricao).ToList());
+                else
+                    return ProdutosResponse(_repositoryProdutoServico.ListarPor(x => x.Tipo == EnumTipo.Servico, j => j.FichaMovimentacao).OrderBy(x => x.Descricao).ToList());
+            }
+            catch
+            {
+                AddNotification("ListarProduto", MSG.DADOS_NAO_ENCONTRADOS);
                 return null;
             }
         }

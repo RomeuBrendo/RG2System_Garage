@@ -7,6 +7,7 @@ using RG2System_Garage.Shared.Formulario.Toast;
 using RG2System_Garage.Viwer.Resources;
 using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace RG2System_Garage.Viwer.Formulario.Orcamento
@@ -16,6 +17,8 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         private IServiceOrcamento _serviceOrcamento;
         private IUnitOfWork _unitOfWork;
         private IServiceCliente _serviceCliente;
+        private IServiceProduto _serviceProdutoServico;
+
         public bool CentralizarTela = false;
         Toast toast = new Toast();
 
@@ -33,6 +36,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         {
             _serviceOrcamento = (IServiceOrcamento)Program.ServiceProvider.GetService(typeof(IServiceOrcamento));
             _serviceCliente = (IServiceCliente)Program.ServiceProvider.GetService(typeof(IServiceCliente));
+            _serviceProdutoServico = (IServiceProduto)Program.ServiceProvider.GetService(typeof(IServiceProduto));
             _unitOfWork = (IUnitOfWork)Program.ServiceProvider.GetService(typeof(IUnitOfWork));
 
         }
@@ -161,7 +165,37 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             catch
             {
                 toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Veículos"), EnumToast.Erro);
-                return; ;
+                return;
+            }
+        }
+
+        private void Passo_3()
+        {
+            Passo_3(true);
+        }
+        private void Passo_3(bool atualizarGrid)
+        {
+            try
+            {
+                txtCliente.Text = lblClienteTitulo.Text;
+                txtPlaca.Text = dataGridVeículo.SelectedRows[0].Cells[1].Value.ToString();
+
+                if (atualizarGrid)
+                {
+                    CarregaGrid(dataGridProduto, "", EnumListar.Produto);
+                    CarregaGrid(dataGridServico, "", EnumListar.Servico);
+
+                    dataGridServico.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dataGridProduto.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                }
+
+                dataGridServico.Focus();
+            }
+            catch
+            { 
+                toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Serviços/Produtos"), EnumToast.Erro);
+                return;
+
             }
         }
         private DataGridView CarregaGrid(DataGridView grid, EnumListar acao, Guid id)
@@ -179,12 +213,18 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
             if (acao == EnumListar.Cliente)
                 grid.DataSource = _serviceCliente.Listar(pesquisar);
-
+            
             if (acao == EnumListar.Orcamento)
                 grid.DataSource = _serviceOrcamento.Listar(pesquisar);
-
+            
             if (acao == EnumListar.Veiculo)
                 grid.DataSource = _serviceCliente.ListarVeiculos_byCliente(id.Value);
+            
+            if (acao == EnumListar.Servico)
+                grid.DataSource = _serviceProdutoServico.ListarProdutoOuServico(EnumTipo.Servico);
+
+            if (acao == EnumListar.Produto)
+                grid.DataSource = _serviceProdutoServico.ListarProdutoOuServico(EnumTipo.Produto);
 
             grid.Update();
             grid.Refresh();
@@ -323,8 +363,13 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             else if (tabControlOrcamento.SelectedIndex == 2)
             {
-                tabControlOrcamento.SelectedIndex = 3;
+                this.Visible = false;
                 AjustaTelaTamanho(3);
+                tabControlOrcamento.SelectedIndex = 3;
+                Passo_3();
+                Thread.Sleep(150);
+                this.Refresh();
+                this.Visible = true;
             }
         }
 
