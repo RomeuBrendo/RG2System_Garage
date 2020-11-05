@@ -177,6 +177,9 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         {
             try
             {
+                this.Visible = false;
+                this.Text = "Selecione Produtos e Serviços";
+                AjustaTelaTamanho(3);
                 txtCliente.Text = lblClienteTitulo.Text;
                 txtPlaca.Text = dataGridVeículo.SelectedRows[0].Cells[1].Value.ToString();
 
@@ -185,9 +188,15 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                     CarregaGrid(dataGridProduto, "", EnumListar.Produto);
                     CarregaGrid(dataGridServico, "", EnumListar.Servico);
 
-                    dataGridServico.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    dataGridProduto.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dataGridServico.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dataGridProduto.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 }
+
+                tabControlOrcamento.SelectedIndex = 3;
+
+                Thread.Sleep(150);
+                this.Refresh();
+                this.Visible = true;
 
                 dataGridServico.Focus();
             }
@@ -362,15 +371,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 }
             }
             else if (tabControlOrcamento.SelectedIndex == 2)
-            {
-                this.Visible = false;
-                AjustaTelaTamanho(3);
-                tabControlOrcamento.SelectedIndex = 3;
                 Passo_3();
-                Thread.Sleep(150);
-                this.Refresh();
-                this.Visible = true;
-            }
         }
 
         void AjustaTelaTamanho(int passo)
@@ -382,8 +383,8 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             else
             {
-                this.Size = new Size(1105, 757);
-                tabControlOrcamento.Size = new Size(1070, 624);
+                this.Size = new Size(1105, 809);
+                tabControlOrcamento.Size = new Size(1070, 680);
             }
 
         }

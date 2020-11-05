@@ -142,6 +142,9 @@ namespace RG2System_Garage.Domain.Service
                     produtoNovo.PrecoCusto = ultimoEstoqueProduto.PrecoCusto;
                     produtoNovo.PrecoVenda = ultimoEstoqueProduto.PrecoVenda;
 
+                    produtoNovo.Quantidade = 0;
+                    
+
                     produtosResponse.Add(produtoNovo);
                 }
 

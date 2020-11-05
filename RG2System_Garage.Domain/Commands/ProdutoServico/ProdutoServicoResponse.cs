@@ -15,6 +15,7 @@ namespace RG2System_Garage.Domain.Commands.Produto
         public EnumTipo Tipo { get; set; }
         public EnumSituacao Situacao { get; set; }
         public string Observacao { get; set; }
+        public int Quantidade { get; set; }
 
         public static explicit operator ProdutoServicoResponse(Entities.ProdutoServico v)
         {
