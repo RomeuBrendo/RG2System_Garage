@@ -278,6 +278,7 @@
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Red;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPrincipal_FormClosed);
             this.pnMenu.ResumeLayout(false);
             this.pnConfiguracoes.ResumeLayout(false);
             this.pnLancamentos.ResumeLayout(false);

@@ -16,16 +16,18 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         private IServiceOrcamento _serviceOrcamento;
         private IUnitOfWork _unitOfWork;
         private IServiceCliente _serviceCliente;
+        public bool CentralizarTela = false;
         Toast toast = new Toast();
 
         Guid IdClienteSelecionado, IdVeiculoSelecionado = Guid.Empty;
-       
+
         public frmOrcamento()
         {
             InitializeComponent();
             ConsultarDepedencias();
+            AjustaTelaTamanho(0);
             Passo_0("");
-            
+
         }
         void ConsultarDepedencias()
         {
@@ -67,7 +69,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         private void btnNovo_Click(object sender, EventArgs e)
         {
             Passo_1(true);
-            
+
         }
         public void LimparCampos(Panel panel)
         {
@@ -88,12 +90,12 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 dataGridOrcamento.AutoGenerateColumns = false;
                 dataGridOrcamento.DataSource = null;
                 dataGridOrcamento.DataSource = _serviceOrcamento.Listar(cliente);
-                
+
                 if (tabControlOrcamento.SelectedIndex != 0)
                 {
                     LimparCampos(panelCliente);
                     tabControlOrcamento.SelectedIndex = 0;
-                  
+
                     if (panelSubMenu.Visible)
                         panelSubMenu.Visible = false;
 
@@ -101,7 +103,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 }
 
                 this.Refresh();
-                                    
+
             }
             catch
             {
@@ -201,7 +203,12 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 Passo_0("");
             else if (tabControlOrcamento.SelectedIndex == 2)
                 Passo_1(false);
-            
+            else if (tabControlOrcamento.SelectedIndex == 3)
+            {
+                AjustaTelaTamanho(0);
+                Passo_2();
+            }
+
         }
 
         private void frmOrcamento_Shown(object sender, EventArgs e)
@@ -256,7 +263,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 }
 
                 var icone = Properties.Resources.Branco1;
-                
+
                 if (iconeNovo == EnumIcone.ClienteSelecionado)
                 {
                     icone = Properties.Resources.clienteSelecionado;
@@ -287,7 +294,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
         private void dataGridCliente_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
             if (e.RowIndex == dataGridCliente.SelectedRows[0].Index)
                 SelecionaGrid(dataGridCliente, EnumIcone.ClienteSelecionado);
         }
@@ -314,6 +321,27 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                     dataGridCliente.Focus();
                 }
             }
+            else if (tabControlOrcamento.SelectedIndex == 2)
+            {
+                tabControlOrcamento.SelectedIndex = 3;
+                AjustaTelaTamanho(3);
+            }
         }
+
+        void AjustaTelaTamanho(int passo)
+        {
+            if (passo != 3)
+            {
+                this.Size = new Size(842, 691);
+                tabControlOrcamento.Size = new Size(807, 558);
+            }
+            else
+            {
+                this.Size = new Size(1105, 757);
+                tabControlOrcamento.Size = new Size(1070, 624);
+            }
+
+        }
+
     }
 }

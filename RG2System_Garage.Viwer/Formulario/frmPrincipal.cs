@@ -4,8 +4,10 @@ using RG2System_Garage.Viwer.Formulario.Orcamento;
 using RG2System_Garage.Viwer.Formulario.Produto;
 using RG2System_Garage.Viwer.Formulario.Veiculo;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace RG2System_Garage.Viwer.Formulario
@@ -15,6 +17,8 @@ namespace RG2System_Garage.Viwer.Formulario
 
         bool glb_HideMenu;
 
+        private static readonly List<Thread> _threads = new List<Thread>();
+
         public frmPrincipal()
         {
             InitializeComponent();
@@ -23,16 +27,47 @@ namespace RG2System_Garage.Viwer.Formulario
             panelformularios.Left += (pnMenu.Width - 304);
             glb_HideMenu = true;
             HideAllMenu();
+
+            Thread t1 = new Thread(new ThreadStart(run));
+            CarregaThreadAjusteForm();
+        }
+
+        private void CarregaThreadAjusteForm()
+        {
+            Thread t1 = new Thread(new ThreadStart(run));
+            t1.Priority = ThreadPriority.Lowest;
+            t1.Name = "Secundária";
+            _threads.Add(t1);
+            t1.Start();
+            //t1.Abort();
+        }
+
+        //Será necessario melhorar este processo posteriormente.
+        public void run()
+        {
+            while (true)
+            {
+                AjustarPosicaoForms();
+
+                if (_threads.Count < 1)
+                    return;
+
+                Thread.Sleep(300);
+            }
         }
 
         public void AjustarPosicaoForms()
         {
             if (panelformularios.Controls.Count > 0)
-                for (int i = 0; i < panelformularios.Controls.Count; i++)
-                {
-                    panelformularios.Controls[i].Left = (panelformularios.Width - panelformularios.Controls[i].Width) / 2;                                      
-                    panelformularios.Controls[i].Top = (panelformularios.Height - panelformularios.Controls[i].Height) / 2; ;
-                }        
+                panelformularios.BeginInvoke(
+                    new Action (() =>
+                    {
+                        for (int i = 0; i < panelformularios.Controls.Count; i++)
+                        {
+                            panelformularios.Controls[i].Left = (panelformularios.Width - panelformularios.Controls[i].Width) / 2;
+                            panelformularios.Controls[i].Top = (panelformularios.Height - panelformularios.Controls[i].Height) / 2;
+                        }
+                    }));
         }
 
         private void tmMenu_Tick(object sender, EventArgs e)
@@ -194,5 +229,13 @@ namespace RG2System_Garage.Viwer.Formulario
             AjustarPosicaoForms();
         }
 
+        private void frmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            var threads = _threads.ToList();
+            
+            foreach (var thread in threads)
+                _threads.Remove(thread); 
+
+        }
     }
 }
