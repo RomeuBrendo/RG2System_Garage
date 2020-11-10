@@ -83,6 +83,16 @@ namespace RG2System_Garage.Viwer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ProdutoServicoSelecionado {
+            get {
+                object obj = ResourceManager.GetObject("ProdutoServicoSelecionado", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap tickSelecionado {
             get {
                 object obj = ResourceManager.GetObject("tickSelecionado", resourceCulture);

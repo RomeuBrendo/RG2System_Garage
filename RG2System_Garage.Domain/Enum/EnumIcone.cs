@@ -4,6 +4,7 @@
     {
         Branco = 0,
         ClienteSelecionado = 1,
-        VeiculoSelecionado = 2
+        VeiculoSelecionado = 2,
+        ServicoProdutoSelecionado = 3
     }
 }

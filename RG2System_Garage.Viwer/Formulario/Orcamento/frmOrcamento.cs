@@ -255,7 +255,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             else if (tabControlOrcamento.SelectedIndex == 3)
             {
                 AjustaTelaTamanho(0);
-                Passo_2();
+                Passo_2(false);
             }
 
         }
@@ -289,7 +289,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         }
 
 
-        private DataGridView SelecionaGrid(DataGridView grid, EnumIcone iconeNovo) //Uso essa função p/ Cliente e Veículos
+        private DataGridView SelecionaGrid(DataGridView grid, EnumIcone iconeNovo) 
         {
             try
             {
@@ -300,7 +300,8 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 {
                     if (((Bitmap)grid.Rows[x].Cells[0].Value).Flags != Properties.Resources.Branco1.Flags)
                     {
-                        grid.Rows[x].Cells[0].Value = Properties.Resources.Branco1;
+                        if (iconeNovo != EnumIcone.ServicoProdutoSelecionado) //Produto ou serviço pode possuir varios itens
+                            grid.Rows[x].Cells[0].Value = Properties.Resources.Branco1;
 
                         if (grid.Rows[x].Index == linhaSelecionada)
                         {
@@ -327,6 +328,13 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                     icone = Properties.Resources.VeiculoSelecionado;
                     if (!linhaJaSelecionadaAntes)
                         IdVeiculoSelecionado = (Guid)grid.Rows[linhaSelecionada].Cells[2].Value;
+                }
+                else if (iconeNovo == EnumIcone.ServicoProdutoSelecionado)
+                {
+                    if (!linhaJaSelecionadaAntes)
+                        icone = Properties.Resources.ProdutoServicoSelecionado;
+                    else
+                        linhaJaSelecionadaAntes = false; //Apenas para colocar branco na linha já selecionada, porque o mesmo não é feito dentro do for acima
                 }
 
                 if (!linhaJaSelecionadaAntes)
@@ -372,6 +380,22 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             else if (tabControlOrcamento.SelectedIndex == 2)
                 Passo_3();
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dataGridServico_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+                SelecionaGrid(dataGridServico, EnumIcone.ServicoProdutoSelecionado);
+        }
+
+        private void dataGridServico_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SelecionaGrid(dataGridServico, EnumIcone.ServicoProdutoSelecionado);
         }
 
         void AjustaTelaTamanho(int passo)
