@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RG2System_Garage.Domain.Enum;
+using System;
 
 namespace RG2System_Garage.Domain.Commands.Orcamento
 {
@@ -6,5 +7,8 @@ namespace RG2System_Garage.Domain.Commands.Orcamento
     {
         public Guid OrcamentoId { get; set; }
         public Guid ProdutoServicoId { get; set; }
+        public int Quantidade { get; set; }
+        public EnumTipo Tipo { get; set; }
+        public string PrecoVenda { get; set; }
     }
 }

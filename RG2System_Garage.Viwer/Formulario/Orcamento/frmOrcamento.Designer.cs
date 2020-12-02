@@ -83,15 +83,15 @@
             this.lblQuantidadeSelecionadaProduto = new MetroFramework.Controls.MetroLabel();
             this.textQuantidadeServico = new System.Windows.Forms.TextBox();
             this.lblQuantidadeSelecionadaServico = new MetroFramework.Controls.MetroLabel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtTotalServico = new System.Windows.Forms.TextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.txtTotalProdutos = new System.Windows.Forms.TextBox();
             this.lblProdutos = new MetroFramework.Controls.MetroLabel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtAcrescimo = new System.Windows.Forms.TextBox();
             this.lblAcrescimo = new MetroFramework.Controls.MetroLabel();
             this.txtDesconto = new System.Windows.Forms.TextBox();
             this.lblValorDesconto = new MetroFramework.Controls.MetroLabel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
             this.lblValorTotal = new MetroFramework.Controls.MetroLabel();
             this.txtPlaca = new System.Windows.Forms.TextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
@@ -391,15 +391,15 @@
             this.panelServicoProduto.Controls.Add(this.lblQuantidadeSelecionadaProduto);
             this.panelServicoProduto.Controls.Add(this.textQuantidadeServico);
             this.panelServicoProduto.Controls.Add(this.lblQuantidadeSelecionadaServico);
-            this.panelServicoProduto.Controls.Add(this.textBox3);
+            this.panelServicoProduto.Controls.Add(this.txtTotalServico);
             this.panelServicoProduto.Controls.Add(this.metroLabel2);
             this.panelServicoProduto.Controls.Add(this.txtTotalProdutos);
             this.panelServicoProduto.Controls.Add(this.lblProdutos);
-            this.panelServicoProduto.Controls.Add(this.textBox2);
+            this.panelServicoProduto.Controls.Add(this.txtAcrescimo);
             this.panelServicoProduto.Controls.Add(this.lblAcrescimo);
             this.panelServicoProduto.Controls.Add(this.txtDesconto);
             this.panelServicoProduto.Controls.Add(this.lblValorDesconto);
-            this.panelServicoProduto.Controls.Add(this.textBox1);
+            this.panelServicoProduto.Controls.Add(this.txtTotal);
             this.panelServicoProduto.Controls.Add(this.lblValorTotal);
             this.panelServicoProduto.Controls.Add(this.txtPlaca);
             this.panelServicoProduto.Controls.Add(this.metroLabel1);
@@ -415,7 +415,7 @@
             this.panelServicoProduto.Controls.Add(this.dataGridServico);
             this.panelServicoProduto.Location = new System.Drawing.Point(3, 3);
             this.panelServicoProduto.Name = "panelServicoProduto";
-            this.panelServicoProduto.Size = new System.Drawing.Size(1057, 642);
+            this.panelServicoProduto.Size = new System.Drawing.Size(1063, 642);
             this.panelServicoProduto.TabIndex = 2;
             // 
             // textQuantidadeProduto
@@ -456,15 +456,16 @@
             this.lblQuantidadeSelecionadaServico.TabIndex = 24;
             this.lblQuantidadeSelecionadaServico.Text = "Qtd selecionada:";
             // 
-            // textBox3
+            // txtTotalServico
             // 
-            this.textBox3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox3.Location = new System.Drawing.Point(389, 554);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(86, 20);
-            this.textBox3.TabIndex = 23;
-            this.textBox3.Text = "0";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotalServico.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTotalServico.Location = new System.Drawing.Point(389, 554);
+            this.txtTotalServico.Name = "txtTotalServico";
+            this.txtTotalServico.Size = new System.Drawing.Size(86, 20);
+            this.txtTotalServico.TabIndex = 23;
+            this.txtTotalServico.Text = "0";
+            this.txtTotalServico.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotalServico.TextChanged += new System.EventHandler(this.txtTotalServico_TextChanged);
             // 
             // metroLabel2
             // 
@@ -484,6 +485,7 @@
             this.txtTotalProdutos.TabIndex = 21;
             this.txtTotalProdutos.Text = "0";
             this.txtTotalProdutos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotalProdutos.TextChanged += new System.EventHandler(this.txtTotalProdutos_TextChanged);
             // 
             // lblProdutos
             // 
@@ -494,15 +496,15 @@
             this.lblProdutos.TabIndex = 20;
             this.lblProdutos.Text = "Total Produtos R$:";
             // 
-            // textBox2
+            // txtAcrescimo
             // 
-            this.textBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox2.Location = new System.Drawing.Point(534, 590);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(86, 20);
-            this.textBox2.TabIndex = 5;
-            this.textBox2.Text = "0";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAcrescimo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtAcrescimo.Location = new System.Drawing.Point(534, 590);
+            this.txtAcrescimo.Name = "txtAcrescimo";
+            this.txtAcrescimo.Size = new System.Drawing.Size(86, 20);
+            this.txtAcrescimo.TabIndex = 5;
+            this.txtAcrescimo.Text = "0";
+            this.txtAcrescimo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblAcrescimo
             // 
@@ -532,15 +534,16 @@
             this.lblValorDesconto.TabIndex = 6;
             this.lblValorDesconto.Text = "Desconto R$:";
             // 
-            // textBox1
+            // txtTotal
             // 
-            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox1.Location = new System.Drawing.Point(906, 590);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(86, 20);
-            this.textBox1.TabIndex = 9;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTotal.Location = new System.Drawing.Point(906, 590);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(86, 20);
+            this.txtTotal.TabIndex = 9;
+            this.txtTotal.Text = "0";
+            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblValorTotal
             // 
@@ -683,6 +686,7 @@
             this.dataGridProduto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridProduto.Size = new System.Drawing.Size(477, 417);
             this.dataGridProduto.TabIndex = 3;
+            this.dataGridProduto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridProduto_KeyDown);
             // 
             // dataGridViewImageColumn4
             // 
@@ -1255,13 +1259,13 @@
         private MetroFramework.Controls.MetroLabel lblCliente;
         private System.Windows.Forms.TextBox txtDesconto;
         private MetroFramework.Controls.MetroLabel lblValorDesconto;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTotal;
         private MetroFramework.Controls.MetroLabel lblValorTotal;
         private System.Windows.Forms.TextBox txtPlaca;
         private MetroFramework.Controls.MetroLabel metroLabel1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtAcrescimo;
         private MetroFramework.Controls.MetroLabel lblAcrescimo;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtTotalServico;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private System.Windows.Forms.TextBox txtTotalProdutos;
         private MetroFramework.Controls.MetroLabel lblProdutos;

@@ -5,6 +5,7 @@
         Branco = 0,
         ClienteSelecionado = 1,
         VeiculoSelecionado = 2,
-        ServicoProdutoSelecionado = 3
+        ServicoSelecionado = 3,
+        ProdutoSelecionado = 4
     }
 }

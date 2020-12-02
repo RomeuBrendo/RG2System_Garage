@@ -1,4 +1,5 @@
 ﻿using prmToolkit.NotificationPattern.Extensions;
+using RG2System_Garage.Domain.Commands.Orcamento;
 using RG2System_Garage.Domain.Enum;
 using RG2System_Garage.Domain.Enum.Orcamento;
 using RG2System_Garage.Domain.Interfaces.Services;
@@ -6,7 +7,9 @@ using RG2System_Garage.Infra.Repositories.Transactions;
 using RG2System_Garage.Shared.Formulario.Toast;
 using RG2System_Garage.Viwer.Resources;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -21,6 +24,9 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
         public bool CentralizarTela = false;
         Toast toast = new Toast();
+
+        List<Guid> _ServicosSelecionado = new List<Guid>();
+        List<OrcamentoItensRequest> _itens = new List<OrcamentoItensRequest>();
 
         Guid IdClienteSelecionado, IdVeiculoSelecionado = Guid.Empty;
 
@@ -300,7 +306,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 {
                     if (((Bitmap)grid.Rows[x].Cells[0].Value).Flags != Properties.Resources.Branco1.Flags)
                     {
-                        if (iconeNovo != EnumIcone.ServicoProdutoSelecionado) //Produto ou serviço pode possuir varios itens
+                        if ((iconeNovo != EnumIcone.ProdutoSelecionado) && (iconeNovo != EnumIcone.ServicoSelecionado)) //Produto ou serviço pode possuir varios itens
                             grid.Rows[x].Cells[0].Value = Properties.Resources.Branco1;
 
                         if (grid.Rows[x].Index == linhaSelecionada)
@@ -329,14 +335,52 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                     if (!linhaJaSelecionadaAntes)
                         IdVeiculoSelecionado = (Guid)grid.Rows[linhaSelecionada].Cells[2].Value;
                 }
-                else if (iconeNovo == EnumIcone.ServicoProdutoSelecionado)
+
+                else if (EprodutoOUservico(iconeNovo))
                 {
-                    if (!linhaJaSelecionadaAntes)
-                        icone = Properties.Resources.ProdutoServicoSelecionado;
+                    if (iconeNovo == EnumIcone.ProdutoSelecionado)
+                    {
+                        var produto = new OrcamentoItensRequest();
+
+                        if (!linhaJaSelecionadaAntes)
+                        {           
+                            produto.Tipo = EnumTipo.Produto;
+                            produto.ProdutoServicoId = (Guid)grid.Rows[linhaSelecionada].Cells[1].Value;
+                            produto.Quantidade = (int)grid.Rows[linhaSelecionada].Cells[3].Value;
+
+                            txtTotalProdutos.Text = Convert.ToString(Convert.ToDecimal(txtTotalProdutos.Text) + Convert.ToDecimal(grid.Rows[linhaSelecionada].Cells[4].Value));
+                            _itens.Add(produto);
+                            icone = Properties.Resources.ProdutoServicoSelecionado;
+                        }
+                        else
+                        {
+                            _itens.RemoveAll(x => x.ProdutoServicoId == (Guid)grid.Rows[linhaSelecionada].Cells[1].Value);
+                            txtTotalProdutos.Text = Convert.ToString(Convert.ToDecimal(txtTotalProdutos.Text) - Convert.ToDecimal(grid.Rows[linhaSelecionada].Cells[4].Value));
+                        }
+
+                        textQuantidadeProduto.Text = Convert.ToString(_itens.Where(x => x.Tipo == EnumTipo.Produto).Select(x => x.ProdutoServicoId).Count());
+                    }
                     else
+                    {
+                        if (!linhaJaSelecionadaAntes)
+                        {
+                            _ServicosSelecionado.Add((Guid)grid.Rows[linhaSelecionada].Cells[1].Value);
+                            txtTotalServico.Text = Convert.ToString(Convert.ToDecimal(txtTotalServico.Text) + Convert.ToDecimal(grid.Rows[linhaSelecionada].Cells[3].Value));
+                            icone = Properties.Resources.ProdutoServicoSelecionado;
+                        }
+                        else
+                        {
+                            _ServicosSelecionado.Remove((Guid)grid.Rows[linhaSelecionada].Cells[1].Value);
+                            txtTotalServico.Text = Convert.ToString(Convert.ToDecimal(txtTotalServico.Text) - Convert.ToDecimal(grid.Rows[linhaSelecionada].Cells[3].Value));
+                         }
+
+                        textQuantidadeServico.Text = Convert.ToString(_ServicosSelecionado.Count);
+                    }
+
+                    if (linhaJaSelecionadaAntes)
                         linhaJaSelecionadaAntes = false; //Apenas para colocar branco na linha já selecionada, porque o mesmo não é feito dentro do for acima
                 }
-
+              
                 if (!linhaJaSelecionadaAntes)
                     grid.Rows[linhaSelecionada].Cells[0].Value = icone;
 
@@ -390,12 +434,33 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         private void dataGridServico_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space)
-                SelecionaGrid(dataGridServico, EnumIcone.ServicoProdutoSelecionado);
+                SelecionaGrid(dataGridServico, EnumIcone.ServicoSelecionado);
         }
 
         private void dataGridServico_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            SelecionaGrid(dataGridServico, EnumIcone.ServicoProdutoSelecionado);
+            SelecionaGrid(dataGridServico, EnumIcone.ServicoSelecionado);
+        }
+
+        private void txtTotalServico_TextChanged(object sender, EventArgs e)
+        {
+            CalculaTotal();
+        }
+
+        void CalculaTotal()
+        {
+            txtTotal.Text = Convert.ToString((Convert.ToDecimal(txtTotalProdutos.Text) + Convert.ToDecimal(txtTotalServico.Text) + Convert.ToDecimal(txtAcrescimo.Text)) - Convert.ToDecimal(txtDesconto.Text));
+        }
+
+        private void dataGridProduto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+                SelecionaGrid(dataGridProduto, EnumIcone.ProdutoSelecionado);
+        }
+
+        private void txtTotalProdutos_TextChanged(object sender, EventArgs e)
+        {
+            CalculaTotal();
         }
 
         void AjustaTelaTamanho(int passo)
@@ -411,6 +476,11 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 tabControlOrcamento.Size = new Size(1070, 680);
             }
 
+        }
+
+        private bool EprodutoOUservico(EnumIcone icone)
+        {
+            return ((icone == EnumIcone.ProdutoSelecionado) || (icone == EnumIcone.ServicoSelecionado));
         }
 
     }

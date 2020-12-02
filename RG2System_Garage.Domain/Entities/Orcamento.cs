@@ -70,7 +70,7 @@ namespace RG2System_Garage.Domain.Entities
 
             foreach (var item in request)
             {
-                var itemNovo = new OrcamentoItem(item.OrcamentoId, item.ProdutoServicoId);
+                var itemNovo = new OrcamentoItem(item.OrcamentoId, item.ProdutoServicoId, item.PrecoVenda);
                 AddNotifications(itemNovo);
 
                 itensNovos.Add(itemNovo);

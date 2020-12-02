@@ -11,6 +11,8 @@ namespace RG2System_Garage.Infra.Repositories.MAP
             builder.ToTable("OrcamentoItem");
 
             builder.HasKey(x => x.Id);
+
+            builder.Property(x => x.PrecoVenda).HasMaxLength(999999);
         }
 
     }
