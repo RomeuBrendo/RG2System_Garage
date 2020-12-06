@@ -25,7 +25,6 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         public bool CentralizarTela = false;
         Toast toast = new Toast();
 
-        List<Guid> _ServicosSelecionado = new List<Guid>();
         List<OrcamentoItensRequest> _itens = new List<OrcamentoItensRequest>();
 
         Guid IdClienteSelecionado, IdVeiculoSelecionado = Guid.Empty;
@@ -338,44 +337,13 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
                 else if (EprodutoOUservico(iconeNovo))
                 {
+                    if (!linhaJaSelecionadaAntes)
+                        icone = Properties.Resources.ProdutoServicoSelecionado;
+
                     if (iconeNovo == EnumIcone.ProdutoSelecionado)
-                    {
-                        var produto = new OrcamentoItensRequest();
-
-                        if (!linhaJaSelecionadaAntes)
-                        {           
-                            produto.Tipo = EnumTipo.Produto;
-                            produto.ProdutoServicoId = (Guid)grid.Rows[linhaSelecionada].Cells[1].Value;
-                            produto.Quantidade = (int)grid.Rows[linhaSelecionada].Cells[3].Value;
-
-                            txtTotalProdutos.Text = Convert.ToString(Convert.ToDecimal(txtTotalProdutos.Text) + Convert.ToDecimal(grid.Rows[linhaSelecionada].Cells[4].Value));
-                            _itens.Add(produto);
-                            icone = Properties.Resources.ProdutoServicoSelecionado;
-                        }
-                        else
-                        {
-                            _itens.RemoveAll(x => x.ProdutoServicoId == (Guid)grid.Rows[linhaSelecionada].Cells[1].Value);
-                            txtTotalProdutos.Text = Convert.ToString(Convert.ToDecimal(txtTotalProdutos.Text) - Convert.ToDecimal(grid.Rows[linhaSelecionada].Cells[4].Value));
-                        }
-
-                        textQuantidadeProduto.Text = Convert.ToString(_itens.Where(x => x.Tipo == EnumTipo.Produto).Select(x => x.ProdutoServicoId).Count());
-                    }
+                        CalculaTotaisProdutoServico(grid, EnumTipo.Produto, !linhaJaSelecionadaAntes, linhaSelecionada);
                     else
-                    {
-                        if (!linhaJaSelecionadaAntes)
-                        {
-                            _ServicosSelecionado.Add((Guid)grid.Rows[linhaSelecionada].Cells[1].Value);
-                            txtTotalServico.Text = Convert.ToString(Convert.ToDecimal(txtTotalServico.Text) + Convert.ToDecimal(grid.Rows[linhaSelecionada].Cells[3].Value));
-                            icone = Properties.Resources.ProdutoServicoSelecionado;
-                        }
-                        else
-                        {
-                            _ServicosSelecionado.Remove((Guid)grid.Rows[linhaSelecionada].Cells[1].Value);
-                            txtTotalServico.Text = Convert.ToString(Convert.ToDecimal(txtTotalServico.Text) - Convert.ToDecimal(grid.Rows[linhaSelecionada].Cells[3].Value));
-                         }
-
-                        textQuantidadeServico.Text = Convert.ToString(_ServicosSelecionado.Count);
-                    }
+                        CalculaTotaisProdutoServico(grid, EnumTipo.Servico, !linhaJaSelecionadaAntes, linhaSelecionada);
 
                     if (linhaJaSelecionadaAntes)
                         linhaJaSelecionadaAntes = false; //Apenas para colocar branco na linha já selecionada, porque o mesmo não é feito dentro do for acima
@@ -391,6 +359,48 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat(iconeNovo), EnumToast.Erro);
                 return null;
             }
+        }
+
+        private void CalculaTotaisProdutoServico(DataGridView grid, EnumTipo tipo, Boolean inclusao, int linhaSelecionada)
+        {
+            try
+            {
+                var Iprecovenda = 3;
+                if (tipo == EnumTipo.Produto) //Verifica em qual coluna está preço de venda
+                    Iprecovenda = 4;
+
+                var item = new OrcamentoItensRequest();
+               
+                if (!inclusao)
+                    _itens.RemoveAll(x => x.ProdutoServicoId == (Guid)grid.Rows[linhaSelecionada].Cells[1].Value);
+                else
+                {
+                    item.Tipo = tipo;
+                    item.ProdutoServicoId = (Guid)grid.Rows[linhaSelecionada].Cells[1].Value;
+                    item.PrecoVenda = Convert.ToDecimal(grid.Rows[linhaSelecionada].Cells[Iprecovenda].Value);
+                    
+                    if (tipo == EnumTipo.Produto)
+                        item.Quantidade = (int)grid.Rows[linhaSelecionada].Cells[3].Value;
+
+                    _itens.Add(item);
+                }
+
+                if (tipo == EnumTipo.Servico)
+                {
+                    txtTotalServico.Text = Convert.ToString(_itens.Where(x => x.Tipo == EnumTipo.Servico).Sum(x => x.PrecoVenda).ToString());
+                    textQuantidadeServico.Text = Convert.ToString(_itens.Where(x => x.Tipo == EnumTipo.Servico).Select(x => x.ProdutoServicoId).Count());
+                }
+                else
+                {
+                    txtTotalProdutos.Text = Convert.ToString(_itens.Where(x => x.Tipo == EnumTipo.Produto).Sum(x => x.Quantidade * x.PrecoVenda).ToString());
+                    textQuantidadeProduto.Text = Convert.ToString(_itens.Where(x => x.Tipo == EnumTipo.Produto).Select(x => x.ProdutoServicoId).Count());
+                }
+
+            }
+            catch
+            {
+                return;
+            }            
         }
 
         private void dataGridCliente_CellClick(object sender, DataGridViewCellEventArgs e)
