@@ -465,7 +465,26 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         private void dataGridProduto_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space)
+            {
                 SelecionaGrid(dataGridProduto, EnumIcone.ProdutoSelecionado);
+                e.Handled = true;
+            }
+
+            if (e.KeyCode == Keys.F3)
+                e.Handled = true;
+
+            if ((e.KeyCode == Keys.Enter) || (e.KeyCode == Keys.F2))
+            {
+                dataGridProduto.SelectedRows[0].Cells[3].Selected = true;
+                dataGridProduto.BeginEdit(true);
+                e.Handled = true;
+            }
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                
+                e.SuppressKeyPress = true;
+            }
         }
 
         private void txtTotalProdutos_TextChanged(object sender, EventArgs e)
@@ -486,6 +505,41 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 tabControlOrcamento.Size = new Size(1070, 680);
             }
 
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            try
+            {
+                int icolumn = dataGridProduto.CurrentCell.ColumnIndex;
+                int irow = dataGridProduto.CurrentCell.RowIndex;
+
+                if (keyData == Keys.Enter)
+                {
+                    if (icolumn == dataGridProduto.Columns.Count - 1)
+                    {
+                        dataGridProduto.Rows.Add();
+                        dataGridProduto.CurrentCell = dataGridProduto[0, irow + 1];
+                    }
+                    else
+                    {
+                        dataGridProduto.CurrentCell = dataGridProduto[icolumn + 1, irow];
+                    }
+                    return true;
+                }
+                else
+                    return base.ProcessCmdKey(ref msg, keyData);
+            }
+            catch 
+            {
+                return false;
+            }
+
+        }
+    
+        private void dataGridProduto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SelecionaGrid(dataGridProduto, EnumIcone.ProdutoSelecionado);
         }
 
         private bool EprodutoOUservico(EnumIcone icone)
