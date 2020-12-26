@@ -480,11 +480,6 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 e.Handled = true;
             }
 
-            if (e.KeyCode == Keys.Escape)
-            {
-                
-                e.SuppressKeyPress = true;
-            }
         }
 
         private void txtTotalProdutos_TextChanged(object sender, EventArgs e)
@@ -511,6 +506,12 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         {
             try
             {
+                if (tabControlOrcamento.SelectedIndex != 3)
+                    return false;
+
+                if (dataGridProduto == null)
+                    return false;
+
                 int icolumn = dataGridProduto.CurrentCell.ColumnIndex;
                 int irow = dataGridProduto.CurrentCell.RowIndex;
 
