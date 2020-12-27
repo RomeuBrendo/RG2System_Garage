@@ -290,8 +290,10 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         }
 
         private void label1_Click(object sender, EventArgs e)
-        {
+        {            
+            LimpaPasso3Orcamento();
             Passo_0("");
+            AjustaTelaTamanho(0);
         }
 
         private void lblRetornar_Click(object sender, EventArgs e)
