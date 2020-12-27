@@ -12,11 +12,12 @@ namespace RG2System_Garage.Domain.Entities
         {
 
         }
-        public OrcamentoItem(Guid orcamentoId, Guid produtoServicoId, string precoVenda)
+        public OrcamentoItem(Guid orcamentoId, Guid produtoServicoId, string precoVenda, int quantidade)
         {
             this.ClearNotifications();
             OrcamentoId = orcamentoId;
             ProdutoServicoId = produtoServicoId;
+            Quantidade = quantidade;
 
             //new AddNotifications<OrcamentoItem>(this)
             //    .IfNull(x => x.OrcamentoId, MSG.X0_INVALIDO.ToFormat("Orçamento"))
@@ -38,5 +39,6 @@ namespace RG2System_Garage.Domain.Entities
         public Guid OrcamentoId { get; private set; }
         public Guid ProdutoServicoId { get; private set; }
         public float PrecoVenda { get; private set; }
+        public int Quantidade { get; private set; }
     }
 }

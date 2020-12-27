@@ -13,6 +13,7 @@ namespace RG2System_Garage.Infra.Repositories.MAP
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.PrecoVenda).HasMaxLength(999999);
+            builder.Property(x => x.Quantidade).HasMaxLength(9999).HasDefaultValue(0);
         }
 
     }
