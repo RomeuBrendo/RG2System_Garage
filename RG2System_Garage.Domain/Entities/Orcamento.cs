@@ -40,6 +40,9 @@ namespace RG2System_Garage.Domain.Entities
             if (Itens == null)
                 AddNotification("Itens", MSG.X0_INVALIDO.ToFormat("Itens"));
 
+            if (Itens.Count == 0)
+                AddNotification("Itens", MSG.X0_E_OBRIGATORIO.ToFormat("Produto/Serviço"));
+
             //new AddNotifications<Orcamento>(this)
             //    //.IfNullOrEmpty(x => x.FormaPagamento, MSG.X0_INVALIDA.ToFormat("Forma Pagamento"))
             //    .IfNotDate(x => x.DataCriacao.ToString(), MSG.X0_INVALIDA.ToFormat("Data Criação"));
