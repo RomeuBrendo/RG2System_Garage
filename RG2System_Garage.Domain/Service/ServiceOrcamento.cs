@@ -139,7 +139,7 @@ namespace RG2System_Garage.Domain.Service
                         var itemNovo = new OrcamentoItensResponse();
                         itemNovo.OrcamentoId = item.Id;
                         itemNovo.ProdutoServico = (ProdutoServicoResponse)_repositoryProdutoServico.ObterPorId(item.ProdutoServicoId);
-
+                        
                         itens.Add(itemNovo);
                     }
 

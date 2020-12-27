@@ -740,6 +740,12 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             txtDesconto.Text = "0,00";
         }
 
+        private void frmOrcamento_Load(object sender, EventArgs e)
+        {
+
+            this.reportViewer1.RefreshReport();
+        }
+
         private void ItensResponseParaRequest(List<OrcamentoItensResponse> listaResponse)
         {
             try

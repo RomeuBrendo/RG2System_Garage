@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Rectangle Name="Rectangle1">
+        <ReportItems>
+          <Line Name="Line1">
+            <Left>3.99203cm</Left>
+            <Height>3.28083cm</Height>
+            <Width>0cm</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!NomeFantasia.Value, "DataSet1")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.60537cm</Top>
+            <Left>4.73287cm</Left>
+            <Height>0.6cm</Height>
+            <Width>11.41646cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Celular.Value, "DataSet1")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>1.69926cm</Top>
+            <Left>4.73287cm</Left>
+            <Height>0.6cm</Height>
+            <Width>11.41646cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Endereco.Value, "DataSet1")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox3</rd:DefaultName>
+            <Top>2.36333cm</Top>
+            <Left>4.73287cm</Left>
+            <Height>0.6cm</Height>
+            <Width>11.41646cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Image Name="Image1">
+            <Source>Embedded</Source>
+            <Value>manutencao</Value>
+            <Sizing>FitProportional</Sizing>
+            <Top>0.63182cm</Top>
+            <Left>1.00224cm</Left>
+            <Height>1.92333cm</Height>
+            <Width>2.50542cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
+          <Line Name="Line3">
+            <Left>17.07537cm</Left>
+            <Height>3.28083cm</Height>
+            <Width>0cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Line Name="Line4">
+            <Top>1.64042cm</Top>
+            <Left>17.07537cm</Left>
+            <Height>0cm</Height>
+            <Width>3.57187cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Left>0cm</Left>
+        <Height>3.28083cm</Height>
+        <Width>20.64724cm</Width>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <TopBorder>
+            <Style>Solid</Style>
+          </TopBorder>
+          <BottomBorder>
+            <Style>Solid</Style>
+          </BottomBorder>
+          <LeftBorder>
+            <Style>Solid</Style>
+          </LeftBorder>
+          <RightBorder>
+            <Style>Solid</Style>
+          </RightBorder>
+        </Style>
+      </Rectangle>
+    </ReportItems>
+    <Height>1.29167in</Height>
+    <Style />
+  </Body>
+  <Width>8.12883in</Width>
+  <Page>
+    <PageHeight>29.7cm</PageHeight>
+    <PageWidth>21cm</PageWidth>
+    <LeftMargin>2cm</LeftMargin>
+    <RightMargin>2cm</RightMargin>
+    <TopMargin>2cm</TopMargin>
+    <BottomMargin>2cm</BottomMargin>
+    <ColumnSpacing>0.13cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="RG2System_GarageDomainCommandsConfiguracao">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>66f2e622-629b-47f9-b4d9-7e3f0ec6bb38</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>RG2System_GarageDomainCommandsConfiguracao</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Celular">
+          <DataField>Celular</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Email">
+          <DataField>Email</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Endereco">
+          <DataField>Endereco</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Fixo">
+          <DataField>Fixo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Id">
+          <DataField>Id</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="NomeFantasia">
+          <DataField>NomeFantasia</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RazaoSocial">
+          <DataField>RazaoSocial</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>RG2System_Garage.Domain.Commands.Configuracao</rd:DataSetName>
+        <rd:TableName>DadosEmpresaResponse</rd:TableName>
+        <rd:ObjectDataSourceType>RG2System_Garage.Domain.Commands.Configuracao.DadosEmpresaResponse, RG2System_Garage.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <EmbeddedImages>
+    <EmbeddedImage Name="manutencao">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>4ac4a7de-2644-41e9-ab22-b1aacc3aa453</rd:ReportID>
+</Report>
