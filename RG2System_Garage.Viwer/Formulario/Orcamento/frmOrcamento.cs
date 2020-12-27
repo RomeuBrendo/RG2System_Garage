@@ -716,6 +716,15 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             SelecionaGrid(dataGridProduto, EnumIcone.ProdutoSelecionado);
         }
 
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            var orcamentoSelecionado = OrcamentoSelecionado();
+
+            var orcamento = _serviceOrcamento.Obter_ByNumero(orcamentoSelecionado.Numero);
+
+            
+        }
+
         private void LimpaPasso3Orcamento()
         {
             txtCliente.Text = string.Empty;
@@ -729,6 +738,23 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             txtTotal.Text = "0,00";
             txtAcrescimo.Text = "0,00";
             txtDesconto.Text = "0,00";
+        }
+
+        private void ItensResponseParaRequest(List<OrcamentoItensResponse> listaResponse)
+        {
+            try
+            {
+                foreach (var item in listaResponse)
+                {
+                    var request = new OrcamentoItensRequest();
+                    //request.OrcamentoId = item.Id
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

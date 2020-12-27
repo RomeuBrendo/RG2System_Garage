@@ -137,7 +137,7 @@ namespace RG2System_Garage.Domain.Service
                     foreach (var item in orcamento.Itens)
                     {
                         var itemNovo = new OrcamentoItensResponse();
-                        itemNovo.Id = item.Id;
+                        itemNovo.OrcamentoId = item.Id;
                         itemNovo.ProdutoServico = (ProdutoServicoResponse)_repositoryProdutoServico.ObterPorId(item.ProdutoServicoId);
 
                         itens.Add(itemNovo);
@@ -153,8 +153,8 @@ namespace RG2System_Garage.Domain.Service
             {
                 return null;
             }
-
         }
+
         public OrcamentoResponse Obter_ByNumero(Int64 numero)
         {
             try

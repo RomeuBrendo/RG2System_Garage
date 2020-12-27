@@ -1,5 +1,6 @@
 ﻿using RG2System_Garage.Domain.Enum;
 using System;
+using System.Collections.Generic;
 
 namespace RG2System_Garage.Domain.Commands.Orcamento
 {
@@ -10,5 +11,6 @@ namespace RG2System_Garage.Domain.Commands.Orcamento
         public int Quantidade { get; set; }
         public EnumTipo Tipo { get; set; }
         public Decimal PrecoVenda { get; set; }
+
     }
 }
