@@ -232,7 +232,6 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 AjustaTelaTamanho(3);
                 txtCliente.Text = lblClienteTitulo.Text;
                 txtPlaca.Text = dataGridVeículo.SelectedRows[0].Cells[1].Value.ToString();
-                txtTotal.Text = "0";
 
                 if (atualizarGrid)
                 {
@@ -437,12 +436,12 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
                 if (tipo == EnumTipo.Servico)
                 {
-                    txtTotalServico.Text = Convert.ToString(_itens.Where(x => x.Tipo == EnumTipo.Servico).Sum(x => x.PrecoVenda).ToString());
+                    txtTotalServico.Text = Convert.ToString(_itens.Where(x => x.Tipo == EnumTipo.Servico).Sum(x => x.PrecoVenda).ToString("N2"));
                     textQuantidadeServico.Text = Convert.ToString(_itens.Where(x => x.Tipo == EnumTipo.Servico).Select(x => x.ProdutoServicoId).Count());
                 }
                 else
                 {
-                    txtTotalProdutos.Text = Convert.ToString(_itens.Where(x => x.Tipo == EnumTipo.Produto).Sum(x => x.Quantidade * x.PrecoVenda).ToString());
+                    txtTotalProdutos.Text = Convert.ToString(_itens.Where(x => x.Tipo == EnumTipo.Produto).Sum(x => x.Quantidade * x.PrecoVenda).ToString("N2"));
                     textQuantidadeProduto.Text = Convert.ToString(_itens.Where(x => x.Tipo == EnumTipo.Produto).Select(x => x.ProdutoServicoId).Count());
                 }
 
@@ -523,7 +522,10 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
         void CalculaTotal()
         {
-            txtTotal.Text = Convert.ToString((Convert.ToDecimal(txtTotalProdutos.Text) + Convert.ToDecimal(txtTotalServico.Text) + Convert.ToDecimal(txtAcrescimo.Text)) - Convert.ToDecimal(txtDesconto.Text));
+
+            txtTotal.Text = ((Convert.ToDecimal(txtTotalProdutos.Text) + Convert.ToDecimal(txtTotalServico.Text) + Convert.ToDecimal(txtAcrescimo.Text)) - Convert.ToDecimal(txtDesconto.Text)).ToString("N2");
+
+
         }
 
         private void dataGridProduto_KeyDown(object sender, KeyEventArgs e)
@@ -559,8 +561,8 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             else
             {
-                this.Size = new Size(1105, 809);
-                tabControlOrcamento.Size = new Size(1070, 680);
+                this.Size = new Size(1046, 742);
+                tabControlOrcamento.Size = new Size(1024, 622);
             }
 
         }
@@ -707,19 +709,26 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             Salvar();
         }
 
+        private void dataGridProduto_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            //Ajustar depois
+            SelecionaGrid(dataGridProduto, EnumIcone.ProdutoSelecionado);
+            SelecionaGrid(dataGridProduto, EnumIcone.ProdutoSelecionado);
+        }
+
         private void LimpaPasso3Orcamento()
         {
             txtCliente.Text = string.Empty;
             txtPlaca.Text = string.Empty;
             txtPesquisarServico.Text = string.Empty;
             txtPesquisarProduto.Text = string.Empty;
-            textQuantidadeServico.Text = "0";
-            txtTotalServico.Text = "0";
-            textQuantidadeProduto.Text = "0";
-            txtTotalProdutos.Text = "0";
-            txtTotal.Text = "0";
-            txtAcrescimo.Text = "0";
-            txtDesconto.Text = "0";
+            textQuantidadeServico.Text = "0,00";
+            txtTotalServico.Text = "0,00";
+            textQuantidadeProduto.Text = "0,00";
+            txtTotalProdutos.Text = "0,00";
+            txtTotal.Text = "0,00";
+            txtAcrescimo.Text = "0,00";
+            txtDesconto.Text = "0,00";
         }
     }
 }

@@ -17,8 +17,11 @@ namespace RG2System_Garage.Domain.Entities
             this.ClearNotifications();
             OrcamentoId = orcamentoId;
             ProdutoServicoId = produtoServicoId;
+
             Quantidade = quantidade;
 
+            new AddNotifications<OrcamentoItem>(this)
+                .IfEqualsZero(x => x.Quantidade, MSG.A_X0_DEVE_SER_MAIOR_OU_IGUAL_A_X1.ToFormat("Quantidade do produto", "1"));
             //new AddNotifications<OrcamentoItem>(this)
             //    .IfNull(x => x.OrcamentoId, MSG.X0_INVALIDO.ToFormat("Orçamento"))
             //    .IfNull(x => x.ProdutoServicoId);
