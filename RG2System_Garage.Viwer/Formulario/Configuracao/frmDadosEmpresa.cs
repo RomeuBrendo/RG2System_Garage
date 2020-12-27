@@ -68,6 +68,7 @@ namespace RG2System_Garage.Viwer.Formulario.Configuracao
                 request.NomeFantasia = txtNomeFantasia.Text;
                 request.RazaoSocial = txtRazaoSocial.Text;
                 request.Celular = txtCelular.Text;
+                request.Fixo = txtFixo.Text;
                 request.Email = txtEmail.Text;
                 request.Endereco = txtEndereco.Text;
 
