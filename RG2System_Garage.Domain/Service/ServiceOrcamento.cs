@@ -53,7 +53,7 @@ namespace RG2System_Garage.Domain.Service
                 
                 var orcamentoNovo = new Orcamento(request, _repositoyCliente.ObterPorId(request.ClienteId));
 
-                orcamentoNovo.Numero = _repositoryOrcamento.Listar().OrderByDescending(x => x.Numero).Select(x => x.Numero).FirstOrDefault<Int64>() + 1;
+              //  orcamentoNovo.Numero = _repositoryOrcamento.Listar().OrderByDescending(x => x.Numero).Select(x => x.Numero).FirstOrDefault<Int64>() + 1;
 
                 AddNotifications(orcamentoNovo);
 

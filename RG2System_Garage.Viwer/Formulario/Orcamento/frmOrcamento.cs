@@ -170,6 +170,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                     CarregaGrid(dataGridCliente, "", EnumListar.Cliente);
 
                 this.Text = "Selecionar Cliente p/ Orçamento";
+                lblFinalizar.Visible = false;
                 tabControlOrcamento.SelectedIndex = 1;
 
                 if (!panelSubMenu.Visible)
@@ -200,6 +201,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 this.Text = "Selecionar Veículo p/ Orçamento";
 
                 lblClienteTitulo.Text = dataGridCliente.SelectedRows[0].Cells[1].Value.ToString();
+                lblFinalizar.Visible = false;
 
                 tabControlOrcamento.SelectedIndex = 2;
 
@@ -225,6 +227,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             try
             {
                 this.Visible = false;
+                lblFinalizar.Visible = true;
                 this.Text = "Selecione Produtos e Serviços";
                 AjustaTelaTamanho(3);
                 txtCliente.Text = lblClienteTitulo.Text;
@@ -697,6 +700,11 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("orçamento") + ex, EnumToast.Erro);
                 return null;
             }
+        }
+
+        private void lblFinalizar_Click(object sender, EventArgs e)
+        {
+            Salvar();
         }
 
         private void LimpaPasso3Orcamento()

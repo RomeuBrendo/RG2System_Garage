@@ -22,7 +22,7 @@ namespace RG2System_Garage.Infra.Repositories.MAP
             builder.Property(x => x.ExisteOrdemServico).HasDefaultValue(false);
             builder.Property(x => x.ValorDesconto).HasColumnName("Desconto");
             builder.Property(x => x.ValorAcrescimo).HasColumnName("Acrescimo");
-            builder.Property(x => x.Numero).IsUnicode().IsRequired().HasMaxLength(99999);
+            builder.Property(x => x.Numero).IsUnicode().IsRequired().HasMaxLength(99999).ValueGeneratedOnAdd();
 
         }
     }
