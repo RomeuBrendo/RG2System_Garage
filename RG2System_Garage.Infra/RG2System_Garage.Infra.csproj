@@ -351,6 +351,10 @@
     <Compile Include="Migrations\20201226202321_AjusteOrcamento.designer.cs">
       <DependentUpon>20201226202321_AjusteOrcamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20201227141502_OrcamentoNumeroTeste.cs" />
+    <Compile Include="Migrations\20201227141502_OrcamentoNumeroTeste.designer.cs">
+      <DependentUpon>20201227141502_OrcamentoNumeroTeste.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\RepositoryBase.cs" />

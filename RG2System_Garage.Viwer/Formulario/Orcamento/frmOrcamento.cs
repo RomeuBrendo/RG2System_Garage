@@ -92,6 +92,10 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 return;
             }
 
+            if (e.KeyCode == Keys.Delete)
+                if (tabControlOrcamento.SelectedIndex == 0)
+                    btnExcluir.PerformClick();
+
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -152,7 +156,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 this.Refresh();
 
             }
-            catch(Exception ex)
+            catch
             {
                 toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Orcamento"), EnumToast.Erro);
                 return;
@@ -641,6 +645,55 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + " " + ex, EnumToast.Erro);
                 txtPesquisarProduto.Focus();
                 return;
+            }
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var dialogResult = MessageBox.Show("Deseja confirmar exclusão?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                if (dialogResult == DialogResult.No)
+                    return;
+
+                _serviceOrcamento.ClearNotifications();
+
+                var orcamento = OrcamentoSelecionado();
+
+                if (orcamento == null)
+                    return;
+
+                _serviceOrcamento.Excluir(orcamento.Numero);
+
+                if (VerificaNotificacoes(_serviceOrcamento))
+                {
+                    _unitOfWork.SaveChanges();
+                    Passo_0("");
+                    toast.ShowToast(MSG.EXCLUSAO_REALIZADA_COM_SUCESSO, EnumToast.Sucesso);
+                    this.Focus();
+                    dataGridOrcamento.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+                this.Focus();
+                dataGridOrcamento.Focus();
+                return;
+            }
+        }
+
+        private OrcamentoResponse OrcamentoSelecionado()
+        {
+            try
+            {
+                return dataGridOrcamento.SelectedRows[0].DataBoundItem as OrcamentoResponse;
+            }
+            catch (Exception ex)
+            {
+                toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("orçamento") + ex, EnumToast.Erro);
+                return null;
             }
         }
 

@@ -74,12 +74,20 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
+                var orcamento = _repositoryOrcamento.ObterPor(x => x.Numero == numero, x => x.Itens);
 
+                if (orcamento == null)
+                {
+                    AddNotification("Orcamento", MSG.X0_NAO_ENCONTRADO.ToFormat("Orçamento"));
+                    return;
+                }
+
+                _repositoryOrcamento.Remover(orcamento);
             }
-            catch
+            catch (Exception ex)
             {
-
-                throw;
+                AddNotification("Orcamento", MSG.NAO_E_POSSIVEL_EXCLUIR_ESTE_X0.ToFormat("orçamento") + ex);
+                return;
             }
         }
 
