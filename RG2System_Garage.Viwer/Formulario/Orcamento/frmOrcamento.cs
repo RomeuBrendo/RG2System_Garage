@@ -80,6 +80,10 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 }
             }
 
+            if (e.KeyCode == Keys.F4)            
+                if ((tabControlOrcamento.SelectedIndex != 0) && (tabControlOrcamento.SelectedIndex != 3))
+                    ProximoPasso();           
+
             if (e.KeyCode == Keys.Insert)
             {
                 if (tabControlOrcamento.SelectedIndex == 0)
@@ -454,6 +458,11 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
         private void lblProximo_Click(object sender, EventArgs e)
         {
+            ProximoPasso();
+        }
+
+        private void ProximoPasso()
+        {
             if (tabControlOrcamento.SelectedIndex == 1)
             {
                 if ((_IdClienteSelecionado != Guid.Empty) && (_IdClienteSelecionado != null))
@@ -466,11 +475,20 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 else
                 {
                     toast.ShowToast(MSG.E_NECESSARIO_SELECIONAR_UM_X0_PARA_PROSSEGUIR.ToFormat("Cliente"), EnumToast.Informacao);
+                    this.Focus();
                     dataGridCliente.Focus();
                 }
             }
             else if (tabControlOrcamento.SelectedIndex == 2)
-                Passo_3();
+                if ((_IdVeiculoSelecionado != Guid.Empty) && (_IdVeiculoSelecionado != null))
+                    Passo_3();
+                else
+                {
+                    toast.ShowToast(MSG.E_NECESSARIO_SELECIONAR_UM_X0_PARA_PROSSEGUIR.ToFormat("Veículo"), EnumToast.Informacao);
+                    this.Focus();
+                    dataGridVeículo.Focus();
+                }
+
         }
 
         private void btnSair_Click(object sender, EventArgs e)
