@@ -18,9 +18,9 @@ namespace RG2System_Garage.Domain.Entities
             OrcamentoId = orcamentoId;
             ProdutoServicoId = produtoServicoId;
 
-            new AddNotifications<OrcamentoItem>(this)
-                .IfNull(x => x.OrcamentoId, MSG.X0_INVALIDO.ToFormat("Orçamento"))
-                .IfNull(x => x.ProdutoServicoId);
+            //new AddNotifications<OrcamentoItem>(this)
+            //    .IfNull(x => x.OrcamentoId, MSG.X0_INVALIDO.ToFormat("Orçamento"))
+            //    .IfNull(x => x.ProdutoServicoId);
 
             try
             {

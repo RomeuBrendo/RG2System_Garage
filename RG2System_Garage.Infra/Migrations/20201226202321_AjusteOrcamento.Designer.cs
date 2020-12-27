@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RG2System_Garage.Infra.Repositories;
 
 namespace RG2System_Garage.Infra.Migrations
 {
     [DbContext(typeof(RB2System_GarageContext))]
-    partial class RB2System_GarageContextModelSnapshot : ModelSnapshot
+    [Migration("20201226202321_AjusteOrcamento")]
+    partial class AjusteOrcamento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace RG2System_Garage.Infra.Migrations
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.Cliente", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
@@ -46,14 +48,14 @@ namespace RG2System_Garage.Infra.Migrations
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.ClienteVeiculo", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("ClienteId")
+                    b.Property<Guid?>("ClienteId")
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("VeiculoId")
+                    b.Property<Guid?>("VeiculoId")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
@@ -67,7 +69,7 @@ namespace RG2System_Garage.Infra.Migrations
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.ConfiguracaoDadosEmpresa", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
@@ -82,7 +84,7 @@ namespace RG2System_Garage.Infra.Migrations
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.Movimentacao", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
@@ -101,8 +103,7 @@ namespace RG2System_Garage.Infra.Migrations
                         .HasColumnName("PrecoVenda")
                         .HasColumnType("float");
 
-                    b.Property<string>("ProdutoServicoId")
-                        .IsRequired()
+                    b.Property<Guid>("ProdutoServicoId")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
@@ -114,11 +115,11 @@ namespace RG2System_Garage.Infra.Migrations
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.Orcamento", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("ClienteId")
+                    b.Property<Guid?>("ClienteId")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("DataCriacao")
@@ -162,20 +163,18 @@ namespace RG2System_Garage.Infra.Migrations
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.OrcamentoItem", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("OrcamentoId")
-                        .IsRequired()
+                    b.Property<Guid>("OrcamentoId")
                         .HasColumnType("char(36)");
 
                     b.Property<float>("PrecoVenda")
                         .HasColumnType("float")
                         .HasMaxLength(999999);
 
-                    b.Property<string>("ProdutoServicoId")
-                        .IsRequired()
+                    b.Property<Guid>("ProdutoServicoId")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
@@ -187,7 +186,7 @@ namespace RG2System_Garage.Infra.Migrations
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.ProdutoServico", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
@@ -214,14 +213,14 @@ namespace RG2System_Garage.Infra.Migrations
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.Veiculo", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("Ano")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("ClienteId")
+                    b.Property<Guid?>("ClienteId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Modelo")
@@ -254,7 +253,7 @@ namespace RG2System_Garage.Infra.Migrations
                 {
                     b.OwnsOne("RG2System_Garage.Domain.ValueObjects.Email", "Email", b1 =>
                         {
-                            b1.Property<string>("ConfiguracaoDadosEmpresaId")
+                            b1.Property<Guid>("ConfiguracaoDadosEmpresaId")
                                 .HasColumnType("char(36)");
 
                             b1.Property<string>("Endereco")
@@ -273,7 +272,7 @@ namespace RG2System_Garage.Infra.Migrations
 
                     b.OwnsOne("RG2System_Garage.Domain.ValueObjects.Nome", "Nome", b1 =>
                         {
-                            b1.Property<string>("ConfiguracaoDadosEmpresaId")
+                            b1.Property<Guid>("ConfiguracaoDadosEmpresaId")
                                 .HasColumnType("char(36)");
 
                             b1.Property<string>("Fantasia")
@@ -298,7 +297,7 @@ namespace RG2System_Garage.Infra.Migrations
 
                     b.OwnsOne("RG2System_Garage.Domain.ValueObjects.Telefone", "Telefone", b1 =>
                         {
-                            b1.Property<string>("ConfiguracaoDadosEmpresaId")
+                            b1.Property<Guid>("ConfiguracaoDadosEmpresaId")
                                 .HasColumnType("char(36)");
 
                             b1.Property<string>("Celular")

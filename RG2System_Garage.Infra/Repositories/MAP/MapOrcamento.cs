@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RG2System_Garage.Domain.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RG2System_Garage.Infra.Repositories.MAP
 {
@@ -21,7 +22,7 @@ namespace RG2System_Garage.Infra.Repositories.MAP
             builder.Property(x => x.ExisteOrdemServico).HasDefaultValue(false);
             builder.Property(x => x.ValorDesconto).HasColumnName("Desconto");
             builder.Property(x => x.ValorAcrescimo).HasColumnName("Acrescimo");
-            builder.Property(x => x.Numero).ValueGeneratedOnAdd().IsUnicode();
+            builder.Property(x => x.Numero);
 
         }
     }

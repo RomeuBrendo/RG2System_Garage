@@ -9,6 +9,7 @@ namespace RG2System_Garage.Domain.Commands.Orcamento
         public Guid Id { get; set; }
         public Int64 Numero { get; set; }
         public ClienteResponse Cliente { get; set; }
+        public string NomeCliente { get; set; }
         public string FormaPagamento { get; set; }
         public double ValorTotal { get; set; }
         public double ValorDesconto { get; set; }

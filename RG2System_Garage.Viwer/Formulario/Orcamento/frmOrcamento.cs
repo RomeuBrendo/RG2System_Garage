@@ -3,6 +3,7 @@ using RG2System_Garage.Domain.Commands.Orcamento;
 using RG2System_Garage.Domain.Enum;
 using RG2System_Garage.Domain.Enum.Orcamento;
 using RG2System_Garage.Domain.Interfaces.Services;
+using RG2System_Garage.Domain.Interfaces.Services.Base;
 using RG2System_Garage.Infra.Repositories.Transactions;
 using RG2System_Garage.Shared.Formulario.Toast;
 using RG2System_Garage.Viwer.Resources;
@@ -27,7 +28,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
         List<OrcamentoItensRequest> _itens = new List<OrcamentoItensRequest>();
 
-        Guid IdClienteSelecionado, IdVeiculoSelecionado = Guid.Empty;
+        Guid _IdClienteSelecionado, _IdVeiculoSelecionado = Guid.Empty;
 
         public frmOrcamento()
         {
@@ -44,6 +45,20 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             _serviceProdutoServico = (IServiceProduto)Program.ServiceProvider.GetService(typeof(IServiceProduto));
             _unitOfWork = (IUnitOfWork)Program.ServiceProvider.GetService(typeof(IUnitOfWork));
 
+        }
+
+        bool VerificaNotificacoes(IServiceBase serviceBase)
+        {
+            if (serviceBase.Notifications.Count > 0)
+            {
+                foreach (var item in serviceBase.Notifications.ToList())
+                    toast.ShowToast(item.Message, EnumToast.Erro);
+
+                txtPesquisarProduto.Focus();
+
+                return false;
+            }
+            return true;
         }
         private void frmOrcamento_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -82,13 +97,22 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         }
         public void LimparCampos(Panel panel)
         {
-            foreach (Control item in panel.Controls)
+            try
             {
-                if (item is TextBox)
-                    ((TextBox)item).Clear();
+                foreach (Control item in panel.Controls)
+                {
+                    if (item is TextBox)
+                        ((TextBox)item).Clear();
+                }
+
+                this.Refresh();
+            }
+            catch
+            {
+                //toast.ShowToast("Erro ao limpar campos. Detalhes: " + ex, EnumToast.Erro);
+                return;
             }
 
-            this.Refresh();
         }
 
         private void Passo_0(string cliente) //Selecionar Orçamento
@@ -98,11 +122,21 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 this.Text = "Selecionar Orçamento";
                 dataGridOrcamento.AutoGenerateColumns = false;
                 dataGridOrcamento.DataSource = null;
+                
+                _IdClienteSelecionado = Guid.Empty;
+                _IdVeiculoSelecionado = Guid.Empty;
+
                 dataGridOrcamento.DataSource = _serviceOrcamento.Listar(cliente);
+
+                dataGridOrcamento.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridOrcamento.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridOrcamento.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 if (tabControlOrcamento.SelectedIndex != 0)
                 {
-                    LimparCampos(panelCliente);
+                    if (tabControlOrcamento.SelectedIndex == 1)
+                        LimparCampos(panelCliente);
+
                     tabControlOrcamento.SelectedIndex = 0;
 
                     if (panelSubMenu.Visible)
@@ -114,7 +148,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 this.Refresh();
 
             }
-            catch
+            catch(Exception ex)
             {
                 toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Orcamento"), EnumToast.Erro);
                 return;
@@ -153,7 +187,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             try
             {
                 if (atualizarGrid)
-                    CarregaGrid(dataGridVeículo, EnumListar.Veiculo, IdClienteSelecionado);
+                    CarregaGrid(dataGridVeículo, EnumListar.Veiculo, _IdClienteSelecionado);
 
                 this.Text = "Selecionar Veículo p/ Orçamento";
 
@@ -187,6 +221,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 AjustaTelaTamanho(3);
                 txtCliente.Text = lblClienteTitulo.Text;
                 txtPlaca.Text = dataGridVeículo.SelectedRows[0].Cells[1].Value.ToString();
+                txtTotal.Text = "0";
 
                 if (atualizarGrid)
                 {
@@ -292,8 +327,6 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 e.SuppressKeyPress = true;
             }
         }
-
-
         private DataGridView SelecionaGrid(DataGridView grid, EnumIcone iconeNovo) 
         {
             try
@@ -311,8 +344,13 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                         if (grid.Rows[x].Index == linhaSelecionada)
                         {
                             linhaJaSelecionadaAntes = true;
-                            IdClienteSelecionado = Guid.Empty;
-                            IdVeiculoSelecionado = Guid.Empty;
+
+                            if (!EprodutoOUservico(iconeNovo))
+                            {
+                                _IdClienteSelecionado = Guid.Empty;
+                                _IdVeiculoSelecionado = Guid.Empty;
+                            }
+ 
                         }
                     }
                 }
@@ -324,15 +362,15 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                     icone = Properties.Resources.clienteSelecionado;
                     if (!linhaJaSelecionadaAntes)
                     {
-                        IdVeiculoSelecionado = Guid.Empty;
-                        IdClienteSelecionado = (Guid)grid.Rows[linhaSelecionada].Cells[2].Value;
+                        _IdVeiculoSelecionado = Guid.Empty;
+                        _IdClienteSelecionado = (Guid)grid.Rows[linhaSelecionada].Cells[2].Value;
                     }
                 }
                 else if (iconeNovo == EnumIcone.VeiculoSelecionado)
                 {
                     icone = Properties.Resources.VeiculoSelecionado;
                     if (!linhaJaSelecionadaAntes)
-                        IdVeiculoSelecionado = (Guid)grid.Rows[linhaSelecionada].Cells[2].Value;
+                        _IdVeiculoSelecionado = (Guid)grid.Rows[linhaSelecionada].Cells[2].Value;
                 }
 
                 else if (EprodutoOUservico(iconeNovo))
@@ -368,13 +406,12 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 var Iprecovenda = 3;
                 if (tipo == EnumTipo.Produto) //Verifica em qual coluna está preço de venda
                     Iprecovenda = 4;
-
-                var item = new OrcamentoItensRequest();
                
                 if (!inclusao)
                     _itens.RemoveAll(x => x.ProdutoServicoId == (Guid)grid.Rows[linhaSelecionada].Cells[1].Value);
                 else
                 {
+                    var item = new OrcamentoItensRequest();
                     item.Tipo = tipo;
                     item.ProdutoServicoId = (Guid)grid.Rows[linhaSelecionada].Cells[1].Value;
                     item.PrecoVenda = Convert.ToDecimal(grid.Rows[linhaSelecionada].Cells[Iprecovenda].Value);
@@ -419,9 +456,9 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         {
             if (tabControlOrcamento.SelectedIndex == 1)
             {
-                if ((IdClienteSelecionado != Guid.Empty) && (IdClienteSelecionado != null))
+                if ((_IdClienteSelecionado != Guid.Empty) && (_IdClienteSelecionado != null))
                 {
-                    if (IdVeiculoSelecionado == Guid.Empty)
+                    if (_IdVeiculoSelecionado == Guid.Empty)
                         Passo_2();
                     else
                         Passo_2(false); //Atualiza grid
@@ -481,7 +518,6 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
 
         }
-
         private void txtTotalProdutos_TextChanged(object sender, EventArgs e)
         {
             CalculaTotal();
@@ -548,5 +584,61 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             return ((icone == EnumIcone.ProdutoSelecionado) || (icone == EnumIcone.ServicoSelecionado));
         }
 
+        private void btnTeste_Click(object sender, EventArgs e)
+        {
+            Salvar();
+        }
+
+        private void Salvar()
+        {
+            try
+            {
+                _serviceOrcamento.ClearNotifications();
+                var orcamentoRequest = new OrcamentoRequest();
+
+                orcamentoRequest.ClienteId = _IdClienteSelecionado;
+                orcamentoRequest.VeiculoId = _IdVeiculoSelecionado;
+                orcamentoRequest.ValorTotal = txtTotal.Text;
+                orcamentoRequest.ValorDesconto = txtDesconto.Text;
+                orcamentoRequest.ValorAcrescimo = txtAcrescimo.Text;
+                orcamentoRequest.ExisteOrdemServico = false;
+                orcamentoRequest.DataCriacao = DateTime.Now;
+                orcamentoRequest.Itens = _itens;
+
+                _serviceOrcamento.AdicionarAlterar(orcamentoRequest);
+
+                if (VerificaNotificacoes(_serviceOrcamento))
+                {
+                    _unitOfWork.SaveChanges();
+
+                    _itens.Clear();
+                    AjustaTelaTamanho(0);
+                    LimpaPasso3Orcamento();
+                    Passo_0("");
+                    toast.ShowToast(MSG.X0_SALVO_COM_SUCESSO.ToFormat("Orçamento"), EnumToast.Sucesso);
+                }
+            }
+            catch(Exception ex)
+            {
+                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + " " + ex, EnumToast.Erro);
+                txtPesquisarProduto.Focus();
+                return;
+            }
+        }
+
+        private void LimpaPasso3Orcamento()
+        {
+            txtCliente.Text = string.Empty;
+            txtPlaca.Text = string.Empty;
+            txtPesquisarServico.Text = string.Empty;
+            txtPesquisarProduto.Text = string.Empty;
+            textQuantidadeServico.Text = "0";
+            txtTotalServico.Text = "0";
+            textQuantidadeProduto.Text = "0";
+            txtTotalProdutos.Text = "0";
+            txtTotal.Text = "0";
+            txtAcrescimo.Text = "0";
+            txtDesconto.Text = "0";
+        }
     }
 }

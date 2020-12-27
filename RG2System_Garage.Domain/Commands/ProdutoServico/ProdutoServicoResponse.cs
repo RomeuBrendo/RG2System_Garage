@@ -19,17 +19,25 @@ namespace RG2System_Garage.Domain.Commands.Produto
 
         public static explicit operator ProdutoServicoResponse(Entities.ProdutoServico v)
         {
-            return new ProdutoServicoResponse()
+            try
             {
-                Id = v.Id,
-                Tipo = v.Tipo,
-                Descricao = v.Descricao,
-                Observacao = v.Observacao,
-                Situacao = v.Situacao,
-                Estoque = v.FichaMovimentacao.OrderByDescending(x => x.DataLancamento).Select(x => x.EstoqueAtual).FirstOrDefault(),
-                PrecoVenda = v.FichaMovimentacao.OrderByDescending(x => x.DataLancamento).Select(x => x.PrecoVenda).FirstOrDefault(),
-                PrecoCusto = v.FichaMovimentacao.OrderByDescending(x => x.DataLancamento).Select(x => x.PrecoCusto).FirstOrDefault()
-            };
+                return new ProdutoServicoResponse()
+                {
+                    Id = v.Id,
+                    Tipo = v.Tipo,
+                    Descricao = v.Descricao,
+                    Observacao = v.Observacao,
+                    Situacao = v.Situacao,
+                    Estoque = v.FichaMovimentacao.OrderByDescending(x => x.DataLancamento).Select(x => x.EstoqueAtual).FirstOrDefault<int>(),
+                    PrecoVenda = v.FichaMovimentacao.OrderByDescending(x => x.DataLancamento).Select(x => x.PrecoVenda).FirstOrDefault<float>(),
+                    PrecoCusto = v.FichaMovimentacao.OrderByDescending(x => x.DataLancamento).Select(x => x.PrecoCusto).FirstOrDefault<float>()
+                };
+            }
+            catch 
+            {
+                return null;
+            }
+
         }
     }
 }

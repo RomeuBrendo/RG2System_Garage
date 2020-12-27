@@ -50,9 +50,13 @@ namespace RG2System_Garage.Domain.Service
                     _repositoryOrcamento.Editar(orcamento);
                     return;
                 }
-
+                
                 var orcamentoNovo = new Orcamento(request, _repositoyCliente.ObterPorId(request.ClienteId));
+
+                orcamentoNovo.Numero = _repositoryOrcamento.Listar().OrderByDescending(x => x.Numero).Select(x => x.Numero).FirstOrDefault<Int64>() + 1;
+
                 AddNotifications(orcamentoNovo);
+
 
                 if (IsInvalid()) return;
 
@@ -86,11 +90,11 @@ namespace RG2System_Garage.Domain.Service
                 var orcamentos = new List<Orcamento>();
 
                 if (cliente == "")
-                    orcamentos = _repositoryOrcamento.Listar(x => x.Cliente).ToList();
+                    orcamentos = _repositoryOrcamento.Listar(x => x.Cliente, x => x.Itens).ToList();
                 else
                     orcamentos = _repositoryOrcamento.ListarPor(x => x.Cliente.Nome.StartsWith(cliente)).ToList();
 
-                return ProdutosResponse(orcamentos);
+                return ProdutosResponse(orcamentos).OrderBy(x => x.DataCriacao).ToList();
             }
             catch
             {
@@ -108,9 +112,11 @@ namespace RG2System_Garage.Domain.Service
                 foreach (var orcamento in orcamentos)
                 {
                     var orcamentoNovo = new OrcamentoResponse();
-                    
+                    var itens = new List<OrcamentoItensResponse>();
+
                     orcamentoNovo.Id = orcamento.Id;
                     orcamentoNovo.Cliente = (ClienteResponse)orcamento.Cliente;
+                    orcamentoNovo.NomeCliente = orcamentoNovo.Cliente.Nome;
                     orcamentoNovo.Numero = orcamento.Numero;
                     orcamentoNovo.Observacao = orcamento.Observacao;
                     orcamentoNovo.ValorAcrescimo = orcamento.ValorAcrescimo;
@@ -118,6 +124,7 @@ namespace RG2System_Garage.Domain.Service
                     orcamentoNovo.ValorTotal = orcamento.ValorTotal;
                     orcamentoNovo.ExisteOrdemServico = orcamento.ExisteOrdemServico;
                     orcamentoNovo.FormaPagamento = orcamento.FormaPagamento;
+                    orcamentoNovo.DataCriacao = orcamento.DataCriacao;
 
                     foreach (var item in orcamento.Itens)
                     {
@@ -125,9 +132,10 @@ namespace RG2System_Garage.Domain.Service
                         itemNovo.Id = item.Id;
                         itemNovo.ProdutoServico = (ProdutoServicoResponse)_repositoryProdutoServico.ObterPorId(item.ProdutoServicoId);
 
-                        orcamentoNovo.Itens.Add(itemNovo);
+                        itens.Add(itemNovo);
                     }
 
+                    orcamentoNovo.Itens = itens;
                     orcamentosResponse.Add(orcamentoNovo);
                 }
 

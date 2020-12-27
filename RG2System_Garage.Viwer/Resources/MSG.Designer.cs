@@ -140,5 +140,14 @@ namespace RG2System_Garage.Viwer.Resources {
                 return ResourceManager.GetString("OPERACAO_REALIZADA_COM_SUCESSO", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} salvo com sucesso!.
+        /// </summary>
+        internal static string X0_SALVO_COM_SUCESSO {
+            get {
+                return ResourceManager.GetString("X0_SALVO_COM_SUCESSO", resourceCulture);
+            }
+        }
     }
 }
