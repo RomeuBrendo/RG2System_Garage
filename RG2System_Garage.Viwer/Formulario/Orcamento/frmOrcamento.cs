@@ -718,11 +718,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            var orcamentoSelecionado = OrcamentoSelecionado();
-
-            var orcamento = _serviceOrcamento.Obter_ByNumero(orcamentoSelecionado.Numero);
-
-            
+            CarregaTelaAlteracaoOrcamento();
         }
 
         private void LimpaPasso3Orcamento()
@@ -740,15 +736,16 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             txtDesconto.Text = "0,00";
         }
 
-        private void ItensResponseParaRequest(List<OrcamentoItensResponse> listaResponse)
+        private void CarregaTelaAlteracaoOrcamento()
         {
             try
             {
-                foreach (var item in listaResponse)
-                {
-                    var request = new OrcamentoItensRequest();
-                    //request.OrcamentoId = item.Id
-                }
+                var orcamentoSelecionado = OrcamentoSelecionado();
+
+                var orcamento = _serviceOrcamento.Obter_ByNumero(orcamentoSelecionado.Numero);
+
+                _IdClienteSelecionado = orcamento.Cliente.Id.Value;
+                //_IdVeiculoSelecionado = orcamento.Cliente.vei
             }
             catch (Exception)
             {

@@ -1,4 +1,5 @@
 ﻿using RG2System_Garage.Domain.Commands.Cliente;
+using RG2System_Garage.Domain.Commands.Veiculo;
 using System;
 using System.Collections.Generic;
 
