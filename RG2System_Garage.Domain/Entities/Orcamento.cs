@@ -16,10 +16,11 @@ namespace RG2System_Garage.Domain.Entities
         {
 
         }
-        public Orcamento(OrcamentoRequest request, Cliente cliente)
+        public Orcamento(OrcamentoRequest request, Cliente cliente, Veiculo veiculo)
         {
             this.ClearNotifications();
             Cliente = cliente;
+            Veiculo = veiculo;
             FormaPagamento = request.FormaPagamento;
 
             Observacao = request.Observacao;
@@ -107,6 +108,7 @@ namespace RG2System_Garage.Domain.Entities
                 Itens = itensNovos;
         }
         public Cliente Cliente { get; private set; }
+        public Veiculo Veiculo { get; private set; }
 
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64 Numero { get; set; }

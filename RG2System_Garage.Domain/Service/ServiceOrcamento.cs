@@ -17,13 +17,15 @@ namespace RG2System_Garage.Domain.Service
     {
         private readonly IRepositoryOrcamento _repositoryOrcamento;
         private readonly IRepositoyCliente _repositoyCliente;
+        private readonly IRepositoryVeiculo _repositoryVeiculo;
         private readonly IRepositoryProdutoServico _repositoryProdutoServico;
 
-        public ServiceOrcamento(IRepositoryOrcamento repositoryOrcamento, IRepositoyCliente repositoyCliente, IRepositoryProdutoServico repositoryProdutoServico)
+        public ServiceOrcamento(IRepositoryOrcamento repositoryOrcamento, IRepositoyCliente repositoyCliente, IRepositoryProdutoServico repositoryProdutoServico, IRepositoryVeiculo repositoryVeiculo)
         {
             _repositoryOrcamento = repositoryOrcamento;
             _repositoyCliente = repositoyCliente;
             _repositoryProdutoServico = repositoryProdutoServico;
+            _repositoryVeiculo = repositoryVeiculo;
         }
 
         public void AdicionarAlterar(OrcamentoRequest request)
@@ -50,8 +52,11 @@ namespace RG2System_Garage.Domain.Service
                     _repositoryOrcamento.Editar(orcamento);
                     return;
                 }
-                
-                var orcamentoNovo = new Orcamento(request, _repositoyCliente.ObterPorId(request.ClienteId));
+                var cliente = _repositoyCliente.ObterPorId(request.ClienteId);
+
+                var veiculo = _repositoryVeiculo.ObterPorId(request.VeiculoId);
+
+                var orcamentoNovo = new Orcamento(request, cliente, veiculo);
 
               //  orcamentoNovo.Numero = _repositoryOrcamento.Listar().OrderByDescending(x => x.Numero).Select(x => x.Numero).FirstOrDefault<Int64>() + 1;
 
@@ -98,7 +103,7 @@ namespace RG2System_Garage.Domain.Service
                 var orcamentos = new List<Orcamento>();
 
                 if (cliente == "")
-                    orcamentos = _repositoryOrcamento.Listar(x => x.Cliente, x => x.Itens).ToList();
+                    orcamentos = _repositoryOrcamento.Listar(x => x.Cliente, x => x.Itens, x => x.Veiculo).ToList();
                 else
                     orcamentos = _repositoryOrcamento.ListarPor(x => x.Cliente.Nome.StartsWith(cliente)).ToList();
 

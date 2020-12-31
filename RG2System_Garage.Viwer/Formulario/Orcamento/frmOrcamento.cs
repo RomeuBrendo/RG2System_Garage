@@ -613,11 +613,6 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             return ((icone == EnumIcone.ProdutoSelecionado) || (icone == EnumIcone.ServicoSelecionado));
         }
 
-        private void btnTeste_Click(object sender, EventArgs e)
-        {
-            Salvar();
-        }
-
         private void Salvar()
         {
             try

@@ -363,6 +363,10 @@
     <Compile Include="Migrations\20201227161059_Teste2.designer.cs">
       <DependentUpon>20201227161059_Teste2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20201231200520_InclusaoVeiculoOrcamento.cs" />
+    <Compile Include="Migrations\20201231200520_InclusaoVeiculoOrcamento.designer.cs">
+      <DependentUpon>20201231200520_InclusaoVeiculoOrcamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\RepositoryBase.cs" />
