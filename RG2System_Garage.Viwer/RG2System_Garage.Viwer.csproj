@@ -374,7 +374,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="RDLC\Cabecalho.rdlc" />
+    <EmbeddedResource Include="RDLC\ReportCabecalho.rdlc" />
     <EmbeddedResource Include="RDLC\ReportOrcamento.rdlc" />
     <EmbeddedResource Include="Resources\MSG.resx">
       <Generator>ResXFileCodeGenerator</Generator>
