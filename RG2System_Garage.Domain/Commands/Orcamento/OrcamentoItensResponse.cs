@@ -9,7 +9,7 @@ namespace RG2System_Garage.Domain.Commands.Orcamento
         public Guid OrcamentoId { get; set; }
         public ProdutoServicoResponse ProdutoServico { get; set; }
         public int Quantidade { get; set; }
-        public EnumTipo Tipo { get; set; }
+        //public EnumTipo Tipo { get; set; }
         public Decimal PrecoVenda { get; set; }
     }
 }

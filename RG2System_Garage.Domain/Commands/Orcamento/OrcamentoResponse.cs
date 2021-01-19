@@ -1,4 +1,5 @@
 ﻿using RG2System_Garage.Domain.Commands.Cliente;
+using RG2System_Garage.Domain.Commands.Veiculo;
 using System;
 using System.Collections.Generic;
 
@@ -9,6 +10,7 @@ namespace RG2System_Garage.Domain.Commands.Orcamento
         public Guid Id { get; set; }
         public Int64 Numero { get; set; }
         public ClienteResponse Cliente { get; set; }
+        public VeiculoResponse Veiculo { get; set; }
         public string NomeCliente { get; set; }
         public string FormaPagamento { get; set; }
         public double ValorTotal { get; set; }

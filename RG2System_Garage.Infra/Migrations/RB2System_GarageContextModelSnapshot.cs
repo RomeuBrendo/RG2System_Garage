@@ -134,9 +134,7 @@ namespace RG2System_Garage.Infra.Migrations
 
                     b.Property<long>("Numero")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasMaxLength(99999)
-                        .IsUnicode(true);
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Observacao")
                         .HasColumnType("varchar(1500) CHARACTER SET utf8mb4")
@@ -153,9 +151,17 @@ namespace RG2System_Garage.Infra.Migrations
                     b.Property<double>("ValorTotal")
                         .HasColumnType("double");
 
+                    b.Property<Guid?>("VeiculoId")
+                        .HasColumnType("char(36)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
+
+                    b.HasIndex("Numero")
+                        .IsUnique();
+
+                    b.HasIndex("VeiculoId");
 
                     b.ToTable("Orcamento");
                 });
@@ -341,6 +347,10 @@ namespace RG2System_Garage.Infra.Migrations
                         .WithMany()
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RG2System_Garage.Domain.Entities.Veiculo", "Veiculo")
+                        .WithMany()
+                        .HasForeignKey("VeiculoId");
                 });
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.OrcamentoItem", b =>
@@ -348,7 +358,7 @@ namespace RG2System_Garage.Infra.Migrations
                     b.HasOne("RG2System_Garage.Domain.Entities.Orcamento", null)
                         .WithMany("Itens")
                         .HasForeignKey("OrcamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

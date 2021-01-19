@@ -3,6 +3,7 @@ using prmToolkit.NotificationPattern.Extensions;
 using RG2System_Garage.Domain.Commands.Cliente;
 using RG2System_Garage.Domain.Commands.Orcamento;
 using RG2System_Garage.Domain.Commands.Produto;
+using RG2System_Garage.Domain.Commands.Veiculo;
 using RG2System_Garage.Domain.Entities;
 using RG2System_Garage.Domain.Interfaces.Repositories;
 using RG2System_Garage.Domain.Interfaces.Services;
@@ -17,13 +18,15 @@ namespace RG2System_Garage.Domain.Service
     {
         private readonly IRepositoryOrcamento _repositoryOrcamento;
         private readonly IRepositoyCliente _repositoyCliente;
+        private readonly IRepositoryVeiculo _repositoryVeiculo;
         private readonly IRepositoryProdutoServico _repositoryProdutoServico;
 
-        public ServiceOrcamento(IRepositoryOrcamento repositoryOrcamento, IRepositoyCliente repositoyCliente, IRepositoryProdutoServico repositoryProdutoServico)
+        public ServiceOrcamento(IRepositoryOrcamento repositoryOrcamento, IRepositoyCliente repositoyCliente, IRepositoryProdutoServico repositoryProdutoServico, IRepositoryVeiculo repositoryVeiculo)
         {
             _repositoryOrcamento = repositoryOrcamento;
             _repositoyCliente = repositoyCliente;
             _repositoryProdutoServico = repositoryProdutoServico;
+            _repositoryVeiculo = repositoryVeiculo;
         }
 
         public void AdicionarAlterar(OrcamentoRequest request)
@@ -41,6 +44,12 @@ namespace RG2System_Garage.Domain.Service
                 {
                     var orcamento = _repositoryOrcamento.ObterPorId(request.Id.Value);
 
+                    if (!_repositoryOrcamento.ExcluirItens(request.Id.Value))
+                        AddNotification("Itens", "Erro ao atualizar itens");
+
+                    if (!_repositoryOrcamento.AdicionarItens(PopularItens(request.Itens)))
+                        AddNotification("Itens", "Erro ao atualizar itens");
+
                     orcamento.Alterar(request);
 
                     AddNotifications(orcamento);
@@ -48,12 +57,14 @@ namespace RG2System_Garage.Domain.Service
                     if (IsInvalid()) return;
 
                     _repositoryOrcamento.Editar(orcamento);
+                    
                     return;
                 }
-                
-                var orcamentoNovo = new Orcamento(request, _repositoyCliente.ObterPorId(request.ClienteId));
+                var cliente = _repositoyCliente.ObterPorId(request.ClienteId);
 
-              //  orcamentoNovo.Numero = _repositoryOrcamento.Listar().OrderByDescending(x => x.Numero).Select(x => x.Numero).FirstOrDefault<Int64>() + 1;
+                var veiculo = _repositoryVeiculo.ObterPorId(request.VeiculoId);
+
+                var orcamentoNovo = new Orcamento(request, cliente, veiculo);
 
                 AddNotifications(orcamentoNovo);
 
@@ -91,6 +102,28 @@ namespace RG2System_Garage.Domain.Service
             }
         }
 
+        public List<OrcamentoItem> PopularItens(List<OrcamentoItensRequest> request)
+        {
+            try
+            {
+                var itensNovos = new List<OrcamentoItem>();
+                foreach (var item in request)
+                {
+                    var itemNovo = new OrcamentoItem(item.OrcamentoId, item.ProdutoServicoId, item.PrecoVenda.ToString(), item.Quantidade);
+                    AddNotifications(itemNovo);
+
+                    itensNovos.Add(itemNovo);
+                }
+
+                return itensNovos;
+            }
+            catch 
+            {
+                AddNotification("Itens", MSG.ERRO_AO_REALIZAR_PROCEDIMENTO_DE_X0.ToFormat("Inserção itens"));
+                return null;
+            }
+        }
+
         public List<OrcamentoResponse> Listar(string cliente)
         {
             try
@@ -111,8 +144,11 @@ namespace RG2System_Garage.Domain.Service
             }
         }
 
-
         private List<OrcamentoResponse> ProdutosResponse(List<Orcamento> orcamentos)
+        {
+            return ProdutosResponse(orcamentos, false);
+        }
+        private List<OrcamentoResponse> ProdutosResponse(List<Orcamento> orcamentos, bool carregarVeiculo)
         {
             try
             {
@@ -124,6 +160,10 @@ namespace RG2System_Garage.Domain.Service
 
                     orcamentoNovo.Id = orcamento.Id;
                     orcamentoNovo.Cliente = (ClienteResponse)orcamento.Cliente;
+                    
+                    if (carregarVeiculo)
+                        orcamentoNovo.Veiculo = (VeiculoResponse)_repositoryVeiculo.ObterPorId(orcamento.Veiculo.Id);
+
                     orcamentoNovo.NomeCliente = orcamentoNovo.Cliente.Nome;
                     orcamentoNovo.Numero = orcamento.Numero;
                     orcamentoNovo.Observacao = orcamento.Observacao;
@@ -137,9 +177,11 @@ namespace RG2System_Garage.Domain.Service
                     foreach (var item in orcamento.Itens)
                     {
                         var itemNovo = new OrcamentoItensResponse();
-                        itemNovo.OrcamentoId = item.Id;
-                        itemNovo.ProdutoServico = (ProdutoServicoResponse)_repositoryProdutoServico.ObterPorId(item.ProdutoServicoId);
+                        itemNovo.OrcamentoId = item.OrcamentoId;
+                        var produtoServico = _repositoryProdutoServico.ObterPorId(item.ProdutoServicoId, x => x.FichaMovimentacao); //Futuramente será necessario melhorar este bloco
+                        itemNovo.ProdutoServico = (ProdutoServicoResponse)produtoServico;
                         itemNovo.PrecoVenda = Decimal.Parse(item.PrecoVenda.ToString());
+                        itemNovo.Quantidade = item.Quantidade;
                         itens.Add(itemNovo);
                     }
 
@@ -159,7 +201,7 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
-                return ProdutosResponse(_repositoryOrcamento.ListarPor(x => x.Numero == numero).ToList()).FirstOrDefault();
+                return ProdutosResponse(_repositoryOrcamento.ListarPor(x => x.Numero == numero, x => x.Cliente, x => x.Veiculo, x => x.Itens).ToList(), true).FirstOrDefault();
             }
             catch
             {

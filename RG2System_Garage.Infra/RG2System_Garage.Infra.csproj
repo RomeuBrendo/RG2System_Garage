@@ -299,69 +299,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\20201012200217_Inicial2.0.cs" />
-    <Compile Include="Migrations\20201012200217_Inicial2.0.designer.cs">
-      <DependentUpon>20201012200217_Inicial2.0.cs</DependentUpon>
+    <Compile Include="Migrations\20210119004904_inicial.cs" />
+    <Compile Include="Migrations\20210119004904_inicial.designer.cs">
+      <DependentUpon>20210119004904_inicial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20201014014407_ConfDadosEmpresa.cs" />
-    <Compile Include="Migrations\20201014014407_ConfDadosEmpresa.designer.cs">
-      <DependentUpon>20201014014407_ConfDadosEmpresa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201014014759_AjusteEmail.cs" />
-    <Compile Include="Migrations\20201014014759_AjusteEmail.designer.cs">
-      <DependentUpon>20201014014759_AjusteEmail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201016020919_Orcamento.cs" />
-    <Compile Include="Migrations\20201016020919_Orcamento.designer.cs">
-      <DependentUpon>20201016020919_Orcamento.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201019220947_AlteracaoNomesTabelas.cs" />
-    <Compile Include="Migrations\20201019220947_AlteracaoNomesTabelas.designer.cs">
-      <DependentUpon>20201019220947_AlteracaoNomesTabelas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201019221510_AlteracaoProdutoServico.cs" />
-    <Compile Include="Migrations\20201019221510_AlteracaoProdutoServico.designer.cs">
-      <DependentUpon>20201019221510_AlteracaoProdutoServico.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201019221942_Teste.cs" />
-    <Compile Include="Migrations\20201019221942_Teste.designer.cs">
-      <DependentUpon>20201019221942_Teste.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201019234520_CamposProduto.cs" />
-    <Compile Include="Migrations\20201019234520_CamposProduto.designer.cs">
-      <DependentUpon>20201019234520_CamposProduto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201019235006_ValorPadrao.cs" />
-    <Compile Include="Migrations\20201019235006_ValorPadrao.designer.cs">
-      <DependentUpon>20201019235006_ValorPadrao.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201021004236_OrcamentoInclusaoCampos.cs" />
-    <Compile Include="Migrations\20201021004236_OrcamentoInclusaoCampos.designer.cs">
-      <DependentUpon>20201021004236_OrcamentoInclusaoCampos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201021004720_AjusteTabelaCliente.cs" />
-    <Compile Include="Migrations\20201021004720_AjusteTabelaCliente.designer.cs">
-      <DependentUpon>20201021004720_AjusteTabelaCliente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201023132523_teste10.cs" />
-    <Compile Include="Migrations\20201023132523_teste10.designer.cs">
-      <DependentUpon>20201023132523_teste10.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201226202321_AjusteOrcamento.cs" />
-    <Compile Include="Migrations\20201226202321_AjusteOrcamento.designer.cs">
-      <DependentUpon>20201226202321_AjusteOrcamento.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201227141502_OrcamentoNumeroTeste.cs" />
-    <Compile Include="Migrations\20201227141502_OrcamentoNumeroTeste.designer.cs">
-      <DependentUpon>20201227141502_OrcamentoNumeroTeste.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201227152832_ColunaQuantidade.cs" />
-    <Compile Include="Migrations\20201227152832_ColunaQuantidade.designer.cs">
-      <DependentUpon>20201227152832_ColunaQuantidade.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20201227161059_Teste2.cs" />
-    <Compile Include="Migrations\20201227161059_Teste2.designer.cs">
-      <DependentUpon>20201227161059_Teste2.cs</DependentUpon>
+    <Compile Include="Migrations\20210119005027_auto-inc.cs" />
+    <Compile Include="Migrations\20210119005027_auto-inc.designer.cs">
+      <DependentUpon>20210119005027_auto-inc.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -397,6 +341,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
