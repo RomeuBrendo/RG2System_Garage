@@ -144,6 +144,12 @@
   <data name="OPERACAO_REALIZADA_COM_SUCESSO" xml:space="preserve">
     <value>Operação realizada com sucesso.</value>
   </data>
+  <data name="X0_REALIZADA_COM_SUCESSO" xml:space="preserve">
+    <value>{0} realizada com sucesso!</value>
+  </data>
+  <data name="X0_REALIZADO_COM_SUCESSO" xml:space="preserve">
+    <value>{0} realizado com sucesso!</value>
+  </data>
   <data name="X0_SALVO_COM_SUCESSO" xml:space="preserve">
     <value>{0} salvo com sucesso!</value>
   </data>

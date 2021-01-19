@@ -28,7 +28,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
         List<OrcamentoItensRequest> _itens = new List<OrcamentoItensRequest>();
 
-        Guid _IdClienteSelecionado, _IdVeiculoSelecionado = Guid.Empty;
+        Guid _IdClienteSelecionado, _IdVeiculoSelecionado, _IdOrcamentoSelecionado = Guid.Empty;
 
         public frmOrcamento()
         {
@@ -128,6 +128,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             try
             {
                 this.Text = "Selecionar Orçamento";
+                _IdOrcamentoSelecionado = Guid.Empty;
                 dataGridOrcamento.AutoGenerateColumns = false;
                 dataGridOrcamento.DataSource = null;
                 
@@ -220,20 +221,38 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
         private void Passo_3()
         {
-            Passo_3(true);
+            Passo_3(true, true);
         }
-        private void Passo_3(bool atualizarGrid)
+
+        private void Passo_3(bool novo)
+        {
+            Passo_3(false, novo);
+        }
+        private void Passo_3(bool atualizarGrid, bool novo)
         {
             try
             {
                 this.Visible = false;
+                lblRetornar.Visible = true;
                 lblFinalizar.Visible = true;
-                this.Text = "Selecione Produtos e Serviços";
-                AjustaTelaTamanho(3);
-                txtCliente.Text = lblClienteTitulo.Text;
-                txtPlaca.Text = dataGridVeículo.SelectedRows[0].Cells[1].Value.ToString();
 
-                if (atualizarGrid)
+                if (novo)
+                {
+                    this.Text = "Selecione Produtos e Serviços";
+                    txtCliente.Text = lblClienteTitulo.Text;
+                    txtPlaca.Text = dataGridVeículo.SelectedRows[0].Cells[1].Value.ToString();
+                }
+                else
+                {
+                    this.Text = "Alteração orçamento";
+                    panelSubMenu.Visible = true;
+                    lblRetornar.Visible = false;
+                }
+
+                AjustaTelaTamanho(3);
+
+
+                if ((atualizarGrid) && (novo))
                 {
                     CarregaGrid(dataGridProduto, "", EnumListar.Produto);
                     CarregaGrid(dataGridServico, "", EnumListar.Servico);
@@ -416,14 +435,17 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             try
             {
                 var Iprecovenda = 3;
-                if (tipo == EnumTipo.Produto) //Verifica em qual coluna está preço de venda
+             
+                if (tipo == EnumTipo.Produto)
                     Iprecovenda = 4;
+ 
                
                 if (!inclusao)
                     _itens.RemoveAll(x => x.ProdutoServicoId == (Guid)grid.Rows[linhaSelecionada].Cells[1].Value);
                 else
                 {
                     var item = new OrcamentoItensRequest();
+                    item.OrcamentoId = _IdOrcamentoSelecionado; 
                     item.Tipo = tipo;
                     item.ProdutoServicoId = (Guid)grid.Rows[linhaSelecionada].Cells[1].Value;
                     item.PrecoVenda = Convert.ToDecimal(grid.Rows[linhaSelecionada].Cells[Iprecovenda].Value);
@@ -620,6 +642,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 _serviceOrcamento.ClearNotifications();
                 var orcamentoRequest = new OrcamentoRequest();
 
+                orcamentoRequest.Id = _IdOrcamentoSelecionado;
                 orcamentoRequest.ClienteId = _IdClienteSelecionado;
                 orcamentoRequest.VeiculoId = _IdVeiculoSelecionado;
                 orcamentoRequest.ValorTotal = txtTotal.Text;
@@ -639,7 +662,10 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                     AjustaTelaTamanho(0);
                     LimpaPasso3Orcamento();
                     Passo_0("");
-                    toast.ShowToast(MSG.X0_SALVO_COM_SUCESSO.ToFormat("Orçamento"), EnumToast.Sucesso);
+                    if (lblRetornar.Visible)
+                        toast.ShowToast(MSG.X0_SALVO_COM_SUCESSO.ToFormat("Orçamento"), EnumToast.Sucesso);
+                    else
+                        toast.ShowToast(MSG.X0_REALIZADA_COM_SUCESSO.ToFormat("Alteração"), EnumToast.Sucesso);
                 }
             }
             catch(Exception ex)
@@ -736,16 +762,68 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             try
             {
                 var orcamentoSelecionado = OrcamentoSelecionado();
-
+                
                 var orcamento = _serviceOrcamento.Obter_ByNumero(orcamentoSelecionado.Numero);
 
-                _IdClienteSelecionado = orcamento.Cliente.Id.Value;
-                //_IdVeiculoSelecionado = orcamento.Cliente.vei
-            }
-            catch (Exception)
-            {
+                _IdOrcamentoSelecionado = orcamento.Id;
 
-                throw;
+                _IdClienteSelecionado = orcamento.Cliente.Id.Value;
+                _IdVeiculoSelecionado = orcamento.Veiculo.Id.Value;
+                txtCliente.Text = orcamento.Cliente.Nome;
+                txtPlaca.Text = orcamento.Veiculo.Placa;
+
+                CarregaGrid(dataGridServico, "", EnumListar.Servico);
+                CarregaGrid(dataGridProduto, "", EnumListar.Produto);
+
+                Passo_3(false);
+                PopulaGridAjustandoSelecaoVenda(orcamento.Itens.ToList());
+                
+
+            }
+            catch
+            {
+                toast.ShowToast(MSG.ERRO_AO_CONSULTAR_DADOS, EnumToast.Erro);
+                this.Close();
+            }
+        }
+        private void PopulaGridAjustandoSelecaoVenda(List<OrcamentoItensResponse> itens)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridServico.Rows)
+                {
+
+                    var servico = itens.FirstOrDefault(x => x.ProdutoServico.Id == (Guid)row.Cells[1].Value && x.ProdutoServico.Tipo == EnumTipo.Servico);
+
+                    if (servico == null)
+                        continue;
+
+                    dataGridServico.Rows[row.Index].Cells[3].Value = servico.PrecoVenda;
+                    dataGridServico.Rows[row.Index].Cells[0].Selected = true;
+
+                    SelecionaGrid(dataGridServico, EnumIcone.ServicoSelecionado);
+                }
+
+                foreach (DataGridViewRow row in dataGridProduto.Rows)
+                {
+                    var produto = itens.FirstOrDefault(x => x.ProdutoServico.Id == (Guid)row.Cells[1].Value && x.ProdutoServico.Tipo == EnumTipo.Produto);
+
+                    if (produto == null)
+                        continue;
+
+                    dataGridProduto.Rows[row.Index].Cells[3].Value = produto.Quantidade;
+                    dataGridProduto.Rows[row.Index].Cells[4].Value = produto.PrecoVenda;
+                    dataGridProduto.Rows[row.Index].Cells[0].Selected = true;
+
+                    SelecionaGrid(dataGridProduto, EnumIcone.ProdutoSelecionado);
+
+                }
+           
+            }
+            catch
+            {
+                toast.ShowToast(MSG.ERRO_AO_CONSULTAR_DADOS, EnumToast.Erro);
+                this.Close();
             }
         }
     }

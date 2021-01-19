@@ -1,11 +1,9 @@
-﻿using prmToolkit.NotificationPattern;
-using prmToolkit.NotificationPattern.Extensions;
+﻿using prmToolkit.NotificationPattern.Extensions;
 using RG2System_Garage.Domain.Commands.Orcamento;
 using RG2System_Garage.Domain.Entities.Base;
 using RG2System_Garage.Domain.Resources;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 
 namespace RG2System_Garage.Domain.Entities
@@ -38,11 +36,11 @@ namespace RG2System_Garage.Domain.Entities
 
         void ValidaCampos()
         {
-            if (Itens == null)
-                AddNotification("Itens", MSG.X0_INVALIDO.ToFormat("Itens"));
+            //if (Itens == null)
+            //    AddNotification("Itens", MSG.X0_INVALIDO.ToFormat("Itens"));
 
-            if (Itens.Count == 0)
-                AddNotification("Itens", MSG.X0_E_OBRIGATORIO.ToFormat("Produto/Serviço"));
+            //if (Itens.Count == 0)
+            //    AddNotification("Itens", MSG.X0_E_OBRIGATORIO.ToFormat("Produto/Serviço"));
 
             //new AddNotifications<Orcamento>(this)
             //    //.IfNullOrEmpty(x => x.FormaPagamento, MSG.X0_INVALIDA.ToFormat("Forma Pagamento"))
@@ -87,11 +85,11 @@ namespace RG2System_Garage.Domain.Entities
             DataCriacao = request.DataCriacao;
 
             ValidaValores(request.ValorTotal, request.ValorDesconto, request.ValorAcrescimo);
-            PopulaItens(request.Itens);
 
             ValidaCampos();
         }
 
+        
         void PopulaItens(List<OrcamentoItensRequest> request)
         {
             var itensNovos = new List<OrcamentoItem>();
@@ -109,8 +107,6 @@ namespace RG2System_Garage.Domain.Entities
         }
         public Cliente Cliente { get; private set; }
         public Veiculo Veiculo { get; private set; }
-
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64 Numero { get; set; }
         public string FormaPagamento { get; private set; } // Futuramente terá um cadastro exclusivo para forma de pagamento.
         public double ValorTotal { get; private set; }

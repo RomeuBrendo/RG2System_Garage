@@ -9,8 +9,8 @@ using RG2System_Garage.Infra.Repositories;
 namespace RG2System_Garage.Infra.Migrations
 {
     [DbContext(typeof(RB2System_GarageContext))]
-    [Migration("20201019221942_Teste")]
-    partial class Teste
+    [Migration("20210119004904_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,7 +43,7 @@ namespace RG2System_Garage.Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clientes");
+                    b.ToTable("Cliente");
                 });
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.ClienteVeiculo", b =>
@@ -126,11 +126,16 @@ namespace RG2System_Garage.Infra.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("ExisteOrdemServico")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("FormaPagamento")
                         .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
+
+                    b.Property<long>("Numero")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Observacao")
                         .HasColumnType("varchar(1500) CHARACTER SET utf8mb4")
@@ -147,9 +152,17 @@ namespace RG2System_Garage.Infra.Migrations
                     b.Property<double>("ValorTotal")
                         .HasColumnType("double");
 
+                    b.Property<Guid?>("VeiculoId")
+                        .HasColumnType("char(36)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
+
+                    b.HasIndex("Numero")
+                        .IsUnique();
+
+                    b.HasIndex("VeiculoId");
 
                     b.ToTable("Orcamento");
                 });
@@ -160,17 +173,25 @@ namespace RG2System_Garage.Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("OrcamentoId")
+                    b.Property<Guid>("OrcamentoId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("ProdutoId")
+                    b.Property<float>("PrecoVenda")
+                        .HasColumnType("float")
+                        .HasMaxLength(999999);
+
+                    b.Property<Guid>("ProdutoServicoId")
                         .HasColumnType("char(36)");
+
+                    b.Property<int>("Quantidade")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasMaxLength(9999)
+                        .HasDefaultValue(0);
 
                     b.HasKey("Id");
 
                     b.HasIndex("OrcamentoId");
-
-                    b.HasIndex("ProdutoId");
 
                     b.ToTable("OrcamentoItem");
                 });
@@ -184,6 +205,15 @@ namespace RG2System_Garage.Infra.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("varchar(150) CHARACTER SET utf8mb4")
                         .HasMaxLength(150);
+
+                    b.Property<string>("Observacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(2000) CHARACTER SET utf8mb4")
+                        .HasMaxLength(2000)
+                        .HasDefaultValue("");
+
+                    b.Property<int>("Situacao")
+                        .HasColumnType("int");
 
                     b.Property<int>("Tipo")
                         .HasColumnType("int");
@@ -316,18 +346,21 @@ namespace RG2System_Garage.Infra.Migrations
                 {
                     b.HasOne("RG2System_Garage.Domain.Entities.Cliente", "Cliente")
                         .WithMany()
-                        .HasForeignKey("ClienteId");
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RG2System_Garage.Domain.Entities.Veiculo", "Veiculo")
+                        .WithMany()
+                        .HasForeignKey("VeiculoId");
                 });
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.OrcamentoItem", b =>
                 {
-                    b.HasOne("RG2System_Garage.Domain.Entities.Orcamento", "Orcamento")
+                    b.HasOne("RG2System_Garage.Domain.Entities.Orcamento", null)
                         .WithMany("Itens")
-                        .HasForeignKey("OrcamentoId");
-
-                    b.HasOne("RG2System_Garage.Domain.Entities.ProdutoServico", "Produto")
-                        .WithMany()
-                        .HasForeignKey("ProdutoId");
+                        .HasForeignKey("OrcamentoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.Veiculo", b =>

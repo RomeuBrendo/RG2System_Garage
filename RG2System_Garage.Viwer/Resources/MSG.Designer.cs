@@ -142,6 +142,24 @@ namespace RG2System_Garage.Viwer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} realizada com sucesso!.
+        /// </summary>
+        internal static string X0_REALIZADA_COM_SUCESSO {
+            get {
+                return ResourceManager.GetString("X0_REALIZADA_COM_SUCESSO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} realizado com sucesso!.
+        /// </summary>
+        internal static string X0_REALIZADO_COM_SUCESSO {
+            get {
+                return ResourceManager.GetString("X0_REALIZADO_COM_SUCESSO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} salvo com sucesso!.
         /// </summary>
         internal static string X0_SALVO_COM_SUCESSO {
