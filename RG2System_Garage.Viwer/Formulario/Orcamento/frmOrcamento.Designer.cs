@@ -706,6 +706,7 @@
             this.txtPesquisarProduto.Name = "txtPesquisarProduto";
             this.txtPesquisarProduto.Size = new System.Drawing.Size(370, 20);
             this.txtPesquisarProduto.TabIndex = 2;
+            this.txtPesquisarProduto.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmOrcamento_PreviewKeyDown);
             // 
             // lblPesquisarServico
             // 
@@ -726,6 +727,7 @@
             this.txtPesquisarServico.Name = "txtPesquisarServico";
             this.txtPesquisarServico.Size = new System.Drawing.Size(380, 20);
             this.txtPesquisarServico.TabIndex = 0;
+            this.txtPesquisarServico.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmOrcamento_PreviewKeyDown);
             // 
             // lblProduto
             // 

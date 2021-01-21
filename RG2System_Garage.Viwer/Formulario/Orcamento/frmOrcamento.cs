@@ -78,6 +78,12 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                     Passo_1(false);
                     return;
                 }
+
+                if (tabControlOrcamento.SelectedIndex == 3)
+                {
+                    Passo_2(false);
+                    return;
+                }
             }
 
             if (e.KeyCode == Keys.F4)            
@@ -196,6 +202,9 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         {
             try
             {
+                if (!lblRetornar.Visible)
+                    return;
+
                 if (atualizarGrid)
                     CarregaGrid(dataGridVeículo, EnumListar.Veiculo, _IdClienteSelecionado);
 
@@ -530,6 +539,15 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         {
             if (e.KeyCode == Keys.Space)
                 SelecionaGrid(dataGridServico, EnumIcone.ServicoSelecionado);
+
+            if (e.KeyCode == Keys.F4)
+            {
+                dataGridServico.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                Salvar();
+            }
+
+            if (e.KeyCode == Keys.Escape)
+                txtPesquisarServico.Focus();
         }
 
         private void dataGridServico_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -568,6 +586,14 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 e.Handled = true;
             }
 
+            if (e.KeyCode == Keys.F4)
+            {
+                dataGridProduto.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                Salvar();
+            }
+
+            if (e.KeyCode == Keys.Escape)
+                txtPesquisarProduto.Focus();
         }
         private void txtTotalProdutos_TextChanged(object sender, EventArgs e)
         {
