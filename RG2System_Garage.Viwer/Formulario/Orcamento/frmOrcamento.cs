@@ -812,6 +812,69 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 this.Close();
             }
         }
+
+        private void lblPesquisarProduto_Click(object sender, EventArgs e)
+        {
+            if (!PesquisaDataGrid(dataGridProduto, txtPesquisarProduto.Text, 2))
+                txtPesquisarProduto.Focus();
+            
+        }
+
+        private void lblPesquisarServico_Click(object sender, EventArgs e)
+        {
+            if (!PesquisaDataGrid(dataGridServico, txtPesquisarProduto.Text, 2))
+                txtPesquisarServico.Focus();
+        }
+
+        private void txtPesquisarServico_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (PesquisaDataGrid(dataGridServico, txtPesquisarServico.Text, 2) == false)
+                    txtPesquisarServico.Focus();
+            }
+        }
+
+        private void txtPesquisarProduto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (!PesquisaDataGrid(dataGridProduto, txtPesquisarProduto.Text, 2))
+                    txtPesquisarProduto.Focus();
+            }
+        }
+
+        private void txtPesquisarPlaca_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (!PesquisaDataGrid(dataGridVeículo, txtPesquisarPlaca.Text, 1))
+                    txtPesquisarPlaca.Focus();
+            }
+        }
+
+        private void textPesquisaCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (!PesquisaDataGrid(dataGridCliente, textPesquisaCliente.Text, 1))
+                    textPesquisaCliente.Focus();
+            }
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            if ((txtPesquisar.Text.Length) > 2)
+            {
+                PesquisaDataGrid(dataGridOrcamento, txtPesquisar.Text, 1);
+                txtPesquisar.Focus();
+            }
+        }
+
         private void PopulaGridAjustandoSelecaoVenda(List<OrcamentoItensResponse> itens)
         {
             try
@@ -850,6 +913,32 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             {
                 toast.ShowToast(MSG.ERRO_AO_CONSULTAR_DADOS, EnumToast.Erro);
                 this.Close();
+            }
+        }
+
+        public bool PesquisaDataGrid(DataGridView grid, string descricao, int index)
+        {
+            try
+            {
+                if (descricao.Trim() != "")
+                    foreach (DataGridViewRow item in grid.Rows)
+                    {
+                        if (item.Cells[index].Value.ToString().StartsWith(descricao))
+                        {
+                            grid.Focus();
+                            item.Cells[index].Selected = true;
+
+                            return true;
+                        }
+                    }
+                toast.ShowToast("Decrição não localizada", EnumToast.Informacao);
+                this.Focus();
+                return false;
+            }
+            catch
+            {
+                toast.ShowToast("Erro ao popular grid", EnumToast.Erro);
+                return false;
             }
         }
     }
