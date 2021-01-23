@@ -29,39 +29,39 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TabControlFormaPagamento = new MetroFramework.Controls.MetroTabControl();
+            this.tpSelecionarForma = new MetroFramework.Controls.MetroTabPage();
+            this.btnSair = new MetroFramework.Controls.MetroButton();
+            this.btnExcluir = new MetroFramework.Controls.MetroButton();
+            this.btnAlterar = new MetroFramework.Controls.MetroButton();
+            this.btnNovo = new MetroFramework.Controls.MetroButton();
+            this.txtPesquisar = new System.Windows.Forms.TextBox();
+            this.lblPesquisa = new System.Windows.Forms.Label();
+            this.dataGridFormaPagamento = new System.Windows.Forms.DataGridView();
+            this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tpCadastroForma = new MetroFramework.Controls.MetroTabPage();
             this.btnCancelarNovo = new MetroFramework.Controls.MetroButton();
             this.btnSalvar = new MetroFramework.Controls.MetroButton();
             this.panelCadastroFormapagamento = new MetroFramework.Controls.MetroPanel();
+            this.txtParcelas = new System.Windows.Forms.TextBox();
+            this.txtPrazoRecebimento = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.lblPrazoRecebimento = new System.Windows.Forms.Label();
             this.lblTipo = new System.Windows.Forms.Label();
             this.lblDescricao = new System.Windows.Forms.Label();
-            this.dataGridFormaPagamento = new System.Windows.Forms.DataGridView();
-            this.lblPesquisa = new System.Windows.Forms.Label();
-            this.txtPesquisar = new System.Windows.Forms.TextBox();
-            this.btnNovo = new MetroFramework.Controls.MetroButton();
-            this.btnAlterar = new MetroFramework.Controls.MetroButton();
-            this.btnExcluir = new MetroFramework.Controls.MetroButton();
-            this.btnSair = new MetroFramework.Controls.MetroButton();
-            this.tpSelecionarForma = new MetroFramework.Controls.MetroTabPage();
-            this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbTipo = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtPrazoRecebimento = new System.Windows.Forms.TextBox();
-            this.txtParcelas = new System.Windows.Forms.TextBox();
             this.TabControlFormaPagamento.SuspendLayout();
+            this.tpSelecionarForma.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridFormaPagamento)).BeginInit();
             this.tpCadastroForma.SuspendLayout();
             this.panelCadastroFormapagamento.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridFormaPagamento)).BeginInit();
-            this.tpSelecionarForma.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControlFormaPagamento
@@ -77,6 +77,143 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
             this.TabControlFormaPagamento.Size = new System.Drawing.Size(551, 341);
             this.TabControlFormaPagamento.Style = MetroFramework.MetroColorStyle.Red;
             this.TabControlFormaPagamento.TabIndex = 1;
+            // 
+            // tpSelecionarForma
+            // 
+            this.tpSelecionarForma.Controls.Add(this.btnSair);
+            this.tpSelecionarForma.Controls.Add(this.btnExcluir);
+            this.tpSelecionarForma.Controls.Add(this.btnAlterar);
+            this.tpSelecionarForma.Controls.Add(this.btnNovo);
+            this.tpSelecionarForma.Controls.Add(this.txtPesquisar);
+            this.tpSelecionarForma.Controls.Add(this.lblPesquisa);
+            this.tpSelecionarForma.Controls.Add(this.dataGridFormaPagamento);
+            this.tpSelecionarForma.HorizontalScrollbarBarColor = true;
+            this.tpSelecionarForma.Location = new System.Drawing.Point(4, 35);
+            this.tpSelecionarForma.Name = "tpSelecionarForma";
+            this.tpSelecionarForma.Size = new System.Drawing.Size(543, 302);
+            this.tpSelecionarForma.TabIndex = 0;
+            this.tpSelecionarForma.Text = "tpSelecionarForma";
+            this.tpSelecionarForma.VerticalScrollbarBarColor = true;
+            // 
+            // btnSair
+            // 
+            this.btnSair.Location = new System.Drawing.Point(447, 205);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(90, 22);
+            this.btnSair.TabIndex = 5;
+            this.btnSair.Text = "Sair (ESC)";
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.Location = new System.Drawing.Point(447, 166);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(90, 23);
+            this.btnExcluir.TabIndex = 4;
+            this.btnExcluir.Text = "Excluir (DEL)";
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            // 
+            // btnAlterar
+            // 
+            this.btnAlterar.Location = new System.Drawing.Point(447, 127);
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(90, 23);
+            this.btnAlterar.TabIndex = 3;
+            this.btnAlterar.Text = "Alterar (F5)";
+            // 
+            // btnNovo
+            // 
+            this.btnNovo.Location = new System.Drawing.Point(447, 88);
+            this.btnNovo.Name = "btnNovo";
+            this.btnNovo.Size = new System.Drawing.Size(90, 23);
+            this.btnNovo.TabIndex = 2;
+            this.btnNovo.Text = "Novo (INS)";
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
+            // 
+            // txtPesquisar
+            // 
+            this.txtPesquisar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPesquisar.Location = new System.Drawing.Point(76, 41);
+            this.txtPesquisar.Name = "txtPesquisar";
+            this.txtPesquisar.Size = new System.Drawing.Size(344, 20);
+            this.txtPesquisar.TabIndex = 0;
+            // 
+            // lblPesquisa
+            // 
+            this.lblPesquisa.AutoSize = true;
+            this.lblPesquisa.BackColor = System.Drawing.Color.White;
+            this.lblPesquisa.Location = new System.Drawing.Point(15, 44);
+            this.lblPesquisa.Name = "lblPesquisa";
+            this.lblPesquisa.Size = new System.Drawing.Size(55, 13);
+            this.lblPesquisa.TabIndex = 14;
+            this.lblPesquisa.Text = "Descrição";
+            // 
+            // dataGridFormaPagamento
+            // 
+            this.dataGridFormaPagamento.AllowUserToAddRows = false;
+            this.dataGridFormaPagamento.AllowUserToDeleteRows = false;
+            this.dataGridFormaPagamento.AllowUserToResizeColumns = false;
+            this.dataGridFormaPagamento.AllowUserToResizeRows = false;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            this.dataGridFormaPagamento.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridFormaPagamento.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridFormaPagamento.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridFormaPagamento.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridFormaPagamento.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridFormaPagamento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridFormaPagamento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Modelo,
+            this.Id});
+            this.dataGridFormaPagamento.EnableHeadersVisualStyles = false;
+            this.dataGridFormaPagamento.Location = new System.Drawing.Point(16, 87);
+            this.dataGridFormaPagamento.MultiSelect = false;
+            this.dataGridFormaPagamento.Name = "dataGridFormaPagamento";
+            this.dataGridFormaPagamento.ReadOnly = true;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridFormaPagamento.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridFormaPagamento.RowHeadersVisible = false;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridFormaPagamento.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridFormaPagamento.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridFormaPagamento.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridFormaPagamento.Size = new System.Drawing.Size(404, 185);
+            this.dataGridFormaPagamento.TabIndex = 1;
+            // 
+            // Modelo
+            // 
+            this.Modelo.DataPropertyName = "Descricao";
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Modelo.DefaultCellStyle = dataGridViewCellStyle13;
+            this.Modelo.HeaderText = "Descricao";
+            this.Modelo.Name = "Modelo";
+            this.Modelo.ReadOnly = true;
+            this.Modelo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Modelo.Width = 404;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Id.Visible = false;
             // 
             // tpCadastroForma
             // 
@@ -98,6 +235,7 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
             this.btnCancelarNovo.Size = new System.Drawing.Size(90, 23);
             this.btnCancelarNovo.TabIndex = 1;
             this.btnCancelarNovo.Text = "Cancelar (ESC)";
+            this.btnCancelarNovo.Click += new System.EventHandler(this.btnCancelarNovo_Click);
             // 
             // btnSalvar
             // 
@@ -106,6 +244,7 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
             this.btnSalvar.Size = new System.Drawing.Size(90, 23);
             this.btnSalvar.TabIndex = 0;
             this.btnSalvar.Text = "Salvar (F4)";
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // panelCadastroFormapagamento
             // 
@@ -127,6 +266,54 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
             this.panelCadastroFormapagamento.VerticalScrollbarBarColor = true;
             this.panelCadastroFormapagamento.VerticalScrollbarHighlightOnWheel = false;
             this.panelCadastroFormapagamento.VerticalScrollbarSize = 10;
+            // 
+            // txtParcelas
+            // 
+            this.txtParcelas.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtParcelas.Location = new System.Drawing.Point(319, 118);
+            this.txtParcelas.Name = "txtParcelas";
+            this.txtParcelas.Size = new System.Drawing.Size(45, 20);
+            this.txtParcelas.TabIndex = 3;
+            this.txtParcelas.Text = "0";
+            this.txtParcelas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtPrazoRecebimento
+            // 
+            this.txtPrazoRecebimento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPrazoRecebimento.Location = new System.Drawing.Point(137, 118);
+            this.txtPrazoRecebimento.Name = "txtPrazoRecebimento";
+            this.txtPrazoRecebimento.Size = new System.Drawing.Size(45, 20);
+            this.txtPrazoRecebimento.TabIndex = 2;
+            this.txtPrazoRecebimento.Text = "1";
+            this.txtPrazoRecebimento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(204, 121);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 13);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Quantidade Parcelas:";
+            // 
+            // cmbTipo
+            // 
+            this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipo.FormattingEnabled = true;
+            this.cmbTipo.Items.AddRange(new object[] {
+            "Dinheiro",
+            "Cartão Débito",
+            "Cartão Crédito",
+            "Deposito Bancário",
+            "Dinheiro a Prazo",
+            "Cheque",
+            "Outros"});
+            this.cmbTipo.Location = new System.Drawing.Point(137, 73);
+            this.cmbTipo.Name = "cmbTipo";
+            this.cmbTipo.Size = new System.Drawing.Size(227, 21);
+            this.cmbTipo.TabIndex = 1;
+            this.cmbTipo.Tag = "";
             // 
             // txtDescricao
             // 
@@ -166,184 +353,6 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
             this.lblDescricao.TabIndex = 16;
             this.lblDescricao.Text = "Descrição:";
             // 
-            // dataGridFormaPagamento
-            // 
-            this.dataGridFormaPagamento.AllowUserToAddRows = false;
-            this.dataGridFormaPagamento.AllowUserToDeleteRows = false;
-            this.dataGridFormaPagamento.AllowUserToResizeColumns = false;
-            this.dataGridFormaPagamento.AllowUserToResizeRows = false;
-            dataGridViewCellStyle41.BackColor = System.Drawing.Color.White;
-            this.dataGridFormaPagamento.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle41;
-            this.dataGridFormaPagamento.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridFormaPagamento.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridFormaPagamento.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle42.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridFormaPagamento.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle42;
-            this.dataGridFormaPagamento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridFormaPagamento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Modelo,
-            this.Id});
-            this.dataGridFormaPagamento.EnableHeadersVisualStyles = false;
-            this.dataGridFormaPagamento.Location = new System.Drawing.Point(16, 87);
-            this.dataGridFormaPagamento.MultiSelect = false;
-            this.dataGridFormaPagamento.Name = "dataGridFormaPagamento";
-            this.dataGridFormaPagamento.ReadOnly = true;
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle44.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle44.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridFormaPagamento.RowHeadersDefaultCellStyle = dataGridViewCellStyle44;
-            this.dataGridFormaPagamento.RowHeadersVisible = false;
-            dataGridViewCellStyle45.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle45.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridFormaPagamento.RowsDefaultCellStyle = dataGridViewCellStyle45;
-            this.dataGridFormaPagamento.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridFormaPagamento.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridFormaPagamento.Size = new System.Drawing.Size(404, 185);
-            this.dataGridFormaPagamento.TabIndex = 1;
-            // 
-            // lblPesquisa
-            // 
-            this.lblPesquisa.AutoSize = true;
-            this.lblPesquisa.BackColor = System.Drawing.Color.White;
-            this.lblPesquisa.Location = new System.Drawing.Point(15, 44);
-            this.lblPesquisa.Name = "lblPesquisa";
-            this.lblPesquisa.Size = new System.Drawing.Size(55, 13);
-            this.lblPesquisa.TabIndex = 14;
-            this.lblPesquisa.Text = "Descrição";
-            // 
-            // txtPesquisar
-            // 
-            this.txtPesquisar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPesquisar.Location = new System.Drawing.Point(76, 41);
-            this.txtPesquisar.Name = "txtPesquisar";
-            this.txtPesquisar.Size = new System.Drawing.Size(344, 20);
-            this.txtPesquisar.TabIndex = 0;
-            // 
-            // btnNovo
-            // 
-            this.btnNovo.Location = new System.Drawing.Point(447, 88);
-            this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(90, 23);
-            this.btnNovo.TabIndex = 2;
-            this.btnNovo.Text = "Novo (INS)";
-            // 
-            // btnAlterar
-            // 
-            this.btnAlterar.Location = new System.Drawing.Point(447, 127);
-            this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(90, 23);
-            this.btnAlterar.TabIndex = 3;
-            this.btnAlterar.Text = "Alterar (F5)";
-            // 
-            // btnExcluir
-            // 
-            this.btnExcluir.Location = new System.Drawing.Point(447, 166);
-            this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(90, 23);
-            this.btnExcluir.TabIndex = 4;
-            this.btnExcluir.Text = "Excluir (DEL)";
-            // 
-            // btnSair
-            // 
-            this.btnSair.Location = new System.Drawing.Point(447, 205);
-            this.btnSair.Name = "btnSair";
-            this.btnSair.Size = new System.Drawing.Size(90, 22);
-            this.btnSair.TabIndex = 5;
-            this.btnSair.Text = "Sair (ESC)";
-            // 
-            // tpSelecionarForma
-            // 
-            this.tpSelecionarForma.Controls.Add(this.btnSair);
-            this.tpSelecionarForma.Controls.Add(this.btnExcluir);
-            this.tpSelecionarForma.Controls.Add(this.btnAlterar);
-            this.tpSelecionarForma.Controls.Add(this.btnNovo);
-            this.tpSelecionarForma.Controls.Add(this.txtPesquisar);
-            this.tpSelecionarForma.Controls.Add(this.lblPesquisa);
-            this.tpSelecionarForma.Controls.Add(this.dataGridFormaPagamento);
-            this.tpSelecionarForma.HorizontalScrollbarBarColor = true;
-            this.tpSelecionarForma.Location = new System.Drawing.Point(4, 35);
-            this.tpSelecionarForma.Name = "tpSelecionarForma";
-            this.tpSelecionarForma.Size = new System.Drawing.Size(543, 302);
-            this.tpSelecionarForma.TabIndex = 0;
-            this.tpSelecionarForma.Text = "tpSelecionarForma";
-            this.tpSelecionarForma.VerticalScrollbarBarColor = true;
-            // 
-            // Modelo
-            // 
-            this.Modelo.DataPropertyName = "Descricao";
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Modelo.DefaultCellStyle = dataGridViewCellStyle43;
-            this.Modelo.HeaderText = "Descricao";
-            this.Modelo.Name = "Modelo";
-            this.Modelo.ReadOnly = true;
-            this.Modelo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Modelo.Width = 404;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Id.Visible = false;
-            // 
-            // cmbTipo
-            // 
-            this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Items.AddRange(new object[] {
-            "Produto",
-            "Serviço"});
-            this.cmbTipo.Location = new System.Drawing.Point(137, 73);
-            this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(290, 21);
-            this.cmbTipo.TabIndex = 22;
-            this.cmbTipo.Tag = "";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(267, 121);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 13);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Quantidade Parcelas:";
-            // 
-            // txtPrazoRecebimento
-            // 
-            this.txtPrazoRecebimento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPrazoRecebimento.Location = new System.Drawing.Point(137, 118);
-            this.txtPrazoRecebimento.Name = "txtPrazoRecebimento";
-            this.txtPrazoRecebimento.Size = new System.Drawing.Size(45, 20);
-            this.txtPrazoRecebimento.TabIndex = 24;
-            this.txtPrazoRecebimento.Text = "1";
-            this.txtPrazoRecebimento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtParcelas
-            // 
-            this.txtParcelas.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtParcelas.Location = new System.Drawing.Point(382, 118);
-            this.txtParcelas.Name = "txtParcelas";
-            this.txtParcelas.Size = new System.Drawing.Size(45, 20);
-            this.txtParcelas.TabIndex = 25;
-            this.txtParcelas.Text = "0";
-            this.txtParcelas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // frmFormaPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,12 +370,12 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
             this.Text = "Selecionar Forma de Pagamento";
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
             this.TabControlFormaPagamento.ResumeLayout(false);
+            this.tpSelecionarForma.ResumeLayout(false);
+            this.tpSelecionarForma.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridFormaPagamento)).EndInit();
             this.tpCadastroForma.ResumeLayout(false);
             this.panelCadastroFormapagamento.ResumeLayout(false);
             this.panelCadastroFormapagamento.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridFormaPagamento)).EndInit();
-            this.tpSelecionarForma.ResumeLayout(false);
-            this.tpSelecionarForma.PerformLayout();
             this.ResumeLayout(false);
 
         }

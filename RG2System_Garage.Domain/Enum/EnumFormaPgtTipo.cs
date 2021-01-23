@@ -18,8 +18,11 @@ namespace RG2System_Garage.Domain.Enum
         [Description("Dinheiro a Prazo")]
         DinheiroPrazo = 4,
 
+        [Description("Cheque")]
+        Cheque = 5,
+
         [Description("Outros")]
-        Outros = 5
+        Outros = 6
 
     }
 }
