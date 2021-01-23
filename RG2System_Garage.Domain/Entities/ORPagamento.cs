@@ -5,6 +5,10 @@ namespace RG2System_Garage.Domain.Entities
 {
     public class ORPagamento : EntityBase 
     {
+        protected ORPagamento()
+        {
+
+        }
         public ORPagamento(ORPagamento formaPagamentoId, OrdemServico ordemServico, float valor)
         {
             FormaPagamento = formaPagamentoId;

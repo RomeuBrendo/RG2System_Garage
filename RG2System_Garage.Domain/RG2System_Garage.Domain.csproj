@@ -230,6 +230,8 @@
     <Compile Include="Commands\Orcamento\OrcamentoItensResponse.cs" />
     <Compile Include="Commands\Orcamento\OrcamentoRequest.cs" />
     <Compile Include="Commands\Orcamento\OrcamentoResponse.cs" />
+    <Compile Include="Commands\OrdemServico\OrdemServicoRequest.cs" />
+    <Compile Include="Commands\OrdemServico\ORPagamentoResquest.cs" />
     <Compile Include="Commands\ProdutoServico\AdionarAlterarProdutoServicoRequest.cs" />
     <Compile Include="Commands\ProdutoServico\ProdutoServicoResponse.cs" />
     <Compile Include="Commands\Veiculo\VeiculoRequest.cs" />
@@ -281,6 +283,7 @@
     <Compile Include="Service\ServiceConfiguracaoDadosEmpresa.cs" />
     <Compile Include="Service\ServiceFormaPagamento.cs" />
     <Compile Include="Service\ServiceOrcamento.cs" />
+    <Compile Include="Service\ServiceOrdemServico.cs" />
     <Compile Include="Service\ServiceProduto.cs" />
     <Compile Include="Service\ServiceVeiculo.cs" />
     <Compile Include="ValueObjects\Email.cs" />

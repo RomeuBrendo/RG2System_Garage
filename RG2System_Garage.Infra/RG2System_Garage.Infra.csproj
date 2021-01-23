@@ -311,6 +311,10 @@
     <Compile Include="Migrations\20210123010757_CadastroFormaPagamento.designer.cs">
       <DependentUpon>20210123010757_CadastroFormaPagamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210123173616_OrdemServico.cs" />
+    <Compile Include="Migrations\20210123173616_OrdemServico.designer.cs">
+      <DependentUpon>20210123173616_OrdemServico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\RepositoryBase.cs" />
