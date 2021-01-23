@@ -313,6 +313,12 @@
     <Compile Include="Formulario\Configuracao\frmDadosEmpresa.Designer.cs">
       <DependentUpon>frmDadosEmpresa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formulario\FormaPagamento\frmFormaPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulario\FormaPagamento\frmFormaPagamento.Designer.cs">
+      <DependentUpon>frmFormaPagamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formulario\frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -355,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formulario\Configuracao\frmDadosEmpresa.resx">
       <DependentUpon>frmDadosEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulario\FormaPagamento\frmFormaPagamento.resx">
+      <DependentUpon>frmFormaPagamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulario\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>

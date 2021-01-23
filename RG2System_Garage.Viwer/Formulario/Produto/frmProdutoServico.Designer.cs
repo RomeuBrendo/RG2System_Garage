@@ -44,6 +44,11 @@
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.lblPesquisa = new System.Windows.Forms.Label();
             this.dataGridProduto = new System.Windows.Forms.DataGridView();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecoVenda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tpCadastro = new MetroFramework.Controls.MetroTabPage();
             this.panelCadastroProduto = new MetroFramework.Controls.MetroPanel();
             this.cbSituacao = new System.Windows.Forms.ComboBox();
@@ -63,11 +68,6 @@
             this.btnCancelarNovo = new MetroFramework.Controls.MetroButton();
             this.btnSalvar = new MetroFramework.Controls.MetroButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecoVenda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControlProduto.SuspendLayout();
             this.tpSelecionar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProduto)).BeginInit();
@@ -84,7 +84,7 @@
             this.tabControlProduto.Controls.Add(this.tpCadastro);
             this.tabControlProduto.Location = new System.Drawing.Point(3, 63);
             this.tabControlProduto.Name = "tabControlProduto";
-            this.tabControlProduto.SelectedIndex = 0;
+            this.tabControlProduto.SelectedIndex = 1;
             this.tabControlProduto.Size = new System.Drawing.Size(631, 437);
             this.tabControlProduto.Style = MetroFramework.MetroColorStyle.Red;
             this.tabControlProduto.TabIndex = 2;
@@ -218,6 +218,57 @@
             this.dataGridProduto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProduto_CellDoubleClick);
             this.dataGridProduto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridProduto_KeyDown);
             this.dataGridProduto.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmProduto_PreviewKeyDown);
+            // 
+            // Tipo
+            // 
+            this.Tipo.DataPropertyName = "TipoDescricao";
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            this.Tipo.Width = 50;
+            // 
+            // Modelo
+            // 
+            this.Modelo.DataPropertyName = "Descricao";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.Modelo.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Modelo.HeaderText = "Descrição";
+            this.Modelo.Name = "Modelo";
+            this.Modelo.ReadOnly = true;
+            this.Modelo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Modelo.Width = 250;
+            // 
+            // Estoque
+            // 
+            this.Estoque.DataPropertyName = "Estoque";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle4.NullValue = "False";
+            this.Estoque.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Estoque.HeaderText = "Estoque";
+            this.Estoque.Name = "Estoque";
+            this.Estoque.ReadOnly = true;
+            this.Estoque.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Estoque.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Estoque.Width = 70;
+            // 
+            // PrecoVenda
+            // 
+            this.PrecoVenda.DataPropertyName = "PrecoVenda";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.PrecoVenda.DefaultCellStyle = dataGridViewCellStyle5;
+            this.PrecoVenda.HeaderText = "Venda";
+            this.PrecoVenda.Name = "PrecoVenda";
+            this.PrecoVenda.ReadOnly = true;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Id.Visible = false;
             // 
             // tpCadastro
             // 
@@ -431,65 +482,14 @@
             this.panel1.Size = new System.Drawing.Size(631, 43);
             this.panel1.TabIndex = 19;
             // 
-            // Tipo
-            // 
-            this.Tipo.DataPropertyName = "TipoDescricao";
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
-            this.Tipo.ReadOnly = true;
-            this.Tipo.Width = 50;
-            // 
-            // Modelo
-            // 
-            this.Modelo.DataPropertyName = "Descricao";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.Modelo.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Modelo.HeaderText = "Descrição";
-            this.Modelo.Name = "Modelo";
-            this.Modelo.ReadOnly = true;
-            this.Modelo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Modelo.Width = 250;
-            // 
-            // Estoque
-            // 
-            this.Estoque.DataPropertyName = "Estoque";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle4.NullValue = "False";
-            this.Estoque.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Estoque.HeaderText = "Estoque";
-            this.Estoque.Name = "Estoque";
-            this.Estoque.ReadOnly = true;
-            this.Estoque.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Estoque.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Estoque.Width = 70;
-            // 
-            // PrecoVenda
-            // 
-            this.PrecoVenda.DataPropertyName = "PrecoVenda";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            this.PrecoVenda.DefaultCellStyle = dataGridViewCellStyle5;
-            this.PrecoVenda.HeaderText = "Venda";
-            this.PrecoVenda.Name = "PrecoVenda";
-            this.PrecoVenda.ReadOnly = true;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Id.Visible = false;
-            // 
             // frmProdutoServico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(637, 505);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControlProduto);
+            this.Controls.Add(this.panel1);
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
