@@ -319,6 +319,14 @@
     <Compile Include="Migrations\20210123214130_teste5.designer.cs">
       <DependentUpon>20210123214130_teste5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210123222831_Inclusao_numero.cs" />
+    <Compile Include="Migrations\20210123222831_Inclusao_numero.designer.cs">
+      <DependentUpon>20210123222831_Inclusao_numero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210123222911_Inclusao_numero_auto.cs" />
+    <Compile Include="Migrations\20210123222911_Inclusao_numero_auto.designer.cs">
+      <DependentUpon>20210123222911_Inclusao_numero_auto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\RepositoryBase.cs" />

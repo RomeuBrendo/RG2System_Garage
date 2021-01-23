@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RG2System_Garage.Infra.Repositories;
 
 namespace RG2System_Garage.Infra.Migrations
 {
     [DbContext(typeof(RB2System_GarageContext))]
-    partial class RB2System_GarageContextModelSnapshot : ModelSnapshot
+    [Migration("20210123222831_Inclusao_numero")]
+    partial class Inclusao_numero
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -254,9 +256,7 @@ namespace RG2System_Garage.Infra.Migrations
                         .HasDefaultValue(null);
 
                     b.Property<int>("Numero")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .IsUnicode(true);
+                        .HasColumnType("int");
 
                     b.Property<string>("Observacao")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");

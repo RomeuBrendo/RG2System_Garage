@@ -48,6 +48,7 @@ namespace RG2System_Garage.Domain.Entities
             Status = status;
         }
 
+        public Int32 Numero { get; private set; }
         public Orcamento Orcamento { get; private set; }
         public List<ORPagamento> FormaPagamentos { get; private set; }
         public DateTime DataFinalizacao { get; private set; }

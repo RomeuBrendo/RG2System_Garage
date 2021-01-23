@@ -331,6 +331,12 @@
     <Compile Include="Formulario\Orcamento\frmOrcamento.Designer.cs">
       <DependentUpon>frmOrcamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formulario\OrdemServico\frmOrdemServico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulario\OrdemServico\frmOrdemServico.Designer.cs">
+      <DependentUpon>frmOrdemServico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formulario\Produto\frmProdutoServico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,6 +377,9 @@
     <EmbeddedResource Include="Formulario\Orcamento\frmOrcamento.resx">
       <DependentUpon>frmOrcamento.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulario\OrdemServico\frmOrdemServico.resx">
+      <DependentUpon>frmOrdemServico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulario\Produto\frmProdutoServico.resx">
       <DependentUpon>frmProdutoServico.cs</DependentUpon>

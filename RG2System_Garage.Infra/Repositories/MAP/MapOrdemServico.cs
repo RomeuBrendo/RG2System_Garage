@@ -17,6 +17,9 @@ namespace RG2System_Garage.Infra.Repositories.MAP
 
             builder.HasOne(x => x.Orcamento).WithMany().HasForeignKey("OrcamentoId");
             builder.HasMany(x => x.FormaPagamentos).WithOne().HasForeignKey("FormaPagamentoId");
+
+            builder.HasIndex(x => x.Numero);
+            builder.Property(x => x.Numero).ValueGeneratedOnAdd().IsUnicode();
         }
     }
 }
