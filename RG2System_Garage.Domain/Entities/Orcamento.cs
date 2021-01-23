@@ -19,7 +19,6 @@ namespace RG2System_Garage.Domain.Entities
             this.ClearNotifications();
             Cliente = cliente;
             Veiculo = veiculo;
-            FormaPagamento = request.FormaPagamento;
 
             Observacao = request.Observacao;
             ExisteOrdemServico = request.ExisteOrdemServico;
@@ -80,7 +79,6 @@ namespace RG2System_Garage.Domain.Entities
         public void Alterar(OrcamentoRequest request)
         {
             this.ClearNotifications();
-            FormaPagamento = request.FormaPagamento;
             Observacao = request.Observacao;
             DataCriacao = request.DataCriacao;
 
@@ -108,7 +106,6 @@ namespace RG2System_Garage.Domain.Entities
         public Cliente Cliente { get; private set; }
         public Veiculo Veiculo { get; private set; }
         public Int64 Numero { get; set; }
-        public string FormaPagamento { get; private set; } // Futuramente terá um cadastro exclusivo para forma de pagamento.
         public double ValorTotal { get; private set; }
         public double ValorDesconto { get; private set; }
         public double ValorAcrescimo { get; private set; }
