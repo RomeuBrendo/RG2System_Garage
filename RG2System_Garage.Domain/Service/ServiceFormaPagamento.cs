@@ -118,5 +118,19 @@ namespace RG2System_Garage.Domain.Service
                 return null;
             }
         }
+
+        public FormaPagamentoResponse ObterPorId(Guid id)
+        {
+            try
+            {
+                return FormaPagamentoResponse(_repositoryFormaPagamento.ListarPor(X => X.Id == id).ToList()).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+
+                AddNotification("ObterPorId", MSG.ERRO_AO_REALIZAR_PROCEDIMENTO_DE_X0.ToFormat("ObterPorId ") + ex);
+                return null;
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using RG2System_Garage.Viwer.Formulario.Cliente;
 using RG2System_Garage.Viwer.Formulario.Configuracao;
+using RG2System_Garage.Viwer.Formulario.FormaPagamento;
 using RG2System_Garage.Viwer.Formulario.Orcamento;
 using RG2System_Garage.Viwer.Formulario.Produto;
 using RG2System_Garage.Viwer.Formulario.Veiculo;
@@ -235,6 +236,11 @@ namespace RG2System_Garage.Viwer.Formulario
             foreach (var thread in threads)
                 _threads.Remove(thread); 
 
+        }
+
+        private void btnTeste_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario<frmFormaPagamento>(false);
         }
     }
 }

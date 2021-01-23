@@ -53,7 +53,7 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
 
             if (VerificaNotificacoes(_serviceFormaPagamento))
             {
-                dataGridFormaPagamento.DataSource = response.OrderBy(x => x.Descricao);
+                dataGridFormaPagamento.DataSource = response.OrderBy(x => x.Descricao).ToList();
                 dataGridFormaPagamento.Update();
                 dataGridFormaPagamento.Refresh();
             }
@@ -186,6 +186,57 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             Salvar();
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var formaPagamentoSelecionada = FormaPagamentoSelecionada();
+
+                if (formaPagamentoSelecionada == null)
+                    return;
+
+                var response = _serviceFormaPagamento.ObterPorId(formaPagamentoSelecionada.Id.Value);
+
+                _idEstaSendoEditado = response.Id.Value;
+                txtDescricao.Text = response.Descricao;
+                cmbTipo.SelectedIndex = (int)response.Tipo;
+                txtPrazoRecebimento.Text = Convert.ToString(response.PrazoRecebimento);
+                txtParcelas.Text = Convert.ToString(response.QuantidadeParcela);
+
+                TabControlFormaPagamento.SelectedIndex = 1;
+                this.Text = "Alteração Forma Pagamento";
+            }
+            catch (Exception ex)
+            {
+                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+                return;
+            }
+        }
+
+        private void frmFormaPagamento_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (TabControlFormaPagamento.SelectedIndex == 1)
+            {
+                if (e.KeyCode == Keys.F4)
+                    btnSalvar.PerformClick();
+
+                if (e.KeyCode == Keys.Escape)
+                    btnSair.PerformClick();
+            }
+
+            if (TabControlFormaPagamento.SelectedIndex == 0)
+            {
+                if (e.KeyCode == Keys.Insert)
+                    btnNovo.PerformClick();
+
+                if (e.KeyCode == Keys.F5)
+                    btnAlterar.PerformClick();
+
+                if (e.KeyCode == Keys.Escape)
+                    this.Close();
+            }
         }
     }
 }

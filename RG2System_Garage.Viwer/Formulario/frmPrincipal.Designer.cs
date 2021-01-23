@@ -45,6 +45,7 @@
             this.btnCadastro = new System.Windows.Forms.Button();
             this.tmMenu = new System.Windows.Forms.Timer(this.components);
             this.panelformularios = new System.Windows.Forms.Panel();
+            this.btnTeste = new System.Windows.Forms.Button();
             this.pnMenu.SuspendLayout();
             this.pnConfiguracoes.SuspendLayout();
             this.pnLancamentos.SuspendLayout();
@@ -56,6 +57,7 @@
             this.pnMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.pnMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            this.pnMenu.Controls.Add(this.btnTeste);
             this.pnMenu.Controls.Add(this.pnConfiguracoes);
             this.pnMenu.Controls.Add(this.pnLancamentos);
             this.pnMenu.Controls.Add(this.pnCadastro);
@@ -265,6 +267,16 @@
             this.panelformularios.TabIndex = 36;
             this.panelformularios.Visible = false;
             // 
+            // btnTeste
+            // 
+            this.btnTeste.Location = new System.Drawing.Point(52, 59);
+            this.btnTeste.Name = "btnTeste";
+            this.btnTeste.Size = new System.Drawing.Size(153, 102);
+            this.btnTeste.TabIndex = 0;
+            this.btnTeste.Text = "btnTeste";
+            this.btnTeste.UseVisualStyleBackColor = true;
+            this.btnTeste.Click += new System.EventHandler(this.btnTeste_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,5 +316,6 @@
         private System.Windows.Forms.Panel pnConfiguracoes;
         private System.Windows.Forms.Button btnConfigGeral;
         private System.Windows.Forms.Panel panelformularios;
+        private System.Windows.Forms.Button btnTeste;
     }
 }

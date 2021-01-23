@@ -4,7 +4,7 @@ namespace RG2System_Garage.Domain.Enum
 {
     public enum EnumFormaPgtTipo
     {
-        Dinheiro = 0,
+        AVista = 0,
 
         [Description("Cartão Débito")]
         CartaoDebito = 1,

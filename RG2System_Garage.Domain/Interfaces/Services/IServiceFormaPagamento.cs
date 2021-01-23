@@ -10,5 +10,6 @@ namespace RG2System_Garage.Domain.Interfaces.Services
         void AdicionarAlterar(FormaPagamentoRequest request);
         List<FormaPagamentoResponse> Listar(string descricao);
         void Excluir(Guid id);
+        FormaPagamentoResponse ObterPorId(Guid id);
     }
 }
