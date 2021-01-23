@@ -14,7 +14,7 @@ namespace RG2System_Garage.Domain.Entities
         {
 
         }
-        public OrdemServico(Orcamento orcamento, List<ORPagamento> formaPagamentos, DateTime dataFinalizacao, EnumStatus status, string observacao)
+        public OrdemServico(Guid orcamentoId, DateTime dataFinalizacao, EnumStatus status, string observacao)
         {
             DataFinalizacao = dataFinalizacao;
             Status = status;
@@ -25,11 +25,22 @@ namespace RG2System_Garage.Domain.Entities
                 .IfNotDate(x => x.DataFinalizacao.ToString(), MSG.X0_INVALIDA.ToFormat("Data"))
                 .IfEnumInvalid(x => x.Status, MSG.X0_INVALIDO.ToFormat("Status"));
 
-            Orcamento = orcamento;
+            OrcamentoId = orcamentoId;
             
-            if (formaPagamentos != null)
-                FormaPagamentos = formaPagamentos;
+        }
+
+        public void Alterar(DateTime dataFinalizacao, string obs, EnumStatus status)
+        {
+            if (dataFinalizacao != null)
+                DataFinalizacao = dataFinalizacao;
             
+            Status = status;
+            Observacao = obs;
+
+            this.ClearNotifications();
+            new AddNotifications<OrdemServico>(this)
+                //.IfNotDate(x => x.DataFinalizacao.ToString(), MSG.X0_INVALIDA.ToFormat("Data"))
+                .IfEnumInvalid(x => x.Status, MSG.X0_INVALIDO.ToFormat("Status"));
         }
 
         public void AlterarStatus(EnumStatus status)
@@ -42,6 +53,8 @@ namespace RG2System_Garage.Domain.Entities
         public DateTime DataFinalizacao { get; private set; }
         public EnumStatus Status { get; private set; }
         public string Observacao { get; private set; }
+
+        public Guid OrcamentoId { get; set; }
     }
 
 }

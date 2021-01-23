@@ -315,6 +315,10 @@
     <Compile Include="Migrations\20210123173616_OrdemServico.designer.cs">
       <DependentUpon>20210123173616_OrdemServico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210123214130_teste5.cs" />
+    <Compile Include="Migrations\20210123214130_teste5.designer.cs">
+      <DependentUpon>20210123214130_teste5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\RepositoryBase.cs" />
@@ -336,6 +340,7 @@
     <Compile Include="Repositories\RepositoryFormaPagamento.cs" />
     <Compile Include="Repositories\RepositoryOrcamento.cs" />
     <Compile Include="Repositories\RepositoryOrdemServico.cs" />
+    <Compile Include="Repositories\RepositoryORPagamento.cs" />
     <Compile Include="Repositories\RepositoryProdutoServico.cs" />
     <Compile Include="Repositories\RepositoryVeiculo.cs" />
     <Compile Include="Repositories\Transactions\IUnitOfWork.cs" />

@@ -261,6 +261,7 @@
     <Compile Include="Interfaces\Repositories\IRepositoryFormaPagamento.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryOrcamento.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryOrdemServico.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositoryORPagamento.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryProdutoServico.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryVeiculo.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoyCliente.cs" />
