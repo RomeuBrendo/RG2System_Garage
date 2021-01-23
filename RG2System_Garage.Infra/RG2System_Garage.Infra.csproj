@@ -321,6 +321,8 @@
     <Compile Include="Repositories\MAP\MapMovimentacao.cs" />
     <Compile Include="Repositories\MAP\MapOrcamento.cs" />
     <Compile Include="Repositories\MAP\MapOrcamentoItens.cs" />
+    <Compile Include="Repositories\MAP\MapOrdemServico.cs" />
+    <Compile Include="Repositories\MAP\MapORPagamento.cs" />
     <Compile Include="Repositories\MAP\MapProdutoServico.cs" />
     <Compile Include="Repositories\MAP\MapVeiculo.cs" />
     <Compile Include="Repositories\RB2System_GarageContext.cs" />
@@ -329,6 +331,7 @@
     <Compile Include="Repositories\RepositoryConfiguracaoDadosEmpresa.cs" />
     <Compile Include="Repositories\RepositoryFormaPagamento.cs" />
     <Compile Include="Repositories\RepositoryOrcamento.cs" />
+    <Compile Include="Repositories\RepositoryOrdemServico.cs" />
     <Compile Include="Repositories\RepositoryProdutoServico.cs" />
     <Compile Include="Repositories\RepositoryVeiculo.cs" />
     <Compile Include="Repositories\Transactions\IUnitOfWork.cs" />

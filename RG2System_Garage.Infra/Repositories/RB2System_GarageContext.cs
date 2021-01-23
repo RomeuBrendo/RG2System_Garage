@@ -44,6 +44,8 @@ namespace RG2System_Garage.Infra.Repositories
             modelBuilder.ApplyConfiguration(new MapOrcamento());
             modelBuilder.ApplyConfiguration(new MapOrcamentoItens());
             modelBuilder.ApplyConfiguration(new MapFormaPagamento());
+            modelBuilder.ApplyConfiguration(new MapOrdemServico());
+            modelBuilder.ApplyConfiguration(new MapORPagamento());
 
             base.OnModelCreating(modelBuilder);
         }

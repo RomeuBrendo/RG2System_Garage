@@ -243,11 +243,14 @@
     <Compile Include="Entities\Movimentacao.cs" />
     <Compile Include="Entities\Orcamento.cs" />
     <Compile Include="Entities\OrcamentoItem.cs" />
+    <Compile Include="Entities\OrdemServico.cs" />
+    <Compile Include="Entities\ORPagamento.cs" />
     <Compile Include="Entities\ProdutoServico.cs" />
     <Compile Include="Entities\Veiculo.cs" />
     <Compile Include="Enum\EnumFormaPgtTipo.cs" />
     <Compile Include="Enum\EnumIcone.cs" />
     <Compile Include="Enum\EnumSituacao.cs" />
+    <Compile Include="Enum\Ordem_Servico\EnumStatus.cs" />
     <Compile Include="Enum\EnumTipo.cs" />
     <Compile Include="Enum\EnumToast.cs" />
     <Compile Include="Enum\Orcamento\EnumListar.cs" />
@@ -255,6 +258,7 @@
     <Compile Include="Interfaces\Repositories\IRepositoryConfiguracaoDadosEmpresa.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryFormaPagamento.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryOrcamento.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositoryOrdemServico.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryProdutoServico.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryVeiculo.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoyCliente.cs" />
@@ -264,6 +268,7 @@
     <Compile Include="Interfaces\Services\IServiceCliente.cs" />
     <Compile Include="Interfaces\Services\IServiceConfiguracaoDadosEmpresa.cs" />
     <Compile Include="Interfaces\Services\IServiceOrcamento.cs" />
+    <Compile Include="Interfaces\Services\IServiceOrdemServico.cs" />
     <Compile Include="Interfaces\Services\IServiceProduto.cs" />
     <Compile Include="Interfaces\Services\IServiceVeiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
