@@ -26,8 +26,11 @@ namespace RG2System_Garage.Domain.Entities
 
         private void ValidaCampos()
         {
+            if (Descricao.Length < 3)
+                AddNotification("Descricao", MSG.X0_E_OBRIGATORIA_E_DEVE_CONTER_X1_CARACTERES.ToFormat("Descrição", "3", "150"));
+
             new AddNotifications<FormaPagamento>(this)
-                .IfLengthLowerThan(x => x.Descricao, 3, MSG.X0_E_OBRIGATORIA_E_DEVE_CONTER_X1_CARACTERES.ToFormat("Descrição", "3", "150"))
+                //.IfLengthLowerThan(x => x.Descricao, 3, MSG.X0_E_OBRIGATORIA_E_DEVE_CONTER_X1_CARACTERES.ToFormat("Descrição", "3", "150")) Essa b** não funcionou, depois preciso olhar com tempo, em quanto isso vou fazer validação manual
                 .IfEnumInvalid(x => x.Tipo)
                 .IfLowerThan(x => x.PrazoRecebimento, 0, MSG.O_X0_DEVE_SER_MAIOR_OU_IGUAL_A_X1.ToFormat("Prazo recebimento", "0"))
                 .IfLowerThan(x => x.QuantidadeParcela, 0, MSG.O_X0_DEVE_SER_MAIOR_OU_IGUAL_A_X1.ToFormat("Quantidade parcelas", "0"));

@@ -7,13 +7,8 @@ using RG2System_Garage.Infra.Repositories.Transactions;
 using RG2System_Garage.Shared.Formulario.Toast;
 using RG2System_Garage.Viwer.Resources;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
@@ -108,6 +103,7 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
                     TabControlFormaPagamento.SelectedIndex = 0;
                     LimparCampos();
                     CarregaGridProduto();
+                    dataGridFormaPagamento.Focus();
                 }
 
             }
@@ -176,11 +172,15 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
             this.Refresh();
         }
 
-        private void btnCancelarNovo_Click(object sender, EventArgs e)
+        void Cancelar()
         {
             LimparCampos();
             TabControlFormaPagamento.SelectedIndex = 0;
-            txtPesquisar.Focus();
+            dataGridFormaPagamento.Focus();
+        }
+        private void btnCancelarNovo_Click(object sender, EventArgs e)
+        {
+            Cancelar();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -207,6 +207,7 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
 
                 TabControlFormaPagamento.SelectedIndex = 1;
                 this.Text = "Alteração Forma Pagamento";
+                txtDescricao.Focus();
             }
             catch (Exception ex)
             {
@@ -217,15 +218,6 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
 
         private void frmFormaPagamento_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (TabControlFormaPagamento.SelectedIndex == 1)
-            {
-                if (e.KeyCode == Keys.F4)
-                    btnSalvar.PerformClick();
-
-                if (e.KeyCode == Keys.Escape)
-                    btnSair.PerformClick();
-            }
-
             if (TabControlFormaPagamento.SelectedIndex == 0)
             {
                 if (e.KeyCode == Keys.Insert)
@@ -236,7 +228,122 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
 
                 if (e.KeyCode == Keys.Escape)
                     this.Close();
+
+                return;
             }
+            if (TabControlFormaPagamento.SelectedIndex == 1)
+            {
+                if (e.KeyCode == Keys.F4)
+                    btnSalvar.PerformClick();
+
+                if (e.KeyCode == Keys.Escape)
+                {
+                    Cancelar();
+                    return;
+                }
+
+                if (e.KeyCode == Keys.Enter)
+                      SendKeys.Send("{TAB}");
+            }
+
+
+        }
+
+        private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbTipo.SelectedIndex == 0)
+            {
+                txtParcelas.Enabled = false;
+                txtParcelas.Text = "0";
+                txtPrazoRecebimento.Enabled = false;
+                txtPrazoRecebimento.Text = "0";
+            }
+            else if (cmbTipo.SelectedIndex == 1) //Debito
+            {
+                txtPrazoRecebimento.Enabled = true;
+                txtParcelas.Enabled = false;
+                txtParcelas.Text = "0";
+            }
+            else
+            {
+                txtParcelas.Enabled = true;
+                txtPrazoRecebimento.Enabled = true;
+            }
+        }
+
+        private void txtPrazoRecebimento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar == 13) || (e.KeyChar == 27))
+                e.Handled = true;
+
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) //Aceitar somente números no campo.
+                e.Handled = true;
+        }
+
+        private void txtDescricao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar == 13) || (e.KeyChar == 27))
+                e.Handled = true;
+
+        }
+
+        //Posteriormente será necessario passar essa função pra dentro do serviço, assim ficando generica
+        public bool PesquisaDataGrid(DataGridView grid, string descricao, int index)
+        {
+            try
+            {
+                if (descricao.Trim() != "")
+                    foreach (DataGridViewRow item in grid.Rows)
+                    {
+                        if (item.Cells[index].Value.ToString().StartsWith(descricao))
+                        {
+                            grid.Focus();
+                            item.Cells[index].Selected = true;
+
+                            return true;
+                        }
+                    }
+                toast.ShowToast("Decrição não localizada", EnumToast.Informacao);
+                this.Focus();
+                return false;
+            }
+            catch
+            {
+                toast.ShowToast("Erro ao popular grid", EnumToast.Erro);
+                return false;
+            }
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            if ((txtPesquisar.Text.Length) > 2)
+            {
+                PesquisaDataGrid(dataGridFormaPagamento, txtPesquisar.Text, 0);
+                txtPesquisar.Focus();
+            }
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void frmFormaPagamento_Load(object sender, EventArgs e)
+        {
+            if (TabControlFormaPagamento.SelectedIndex == 0)
+                dataGridFormaPagamento.Focus();
+        }
+
+        private void txtPesquisar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar == 13) || (e.KeyChar == 27))
+                e.Handled = true;
+        }
+
+        private void cmbTipo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F4)
+                e.SuppressKeyPress = true;
         }
     }
 }
