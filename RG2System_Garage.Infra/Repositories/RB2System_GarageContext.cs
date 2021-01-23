@@ -43,6 +43,7 @@ namespace RG2System_Garage.Infra.Repositories
             modelBuilder.ApplyConfiguration(new MapConfiguracaoDadosEmpresa());
             modelBuilder.ApplyConfiguration(new MapOrcamento());
             modelBuilder.ApplyConfiguration(new MapOrcamentoItens());
+            modelBuilder.ApplyConfiguration(new MapFormaPagamento());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -307,12 +307,17 @@
     <Compile Include="Migrations\20210119005027_auto-inc.designer.cs">
       <DependentUpon>20210119005027_auto-inc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210123010757_CadastroFormaPagamento.cs" />
+    <Compile Include="Migrations\20210123010757_CadastroFormaPagamento.designer.cs">
+      <DependentUpon>20210123010757_CadastroFormaPagamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\RepositoryBase.cs" />
     <Compile Include="Repositories\MAP\MapCliente.cs" />
     <Compile Include="Repositories\MAP\MapClienteVeiculo.cs" />
     <Compile Include="Repositories\MAP\MapConfiguracaoDadosEmpresa.cs" />
+    <Compile Include="Repositories\MAP\MapFormaPagamento.cs" />
     <Compile Include="Repositories\MAP\MapMovimentacao.cs" />
     <Compile Include="Repositories\MAP\MapOrcamento.cs" />
     <Compile Include="Repositories\MAP\MapOrcamentoItens.cs" />
@@ -322,6 +327,7 @@
     <Compile Include="Repositories\RepositoryCliente.cs" />
     <Compile Include="Repositories\RepositoryClienteVeiculo.cs" />
     <Compile Include="Repositories\RepositoryConfiguracaoDadosEmpresa.cs" />
+    <Compile Include="Repositories\RepositoryFormaPagamento.cs" />
     <Compile Include="Repositories\RepositoryOrcamento.cs" />
     <Compile Include="Repositories\RepositoryProdutoServico.cs" />
     <Compile Include="Repositories\RepositoryVeiculo.cs" />

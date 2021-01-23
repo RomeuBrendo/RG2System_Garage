@@ -224,6 +224,8 @@
     <Compile Include="Commands\Cliente\ClienteResponse.cs" />
     <Compile Include="Commands\Configuracao\DadosEmpresaRequest.cs" />
     <Compile Include="Commands\Configuracao\DadosEmpresaResponse.cs" />
+    <Compile Include="Commands\FormaPagamento\FormaPagamentoRequest.cs" />
+    <Compile Include="Commands\FormaPagamento\FormaPagamentoResponse.cs" />
     <Compile Include="Commands\Orcamento\OrcamentoItensRequest.cs" />
     <Compile Include="Commands\Orcamento\OrcamentoItensResponse.cs" />
     <Compile Include="Commands\Orcamento\OrcamentoRequest.cs" />
@@ -237,11 +239,13 @@
     <Compile Include="Entities\ClienteVeiculo.cs" />
     <Compile Include="Entities\ClienteVeiculoLista.cs" />
     <Compile Include="Entities\ConfiguracaoDadosEmpresa.cs" />
+    <Compile Include="Entities\FormaPagamento.cs" />
     <Compile Include="Entities\Movimentacao.cs" />
     <Compile Include="Entities\Orcamento.cs" />
     <Compile Include="Entities\OrcamentoItem.cs" />
     <Compile Include="Entities\ProdutoServico.cs" />
     <Compile Include="Entities\Veiculo.cs" />
+    <Compile Include="Enum\EnumFormaPgtTipo.cs" />
     <Compile Include="Enum\EnumIcone.cs" />
     <Compile Include="Enum\EnumSituacao.cs" />
     <Compile Include="Enum\EnumTipo.cs" />
@@ -249,12 +253,14 @@
     <Compile Include="Enum\Orcamento\EnumListar.cs" />
     <Compile Include="Interfaces\Repositories\Base\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryConfiguracaoDadosEmpresa.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositoryFormaPagamento.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryOrcamento.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryProdutoServico.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryVeiculo.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoyCliente.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoyClienteVeiculo.cs" />
     <Compile Include="Interfaces\Services\Base\IServiceBase.cs" />
+    <Compile Include="Interfaces\Services\IServiceFormaPagamento.cs" />
     <Compile Include="Interfaces\Services\IServiceCliente.cs" />
     <Compile Include="Interfaces\Services\IServiceConfiguracaoDadosEmpresa.cs" />
     <Compile Include="Interfaces\Services\IServiceOrcamento.cs" />
@@ -268,6 +274,7 @@
     </Compile>
     <Compile Include="Service\ServiceCliente.cs" />
     <Compile Include="Service\ServiceConfiguracaoDadosEmpresa.cs" />
+    <Compile Include="Service\ServiceFormaPagamento.cs" />
     <Compile Include="Service\ServiceOrcamento.cs" />
     <Compile Include="Service\ServiceProduto.cs" />
     <Compile Include="Service\ServiceVeiculo.cs" />
