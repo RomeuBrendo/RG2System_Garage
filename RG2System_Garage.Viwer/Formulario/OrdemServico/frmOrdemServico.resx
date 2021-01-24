@@ -117,6 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lblAdicionarPagamento.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAs9JREFUaEPt
+        mEFo1EAUhqMoKCgighfBi4KKqIdFIZmZNUoVNJnIYutJD+rFmwcFr6UnwYt4EdGDeBBBUQ96VFCESqEe
+        vHiyWqqTZEURqna12vhm+7QxO5Ztks1uYD74D52Z/O+9ZmZ2JoZGo9FoNBqNxvA5fey7dDQ8YG3ApnIC
+        RUSoj6FH9mFz+YgVIvXTd+g57CoXiUKaEg69OTFgLsch5UBVyKzIC8HpehzW+6iL+Ku6z9luHNrbKJJP
+        qhFwchKH9y6KxJUKOL0SVSpL8bHu8MEjKwW39sM0GfJddsvn5Akk9wp+Qz4nE55f5NG72q41aFsM4w5d
+        Hbj0NCQ+AklMtyaVWmPBweo2DNM56p65Ef7z1yHgt0QCeWpScHYYQ+aL3PchwCBoKhawk5qBqXk+GjQW
+        YwrZCT22HYxfJwIVIpi+9+QaxFTSA2ugHwy/JAMUKk6fYzrpAJPjoJl/TLuhLIUEnB0Ckzx3o5RiDz/1
+        9a3CtBZG6NIdYFLUov6fYLGzodSL/Y1tL4NX+VJhXKRgTbJ+TCkdwqUXFcZFakzukphOOt57ZBO8jR8K
+        86L0NKhZazGd9AiH3FeYz6fvoGGYBpfhfHUW3mbN59ZOeT+XCeGPqOq5VnFyKbLtJZhKesBoKxi2s9W+
+        9R12AYpm7dzyFM8n1QgcegKHZweun9cUQf5IHhce+A7ZExnGInykLRRec+JUhK5l4tDs1AfsFWD8tSXQ
+        rIahyAoOXTAKPxQbmXDNdTgsH4TDjiqCTct5n/XQpvCVuiG3eRySH2B8OxFoMuDVvdidiYSv/Bx0Brvy
+        Rc55CBDGgk0JTil2Zybm29kPdMKpbokFi6CIY9iVC/L6Cr6j8kKGTZ1BuOTUXCHkDjaXDyjkKhbyS3Bz
+        MzaXD9jL5ddyeRO7i03lBIoYb74RTo5gUzmBIhrNN5LHYa2bwDnnmbyF4Z8ajUbTSxjGb2bLYRBe1lfL
+        AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <metadata name="dataGridViewTextBoxColumn2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ValorPagamento.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="FormaPagamentoId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Modelo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dataGridViewTextBoxColumn1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="Tipo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -130,6 +164,9 @@
     <value>True</value>
   </metadata>
   <metadata name="Id.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ValorTotal.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
 </root>

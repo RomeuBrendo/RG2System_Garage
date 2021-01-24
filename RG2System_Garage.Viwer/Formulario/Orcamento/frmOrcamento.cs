@@ -6,6 +6,7 @@ using RG2System_Garage.Domain.Interfaces.Services;
 using RG2System_Garage.Domain.Interfaces.Services.Base;
 using RG2System_Garage.Infra.Repositories.Transactions;
 using RG2System_Garage.Shared.Formulario.Toast;
+using RG2System_Garage.Viwer.Formulario.OrdemServico;
 using RG2System_Garage.Viwer.Resources;
 using System;
 using System.Collections.Generic;
@@ -872,6 +873,28 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             {
                 PesquisaDataGrid(dataGridOrcamento, txtPesquisar.Text, 1);
                 txtPesquisar.Focus();
+            }
+        }
+
+        private void btnOrdemServico_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var orcamento = OrcamentoSelecionado();
+
+
+                var ordemServico = new frmOrdemServico(_serviceOrcamento.Obter_ByNumero(orcamento.Numero));
+                ordemServico.StartPosition = FormStartPosition.CenterParent;
+                ordemServico.MdiParent = this.MdiParent;
+                ////ordemServico.Location = new Point(this.Location.X, this.Location.Y );
+                //ordemServico.Top = this.Top;
+                ordemServico.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+                return;
             }
         }
 

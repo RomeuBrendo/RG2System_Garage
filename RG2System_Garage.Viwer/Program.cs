@@ -43,6 +43,7 @@ namespace RG2System_Garage.Viwer
             services.AddTransient<IRepositoryOrcamento, RepositoryOrcamento>();
             services.AddTransient<IRepositoryFormaPagamento, RepositoryFormaPagamento>();
             services.AddTransient<IRepositoryOrdemServico, RepositoryOrdemServico>();
+            services.AddTransient<IRepositoryORPagamento, RepositoryORPagamento>();
 
             services.AddTransient<IServiceVeiculo, ServiceVeiculo>();
             services.AddTransient<IServiceProduto, ServiceProduto>();
@@ -50,7 +51,8 @@ namespace RG2System_Garage.Viwer
             services.AddTransient<IServiceConfiguracaoDadosEmpresa, ServiceConfiguracaoDadosEmpresa>();
             services.AddTransient<IServiceOrcamento, ServiceOrcamento>();
             services.AddTransient<IServiceFormaPagamento, ServiceFormaPagamento>();
-            services.AddTransient<IServiceOrdemServico, IServiceOrdemServico>();
+            services.AddTransient<IServiceOrdemServico, ServiceOrdemServico>();
+ 
 
             ServiceProvider = services.BuildServiceProvider();
         }

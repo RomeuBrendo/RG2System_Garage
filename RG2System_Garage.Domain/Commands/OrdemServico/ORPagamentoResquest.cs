@@ -4,8 +4,10 @@ namespace RG2System_Garage.Domain.Commands.OrdemServico
 {
     public class ORPagamentoResquest
     {
-        public Guid FormaPagamentoId { get; private set; }
-        public Guid OrdemServicoId { get; private set; }
-        public string Valor { get; private set; }
+        public Guid FormaPagamentoId { get; set; }
+        public Guid OrdemServicoId { get; set; }
+        public string Valor { get; set; }
+
+        public string Descricao { get; set; } //apenas p/transferencia de grid
     }
 }
