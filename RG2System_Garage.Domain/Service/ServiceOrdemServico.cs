@@ -85,13 +85,13 @@ namespace RG2System_Garage.Domain.Service
 
                         if (pagamento != null)
                         {
-                            pagamento.AlterarValor(item.Valor);
+                            pagamento.AlterarValor(item.Valor.ToString());
                             
                             pagamentos.Where(x => x.Id == pagamento.Id).ToList().ForEach(x => x = pagamento);
                         }
                         else
                         {
-                            var pagamentoNovo = new ORPagamento(_repositoryORPagamento.ObterPorId(item.FormaPagamentoId), _repositoryOrdemServico.ObterPorId(item.FormaPagamentoId), item.Valor);
+                            var pagamentoNovo = new ORPagamento(_repositoryORPagamento.ObterPorId(item.FormaPagamentoId), _repositoryOrdemServico.ObterPorId(item.FormaPagamentoId), item.Valor.ToString());
                             AddNotifications(pagamentoNovo);
 
                             if (pagamentoNovo.Notifications.Count < 1)

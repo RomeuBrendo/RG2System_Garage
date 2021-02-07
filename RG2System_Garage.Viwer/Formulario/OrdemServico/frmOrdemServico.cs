@@ -28,8 +28,8 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
         Toast toast = new Toast();
         Guid _idEstaSendoEditado;
         OrcamentoResponse _orcamentoResponse;
-        List<ORPagamentoResquest> _listaPagamento = new List<ORPagamentoResquest>();
-
+        List<ORPagamentoResquest> _listaPagamentoSelecionados = new List<ORPagamentoResquest>();
+        List<FormaPagamentoResponse> _listaPagamento = new List<FormaPagamentoResponse>();
         public frmOrdemServico(OrcamentoResponse orcamentoResponse)
         {
             InitializeComponent();
@@ -76,6 +76,9 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
                 txtPlaca.Text = _orcamentoResponse.Veiculo.Placa;
                 txtNumeroOrcamento.Text = Convert.ToString(_orcamentoResponse.Numero);
                 txtOrcamentoTotal.Text = _orcamentoResponse.ValorTotal.ToString("N2");
+                txtFaltaReceber.Text = _orcamentoResponse.ValorTotal.ToString("N2");
+
+                rbEmAndamento.Checked = true; //Fazer trativa, quando for edição
             }
             catch (Exception ex)
             {
@@ -92,14 +95,14 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             dataGridFormaPagamento.AutoGenerateColumns = false;
             dataGridFormaPagamento.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            var response = _serviceFormaPagamento.Listar("");
+            _listaPagamento = _serviceFormaPagamento.Listar("");
 
-            if (response == null)
+            if (_listaPagamento == null)
                 return;
 
             if (VerificaNotificacoes(_serviceFormaPagamento))
             {
-                dataGridFormaPagamento.DataSource = response.OrderBy(x => x.Descricao).ToList();
+                dataGridFormaPagamento.DataSource = _listaPagamento.OrderBy(x => x.Descricao).ToList();
                 dataGridFormaPagamento.Update();
                 dataGridFormaPagamento.Refresh();
             }
@@ -133,21 +136,57 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
                 pagamento.FormaPagamentoId = formaPagamento.Id.Value;
                 pagamento.Descricao = formaPagamento.Descricao;
 
-                //pagamento.Valor = (txtFaltaReceber.Text).ToString("c2");
-                pagamento.Valor = "0";
-                _listaPagamento.Add(pagamento);
+                txtFaltaReceber.Text = txtFaltaReceber.Text.Replace("R$", "");
+                if (decimal.TryParse(txtFaltaReceber.Text, out decimal valor))
+                    pagamento.Valor = valor;
 
-                dataGridPagamentos.AutoGenerateColumns = false;
-               
-                dataGridPagamentos.DataSource = _listaPagamento;
-                dataGridFormaPagamento.Update();
-                dataGridFormaPagamento.Refresh();
+                _listaPagamentoSelecionados.Add(pagamento);
+              
+                AtualizaGridFormaPagamentoSelecionada();
+
+
             }
             catch (Exception ex)
             {
 
                 toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
                 return;
+            }
+        }
+
+        private void AtualizaGridFormaPagamentoSelecionada()
+        {
+            dataGridPagamentos.AutoGenerateColumns = false;
+            dataGridPagamentos.DataSource = null;
+            dataGridPagamentos.DataSource = _listaPagamentoSelecionados;
+            dataGridPagamentos.Update();
+            dataGridPagamentos.Refresh();
+
+            dataGridPagamentos[1, _listaPagamentoSelecionados.Count - 1].Selected = true;
+            ColocaEmEdicaoCellDataGrid(dataGridPagamentos, 1);
+        }
+
+        private void CalculeTotais()
+        {
+            try
+            {
+                var totalSelecionado = _listaPagamentoSelecionados.ToList().Sum(x => x.Valor);
+                var faltaReceber = Decimal.Parse(txtOrcamentoTotal.Text) - totalSelecionado;
+                
+                if (faltaReceber < 0)
+                {
+                    MessageBox.Show("Soma das formas de pagamento recebidas, está superior o valor total.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ColocaEmEdicaoCellDataGrid(dataGridPagamentos, 1);
+                    return;
+                }
+
+                txtFaltaReceber.Text = faltaReceber.ToString("C2");
+                txtTotalRelacionado.Text = totalSelecionado.ToString("C2");
+
+            }
+            catch (Exception ex)
+            {
+                toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("Forma pagamento") + ex, EnumToast.Erro);
             }
         }
 
@@ -162,6 +201,67 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
                 toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("Forma pagamento") + ex, EnumToast.Erro);
                 return null;
             }
+        }
+
+        private void dataGridPagamentos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            CalculeTotais();
+        }
+
+        private void ColocaEmEdicaoCellDataGrid(DataGridView grid, int cell)
+        {
+            ColocaEmEdicaoCellDataGrid(grid, cell, -1);
+        }
+        private void ColocaEmEdicaoCellDataGrid(DataGridView grid, int cell, decimal valor)
+        {
+            try
+            {
+                grid.SelectedRows[0].Cells[cell].Selected = true;
+
+                if (valor >= 0)
+                    grid.SelectedRows[0].Cells[cell].Value = valor.ToString("C2");
+                else
+                    grid.SelectedRows[0].Cells[cell].Value = txtFaltaReceber.Text;
+
+                grid.BeginEdit(true);
+            }
+            catch (Exception ex)
+            {
+                toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("Forma pagamento") + ex, EnumToast.Erro);   
+            }
+        }
+        private void dataGridPagamentos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Enter) || (e.KeyCode == Keys.F2))
+            {
+                ColocaEmEdicaoCellDataGrid(dataGridPagamentos, 1);
+                e.Handled = true;
+            }
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                CalculeTotais();
+                e.Handled = true;
+            }
+        }
+
+        private void rbFinalizado_CheckedChanged(object sender, EventArgs e)
+        {
+            panelCorStatus.BackColor = Color.Green;
+            datePrazoFinalizacao.Enabled = true;
+            datePrazoFinalizacao.Focus();
+        }
+
+        private void rbEmAndamento_CheckedChanged(object sender, EventArgs e)
+        {
+            panelCorStatus.BackColor = Color.DarkRed;
+            datePrazoFinalizacao.Enabled = false;
+        }
+
+        private void rdAguardando_CheckedChanged(object sender, EventArgs e)
+        {
+            panelCorStatus.BackColor = Color.DarkRed;
+            datePrazoFinalizacao.Enabled = false;
         }
     }
 }

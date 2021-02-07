@@ -13,8 +13,8 @@ namespace RG2System_Garage.Domain.Entities
         }
         public ORPagamento(ORPagamento formaPagamentoId, OrdemServico ordemServico, string valor)
         {
-            double number = 0;
-            if (Double.TryParse(valor, out number))
+            decimal number = 0;
+            if (decimal.TryParse(valor, out number))
                 Valor = number;
             else
                 AddNotification("Valor", MSG.X0_INVALIDO.ToFormat("Valor produto/serviço"));
@@ -27,14 +27,14 @@ namespace RG2System_Garage.Domain.Entities
         {
             this.ClearNotifications();
 
-            double number = 0;
-            if (Double.TryParse(valor, out number))
+            decimal number = 0;
+            if (decimal.TryParse(valor, out number))
                 Valor = number;
             else
                 AddNotification("Valor", MSG.X0_INVALIDO.ToFormat("Valor produto/serviço"));
         }
         public ORPagamento FormaPagamento { get; private set; }
         public OrdemServico OrdemServico { get; private set; }
-        public double Valor { get; private set; }
+        public decimal Valor { get; private set; }
     }
 }

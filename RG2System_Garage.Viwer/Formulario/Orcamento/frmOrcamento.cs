@@ -886,8 +886,6 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 var ordemServico = new frmOrdemServico(_serviceOrcamento.Obter_ByNumero(orcamento.Numero));
                 ordemServico.StartPosition = FormStartPosition.CenterParent;
                 ordemServico.MdiParent = this.MdiParent;
-                ////ordemServico.Location = new Point(this.Location.X, this.Location.Y );
-                //ordemServico.Top = this.Top;
                 ordemServico.ShowDialog();
             }
             catch (Exception ex)
