@@ -7,11 +7,11 @@ namespace RG2System_Garage.Domain.Commands.OrdemServico
     public class OrdemServicoRequest
     {
         public Guid ? Id { get; set; }
-        public Guid OrcamentoId { get; private set; }
-        public List<ORPagamentoResquest> FormaPagamentos { get; private set; }
-        public DateTime DataFinalizacao { get; private set; }
-        public EnumStatus Status { get; private set; }
-        public string Observacao { get; private set; }
+        public Guid OrcamentoId { get; set; }
+        public List<ORPagamentoResquest> FormaPagamentos { get; set; }
+        public DateTime ? DataFinalizacao { get; set; }
+        public EnumStatus Status { get; set; }
+        public string Observacao { get; set; }
     }
 
 

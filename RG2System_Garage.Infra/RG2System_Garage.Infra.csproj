@@ -327,6 +327,10 @@
     <Compile Include="Migrations\20210123222911_Inclusao_numero_auto.designer.cs">
       <DependentUpon>20210123222911_Inclusao_numero_auto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210207213656_AlteracaoDecimal.cs" />
+    <Compile Include="Migrations\20210207213656_AlteracaoDecimal.designer.cs">
+      <DependentUpon>20210207213656_AlteracaoDecimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\RepositoryBase.cs" />

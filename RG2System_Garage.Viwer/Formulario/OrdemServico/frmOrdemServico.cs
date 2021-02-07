@@ -3,6 +3,7 @@ using RG2System_Garage.Domain.Commands.FormaPagamento;
 using RG2System_Garage.Domain.Commands.Orcamento;
 using RG2System_Garage.Domain.Commands.OrdemServico;
 using RG2System_Garage.Domain.Enum;
+using RG2System_Garage.Domain.Enum.Ordem_Servico;
 using RG2System_Garage.Domain.Interfaces.Services;
 using RG2System_Garage.Domain.Interfaces.Services.Base;
 using RG2System_Garage.Infra.Repositories.Transactions;
@@ -22,10 +23,11 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
 {
     public partial class frmOrdemServico : MetroFramework.Forms.MetroForm
     {
-        private IServiceOrdemServico _serviceOrcamento;
+        private IServiceOrdemServico _serviceOrdemServico;
         private IServiceFormaPagamento _serviceFormaPagamento;
         private IUnitOfWork _unitOfWork;
         Toast toast = new Toast();
+        int _radioButonSelecionado = 1;
         Guid _idEstaSendoEditado;
         OrcamentoResponse _orcamentoResponse;
         List<ORPagamentoResquest> _listaPagamentoSelecionados = new List<ORPagamentoResquest>();
@@ -34,7 +36,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
         {
             InitializeComponent();
             ConsultarDepedencias();
-
+            _idEstaSendoEditado = Guid.Empty;
             _orcamentoResponse = orcamentoResponse;
             if (_orcamentoResponse != null)
                 CarregaComponentesEstaticos();
@@ -43,7 +45,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
 
         void ConsultarDepedencias()
         {
-            _serviceOrcamento = (IServiceOrdemServico)Program.ServiceProvider.GetService(typeof(IServiceOrdemServico));
+            _serviceOrdemServico = (IServiceOrdemServico)Program.ServiceProvider.GetService(typeof(IServiceOrdemServico));
             _serviceFormaPagamento = (IServiceFormaPagamento)Program.ServiceProvider.GetService(typeof(IServiceFormaPagamento));
             _unitOfWork = (IUnitOfWork)Program.ServiceProvider.GetService(typeof(IUnitOfWork));
 
@@ -141,7 +143,14 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
                     pagamento.Valor = valor;
 
                 _listaPagamentoSelecionados.Add(pagamento);
-              
+  
+                foreach (var item in _listaPagamento.Where(item => item.Id == pagamento.FormaPagamentoId))
+                {
+                    _listaPagamento.Remove(item);
+                    dataGridFormaPagamento.DataSource = _listaPagamento;
+                    break;
+                }
+
                 AtualizaGridFormaPagamentoSelecionada();
 
 
@@ -150,7 +159,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             {
 
                 toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
-                return;
+                
             }
         }
 
@@ -221,7 +230,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
                 if (valor >= 0)
                     grid.SelectedRows[0].Cells[cell].Value = valor.ToString("C2");
                 else
-                    grid.SelectedRows[0].Cells[cell].Value = txtFaltaReceber.Text;
+                    grid.SelectedRows[0].Cells[cell].Value = txtFaltaReceber.Text.Replace("R$", "");
 
                 grid.BeginEdit(true);
             }
@@ -235,13 +244,14 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             if ((e.KeyCode == Keys.Enter) || (e.KeyCode == Keys.F2))
             {
                 ColocaEmEdicaoCellDataGrid(dataGridPagamentos, 1);
+                CalculeTotais();
                 e.Handled = true;
             }
 
             if (e.KeyCode == Keys.Escape)
             {
-                CalculeTotais();
                 e.Handled = true;
+                CalculeTotais();                
             }
         }
 
@@ -250,11 +260,13 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             panelCorStatus.BackColor = Color.Green;
             datePrazoFinalizacao.Enabled = true;
             datePrazoFinalizacao.Focus();
+            _radioButonSelecionado = 2;
         }
 
         private void rbEmAndamento_CheckedChanged(object sender, EventArgs e)
         {
             panelCorStatus.BackColor = Color.DarkRed;
+            _radioButonSelecionado = 1;
             datePrazoFinalizacao.Enabled = false;
         }
 
@@ -262,6 +274,56 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
         {
             panelCorStatus.BackColor = Color.DarkRed;
             datePrazoFinalizacao.Enabled = false;
+            _radioButonSelecionado = 0;
+        }
+
+        private void btnCancelarNovo_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        void SalvarOR()
+        {
+            try
+            {
+                var ordemServico = new OrdemServicoRequest();
+                var pagamentosSelecionados = dataGridPagamentos.DataSource;
+
+                ordemServico.Id = _idEstaSendoEditado;
+                ordemServico.OrcamentoId = _orcamentoResponse.Id;
+                ordemServico.FormaPagamentos = (List<ORPagamentoResquest>)pagamentosSelecionados;
+
+                if (datePrazoFinalizacao.Enabled)
+                    ordemServico.DataFinalizacao = datePrazoFinalizacao.Value;
+                else
+                    ordemServico.DataFinalizacao = DateTime.MinValue;
+
+                ordemServico.Observacao = txtObservacao.Text;
+                ordemServico.Status = (EnumStatus)_radioButonSelecionado;
+
+                _serviceOrdemServico.AdicionarAlterar(ordemServico);
+
+                if (VerificaNotificacoes(_serviceOrdemServico))
+                {
+                    _unitOfWork.SaveChanges();
+
+                    _listaPagamento.Clear();
+
+                    toast.ShowToast(MSG.X0_SALVA_COM_SUCESSO.ToFormat("Ordem Servico"), EnumToast.Sucesso);
+                    
+                    this.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+            }
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            SalvarOR();
         }
     }
 }

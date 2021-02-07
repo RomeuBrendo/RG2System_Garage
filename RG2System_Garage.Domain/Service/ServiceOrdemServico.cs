@@ -40,7 +40,7 @@ namespace RG2System_Garage.Domain.Service
                 {
                     var or = _repositoryOrdemServico.ObterPorId(request.Id.Value);
 
-                    or.Alterar(request.DataFinalizacao, request.Observacao, request.Status);
+                    or.Alterar(request.DataFinalizacao.Value, request.Observacao, request.Status);
 
                     AddNotifications(or);
 
@@ -53,7 +53,9 @@ namespace RG2System_Garage.Domain.Service
 
                 }
 
-                var novo = new OrdemServico(request.OrcamentoId, request.DataFinalizacao, request.Status, request.Observacao);
+                AtualizarPagamentos(request.FormaPagamentos);
+
+                var novo = new OrdemServico(request.OrcamentoId, request.DataFinalizacao.Value, request.Status, request.Observacao);
                 
                 AddNotifications(novo);
 
