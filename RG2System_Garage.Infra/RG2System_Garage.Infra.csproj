@@ -331,6 +331,18 @@
     <Compile Include="Migrations\20210207213656_AlteracaoDecimal.designer.cs">
       <DependentUpon>20210207213656_AlteracaoDecimal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20210207232928_Teste.cs" />
+    <Compile Include="Migrations\20210207232928_Teste.designer.cs">
+      <DependentUpon>20210207232928_Teste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210207233914_Teste1.cs" />
+    <Compile Include="Migrations\20210207233914_Teste1.designer.cs">
+      <DependentUpon>20210207233914_Teste1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20210208233821_AjusteCasaDecimal.cs" />
+    <Compile Include="Migrations\20210208233821_AjusteCasaDecimal.designer.cs">
+      <DependentUpon>20210208233821_AjusteCasaDecimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\RepositoryBase.cs" />

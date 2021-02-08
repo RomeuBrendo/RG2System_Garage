@@ -147,7 +147,10 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
                 foreach (var item in _listaPagamento.Where(item => item.Id == pagamento.FormaPagamentoId))
                 {
                     _listaPagamento.Remove(item);
+                    dataGridFormaPagamento.DataSource = null;
                     dataGridFormaPagamento.DataSource = _listaPagamento;
+                    dataGridFormaPagamento.Refresh();
+                    dataGridFormaPagamento.Update();
                     break;
                 }
 
@@ -165,14 +168,22 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
 
         private void AtualizaGridFormaPagamentoSelecionada()
         {
-            dataGridPagamentos.AutoGenerateColumns = false;
-            dataGridPagamentos.DataSource = null;
-            dataGridPagamentos.DataSource = _listaPagamentoSelecionados;
-            dataGridPagamentos.Update();
-            dataGridPagamentos.Refresh();
+            try
+            {
+                dataGridPagamentos.AutoGenerateColumns = false;
+                dataGridPagamentos.DataSource = null;
+                dataGridPagamentos.DataSource = _listaPagamentoSelecionados;
+                dataGridPagamentos.Update();
+                dataGridPagamentos.Refresh();
 
-            dataGridPagamentos[1, _listaPagamentoSelecionados.Count - 1].Selected = true;
-            ColocaEmEdicaoCellDataGrid(dataGridPagamentos, 1);
+                dataGridPagamentos[1, _listaPagamentoSelecionados.Count - 1].Selected = true;
+                ColocaEmEdicaoCellDataGrid(dataGridPagamentos, 1);
+            }
+            catch (Exception ex)
+            {
+                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+            }
+
         }
 
         private void CalculeTotais()

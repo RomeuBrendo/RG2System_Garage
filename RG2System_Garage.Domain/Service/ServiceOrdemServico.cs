@@ -53,15 +53,14 @@ namespace RG2System_Garage.Domain.Service
 
                 }
 
-                AtualizarPagamentos(request.FormaPagamentos);
+                var novo = new OrdemServico(request.OrcamentoId, request.DataFinalizacao.Value, request.Status, request.Observacao, request.FormaPagamentos);
 
-                var novo = new OrdemServico(request.OrcamentoId, request.DataFinalizacao.Value, request.Status, request.Observacao);
-                
                 AddNotifications(novo);
 
                 if (IsInvalid()) return;
 
                 _repositoryOrdemServico.Adicionar(novo);
+
             }
             catch (Exception ex)
             {
@@ -71,6 +70,28 @@ namespace RG2System_Garage.Domain.Service
             }
         }
 
+        private List<ORPagamento> PopulaPagamentos(List<ORPagamentoResquest> formaPagamentos, Guid IdOrdemServico)
+        {
+            try
+            {
+                var novosPagamentos = new List<ORPagamento>();
+                foreach (var item in formaPagamentos)
+                {
+                    var pagamento = new ORPagamento(item.FormaPagamentoId, IdOrdemServico, item.Valor.ToString());
+
+                    if (pagamento.Notifications.Count < 1)
+                        novosPagamentos.Add(pagamento);
+                    else
+                        AddNotifications(pagamento);
+                }
+                return novosPagamentos;
+            }
+            catch (Exception ex)
+            {
+                AddNotification("AtualizarPagamentos", MSG.ERRO_AO_REALIZAR_PROCEDIMENTO_DE_X0.ToFormat("AtualizarPagamentos ") + ex);
+                return null;
+            }
+        }
         private void AtualizarPagamentos(List<ORPagamentoResquest> formaPagamentos)
         {
             try
@@ -83,7 +104,7 @@ namespace RG2System_Garage.Domain.Service
                 if(pagamentos.Count > 0)
                     foreach (var item in formaPagamentos)
                     {
-                        var pagamento = _repositoryORPagamento.ObterPor(x => x.FormaPagamento.FormaPagamento.Id == item.FormaPagamentoId);
+                        var pagamento = _repositoryORPagamento.ObterPor(x => x.FormaPagamentoId == item.FormaPagamentoId);
 
                         if (pagamento != null)
                         {
@@ -93,7 +114,7 @@ namespace RG2System_Garage.Domain.Service
                         }
                         else
                         {
-                            var pagamentoNovo = new ORPagamento(_repositoryORPagamento.ObterPorId(item.FormaPagamentoId), _repositoryOrdemServico.ObterPorId(item.FormaPagamentoId), item.Valor.ToString());
+                            var pagamentoNovo = new ORPagamento(item.FormaPagamentoId, item.OrdemServicoId, item.Valor.ToString());
                             AddNotifications(pagamentoNovo);
 
                             if (pagamentoNovo.Notifications.Count < 1)
