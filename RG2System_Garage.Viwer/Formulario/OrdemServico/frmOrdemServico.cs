@@ -107,6 +107,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
                 dataGridFormaPagamento.DataSource = _listaPagamento.OrderBy(x => x.Descricao).ToList();
                 dataGridFormaPagamento.Update();
                 dataGridFormaPagamento.Refresh();
+                dataGridFormaPagamento.Focus();
             }
         }
 
@@ -129,12 +130,17 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
 
         private void lblAdicionarPagamento_Click(object sender, EventArgs e)
         {
+            AdicionarPagamento();
+        }
+
+        void AdicionarPagamento()
+        {
             try
             {
                 var formaPagamento = FormaPagamentoSelecionado();
 
                 var pagamento = new ORPagamentoResquest();
-                
+
                 pagamento.FormaPagamentoId = formaPagamento.Id.Value;
                 pagamento.Descricao = formaPagamento.Descricao;
 
@@ -143,7 +149,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
                     pagamento.Valor = valor;
 
                 _listaPagamentoSelecionados.Add(pagamento);
-  
+
                 foreach (var item in _listaPagamento.Where(item => item.Id == pagamento.FormaPagamentoId))
                 {
                     _listaPagamento.Remove(item);
@@ -162,7 +168,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             {
 
                 toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
-                
+
             }
         }
 
@@ -262,7 +268,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             if (e.KeyCode == Keys.Escape)
             {
                 e.Handled = true;
-                CalculeTotais();                
+                CalculeTotais();
             }
         }
 
@@ -335,6 +341,31 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             SalvarOR();
+        }
+
+        private void dataGridFormaPagamento_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                AdicionarPagamento();
+        }
+
+        private void frmOrdemServico_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                var dialog = MessageBox.Show("Deseja realmente cancelar procedimento?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                if (dialog == DialogResult.No)
+                    return;
+                
+                btnCancelarNovo.PerformClick();                
+            }
+        }
+
+        private void frmOrdemServico_Load(object sender, EventArgs e)
+        {
+            if (tabControlOR.SelectedIndex == 1)
+                dataGridFormaPagamento.Focus();
         }
     }
 }
