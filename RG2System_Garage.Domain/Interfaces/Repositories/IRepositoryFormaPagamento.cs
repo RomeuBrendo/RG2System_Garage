@@ -6,5 +6,6 @@ namespace RG2System_Garage.Domain.Interfaces.Repositories
 {
     public interface IRepositoryFormaPagamento : IRepositoryBase<FormaPagamento, Guid>
     {
+        string ReturnDescricaoPagamento_ById(Guid id);
     }
 }

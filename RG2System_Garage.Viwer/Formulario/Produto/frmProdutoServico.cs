@@ -16,7 +16,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
     {
         private IServiceProduto _serviceProduto;
         private IUnitOfWork _unitOfWork;
-        Toast toast = new Toast();
+       
         Guid IdEstaSendoEditado;
         public frmProdutoServico()
         {
@@ -80,7 +80,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
             }
         }
 
@@ -93,7 +93,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
                 return Guid.Empty;
             }
         }
@@ -191,7 +191,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
                     if (VerificaNotificacoes(_serviceProduto))
                     {
                         _unitOfWork.SaveChanges();
-                        toast.ShowToast(MSG.CADASTRO_X0_COM_SUCESSO.ToFormat(operacao), EnumToast.Sucesso);
+                        Toast.ShowToast(MSG.CADASTRO_X0_COM_SUCESSO.ToFormat(operacao), EnumToast.Sucesso);
                         tabControlProduto.SelectedIndex = 0;
                         CarregaGridProduto("");
                         LimparCampos();
@@ -204,13 +204,13 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
                 catch
                 {
 
-                    toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+                    Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
                     txtDescricao.Focus();
                 }
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
                 txtDescricao.Focus();
             }
             
@@ -282,7 +282,7 @@ namespace RG2System_Garage.Viwer.Formulario.Produto
             if (serviceBase.Notifications.Count > 0)
             {
                 foreach (var item in serviceBase.Notifications.ToList())
-                    toast.ShowToast(item.Message, EnumToast.Erro);
+                    Toast.ShowToast(item.Message, EnumToast.Erro);
                 
                 if (tabControlProduto.SelectedIndex == 0)
                     dataGridProduto.Focus();

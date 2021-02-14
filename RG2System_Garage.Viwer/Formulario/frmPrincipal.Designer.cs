@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.pnMenu = new System.Windows.Forms.Panel();
+            this.btnTeste = new System.Windows.Forms.Button();
             this.pnConfiguracoes = new System.Windows.Forms.Panel();
             this.btnConfigGeral = new System.Windows.Forms.Button();
             this.pnLancamentos = new System.Windows.Forms.Panel();
@@ -45,7 +46,7 @@
             this.btnCadastro = new System.Windows.Forms.Button();
             this.tmMenu = new System.Windows.Forms.Timer(this.components);
             this.panelformularios = new System.Windows.Forms.Panel();
-            this.btnTeste = new System.Windows.Forms.Button();
+            this.btnTesteOR = new System.Windows.Forms.Button();
             this.pnMenu.SuspendLayout();
             this.pnConfiguracoes.SuspendLayout();
             this.pnLancamentos.SuspendLayout();
@@ -57,6 +58,7 @@
             this.pnMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.pnMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
+            this.pnMenu.Controls.Add(this.btnTesteOR);
             this.pnMenu.Controls.Add(this.btnTeste);
             this.pnMenu.Controls.Add(this.pnConfiguracoes);
             this.pnMenu.Controls.Add(this.pnLancamentos);
@@ -69,6 +71,16 @@
             this.pnMenu.Name = "pnMenu";
             this.pnMenu.Size = new System.Drawing.Size(368, 540);
             this.pnMenu.TabIndex = 0;
+            // 
+            // btnTeste
+            // 
+            this.btnTeste.Location = new System.Drawing.Point(23, 71);
+            this.btnTeste.Name = "btnTeste";
+            this.btnTeste.Size = new System.Drawing.Size(153, 40);
+            this.btnTeste.TabIndex = 0;
+            this.btnTeste.Text = "btnTeste";
+            this.btnTeste.UseVisualStyleBackColor = true;
+            this.btnTeste.Click += new System.EventHandler(this.btnTeste_Click);
             // 
             // pnConfiguracoes
             // 
@@ -267,15 +279,15 @@
             this.panelformularios.TabIndex = 36;
             this.panelformularios.Visible = false;
             // 
-            // btnTeste
+            // btnTesteOR
             // 
-            this.btnTeste.Location = new System.Drawing.Point(52, 59);
-            this.btnTeste.Name = "btnTeste";
-            this.btnTeste.Size = new System.Drawing.Size(153, 102);
-            this.btnTeste.TabIndex = 0;
-            this.btnTeste.Text = "btnTeste";
-            this.btnTeste.UseVisualStyleBackColor = true;
-            this.btnTeste.Click += new System.EventHandler(this.btnTeste_Click);
+            this.btnTesteOR.Location = new System.Drawing.Point(23, 140);
+            this.btnTesteOR.Name = "btnTesteOR";
+            this.btnTesteOR.Size = new System.Drawing.Size(153, 40);
+            this.btnTesteOR.TabIndex = 10;
+            this.btnTesteOR.Text = "Teste OR";
+            this.btnTesteOR.UseVisualStyleBackColor = true;
+            this.btnTesteOR.Click += new System.EventHandler(this.btnTesteOR_Click);
             // 
             // frmPrincipal
             // 
@@ -317,5 +329,6 @@
         private System.Windows.Forms.Button btnConfigGeral;
         private System.Windows.Forms.Panel panelformularios;
         private System.Windows.Forms.Button btnTeste;
+        private System.Windows.Forms.Button btnTesteOR;
     }
 }

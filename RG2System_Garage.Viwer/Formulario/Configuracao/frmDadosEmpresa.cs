@@ -15,7 +15,6 @@ namespace RG2System_Garage.Viwer.Formulario.Configuracao
     {
         private IServiceConfiguracaoDadosEmpresa _serviceDadosEmpresa;
         private IUnitOfWork _unitOfWork;
-        Toast toast = new Toast();
         Guid IdEstaSendoEditado;
         public frmDadosEmpresa()
         {
@@ -50,7 +49,7 @@ namespace RG2System_Garage.Viwer.Formulario.Configuracao
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_AO_CONSULTAR_DADOS, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_AO_CONSULTAR_DADOS, EnumToast.Erro);
                 return;
             }
         }
@@ -77,13 +76,13 @@ namespace RG2System_Garage.Viwer.Formulario.Configuracao
                 if (VerificaNotificacoes(_serviceDadosEmpresa))
                 {
                     _unitOfWork.SaveChanges();
-                    toast.ShowToast(MSG.OPERACAO_REALIZADA_COM_SUCESSO, EnumToast.Sucesso);
+                    Toast.ShowToast(MSG.OPERACAO_REALIZADA_COM_SUCESSO, EnumToast.Sucesso);
                     this.Close();
                 }
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
                 txtNomeFantasia.Focus();
                 return;
             }
@@ -126,7 +125,7 @@ namespace RG2System_Garage.Viwer.Formulario.Configuracao
             if (serviceBase.Notifications.Count > 0)
             {
                 foreach (var item in serviceBase.Notifications.ToList())
-                    toast.ShowToast(item.Message, EnumToast.Erro);
+                    Toast.ShowToast(item.Message, EnumToast.Erro);
 
                 txtNomeFantasia.Focus();
                 

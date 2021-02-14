@@ -14,7 +14,6 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
     {
         private IServiceVeiculo _serviceVeiculo;
         private IUnitOfWork _unitOfWork;
-        Toast toast = new Toast();
         Guid IdEstaSendoEditado;
         public frmVeiculo()
         {
@@ -50,7 +49,7 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
             {
                 foreach (var item in _serviceVeiculo.Notifications.ToList())
                 {
-                    toast.ShowToast(item.Message, EnumToast.Erro);
+                    Toast.ShowToast(item.Message, EnumToast.Erro);
                 }
                 txtModelo.Focus();
                 return false;
@@ -108,7 +107,7 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
             }
             catch
             {
-                toast.ShowToast("Nenhum veículo foi selecionado.", EnumToast.Erro);
+                Toast.ShowToast("Nenhum veículo foi selecionado.", EnumToast.Erro);
                 return null;
             }
         }
@@ -155,14 +154,14 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
                 {
                     _unitOfWork.SaveChanges();
                     CarregaGrid("");
-                    toast.ShowToast("Exclusão realizada com sucesso!", EnumToast.Sucesso);
+                    Toast.ShowToast("Exclusão realizada com sucesso!", EnumToast.Sucesso);
                     this.txtPesquisar.Focus();
                 }
 
             }
             catch
             {
-                toast.ShowToast("Erro ao tentar Deletar. Tente Novamente!", EnumToast.Erro);
+                Toast.ShowToast("Erro ao tentar Deletar. Tente Novamente!", EnumToast.Erro);
             }
         }
 
@@ -227,7 +226,7 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
                 try
                 {
                     _unitOfWork.SaveChanges();
-                    toast.ShowToast("Veículo "+ acao+" com Sucesso", EnumToast.Sucesso);
+                    Toast.ShowToast("Veículo "+ acao+" com Sucesso", EnumToast.Sucesso);
                     LimparCampos();
                     TabControlVeiculo.SelectedIndex = 0;
                     CarregaGrid("");
@@ -235,7 +234,7 @@ namespace RG2System_Garage.Viwer.Formulario.Veiculo
                 }
                 catch
                 {
-                    toast.ShowToast("Erro ao realizar Commite", EnumToast.Erro);
+                    Toast.ShowToast("Erro ao realizar Commite", EnumToast.Erro);
                 }
 
             }

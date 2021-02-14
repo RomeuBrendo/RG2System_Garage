@@ -17,7 +17,6 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
     {
         private IServiceFormaPagamento _serviceFormaPagamento;
         private IUnitOfWork _unitOfWork;
-        Toast toast = new Toast();
         Guid _idEstaSendoEditado;
         public frmFormaPagamento()
         {
@@ -59,7 +58,7 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
             if (serviceBase.Notifications.Count > 0)
             {
                 foreach (var item in serviceBase.Notifications.ToList())
-                    toast.ShowToast(item.Message, EnumToast.Erro);
+                    Toast.ShowToast(item.Message, EnumToast.Erro);
 
                 if (TabControlFormaPagamento.SelectedIndex == 0)
                     TabControlFormaPagamento.Focus();
@@ -99,7 +98,7 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
                 if (VerificaNotificacoes(_serviceFormaPagamento))
                 {
                     _unitOfWork.SaveChanges();
-                    toast.ShowToast(MSG.CADASTRO_X0_COM_SUCESSO.ToFormat(operacao), EnumToast.Sucesso);
+                    Toast.ShowToast(MSG.CADASTRO_X0_COM_SUCESSO.ToFormat(operacao), EnumToast.Sucesso);
                     TabControlFormaPagamento.SelectedIndex = 0;
                     LimparCampos();
                     CarregaGridProduto();
@@ -110,7 +109,7 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
             catch (Exception ex)
             {
 
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
                 return;
             }
         }
@@ -135,14 +134,14 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
                 {
                     _unitOfWork.SaveChanges();
                     CarregaGridProduto();
-                    toast.ShowToast("Exclusão realizada com sucesso!", EnumToast.Sucesso);
+                    Toast.ShowToast("Exclusão realizada com sucesso!", EnumToast.Sucesso);
                     this.dataGridFormaPagamento.Focus();
                 }
 
             }
             catch
             {
-                toast.ShowToast("Erro ao tentar Deletar. Tente Novamente!", EnumToast.Erro);
+                Toast.ShowToast("Erro ao tentar Deletar. Tente Novamente!", EnumToast.Erro);
             }
         }
 
@@ -154,7 +153,7 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
             }
             catch
             {
-                toast.ShowToast("Nenhuma Forma de Pagamento foi selecionado.", EnumToast.Erro);
+                Toast.ShowToast("Nenhuma Forma de Pagamento foi selecionado.", EnumToast.Erro);
                 return null;
             }
         }
@@ -211,7 +210,7 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
             }
             catch (Exception ex)
             {
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
                 return;
             }
         }
@@ -303,13 +302,13 @@ namespace RG2System_Garage.Viwer.Formulario.FormaPagamento
                             return true;
                         }
                     }
-                toast.ShowToast("Decrição não localizada", EnumToast.Informacao);
+                Toast.ShowToast("Decrição não localizada", EnumToast.Informacao);
                 this.Focus();
                 return false;
             }
             catch
             {
-                toast.ShowToast("Erro ao popular grid", EnumToast.Erro);
+                Toast.ShowToast("Erro ao popular grid", EnumToast.Erro);
                 return false;
             }
         }

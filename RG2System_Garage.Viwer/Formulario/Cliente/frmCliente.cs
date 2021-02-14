@@ -20,7 +20,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
         private IServiceCliente _serviceCliente;
         private IServiceVeiculo _serviceVeiculo;
         private IUnitOfWork _unitOfWork;
-        Toast toast = new Toast();
+       
         Guid IdEstaSendoEditado;
         List<VeiculoResponse> _veiculos = new List<VeiculoResponse>();
         public frmCliente()
@@ -59,7 +59,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
                 return null;
             }
         }
@@ -77,7 +77,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             {
                 foreach (var item in serviceBase.Notifications.ToList())
                 {
-                    toast.ShowToast(item.Message, EnumToast.Erro);
+                    Toast.ShowToast(item.Message, EnumToast.Erro);
                 }
                 if (tabControlCliente.SelectedIndex == 0)
                     txtPesquisar.Focus();
@@ -141,7 +141,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
                 //Preciso revisar este trecho
                 if (_serviceCliente == null)
                 {
-                    toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+                    Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
                     txtNome.Focus();
                     return;
                 }
@@ -167,7 +167,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             catch
             {
 
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
             }
 
 
@@ -192,7 +192,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
                 if (VerificaNotificacoes(_serviceCliente))
                 {
                     _unitOfWork.SaveChanges();
-                    toast.ShowToast(MSG.EXCLUSAO_REALIZADA_COM_SUCESSO, EnumToast.Sucesso);
+                    Toast.ShowToast(MSG.EXCLUSAO_REALIZADA_COM_SUCESSO, EnumToast.Sucesso);
                     tabControlCliente.SelectedIndex = 0;
                     CarregaGridCliente("");
                     txtPesquisar.Focus();
@@ -200,7 +200,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
                 txtPesquisar.Focus();
             }
         }
@@ -266,7 +266,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
                 if (VerificaNotificacoes(_serviceCliente))
                 {
                     _unitOfWork.SaveChanges();
-                    toast.ShowToast(MSG.CADASTRO_X0_COM_SUCESSO.ToFormat(operacao), EnumToast.Sucesso);
+                    Toast.ShowToast(MSG.CADASTRO_X0_COM_SUCESSO.ToFormat(operacao), EnumToast.Sucesso);
                     tabControlCliente.SelectedIndex = 0;
                     LimparCampos();
                     CarregaGridCliente("");
@@ -277,7 +277,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
                 txtNome.Focus();
                 return;
             }
@@ -320,7 +320,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
                         _veiculos.Add(veiculo);
                     else
                     {
-                        toast.ShowToast("Placa não localizada, veifique no cadastro de veículo.", EnumToast.Informacao);
+                        Toast.ShowToast("Placa não localizada, veifique no cadastro de veículo.", EnumToast.Informacao);
                         txtPlaca.Focus();
                         return;
                     }
@@ -332,7 +332,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             }
             catch
             {
-                toast.ShowToast("Erro ao localizar veículo pela placa", EnumToast.Erro);
+                Toast.ShowToast("Erro ao localizar veículo pela placa", EnumToast.Erro);
                 txtPlaca.Focus();
             }
         }
@@ -375,7 +375,7 @@ namespace RG2System_Garage.Viwer.Formulario.Cliente
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO, EnumToast.Erro);
             }
         }
 

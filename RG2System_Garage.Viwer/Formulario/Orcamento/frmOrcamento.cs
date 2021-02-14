@@ -25,8 +25,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         private IServiceProduto _serviceProdutoServico;
 
         public bool CentralizarTela = false;
-        Toast toast = new Toast();
-
+ 
         List<OrcamentoItensRequest> _itens = new List<OrcamentoItensRequest>();
 
         Guid _IdClienteSelecionado, _IdVeiculoSelecionado, _IdOrcamentoSelecionado = Guid.Empty;
@@ -53,7 +52,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             if (serviceBase.Notifications.Count > 0)
             {
                 foreach (var item in serviceBase.Notifications.ToList())
-                    toast.ShowToast(item.Message, EnumToast.Erro);
+                    Toast.ShowToast(item.Message, EnumToast.Erro);
 
                 txtPesquisarProduto.Focus();
 
@@ -124,7 +123,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             catch
             {
-                //toast.ShowToast("Erro ao limpar campos. Detalhes: " + ex, EnumToast.Erro);
+                //Toast.ShowToast("Erro ao limpar campos. Detalhes: " + ex, EnumToast.Erro);
                 return;
             }
 
@@ -166,7 +165,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Orcamento"), EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Orcamento"), EnumToast.Erro);
                 return;
             }
         }
@@ -189,7 +188,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Clientes"), EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Clientes"), EnumToast.Erro);
                 return;
             }
 
@@ -224,7 +223,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Veículos"), EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Veículos"), EnumToast.Erro);
                 return;
             }
         }
@@ -281,7 +280,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             catch
             { 
-                toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Serviços/Produtos"), EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_AO_LISTA_X0.ToFormat("Serviços/Produtos"), EnumToast.Erro);
                 return;
 
             }
@@ -435,7 +434,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat(iconeNovo), EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat(iconeNovo), EnumToast.Erro);
                 return null;
             }
         }
@@ -514,7 +513,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 }
                 else
                 {
-                    toast.ShowToast(MSG.E_NECESSARIO_SELECIONAR_UM_X0_PARA_PROSSEGUIR.ToFormat("Cliente"), EnumToast.Informacao);
+                    Toast.ShowToast(MSG.E_NECESSARIO_SELECIONAR_UM_X0_PARA_PROSSEGUIR.ToFormat("Cliente"), EnumToast.Informacao);
                     this.Focus();
                     dataGridCliente.Focus();
                 }
@@ -524,7 +523,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                     Passo_3();
                 else
                 {
-                    toast.ShowToast(MSG.E_NECESSARIO_SELECIONAR_UM_X0_PARA_PROSSEGUIR.ToFormat("Veículo"), EnumToast.Informacao);
+                    Toast.ShowToast(MSG.E_NECESSARIO_SELECIONAR_UM_X0_PARA_PROSSEGUIR.ToFormat("Veículo"), EnumToast.Informacao);
                     this.Focus();
                     dataGridVeículo.Focus();
                 }
@@ -690,14 +689,14 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                     LimpaPasso3Orcamento();
                     Passo_0("");
                     if (lblRetornar.Visible)
-                        toast.ShowToast(MSG.X0_SALVO_COM_SUCESSO.ToFormat("Orçamento"), EnumToast.Sucesso);
+                        Toast.ShowToast(MSG.X0_SALVO_COM_SUCESSO.ToFormat("Orçamento"), EnumToast.Sucesso);
                     else
-                        toast.ShowToast(MSG.X0_REALIZADA_COM_SUCESSO.ToFormat("Alteração"), EnumToast.Sucesso);
+                        Toast.ShowToast(MSG.X0_REALIZADA_COM_SUCESSO.ToFormat("Alteração"), EnumToast.Sucesso);
                 }
             }
             catch(Exception ex)
             {
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + " " + ex, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + " " + ex, EnumToast.Erro);
                 txtPesquisarProduto.Focus();
                 return;
             }
@@ -725,14 +724,14 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 {
                     _unitOfWork.SaveChanges();
                     Passo_0("");
-                    toast.ShowToast(MSG.EXCLUSAO_REALIZADA_COM_SUCESSO, EnumToast.Sucesso);
+                    Toast.ShowToast(MSG.EXCLUSAO_REALIZADA_COM_SUCESSO, EnumToast.Sucesso);
                     this.Focus();
                     dataGridOrcamento.Focus();
                 }
             }
             catch (Exception ex)
             {
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
                 this.Focus();
                 dataGridOrcamento.Focus();
                 return;
@@ -747,7 +746,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             catch (Exception ex)
             {
-                toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("orçamento") + ex, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("orçamento") + ex, EnumToast.Erro);
                 return null;
             }
         }
@@ -809,7 +808,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_AO_CONSULTAR_DADOS, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_AO_CONSULTAR_DADOS, EnumToast.Erro);
                 this.Close();
             }
         }
@@ -883,15 +882,15 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 var orcamento = OrcamentoSelecionado();
 
 
-                var ordemServico = new frmOrdemServico(_serviceOrcamento.Obter_ByNumero(orcamento.Numero));
+                var ordemServico = new frmOrdemServico();
                 ordemServico.StartPosition = FormStartPosition.CenterParent;
                 ordemServico.MdiParent = this.MdiParent;
-                ordemServico.ShowDialog();
+                ordemServico.Execute(_serviceOrcamento.Obter_ByNumero(orcamento.Numero));
             }
             catch (Exception ex)
             {
 
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
                 return;
             }
         }
@@ -932,7 +931,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
             catch
             {
-                toast.ShowToast(MSG.ERRO_AO_CONSULTAR_DADOS, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_AO_CONSULTAR_DADOS, EnumToast.Erro);
                 this.Close();
             }
         }
@@ -952,13 +951,13 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                             return true;
                         }
                     }
-                toast.ShowToast("Decrição não localizada", EnumToast.Informacao);
+                Toast.ShowToast("Decrição não localizada", EnumToast.Informacao);
                 this.Focus();
                 return false;
             }
             catch
             {
-                toast.ShowToast("Erro ao popular grid", EnumToast.Erro);
+                Toast.ShowToast("Erro ao popular grid", EnumToast.Erro);
                 return false;
             }
         }

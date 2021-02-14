@@ -11,12 +11,9 @@ using RG2System_Garage.Shared.Formulario.Toast;
 using RG2System_Garage.Viwer.Resources;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RG2System_Garage.Viwer.Formulario.OrdemServico
@@ -26,23 +23,29 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
         private IServiceOrdemServico _serviceOrdemServico;
         private IServiceFormaPagamento _serviceFormaPagamento;
         private IUnitOfWork _unitOfWork;
-        Toast toast = new Toast();
         int _radioButonSelecionado = 1;
         Guid _idEstaSendoEditado;
         OrcamentoResponse _orcamentoResponse;
         List<ORPagamentoResquest> _listaPagamentoSelecionados = new List<ORPagamentoResquest>();
         List<FormaPagamentoResponse> _listaPagamento = new List<FormaPagamentoResponse>();
-        public frmOrdemServico(OrcamentoResponse orcamentoResponse)
+        public frmOrdemServico()
         {
             InitializeComponent();
             ConsultarDepedencias();
             _idEstaSendoEditado = Guid.Empty;
+            tabControlOR.SelectedIndex = 0;
+            CarregaListaOR();
+        }
+
+        public void Execute(OrcamentoResponse orcamentoResponse)
+        {    
             _orcamentoResponse = orcamentoResponse;
+            
             if (_orcamentoResponse != null)
                 CarregaComponentesEstaticos();
 
+            this.Show();
         }
-
         void ConsultarDepedencias()
         {
             _serviceOrdemServico = (IServiceOrdemServico)Program.ServiceProvider.GetService(typeof(IServiceOrdemServico));
@@ -85,7 +88,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             catch (Exception ex)
             {
 
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
                 return;
             }
         }
@@ -116,7 +119,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             if (serviceBase.Notifications.Count > 0)
             {
                 foreach (var item in serviceBase.Notifications.ToList())
-                    toast.ShowToast(item.Message, EnumToast.Erro);
+                    Toast.ShowToast(item.Message, EnumToast.Erro);
 
                 if (tabControlOR.SelectedIndex == 0)
                     txtPesquisar.Focus();
@@ -167,7 +170,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             catch (Exception ex)
             {
 
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
 
             }
         }
@@ -187,7 +190,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             }
             catch (Exception ex)
             {
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
             }
 
         }
@@ -212,7 +215,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             }
             catch (Exception ex)
             {
-                toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("Forma pagamento") + ex, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("Forma pagamento") + ex, EnumToast.Erro);
             }
         }
 
@@ -224,7 +227,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             }
             catch (Exception ex)
             {
-                toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("Forma pagamento") + ex, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("Forma pagamento") + ex, EnumToast.Erro);
                 return null;
             }
         }
@@ -253,7 +256,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             }
             catch (Exception ex)
             {
-                toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("Forma pagamento") + ex, EnumToast.Erro);   
+                Toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("Forma pagamento") + ex, EnumToast.Erro);   
             }
         }
         private void dataGridPagamentos_KeyDown(object sender, KeyEventArgs e)
@@ -326,7 +329,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
 
                     _listaPagamento.Clear();
 
-                    toast.ShowToast(MSG.X0_SALVA_COM_SUCESSO.ToFormat("Ordem Servico"), EnumToast.Sucesso);
+                    Toast.ShowToast(MSG.X0_SALVA_COM_SUCESSO.ToFormat("Ordem Servico"), EnumToast.Sucesso);
                     
                     this.Close();
 
@@ -334,7 +337,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             }
             catch (Exception ex)
             {
-                toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
             }
         }
 
@@ -366,6 +369,23 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
         {
             if (tabControlOR.SelectedIndex == 1)
                 dataGridFormaPagamento.Focus();
+        }
+
+        private void CarregaListaOR()
+        {
+            try
+            {
+                dataGridOR.AutoGenerateColumns = false;
+                dataGridOR.DataSource = null;
+                dataGridOR.DataSource = _serviceOrdemServico.Listar();
+                dataGridOR.Update();
+                dataGridOR.Refresh();
+            }
+            catch (Exception ex)
+            {
+
+                Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+            }
         }
     }
 }
