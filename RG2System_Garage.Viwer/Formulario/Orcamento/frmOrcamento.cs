@@ -142,7 +142,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 _IdVeiculoSelecionado = Guid.Empty;
 
                 dataGridOrcamento.DataSource = _serviceOrcamento.Listar(cliente);
-
+                
                 dataGridOrcamento.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridOrcamento.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridOrcamento.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -155,11 +155,12 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                     tabControlOrcamento.SelectedIndex = 0;
 
                     if (panelSubMenu.Visible)
-                        panelSubMenu.Visible = false;
+                        panelSubMenu.Visible = false;                   
 
                     dataGridOrcamento.Focus();
                 }
-
+                
+                AlteraCorLinhaDataGrid(dataGridOrcamento);
                 this.Refresh();
 
             }
@@ -881,10 +882,13 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             {
                 var orcamento = OrcamentoSelecionado();
 
+                if (orcamento.ExisteOrdemServico)
+                {
+                    MessageBox.Show("Já existe OR para este orçamento", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
                 var ordemServico = new frmOrdemServico();
-                ordemServico.StartPosition = FormStartPosition.CenterParent;
-                ordemServico.MdiParent = this.MdiParent;
                 ordemServico.Execute(_serviceOrcamento.Obter_ByNumero(orcamento.Numero));
             }
             catch (Exception ex)
@@ -936,6 +940,11 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             }
         }
 
+        private void btnSair_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         public bool PesquisaDataGrid(DataGridView grid, string descricao, int index)
         {
             try
@@ -959,6 +968,24 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             {
                 Toast.ShowToast("Erro ao popular grid", EnumToast.Erro);
                 return false;
+            }
+        }
+
+        public void AlteraCorLinhaDataGrid(DataGridView grid)
+        {
+            try
+            {
+                foreach (DataGridViewRow item in grid.Rows)
+                {
+                    if ((bool)item.Cells[5].Value)
+                        grid.DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Toast.ShowToast("Erro ao popular grid", EnumToast.Erro);
+                return;
             }
         }
     }

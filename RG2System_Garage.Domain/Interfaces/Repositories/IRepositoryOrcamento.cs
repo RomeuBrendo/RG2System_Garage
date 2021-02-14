@@ -9,5 +9,6 @@ namespace RG2System_Garage.Domain.Interfaces.Repositories
     {
         bool ExcluirItens(Guid id);
         bool AdicionarItens(List<OrcamentoItem> itens);
+        bool ExisteOR(Guid id);
     }
 }

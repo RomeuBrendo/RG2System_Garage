@@ -43,5 +43,18 @@ namespace RG2System_Garage.Infra.Repositories
             }
         }
 
+        public bool ExisteOR(Guid id)
+        {
+            try
+            {
+                return _context.OrdemServicos.Any(x => x.OrcamentoId == id);
+            }
+            catch 
+            {
+
+                return false;
+            }
+        }
+
     }
 }

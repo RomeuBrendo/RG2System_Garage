@@ -21,7 +21,7 @@ namespace RG2System_Garage.Infra.Repositories.MAP
             builder.Property(x => x.Observacao).HasMaxLength(1500);
             builder.Property(x => x.ValorTotal).IsRequired();
             builder.Property(x => x.DataCriacao);
-            builder.Property(x => x.ExisteOrdemServico).HasDefaultValue(false);
+            builder.Ignore(x => x.ExisteOrdemServico);
             builder.Property(x => x.ValorDesconto).HasColumnName("Desconto");
             builder.Property(x => x.ValorAcrescimo).HasColumnName("Acrescimo");
             

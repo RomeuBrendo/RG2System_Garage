@@ -17,6 +17,7 @@ namespace RG2System_Garage.Infra.Repositories
         public Microsoft.EntityFrameworkCore.DbSet<Orcamento> Orcamentos { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<OrcamentoItem> OrcamentoItens { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<FormaPagamento> FormaPagamentos { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<OrdemServico> OrdemServicos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

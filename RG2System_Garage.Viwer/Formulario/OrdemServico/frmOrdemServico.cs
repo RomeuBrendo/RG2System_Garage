@@ -122,7 +122,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
                     Toast.ShowToast(item.Message, EnumToast.Erro);
 
                 if (tabControlOR.SelectedIndex == 0)
-                    txtPesquisar.Focus();
+                    dataGridOR.Focus();
                 else
                     dataGridFormaPagamento.Focus();
 
@@ -377,6 +377,12 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             {
                 dataGridOR.AutoGenerateColumns = false;
                 dataGridOR.DataSource = null;
+                
+                dataGridOR.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridOR.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridOR.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridOR.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                
                 dataGridOR.DataSource = _serviceOrdemServico.Listar();
                 dataGridOR.Update();
                 dataGridOR.Refresh();

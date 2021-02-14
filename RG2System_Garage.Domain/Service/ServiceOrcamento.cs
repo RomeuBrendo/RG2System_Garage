@@ -170,7 +170,7 @@ namespace RG2System_Garage.Domain.Service
                     orcamentoNovo.ValorAcrescimo = orcamento.ValorAcrescimo;
                     orcamentoNovo.ValorDesconto = orcamento.ValorDesconto;
                     orcamentoNovo.ValorTotal = orcamento.ValorTotal;
-                    orcamentoNovo.ExisteOrdemServico = orcamento.ExisteOrdemServico;
+                    orcamentoNovo.ExisteOrdemServico = _repositoryOrcamento.ExisteOR(orcamento.Id);
                     orcamentoNovo.DataCriacao = orcamento.DataCriacao;
 
                     foreach (var item in orcamento.Itens)
