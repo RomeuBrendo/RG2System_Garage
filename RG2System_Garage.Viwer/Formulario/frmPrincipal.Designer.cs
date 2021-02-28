@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.pnMenu = new System.Windows.Forms.Panel();
-            this.btnTeste = new System.Windows.Forms.Button();
             this.pnConfiguracoes = new System.Windows.Forms.Panel();
             this.btnConfigGeral = new System.Windows.Forms.Button();
             this.pnLancamentos = new System.Windows.Forms.Panel();
@@ -46,7 +45,8 @@
             this.btnCadastro = new System.Windows.Forms.Button();
             this.tmMenu = new System.Windows.Forms.Timer(this.components);
             this.panelformularios = new System.Windows.Forms.Panel();
-            this.btnTesteOR = new System.Windows.Forms.Button();
+            this.btnCadFormaPGTO = new System.Windows.Forms.Button();
+            this.btnLancOrdemServico = new System.Windows.Forms.Button();
             this.pnMenu.SuspendLayout();
             this.pnConfiguracoes.SuspendLayout();
             this.pnLancamentos.SuspendLayout();
@@ -58,36 +58,24 @@
             this.pnMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.pnMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(17)))), ((int)(((byte)(49)))));
-            this.pnMenu.Controls.Add(this.btnTesteOR);
-            this.pnMenu.Controls.Add(this.btnTeste);
             this.pnMenu.Controls.Add(this.pnConfiguracoes);
+            this.pnMenu.Controls.Add(this.btnConfiguracao);
             this.pnMenu.Controls.Add(this.pnLancamentos);
             this.pnMenu.Controls.Add(this.pnCadastro);
             this.pnMenu.Controls.Add(this.label1);
-            this.pnMenu.Controls.Add(this.btnConfiguracao);
             this.pnMenu.Controls.Add(this.btnLancamento);
             this.pnMenu.Controls.Add(this.btnCadastro);
             this.pnMenu.Location = new System.Drawing.Point(0, 4);
             this.pnMenu.Name = "pnMenu";
-            this.pnMenu.Size = new System.Drawing.Size(368, 540);
+            this.pnMenu.Size = new System.Drawing.Size(368, 790);
             this.pnMenu.TabIndex = 0;
-            // 
-            // btnTeste
-            // 
-            this.btnTeste.Location = new System.Drawing.Point(23, 71);
-            this.btnTeste.Name = "btnTeste";
-            this.btnTeste.Size = new System.Drawing.Size(153, 40);
-            this.btnTeste.TabIndex = 0;
-            this.btnTeste.Text = "btnTeste";
-            this.btnTeste.UseVisualStyleBackColor = true;
-            this.btnTeste.Click += new System.EventHandler(this.btnTeste_Click);
             // 
             // pnConfiguracoes
             // 
             this.pnConfiguracoes.Controls.Add(this.btnConfigGeral);
-            this.pnConfiguracoes.Location = new System.Drawing.Point(-1, 498);
+            this.pnConfiguracoes.Location = new System.Drawing.Point(-1, 589);
             this.pnConfiguracoes.Name = "pnConfiguracoes";
-            this.pnConfiguracoes.Size = new System.Drawing.Size(368, 40);
+            this.pnConfiguracoes.Size = new System.Drawing.Size(368, 43);
             this.pnConfiguracoes.TabIndex = 9;
             // 
             // btnConfigGeral
@@ -98,7 +86,7 @@
             this.btnConfigGeral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfigGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfigGeral.ForeColor = System.Drawing.Color.White;
-            this.btnConfigGeral.Location = new System.Drawing.Point(0, 0);
+            this.btnConfigGeral.Location = new System.Drawing.Point(1, 1);
             this.btnConfigGeral.Name = "btnConfigGeral";
             this.btnConfigGeral.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnConfigGeral.Size = new System.Drawing.Size(368, 40);
@@ -110,10 +98,11 @@
             // 
             // pnLancamentos
             // 
+            this.pnLancamentos.Controls.Add(this.btnLancOrdemServico);
             this.pnLancamentos.Controls.Add(this.btnLancServico);
-            this.pnLancamentos.Location = new System.Drawing.Point(-1, 418);
+            this.pnLancamentos.Location = new System.Drawing.Point(-1, 464);
             this.pnLancamentos.Name = "pnLancamentos";
-            this.pnLancamentos.Size = new System.Drawing.Size(368, 40);
+            this.pnLancamentos.Size = new System.Drawing.Size(368, 82);
             this.pnLancamentos.TabIndex = 8;
             // 
             // btnLancServico
@@ -124,7 +113,7 @@
             this.btnLancServico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLancServico.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLancServico.ForeColor = System.Drawing.Color.White;
-            this.btnLancServico.Location = new System.Drawing.Point(0, 0);
+            this.btnLancServico.Location = new System.Drawing.Point(0, 1);
             this.btnLancServico.Name = "btnLancServico";
             this.btnLancServico.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnLancServico.Size = new System.Drawing.Size(368, 40);
@@ -137,12 +126,13 @@
             // pnCadastro
             // 
             this.pnCadastro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.pnCadastro.Controls.Add(this.btnCadFormaPGTO);
             this.pnCadastro.Controls.Add(this.btnCadVeiculo);
             this.pnCadastro.Controls.Add(this.btnCadProduto);
             this.pnCadastro.Controls.Add(this.btnCadCliente);
-            this.pnCadastro.Location = new System.Drawing.Point(0, 259);
+            this.pnCadastro.Location = new System.Drawing.Point(-2, 259);
             this.pnCadastro.Name = "pnCadastro";
-            this.pnCadastro.Size = new System.Drawing.Size(368, 119);
+            this.pnCadastro.Size = new System.Drawing.Size(368, 165);
             this.pnCadastro.TabIndex = 4;
             // 
             // btnCadVeiculo
@@ -153,7 +143,7 @@
             this.btnCadVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadVeiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadVeiculo.ForeColor = System.Drawing.Color.White;
-            this.btnCadVeiculo.Location = new System.Drawing.Point(0, 80);
+            this.btnCadVeiculo.Location = new System.Drawing.Point(0, 3);
             this.btnCadVeiculo.Name = "btnCadVeiculo";
             this.btnCadVeiculo.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnCadVeiculo.Size = new System.Drawing.Size(368, 40);
@@ -171,7 +161,7 @@
             this.btnCadProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadProduto.ForeColor = System.Drawing.Color.White;
-            this.btnCadProduto.Location = new System.Drawing.Point(0, 40);
+            this.btnCadProduto.Location = new System.Drawing.Point(1, 82);
             this.btnCadProduto.Name = "btnCadProduto";
             this.btnCadProduto.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnCadProduto.Size = new System.Drawing.Size(368, 40);
@@ -189,7 +179,7 @@
             this.btnCadCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadCliente.ForeColor = System.Drawing.Color.White;
-            this.btnCadCliente.Location = new System.Drawing.Point(0, 0);
+            this.btnCadCliente.Location = new System.Drawing.Point(1, 42);
             this.btnCadCliente.Name = "btnCadCliente";
             this.btnCadCliente.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.btnCadCliente.Size = new System.Drawing.Size(368, 40);
@@ -217,10 +207,10 @@
             this.btnConfiguracao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfiguracao.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfiguracao.ForeColor = System.Drawing.Color.White;
-            this.btnConfiguracao.Location = new System.Drawing.Point(1, 458);
+            this.btnConfiguracao.Location = new System.Drawing.Point(0, 546);
             this.btnConfiguracao.Name = "btnConfiguracao";
             this.btnConfiguracao.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnConfiguracao.Size = new System.Drawing.Size(364, 40);
+            this.btnConfiguracao.Size = new System.Drawing.Size(368, 43);
             this.btnConfiguracao.TabIndex = 2;
             this.btnConfiguracao.Text = "CONFIGURAÇÕES";
             this.btnConfiguracao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -235,10 +225,10 @@
             this.btnLancamento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLancamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLancamento.ForeColor = System.Drawing.Color.White;
-            this.btnLancamento.Location = new System.Drawing.Point(1, 378);
+            this.btnLancamento.Location = new System.Drawing.Point(-1, 424);
             this.btnLancamento.Name = "btnLancamento";
             this.btnLancamento.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnLancamento.Size = new System.Drawing.Size(364, 40);
+            this.btnLancamento.Size = new System.Drawing.Size(369, 40);
             this.btnLancamento.TabIndex = 1;
             this.btnLancamento.Text = "MOVIMENTAÇÃO";
             this.btnLancamento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -253,10 +243,10 @@
             this.btnCadastro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadastro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastro.ForeColor = System.Drawing.Color.White;
-            this.btnCadastro.Location = new System.Drawing.Point(1, 219);
+            this.btnCadastro.Location = new System.Drawing.Point(-1, 219);
             this.btnCadastro.Name = "btnCadastro";
             this.btnCadastro.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnCadastro.Size = new System.Drawing.Size(364, 40);
+            this.btnCadastro.Size = new System.Drawing.Size(369, 40);
             this.btnCadastro.TabIndex = 0;
             this.btnCadastro.Text = "CADASTRO";
             this.btnCadastro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -275,25 +265,51 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelformularios.Location = new System.Drawing.Point(3, 42);
             this.panelformularios.Name = "panelformularios";
-            this.panelformularios.Size = new System.Drawing.Size(769, 484);
+            this.panelformularios.Size = new System.Drawing.Size(916, 734);
             this.panelformularios.TabIndex = 36;
             this.panelformularios.Visible = false;
             // 
-            // btnTesteOR
+            // btnCadFormaPGTO
             // 
-            this.btnTesteOR.Location = new System.Drawing.Point(23, 140);
-            this.btnTesteOR.Name = "btnTesteOR";
-            this.btnTesteOR.Size = new System.Drawing.Size(153, 40);
-            this.btnTesteOR.TabIndex = 10;
-            this.btnTesteOR.Text = "Teste OR";
-            this.btnTesteOR.UseVisualStyleBackColor = true;
-            this.btnTesteOR.Click += new System.EventHandler(this.btnTesteOR_Click);
+            this.btnCadFormaPGTO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCadFormaPGTO.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCadFormaPGTO.FlatAppearance.BorderSize = 0;
+            this.btnCadFormaPGTO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCadFormaPGTO.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadFormaPGTO.ForeColor = System.Drawing.Color.White;
+            this.btnCadFormaPGTO.Location = new System.Drawing.Point(1, 122);
+            this.btnCadFormaPGTO.Name = "btnCadFormaPGTO";
+            this.btnCadFormaPGTO.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnCadFormaPGTO.Size = new System.Drawing.Size(368, 40);
+            this.btnCadFormaPGTO.TabIndex = 8;
+            this.btnCadFormaPGTO.Text = "Formas de pagamento";
+            this.btnCadFormaPGTO.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCadFormaPGTO.UseVisualStyleBackColor = false;
+            this.btnCadFormaPGTO.Click += new System.EventHandler(this.btnTeste_Click);
+            // 
+            // btnLancOrdemServico
+            // 
+            this.btnLancOrdemServico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnLancOrdemServico.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLancOrdemServico.FlatAppearance.BorderSize = 0;
+            this.btnLancOrdemServico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLancOrdemServico.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLancOrdemServico.ForeColor = System.Drawing.Color.White;
+            this.btnLancOrdemServico.Location = new System.Drawing.Point(0, 41);
+            this.btnLancOrdemServico.Name = "btnLancOrdemServico";
+            this.btnLancOrdemServico.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnLancOrdemServico.Size = new System.Drawing.Size(368, 40);
+            this.btnLancOrdemServico.TabIndex = 6;
+            this.btnLancOrdemServico.Text = "Ordem de serviço";
+            this.btnLancOrdemServico.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLancOrdemServico.UseVisualStyleBackColor = false;
+            this.btnLancOrdemServico.Click += new System.EventHandler(this.btnTesteOR_Click);
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(775, 542);
+            this.ClientSize = new System.Drawing.Size(922, 792);
             this.Controls.Add(this.pnMenu);
             this.Controls.Add(this.panelformularios);
             this.KeyPreview = true;
@@ -328,7 +344,7 @@
         private System.Windows.Forms.Panel pnConfiguracoes;
         private System.Windows.Forms.Button btnConfigGeral;
         private System.Windows.Forms.Panel panelformularios;
-        private System.Windows.Forms.Button btnTeste;
-        private System.Windows.Forms.Button btnTesteOR;
+        private System.Windows.Forms.Button btnLancOrdemServico;
+        private System.Windows.Forms.Button btnCadFormaPGTO;
     }
 }
