@@ -1,7 +1,10 @@
 ﻿using Microsoft.Reporting.WinForms;
 using prmToolkit.NotificationPattern.Extensions;
+using RG2System_Garage.Domain.Commands.Cliente;
 using RG2System_Garage.Domain.Commands.Configuracao;
 using RG2System_Garage.Domain.Commands.Orcamento;
+using RG2System_Garage.Domain.Commands.Produto;
+using RG2System_Garage.Domain.Commands.Veiculo;
 using RG2System_Garage.Domain.Enum;
 using RG2System_Garage.Domain.Enum.Orcamento;
 using RG2System_Garage.Domain.Interfaces.Services;
@@ -1014,25 +1017,62 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
             var orcamentoLista = new List<OrcamentoResponse>();
             var dadosEmpresa = new List<DadosEmpresaResponse>();
+            var veiculoLista = new List<VeiculoResponse>();
+            var clienteLista = new List<ClienteResponse>();
+
 
             dadosEmpresa.Add(_serviceDadosEmpresa.ObterDadosEmpresa());
             orcamentoLista.Add(orcamento);
+            veiculoLista.Add(orcamento.Veiculo);
+            clienteLista.Add(orcamento.Cliente);
+
 
             var report = new LocalReport();
             
             report.ReportEmbeddedResource = "RG2System_Garage.Viwer.RDLC.ReportOrcamento.rdlc";
 
-            var dataSource = new ReportDataSource("DataSetOrcamento", orcamentoLista);
-            report.DataSources.Add(dataSource);
-
-            var dataSource2 = new ReportDataSource("DataSetDadosEmpresa", dadosEmpresa);
-            report.DataSources.Add(dataSource2);
-
+            report.DataSources.Add(new ReportDataSource("DataSetOrcamento", orcamentoLista));            
+            report.DataSources.Add(new ReportDataSource("DataSetDadosEmpresa", dadosEmpresa));
+            report.DataSources.Add(new ReportDataSource("DataSetVeiculo", veiculoLista));
+            report.DataSources.Add(new ReportDataSource("DataSetCliente", clienteLista));
+            report.DataSources.Add(new ReportDataSource("DataSetItens", PopulaProdutosOrcamento(orcamento.Itens)));
+            
             report.Refresh();
 
             ExportarRelatorio("PDF", @"Relatorios\Orçamento Nº" + orcamento.Numero +".pdf", report);
         }
 
+        private List<ProdutosOrcamentoResponse> PopulaProdutosOrcamento(List<OrcamentoItensResponse> itens)
+        {
+            var produtosServicos = new List<ProdutosOrcamentoResponse>();
+            foreach (var item in itens.ToList())
+            {
+                var produto = new ProdutosOrcamentoResponse();
+
+                switch (item.ProdutoServico.Tipo)
+                {
+                    case EnumTipo.Produto:
+                        produto.Descricao = "Produto";
+                        break;
+
+                    case EnumTipo.Servico:
+                        produto.Descricao = "";
+                        break;
+
+                    default:
+                        break;
+                }
+
+                produto.Tipo = item.ProdutoServico.Tipo.ToString();
+                produto.Descricao = item.ProdutoServico.Descricao;
+                produto.Quantidade = item.Quantidade;
+                produto.PrecoVenda = item.PrecoVenda;
+
+                produtosServicos.Add(produto);
+            }
+
+            return produtosServicos;
+        }
         private void ExportarRelatorio(string formato, string nomeArquivo, LocalReport report)
         {
             try

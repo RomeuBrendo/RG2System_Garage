@@ -230,6 +230,7 @@
     <Compile Include="Commands\Orcamento\OrcamentoItensResponse.cs" />
     <Compile Include="Commands\Orcamento\OrcamentoRequest.cs" />
     <Compile Include="Commands\Orcamento\OrcamentoResponse.cs" />
+    <Compile Include="Commands\Orcamento\ProdutosOrcamentoResponse.cs" />
     <Compile Include="Commands\OrdemServico\OrdemServicoRequest.cs" />
     <Compile Include="Commands\OrdemServico\OrdemServicoResponse.cs" />
     <Compile Include="Commands\OrdemServico\ORPagamentoResponse.cs" />

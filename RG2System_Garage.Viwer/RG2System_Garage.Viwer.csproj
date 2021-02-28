@@ -403,9 +403,15 @@
     <None Include="app.config" />
     <None Include="appsettings.json" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Cliente.ClienteResponse.datasource" />
     <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Configuracao.DadosEmpresaResponse.datasource" />
+    <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Orcamento.OrcamentoItensRequest.datasource" />
     <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Orcamento.OrcamentoItensResponse.datasource" />
+    <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Orcamento.OrcamentoRequest.datasource" />
     <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Orcamento.OrcamentoResponse.datasource" />
+    <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Orcamento.ProdutosOrcamentoResponse.datasource" />
+    <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Produto.ProdutoServicoResponse.datasource" />
+    <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Veiculo.VeiculoResponse.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
