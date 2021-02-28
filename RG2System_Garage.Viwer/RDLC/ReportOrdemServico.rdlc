@@ -45,6 +45,13 @@
       </ConnectionProperties>
       <rd:DataSourceID>99b7fc18-6419-48db-9ab3-d1efa73ab031</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="RG2System_GarageDomainCommandsOrdemServico">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>a1acf69a-5966-4491-9ade-f3adaee63210</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSetDadosEmpresa">
@@ -181,6 +188,39 @@
         <rd:DataSetName>RG2System_Garage.Domain.Commands.Cliente</rd:DataSetName>
         <rd:TableName>ClienteResponse</rd:TableName>
         <rd:ObjectDataSourceType>RG2System_Garage.Domain.Commands.Cliente.ClienteResponse, RG2System_Garage.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSetORPagamentos">
+      <Query>
+        <DataSourceName>RG2System_GarageDomainCommandsOrdemServico</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Descricao">
+          <DataField>Descricao</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DescricaoFormaPgt">
+          <DataField>DescricaoFormaPgt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FormaPagamentoId">
+          <DataField>FormaPagamentoId</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="OrdemServicoId">
+          <DataField>OrdemServicoId</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="Valor">
+          <DataField>Valor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>RG2System_Garage.Domain.Commands.OrdemServico</rd:DataSetName>
+        <rd:TableName>ORPagamentoResponse</rd:TableName>
+        <rd:ObjectDataSourceType>RG2System_Garage.Domain.Commands.OrdemServico.ORPagamentoResponse, RG2System_Garage.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
