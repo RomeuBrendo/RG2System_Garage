@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -1075,6 +1076,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         {
             try
             {
+                Directory.CreateDirectory("Relatorios");
                 var bytes = report.Render(formato);
                 System.IO.File.WriteAllBytes(nomeArquivo, bytes);
                 Process.Start(nomeArquivo);
