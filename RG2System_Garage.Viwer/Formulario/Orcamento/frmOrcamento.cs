@@ -3,7 +3,6 @@ using prmToolkit.NotificationPattern.Extensions;
 using RG2System_Garage.Domain.Commands.Cliente;
 using RG2System_Garage.Domain.Commands.Configuracao;
 using RG2System_Garage.Domain.Commands.Orcamento;
-using RG2System_Garage.Domain.Commands.Produto;
 using RG2System_Garage.Domain.Commands.Veiculo;
 using RG2System_Garage.Domain.Enum;
 using RG2System_Garage.Domain.Enum.Orcamento;
@@ -17,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -1005,7 +1005,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
                 PDFOrcamento(_serviceOrcamento.Obter_ByNumero(orcamento.Numero));
             }
-            catch (Exception ex)
+            catch
             {
 
                 return;
@@ -1075,8 +1075,10 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         {
             try
             {
+                Directory.CreateDirectory("Relatorios");
+               
                 var bytes = report.Render(formato);
-                System.IO.File.WriteAllBytes(nomeArquivo, bytes);
+                File.WriteAllBytes(nomeArquivo, bytes);
                 Process.Start(nomeArquivo);
             }
             catch (Exception ex)
