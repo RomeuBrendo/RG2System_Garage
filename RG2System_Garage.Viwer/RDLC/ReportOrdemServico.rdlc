@@ -1096,23 +1096,9 @@
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
           <TablixMembers>
-            <TablixMember>
-              <KeepWithGroup>After</KeepWithGroup>
-            </TablixMember>
-            <TablixMember>
-              <Group Name="Details" />
-              <SortExpressions>
-                <SortExpression>
-                  <Value>=Fields!Tipo.Value</Value>
-                </SortExpression>
-                <SortExpression>
-                  <Value>=Fields!Descricao.Value</Value>
-                </SortExpression>
-              </SortExpressions>
-            </TablixMember>
-            <TablixMember>
-              <KeepWithGroup>Before</KeepWithGroup>
-            </TablixMember>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixRowHierarchy>
         <FixedColumnHeaders>true</FixedColumnHeaders>
@@ -1421,20 +1407,8 @@
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
           <TablixMembers>
-            <TablixMember>
-              <KeepWithGroup>After</KeepWithGroup>
-            </TablixMember>
-            <TablixMember>
-              <Group Name="Details4" />
-              <SortExpressions>
-                <SortExpression>
-                  <Value>=Fields!Tipo.Value</Value>
-                </SortExpression>
-                <SortExpression>
-                  <Value>=Fields!Descricao.Value</Value>
-                </SortExpression>
-              </SortExpressions>
-            </TablixMember>
+            <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixRowHierarchy>
         <FixedColumnHeaders>true</FixedColumnHeaders>
@@ -1543,20 +1517,8 @@
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
           <TablixMembers>
-            <TablixMember>
-              <KeepWithGroup>After</KeepWithGroup>
-            </TablixMember>
-            <TablixMember>
-              <Group Name="Details5" />
-              <SortExpressions>
-                <SortExpression>
-                  <Value>=Fields!Tipo.Value</Value>
-                </SortExpression>
-                <SortExpression>
-                  <Value>=Fields!Descricao.Value</Value>
-                </SortExpression>
-              </SortExpressions>
-            </TablixMember>
+            <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixRowHierarchy>
         <FixedColumnHeaders>true</FixedColumnHeaders>
@@ -1764,6 +1726,13 @@
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
       <rd:DataSourceID>9a3e3f27-0f5e-4f2e-b79d-7d92de2497c1</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="RG2System_GarageDomainCommandsOrcamento1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>0ba98053-c97e-456e-aa4f-2c8c72bcff2f</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -1983,6 +1952,67 @@
         <rd:DataSetName>RG2System_Garage.Domain.Commands.OrdemServico</rd:DataSetName>
         <rd:TableName>OrdemServicoResponse</rd:TableName>
         <rd:ObjectDataSourceType>RG2System_Garage.Domain.Commands.OrdemServico.OrdemServicoResponse, RG2System_Garage.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSetOrcamento">
+      <Query>
+        <DataSourceName>RG2System_GarageDomainCommandsOrcamento1</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Cliente">
+          <DataField>Cliente</DataField>
+          <rd:TypeName>RG2System_Garage.Domain.Commands.Cliente.ClienteResponse</rd:TypeName>
+        </Field>
+        <Field Name="DataCriacao">
+          <DataField>DataCriacao</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ExisteOrdemServico">
+          <DataField>ExisteOrdemServico</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="FormaPagamento">
+          <DataField>FormaPagamento</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Id">
+          <DataField>Id</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="NomeCliente">
+          <DataField>NomeCliente</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Numero">
+          <DataField>Numero</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Observacao">
+          <DataField>Observacao</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ValorAcrescimo">
+          <DataField>ValorAcrescimo</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="ValorDesconto">
+          <DataField>ValorDesconto</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="ValorTotal">
+          <DataField>ValorTotal</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="Veiculo">
+          <DataField>Veiculo</DataField>
+          <rd:TypeName>RG2System_Garage.Domain.Commands.Veiculo.VeiculoResponse</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>RG2System_Garage.Domain.Commands.Orcamento</rd:DataSetName>
+        <rd:TableName>OrcamentoResponse</rd:TableName>
+        <rd:ObjectDataSourceType>RG2System_Garage.Domain.Commands.Orcamento.OrcamentoResponse, RG2System_Garage.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
