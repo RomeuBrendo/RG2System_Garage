@@ -1,4 +1,6 @@
-﻿using prmToolkit.NotificationPattern.Extensions;
+﻿using Microsoft.Reporting.WinForms;
+using prmToolkit.NotificationPattern.Extensions;
+using RG2System_Garage.Domain.Commands.Configuracao;
 using RG2System_Garage.Domain.Commands.Orcamento;
 using RG2System_Garage.Domain.Enum;
 using RG2System_Garage.Domain.Enum.Orcamento;
@@ -10,10 +12,12 @@ using RG2System_Garage.Viwer.Formulario.OrdemServico;
 using RG2System_Garage.Viwer.Resources;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+
 
 namespace RG2System_Garage.Viwer.Formulario.Orcamento
 {
@@ -23,6 +27,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
         private IUnitOfWork _unitOfWork;
         private IServiceCliente _serviceCliente;
         private IServiceProduto _serviceProdutoServico;
+        private IServiceConfiguracaoDadosEmpresa _serviceDadosEmpresa;
 
         public bool CentralizarTela = false;
  
@@ -44,7 +49,7 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             _serviceCliente = (IServiceCliente)Program.ServiceProvider.GetService(typeof(IServiceCliente));
             _serviceProdutoServico = (IServiceProduto)Program.ServiceProvider.GetService(typeof(IServiceProduto));
             _unitOfWork = (IUnitOfWork)Program.ServiceProvider.GetService(typeof(IUnitOfWork));
-
+            _serviceDadosEmpresa = (IServiceConfiguracaoDadosEmpresa)Program.ServiceProvider.GetService(typeof(IServiceConfiguracaoDadosEmpresa));
         }
 
         bool VerificaNotificacoes(IServiceBase serviceBase)
@@ -987,6 +992,60 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                 Toast.ShowToast("Erro ao popular grid", EnumToast.Erro);
                 return;
             }
+        }
+
+        private void btnVisualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var orcamento = OrcamentoSelecionado();
+
+                PDFOrcamento(_serviceOrcamento.Obter_ByNumero(orcamento.Numero));
+            }
+            catch (Exception ex)
+            {
+
+                return;
+            }
+        }
+
+        public void PDFOrcamento(OrcamentoResponse orcamento)
+        {
+
+            var orcamentoLista = new List<OrcamentoResponse>();
+            var dadosEmpresa = new List<DadosEmpresaResponse>();
+
+            dadosEmpresa.Add(_serviceDadosEmpresa.ObterDadosEmpresa());
+            orcamentoLista.Add(orcamento);
+
+            var report = new LocalReport();
+            
+            report.ReportEmbeddedResource = "RG2System_Garage.Viwer.RDLC.ReportOrcamento.rdlc";
+
+            var dataSource = new ReportDataSource("DataSetOrcamento", orcamentoLista);
+            report.DataSources.Add(dataSource);
+
+            var dataSource2 = new ReportDataSource("DataSetDadosEmpresa", dadosEmpresa);
+            report.DataSources.Add(dataSource2);
+
+            report.Refresh();
+
+            ExportarRelatorio("PDF", @"Relatorios\Orçamento Nº" + orcamento.Numero +".pdf", report);
+        }
+
+        private void ExportarRelatorio(string formato, string nomeArquivo, LocalReport report)
+        {
+            try
+            {
+                var bytes = report.Render(formato);
+                System.IO.File.WriteAllBytes(nomeArquivo, bytes);
+                Process.Start(nomeArquivo);
+            }
+            catch (Exception ex)
+            {
+                Toast.ShowToast("Erro ao renderizar PDF Detalhes: " + ex, EnumToast.Erro);
+            }
+
         }
     }
 }

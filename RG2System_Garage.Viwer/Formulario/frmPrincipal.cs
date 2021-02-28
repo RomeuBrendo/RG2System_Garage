@@ -199,7 +199,7 @@ namespace RG2System_Garage.Viwer.Formulario
             AbrirFormulario<frmDadosEmpresa>(false);
         }
 
-        private void AbrirFormulario<formNovo>(Boolean abrirEmShowModal) where formNovo : Form, new()
+        public void AbrirFormulario<formNovo>(Boolean abrirEmShowModal) where formNovo : Form, new()
         {
 
             var frmForm = panelformularios.Controls.OfType<formNovo>().FirstOrDefault();

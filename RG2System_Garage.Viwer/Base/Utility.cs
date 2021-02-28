@@ -1,9 +1,12 @@
-﻿using RG2System_Garage.Domain.Enum;
+﻿using RG2System_Garage.Domain.Commands.Orcamento;
+using RG2System_Garage.Domain.Enum;
 using RG2System_Garage.Shared.Formulario.Toast;
 using System.Windows.Forms;
 
+
 namespace RG2System_Garage.Viwer.Base
 {
+
     public static class Utility
     {
 
@@ -23,6 +26,7 @@ namespace RG2System_Garage.Viwer.Base
                         }
                     }
                 Toast.ShowToast("Decrição não localizada", EnumToast.Informacao);
+
                 //this.Focus();
                 return false;
             }
@@ -31,6 +35,11 @@ namespace RG2System_Garage.Viwer.Base
                 Toast.ShowToast("Erro ao popular grid", EnumToast.Erro);
                 return false;
             }
+        }
+
+        public static void PDFOrcamento(OrcamentoResponse orcamento)
+        {
+
         }
     }
 }
