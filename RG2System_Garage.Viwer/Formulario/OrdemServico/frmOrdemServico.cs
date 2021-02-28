@@ -429,6 +429,7 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             orcamentoLista.Add(orcamento);
             veiculoLista.Add(orcamento.Veiculo);
             clienteLista.Add(orcamento.Cliente);
+            orLista.Add(ordemServico);
 
 
             var report = new LocalReport();
