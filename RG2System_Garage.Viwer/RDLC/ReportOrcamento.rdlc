@@ -1043,7 +1043,6 @@
                       </Style>
                     </Textbox>
                     <ColSpan>3</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -1280,8 +1279,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox27</rd:DefaultName>
-          <Top>0.74607cm</Top>
-          <Left>0.68487cm</Left>
+          <Top>0.80753cm</Top>
+          <Left>1.04354cm</Left>
           <Height>0.6cm</Height>
           <Width>2.5cm</Width>
           <ZIndex>2</ZIndex>
@@ -1311,9 +1310,9 @@
           </Paragraphs>
           <rd:DefaultName>Observacao</rd:DefaultName>
           <Top>1.51336cm</Top>
-          <Left>0.63607cm</Left>
+          <Left>1.04354cm</Left>
           <Height>1.75338cm</Height>
-          <Width>16.34384cm</Width>
+          <Width>15.93637cm</Width>
           <ZIndex>3</ZIndex>
           <Style>
             <Border>
