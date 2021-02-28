@@ -10,6 +10,7 @@ using RG2System_Garage.Domain.Interfaces.Services;
 using RG2System_Garage.Domain.Interfaces.Services.Base;
 using RG2System_Garage.Infra.Repositories.Transactions;
 using RG2System_Garage.Shared.Formulario.Toast;
+using RG2System_Garage.Viwer.Base;
 using RG2System_Garage.Viwer.Formulario.OrdemServico;
 using RG2System_Garage.Viwer.Resources;
 using System;
@@ -1035,57 +1036,12 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
             report.DataSources.Add(new ReportDataSource("DataSetDadosEmpresa", dadosEmpresa));
             report.DataSources.Add(new ReportDataSource("DataSetVeiculo", veiculoLista));
             report.DataSources.Add(new ReportDataSource("DataSetCliente", clienteLista));
-            report.DataSources.Add(new ReportDataSource("DataSetItens", PopulaProdutosOrcamento(orcamento.Itens)));
+            report.DataSources.Add(new ReportDataSource("DataSetItens", Utility.PopulaProdutosOrcamento(orcamento.Itens)));
             
             report.Refresh();
 
-            ExportarRelatorio("PDF", @"Relatorios\Orçamento Nº" + orcamento.Numero +".pdf", report);
+            Utility.ExportarRelatorio("PDF", @"Relatorios\Orçamento Nº" + orcamento.Numero +".pdf", report);
         }
 
-        private List<ProdutosOrcamentoResponse> PopulaProdutosOrcamento(List<OrcamentoItensResponse> itens)
-        {
-            var produtosServicos = new List<ProdutosOrcamentoResponse>();
-            foreach (var item in itens.ToList())
-            {
-                var produto = new ProdutosOrcamentoResponse();
-
-                switch (item.ProdutoServico.Tipo)
-                {
-                    case EnumTipo.Produto:
-                        produto.Descricao = "Produto";
-                        break;
-
-                    case EnumTipo.Servico:
-                        produto.Descricao = "Serviço";
-                        break;
-
-                }
-
-                produto.Tipo = item.ProdutoServico.Tipo.ToString();
-                produto.Descricao = item.ProdutoServico.Descricao;
-                produto.Quantidade = item.Quantidade;
-                produto.PrecoVenda = item.PrecoVenda;
-
-                produtosServicos.Add(produto);
-            }
-
-            return produtosServicos;
-        }
-        private void ExportarRelatorio(string formato, string nomeArquivo, LocalReport report)
-        {
-            try
-            {
-                Directory.CreateDirectory("Relatorios");
-               
-                var bytes = report.Render(formato);
-                File.WriteAllBytes(nomeArquivo, bytes);
-                Process.Start(nomeArquivo);
-            }
-            catch (Exception ex)
-            {
-                Toast.ShowToast("Erro ao renderizar PDF Detalhes: " + ex, EnumToast.Erro);
-            }
-
-        }
     }
 }

@@ -1,18 +1,25 @@
-﻿using prmToolkit.NotificationPattern.Extensions;
+﻿using Microsoft.Reporting.WinForms;
+using prmToolkit.NotificationPattern.Extensions;
+using RG2System_Garage.Domain.Commands.Cliente;
+using RG2System_Garage.Domain.Commands.Configuracao;
 using RG2System_Garage.Domain.Commands.FormaPagamento;
 using RG2System_Garage.Domain.Commands.Orcamento;
 using RG2System_Garage.Domain.Commands.OrdemServico;
+using RG2System_Garage.Domain.Commands.Veiculo;
 using RG2System_Garage.Domain.Enum;
 using RG2System_Garage.Domain.Enum.Ordem_Servico;
 using RG2System_Garage.Domain.Interfaces.Services;
 using RG2System_Garage.Domain.Interfaces.Services.Base;
 using RG2System_Garage.Infra.Repositories.Transactions;
 using RG2System_Garage.Shared.Formulario.Toast;
+using RG2System_Garage.Viwer.Base;
 using RG2System_Garage.Viwer.Resources;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -22,9 +29,13 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
     {
         private IServiceOrdemServico _serviceOrdemServico;
         private IServiceFormaPagamento _serviceFormaPagamento;
+        private IServiceConfiguracaoDadosEmpresa _serviceDadosEmpresa;
+        private IServiceOrcamento _serviceOrcamento;
+
         private IUnitOfWork _unitOfWork;
         int _radioButonSelecionado = 1;
         Guid _idEstaSendoEditado;
+     
         OrcamentoResponse _orcamentoResponse;
         List<ORPagamentoResquest> _listaPagamentoSelecionados = new List<ORPagamentoResquest>();
         List<FormaPagamentoResponse> _listaPagamento = new List<FormaPagamentoResponse>();
@@ -50,7 +61,9 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
         {
             _serviceOrdemServico = (IServiceOrdemServico)Program.ServiceProvider.GetService(typeof(IServiceOrdemServico));
             _serviceFormaPagamento = (IServiceFormaPagamento)Program.ServiceProvider.GetService(typeof(IServiceFormaPagamento));
+            _serviceDadosEmpresa = (IServiceConfiguracaoDadosEmpresa)Program.ServiceProvider.GetService(typeof(IServiceConfiguracaoDadosEmpresa));
             _unitOfWork = (IUnitOfWork)Program.ServiceProvider.GetService(typeof(IUnitOfWork));
+            _serviceOrcamento = (IServiceOrcamento)Program.ServiceProvider.GetService(typeof(IServiceOrcamento));
 
         }
         public void LimparCampos(Panel panel)
@@ -391,6 +404,61 @@ namespace RG2System_Garage.Viwer.Formulario.OrdemServico
             {
 
                 Toast.ShowToast(MSG.ERRO_REALIZAR_PROCEDIMENTO + ex, EnumToast.Erro);
+            }
+        }
+
+        private void btnVisualizar_Click(object sender, EventArgs e)
+        {
+            var or = OrdemServicoSelecionado();
+
+            PDFOrcamento(_serviceOrdemServico.Obter_ByNumero(or.Numero));
+        }
+
+        public void PDFOrcamento(OrdemServicoResponse ordemServico)
+        {
+
+            var orLista = new List<OrdemServicoResponse>();
+            var orcamentoLista = new List<OrcamentoResponse>();
+            var dadosEmpresa = new List<DadosEmpresaResponse>();
+            var veiculoLista = new List<VeiculoResponse>();
+            var clienteLista = new List<ClienteResponse>();
+
+            var orcamento = _serviceOrcamento.Obter_ByNumero(ordemServico.OrcamentoNumero);
+           
+            dadosEmpresa.Add(_serviceDadosEmpresa.ObterDadosEmpresa());
+            orcamentoLista.Add(orcamento);
+            veiculoLista.Add(orcamento.Veiculo);
+            clienteLista.Add(orcamento.Cliente);
+
+
+            var report = new LocalReport();
+
+            report.ReportEmbeddedResource = "RG2System_Garage.Viwer.RDLC.ReportOrdemServico.rdlc";
+
+            report.DataSources.Add(new ReportDataSource("DataSetOrdemServico", orLista));
+            report.DataSources.Add(new ReportDataSource("DataSetORPagamentos", ordemServico.Pagamentos.ToList()));
+            report.DataSources.Add(new ReportDataSource("DataSetOrcamento", orcamentoLista));
+            report.DataSources.Add(new ReportDataSource("DataSetDadosEmpresa", dadosEmpresa));
+            report.DataSources.Add(new ReportDataSource("DataSetVeiculo", veiculoLista));
+            report.DataSources.Add(new ReportDataSource("DataSetCliente", clienteLista));
+            report.DataSources.Add(new ReportDataSource("DataSetItens", Utility.PopulaProdutosOrcamento(orcamento.Itens)));
+
+            report.Refresh();
+
+            Utility.ExportarRelatorio("PDF", @"Relatorios\Ordem Nº" + ordemServico.Numero + ".pdf", report);
+        }
+
+
+        private OrdemServicoResponse OrdemServicoSelecionado()
+        {
+            try
+            {
+                return dataGridOR.SelectedRows[0].DataBoundItem as OrdemServicoResponse;
+            }
+            catch (Exception ex)
+            {
+                Toast.ShowToast(MSG.ERRO_AO_SELECIONAR_X0.ToFormat("OR") + ex, EnumToast.Erro);
+                return null;
             }
         }
     }

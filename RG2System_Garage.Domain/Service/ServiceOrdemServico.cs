@@ -227,5 +227,18 @@ namespace RG2System_Garage.Domain.Service
 
             }
         }
+
+        public OrdemServicoResponse Obter_ByNumero(Int64 numero)
+        {
+            try
+            {
+                return OrdemServicoResponse(_repositoryOrdemServico.ListarPor(x => x.Numero == numero).ToList(), true).FirstOrDefault();
+            }
+            catch
+            {
+                AddNotification("Obter_ByNumero", MSG.ERRO_AO_REALIZAR_PROCEDIMENTO_DE_X0.ToFormat("Obter_ByNumero"));
+                return null;
+            }
+        }
     }
 }
