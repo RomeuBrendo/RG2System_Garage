@@ -146,7 +146,7 @@ namespace RG2System_Garage.Domain.Service
             {
                 var pagamentosResponse = new List<ORPagamentoResponse>();
 
-                foreach (var item in listaPagamento)
+                foreach (var item in listaPagamento.ToList())
                 {
                     var pagamento = new ORPagamentoResponse();
                     pagamento.FormaPagamentoId = item.FormaPagamentoId;
@@ -232,9 +232,9 @@ namespace RG2System_Garage.Domain.Service
         {
             try
             {
-                return OrdemServicoResponse(_repositoryOrdemServico.ListarPor(x => x.Numero == numero).ToList(), true).FirstOrDefault();
+                return OrdemServicoResponse(_repositoryOrdemServico.ListarPor(x => x.Numero == numero, x => x.FormaPagamentos).ToList(), true).FirstOrDefault();
             }
-            catch
+            catch 
             {
                 AddNotification("Obter_ByNumero", MSG.ERRO_AO_REALIZAR_PROCEDIMENTO_DE_X0.ToFormat("Obter_ByNumero"));
                 return null;
