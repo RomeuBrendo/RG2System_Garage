@@ -415,12 +415,12 @@
           </Textbox>
           <Image Name="IcoOrcamento">
             <Source>Embedded</Source>
-            <Value>icoOrcamento</Value>
+            <Value>icoOrcamento1</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>0.83464cm</Top>
-            <Left>0.64133cm</Left>
-            <Height>1.63188cm</Height>
-            <Width>1.5cm</Width>
+            <Top>0.66615cm</Top>
+            <Left>0.50154cm</Left>
+            <Height>1.7572cm</Height>
+            <Width>1.63979cm</Width>
             <ZIndex>9</ZIndex>
             <Style>
               <Border>
@@ -522,7 +522,7 @@
         <Top>4.26476cm</Top>
         <Left>3.43603cm</Left>
         <Height>0.6cm</Height>
-        <Width>13.94914cm</Width>
+        <Width>13.62626cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -760,7 +760,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>DarkBlue</BackgroundColor>
+                        <BackgroundColor>Maroon</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -793,7 +793,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>DarkBlue</BackgroundColor>
+                        <BackgroundColor>Maroon</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -828,7 +828,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>DarkBlue</BackgroundColor>
+                        <BackgroundColor>Maroon</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -846,7 +846,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Preço Venda</Value>
+                              <Value>Venda</Value>
                               <Style>
                                 <Color>White</Color>
                               </Style>
@@ -863,7 +863,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>DarkBlue</BackgroundColor>
+                        <BackgroundColor>Maroon</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1007,6 +1007,84 @@
                 </TablixCell>
               </TablixCells>
             </TablixRow>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>TOTAL</Value>
+                              <Style>
+                                <FontFamily>Arial Black</FontFamily>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox4">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Sum(Fields!PrecoVenda.Value)</Value>
+                              <Style>
+                                <FontFamily>Arial Black</FontFamily>
+                                <Format>C2</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox4</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
@@ -1024,14 +1102,26 @@
             </TablixMember>
             <TablixMember>
               <Group Name="Details" />
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!Tipo.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!Descricao.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+            </TablixMember>
+            <TablixMember>
+              <KeepWithGroup>Before</KeepWithGroup>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
         <FixedColumnHeaders>true</FixedColumnHeaders>
+        <KeepTogether>true</KeepTogether>
         <DataSetName>DataSetItens</DataSetName>
         <Top>7.11412cm</Top>
         <Left>1.04354cm</Left>
-        <Height>1.2cm</Height>
+        <Height>1.8cm</Height>
         <Width>16.01875cm</Width>
         <ZIndex>10</ZIndex>
         <Style>
@@ -1098,69 +1188,8 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox27">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Observação:</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox27</rd:DefaultName>
-        <Top>21.98899cm</Top>
-        <Left>0.68487cm</Left>
-        <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
-        <ZIndex>13</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Observacao">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=First(Fields!Observacao.Value, "DataSetOrcamento")</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Observacao</rd:DefaultName>
-        <Top>22.75628cm</Top>
-        <Left>0.77586cm</Left>
-        <Height>1.75338cm</Height>
-        <Width>15.92776cm</Width>
-        <ZIndex>14</ZIndex>
-        <Style>
-          <Border>
-            <Style>Solid</Style>
-          </Border>
-          <VerticalAlign>Top</VerticalAlign>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
     </ReportItems>
-    <Height>25cm</Height>
+    <Height>8.91412cm</Height>
     <Style>
       <Border>
         <Style>None</Style>
@@ -1170,7 +1199,7 @@
   <Width>18.10583cm</Width>
   <Page>
     <PageFooter>
-      <Height>1cm</Height>
+      <Height>4.66577cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1192,7 +1221,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox25</rd:DefaultName>
-          <Top>0.14111cm</Top>
+          <Top>3.95111cm</Top>
           <Left>0.127cm</Left>
           <Height>0.6cm</Height>
           <Width>3.05787cm</Width>
@@ -1221,7 +1250,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
-          <Top>0.17639cm</Top>
+          <Top>3.98639cm</Top>
           <Left>7.80292cm</Left>
           <Height>0.6cm</Height>
           <Width>2.5cm</Width>
@@ -1230,6 +1259,67 @@
             <Border>
               <Style>None</Style>
             </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox27">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Observação:</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox27</rd:DefaultName>
+          <Top>0.74607cm</Top>
+          <Left>0.68487cm</Left>
+          <Height>0.6cm</Height>
+          <Width>2.5cm</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Observacao">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!Observacao.Value, "DataSetOrcamento")</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Observacao</rd:DefaultName>
+          <Top>1.51336cm</Top>
+          <Left>0.63607cm</Left>
+          <Height>1.75338cm</Height>
+          <Width>16.34384cm</Width>
+          <ZIndex>3</ZIndex>
+          <Style>
+            <Border>
+              <Style>Solid</Style>
+            </Border>
+            <VerticalAlign>Top</VerticalAlign>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
@@ -1495,6 +1585,12 @@
       <ImageData>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</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="icoOrcamento1">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>

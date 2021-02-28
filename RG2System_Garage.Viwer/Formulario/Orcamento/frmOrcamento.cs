@@ -494,8 +494,8 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
 
         private void dataGridCliente_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            if (e.RowIndex == dataGridCliente.SelectedRows[0].Index)
+            if (dataGridCliente.RowCount > 0) 
+              if (e.RowIndex == dataGridCliente.SelectedRows[0].Index)
                 SelecionaGrid(dataGridCliente, EnumIcone.ClienteSelecionado);
         }
 
@@ -1056,11 +1056,9 @@ namespace RG2System_Garage.Viwer.Formulario.Orcamento
                         break;
 
                     case EnumTipo.Servico:
-                        produto.Descricao = "";
+                        produto.Descricao = "Serviço";
                         break;
 
-                    default:
-                        break;
                 }
 
                 produto.Tipo = item.ProdutoServico.Tipo.ToString();
