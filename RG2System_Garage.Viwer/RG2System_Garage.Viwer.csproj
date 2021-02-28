@@ -395,6 +395,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="RDLC\ReportOrdemServico.rdlc" />
     <EmbeddedResource Include="RDLC\ReportOrcamento.rdlc" />
     <EmbeddedResource Include="Resources\MSG.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -410,6 +411,8 @@
     <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Orcamento.OrcamentoRequest.datasource" />
     <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Orcamento.OrcamentoResponse.datasource" />
     <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Orcamento.ProdutosOrcamentoResponse.datasource" />
+    <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.OrdemServico.OrdemServicoResponse.datasource" />
+    <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.OrdemServico.ORPagamentoResponse.datasource" />
     <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Produto.ProdutoServicoResponse.datasource" />
     <None Include="Properties\DataSources\RG2System_Garage.Domain.Commands.Veiculo.VeiculoResponse.datasource" />
     <None Include="Properties\Settings.settings">
