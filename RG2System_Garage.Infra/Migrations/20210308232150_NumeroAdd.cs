@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RG2System_Garage.Infra.Migrations
 {
-    public partial class Inclusao_numero_auto : Migration
+    public partial class NumeroAdd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,6 +13,14 @@ namespace RG2System_Garage.Infra.Migrations
                 nullable: false,
                 oldClrType: typeof(int),
                 oldType: "int")
+                .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+            migrationBuilder.AlterColumn<long>(
+                name: "Numero",
+                table: "Orcamento",
+                nullable: false,
+                oldClrType: typeof(long),
+                oldType: "bigint")
                 .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
         }
 
@@ -24,6 +32,14 @@ namespace RG2System_Garage.Infra.Migrations
                 type: "int",
                 nullable: false,
                 oldClrType: typeof(int))
+                .OldAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+            migrationBuilder.AlterColumn<long>(
+                name: "Numero",
+                table: "Orcamento",
+                type: "bigint",
+                nullable: false,
+                oldClrType: typeof(long))
                 .OldAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
         }
     }

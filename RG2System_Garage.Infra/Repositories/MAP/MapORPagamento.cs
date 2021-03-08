@@ -12,8 +12,8 @@ namespace RG2System_Garage.Infra.Repositories.MAP
 
             builder.HasKey(x => x.Id);
 
-            builder.HasOne(x => x.OrdemServico).WithMany().HasForeignKey("OrdemServicoId");
-            //builder.HasOne(x => x.FormaPagamentoId).().HasForeignKey("FormaPagamentoId");
+          //  builder.HasOne(x => x.OrdemServico).WithMany().HasForeignKey("OrdemServicoId");
+            builder.HasOne(x => x.FormaPagamento).WithMany().HasForeignKey("FormaPagamentoId");
 
             builder.Property(x => x.Valor).HasColumnType<decimal>("decimal(18,2)");
         }

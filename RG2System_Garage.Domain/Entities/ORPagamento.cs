@@ -38,6 +38,7 @@ namespace RG2System_Garage.Domain.Entities
         }
         public Guid FormaPagamentoId { get; private set; }
         public OrdemServico OrdemServico { get; private set; }
+        public FormaPagamento FormaPagamento { get; private set; }
         public Guid OrdemServicoId { get; private set; }
         public decimal Valor { get; private set; }
     }

@@ -40,6 +40,21 @@ namespace RG2System_Garage.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FormaPagamento",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Descricao = table.Column<string>(maxLength: 150, nullable: true),
+                    Tipo = table.Column<int>(maxLength: 30, nullable: false),
+                    PrazoRecebimento = table.Column<int>(maxLength: 150, nullable: false),
+                    QuantidadeParcela = table.Column<int>(maxLength: 80, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FormaPagamento", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProdutoServico",
                 columns: table => new
                 {
@@ -130,12 +145,10 @@ namespace RG2System_Garage.Infra.Migrations
                     ClienteId = table.Column<Guid>(nullable: true),
                     VeiculoId = table.Column<Guid>(nullable: true),
                     Numero = table.Column<long>(nullable: false),
-                    FormaPagamento = table.Column<string>(maxLength: 50, nullable: true),
                     ValorTotal = table.Column<double>(nullable: false),
                     Desconto = table.Column<double>(nullable: false),
                     Acrescimo = table.Column<double>(nullable: false),
                     Observacao = table.Column<string>(maxLength: 1500, nullable: true),
-                    ExisteOrdemServico = table.Column<bool>(nullable: false, defaultValue: false),
                     DataCriacao = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -172,6 +185,61 @@ namespace RG2System_Garage.Infra.Migrations
                         name: "FK_OrcamentoItem_Orcamento_OrcamentoId",
                         column: x => x.OrcamentoId,
                         principalTable: "Orcamento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrdemServico",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Numero = table.Column<int>(nullable: false),
+                    DataFinalizacao = table.Column<DateTime>(nullable: true),
+                    Status = table.Column<int>(maxLength: 50, nullable: false),
+                    Observacao = table.Column<string>(nullable: true),
+                    OrcamentoId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrdemServico", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrdemServico_Orcamento_OrcamentoId",
+                        column: x => x.OrcamentoId,
+                        principalTable: "Orcamento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ORPagamento",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    FormaPagamentoId = table.Column<Guid>(nullable: false),
+                    OrdemServicoId = table.Column<Guid>(nullable: false),
+                    Valor = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    OrdemServicoId1 = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ORPagamento", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ORPagamento_FormaPagamento_FormaPagamentoId",
+                        column: x => x.FormaPagamentoId,
+                        principalTable: "FormaPagamento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ORPagamento_OrdemServico_OrdemServicoId",
+                        column: x => x.OrdemServicoId,
+                        principalTable: "OrdemServico",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ORPagamento_OrdemServico_OrdemServicoId1",
+                        column: x => x.OrdemServicoId1,
+                        principalTable: "OrdemServico",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -213,6 +281,31 @@ namespace RG2System_Garage.Infra.Migrations
                 column: "OrcamentoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrdemServico_Numero",
+                table: "OrdemServico",
+                column: "Numero");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrdemServico_OrcamentoId",
+                table: "OrdemServico",
+                column: "OrcamentoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ORPagamento_FormaPagamentoId",
+                table: "ORPagamento",
+                column: "FormaPagamentoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ORPagamento_OrdemServicoId",
+                table: "ORPagamento",
+                column: "OrdemServicoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ORPagamento_OrdemServicoId1",
+                table: "ORPagamento",
+                column: "OrdemServicoId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Veiculos_ClienteId",
                 table: "Veiculos",
                 column: "ClienteId");
@@ -233,7 +326,16 @@ namespace RG2System_Garage.Infra.Migrations
                 name: "OrcamentoItem");
 
             migrationBuilder.DropTable(
+                name: "ORPagamento");
+
+            migrationBuilder.DropTable(
                 name: "ProdutoServico");
+
+            migrationBuilder.DropTable(
+                name: "FormaPagamento");
+
+            migrationBuilder.DropTable(
+                name: "OrdemServico");
 
             migrationBuilder.DropTable(
                 name: "Orcamento");

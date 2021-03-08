@@ -9,8 +9,8 @@ using RG2System_Garage.Infra.Repositories;
 namespace RG2System_Garage.Infra.Migrations
 {
     [DbContext(typeof(RB2System_GarageContext))]
-    [Migration("20210119005027_auto-inc")]
-    partial class autoinc
+    [Migration("20210308232150_NumeroAdd")]
+    partial class NumeroAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -82,6 +82,33 @@ namespace RG2System_Garage.Infra.Migrations
                     b.ToTable("ConfiguracaoDadosEmpresa");
                 });
 
+            modelBuilder.Entity("RG2System_Garage.Domain.Entities.FormaPagamento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("varchar(150) CHARACTER SET utf8mb4")
+                        .HasMaxLength(150);
+
+                    b.Property<int>("PrazoRecebimento")
+                        .HasColumnType("int")
+                        .HasMaxLength(150);
+
+                    b.Property<int>("QuantidadeParcela")
+                        .HasColumnType("int")
+                        .HasMaxLength(80);
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int")
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FormaPagamento");
+                });
+
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.Movimentacao", b =>
                 {
                     b.Property<Guid>("Id")
@@ -113,6 +140,35 @@ namespace RG2System_Garage.Infra.Migrations
                     b.ToTable("Movimentacao");
                 });
 
+            modelBuilder.Entity("RG2System_Garage.Domain.Entities.ORPagamento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("FormaPagamentoId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("OrdemServicoId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("OrdemServicoId1")
+                        .HasColumnType("char(36)");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FormaPagamentoId");
+
+                    b.HasIndex("OrdemServicoId");
+
+                    b.HasIndex("OrdemServicoId1");
+
+                    b.ToTable("ORPagamento");
+                });
+
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.Orcamento", b =>
                 {
                     b.Property<Guid>("Id")
@@ -124,15 +180,6 @@ namespace RG2System_Garage.Infra.Migrations
 
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<bool>("ExisteOrdemServico")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint(1)")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("FormaPagamento")
-                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
-                        .HasMaxLength(50);
 
                     b.Property<long>("Numero")
                         .ValueGeneratedOnAdd()
@@ -195,6 +242,41 @@ namespace RG2System_Garage.Infra.Migrations
                     b.HasIndex("OrcamentoId");
 
                     b.ToTable("OrcamentoItem");
+                });
+
+            modelBuilder.Entity("RG2System_Garage.Domain.Entities.OrdemServico", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime?>("DataFinalizacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValue(null);
+
+                    b.Property<int>("Numero")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .IsUnicode(true);
+
+                    b.Property<string>("Observacao")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<Guid>("OrcamentoId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Numero");
+
+                    b.HasIndex("OrcamentoId");
+
+                    b.ToTable("OrdemServico");
                 });
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.ProdutoServico", b =>
@@ -343,6 +425,25 @@ namespace RG2System_Garage.Infra.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("RG2System_Garage.Domain.Entities.ORPagamento", b =>
+                {
+                    b.HasOne("RG2System_Garage.Domain.Entities.FormaPagamento", "FormaPagamento")
+                        .WithMany()
+                        .HasForeignKey("FormaPagamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RG2System_Garage.Domain.Entities.OrdemServico", "OrdemServico")
+                        .WithMany()
+                        .HasForeignKey("OrdemServicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RG2System_Garage.Domain.Entities.OrdemServico", null)
+                        .WithMany("FormaPagamentos")
+                        .HasForeignKey("OrdemServicoId1");
+                });
+
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.Orcamento", b =>
                 {
                     b.HasOne("RG2System_Garage.Domain.Entities.Cliente", "Cliente")
@@ -361,6 +462,15 @@ namespace RG2System_Garage.Infra.Migrations
                         .WithMany("Itens")
                         .HasForeignKey("OrcamentoId")
                         .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RG2System_Garage.Domain.Entities.OrdemServico", b =>
+                {
+                    b.HasOne("RG2System_Garage.Domain.Entities.Orcamento", "Orcamento")
+                        .WithMany()
+                        .HasForeignKey("OrcamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

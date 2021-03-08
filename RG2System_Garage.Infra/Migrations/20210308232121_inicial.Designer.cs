@@ -9,8 +9,8 @@ using RG2System_Garage.Infra.Repositories;
 namespace RG2System_Garage.Infra.Migrations
 {
     [DbContext(typeof(RB2System_GarageContext))]
-    [Migration("20210208233821_AjusteCasaDecimal")]
-    partial class AjusteCasaDecimal
+    [Migration("20210308232121_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,6 +152,9 @@ namespace RG2System_Garage.Infra.Migrations
                     b.Property<Guid>("OrdemServicoId")
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid?>("OrdemServicoId1")
+                        .HasColumnType("char(36)");
+
                     b.Property<decimal>("Valor")
                         .HasColumnType("decimal(18,2)");
 
@@ -160,6 +163,8 @@ namespace RG2System_Garage.Infra.Migrations
                     b.HasIndex("FormaPagamentoId");
 
                     b.HasIndex("OrdemServicoId");
+
+                    b.HasIndex("OrdemServicoId1");
 
                     b.ToTable("ORPagamento");
                 });
@@ -176,13 +181,7 @@ namespace RG2System_Garage.Infra.Migrations
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<bool>("ExisteOrdemServico")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint(1)")
-                        .HasDefaultValue(false);
-
                     b.Property<long>("Numero")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
                     b.Property<string>("Observacao")
@@ -256,9 +255,7 @@ namespace RG2System_Garage.Infra.Migrations
                         .HasDefaultValue(null);
 
                     b.Property<int>("Numero")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .IsUnicode(true);
+                        .HasColumnType("int");
 
                     b.Property<string>("Observacao")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -427,8 +424,8 @@ namespace RG2System_Garage.Infra.Migrations
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.ORPagamento", b =>
                 {
-                    b.HasOne("RG2System_Garage.Domain.Entities.OrdemServico", null)
-                        .WithMany("FormaPagamentos")
+                    b.HasOne("RG2System_Garage.Domain.Entities.FormaPagamento", "FormaPagamento")
+                        .WithMany()
                         .HasForeignKey("FormaPagamentoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -438,6 +435,10 @@ namespace RG2System_Garage.Infra.Migrations
                         .HasForeignKey("OrdemServicoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("RG2System_Garage.Domain.Entities.OrdemServico", null)
+                        .WithMany("FormaPagamentos")
+                        .HasForeignKey("OrdemServicoId1");
                 });
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.Orcamento", b =>

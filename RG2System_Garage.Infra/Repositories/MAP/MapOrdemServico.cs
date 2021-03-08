@@ -10,13 +10,15 @@ namespace RG2System_Garage.Infra.Repositories.MAP
         {
             builder.ToTable("OrdemServico");
 
+            builder.HasKey(x => x.Id);
+
             builder.Property(x => x.Observacao);
 
             builder.Property(x => x.DataFinalizacao).HasDefaultValue(null);
             builder.Property(x => x.Status).HasMaxLength(50);
 
             builder.HasOne(x => x.Orcamento).WithMany().HasForeignKey("OrcamentoId");
-            builder.HasMany(x => x.FormaPagamentos).WithOne().HasForeignKey("FormaPagamentoId");
+           // builder.HasOne(x => x.FormaPagamentos).WithMany().HasForeignKey("PagamentoId");
 
             builder.HasIndex(x => x.Numero);
             builder.Property(x => x.Numero).ValueGeneratedOnAdd().IsUnicode();

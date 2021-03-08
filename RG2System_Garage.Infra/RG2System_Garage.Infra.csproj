@@ -299,49 +299,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\20210119004904_inicial.cs" />
-    <Compile Include="Migrations\20210119004904_inicial.designer.cs">
-      <DependentUpon>20210119004904_inicial.cs</DependentUpon>
+    <Compile Include="Migrations\20210308232121_inicial.cs" />
+    <Compile Include="Migrations\20210308232121_inicial.designer.cs">
+      <DependentUpon>20210308232121_inicial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20210119005027_auto-inc.cs" />
-    <Compile Include="Migrations\20210119005027_auto-inc.designer.cs">
-      <DependentUpon>20210119005027_auto-inc.cs</DependentUpon>
+    <Compile Include="Migrations\20210308232150_NumeroAdd.cs" />
+    <Compile Include="Migrations\20210308232150_NumeroAdd.designer.cs">
+      <DependentUpon>20210308232150_NumeroAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20210123010757_CadastroFormaPagamento.cs" />
-    <Compile Include="Migrations\20210123010757_CadastroFormaPagamento.designer.cs">
-      <DependentUpon>20210123010757_CadastroFormaPagamento.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210123173616_OrdemServico.cs" />
-    <Compile Include="Migrations\20210123173616_OrdemServico.designer.cs">
-      <DependentUpon>20210123173616_OrdemServico.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210123214130_teste5.cs" />
-    <Compile Include="Migrations\20210123214130_teste5.designer.cs">
-      <DependentUpon>20210123214130_teste5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210123222831_Inclusao_numero.cs" />
-    <Compile Include="Migrations\20210123222831_Inclusao_numero.designer.cs">
-      <DependentUpon>20210123222831_Inclusao_numero.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210123222911_Inclusao_numero_auto.cs" />
-    <Compile Include="Migrations\20210123222911_Inclusao_numero_auto.designer.cs">
-      <DependentUpon>20210123222911_Inclusao_numero_auto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210207213656_AlteracaoDecimal.cs" />
-    <Compile Include="Migrations\20210207213656_AlteracaoDecimal.designer.cs">
-      <DependentUpon>20210207213656_AlteracaoDecimal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210207232928_Teste.cs" />
-    <Compile Include="Migrations\20210207232928_Teste.designer.cs">
-      <DependentUpon>20210207232928_Teste.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210207233914_Teste1.cs" />
-    <Compile Include="Migrations\20210207233914_Teste1.designer.cs">
-      <DependentUpon>20210207233914_Teste1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20210208233821_AjusteCasaDecimal.cs" />
-    <Compile Include="Migrations\20210208233821_AjusteCasaDecimal.designer.cs">
-      <DependentUpon>20210208233821_AjusteCasaDecimal.cs</DependentUpon>
+    <Compile Include="Migrations\20210308232534_teste.cs" />
+    <Compile Include="Migrations\20210308232534_teste.designer.cs">
+      <DependentUpon>20210308232534_teste.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RB2System_GarageContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

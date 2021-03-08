@@ -174,11 +174,6 @@ namespace RG2System_Garage.Infra.Migrations
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<bool>("ExisteOrdemServico")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint(1)")
-                        .HasDefaultValue(false);
-
                     b.Property<long>("Numero")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
@@ -425,14 +420,14 @@ namespace RG2System_Garage.Infra.Migrations
 
             modelBuilder.Entity("RG2System_Garage.Domain.Entities.ORPagamento", b =>
                 {
-                    b.HasOne("RG2System_Garage.Domain.Entities.OrdemServico", null)
-                        .WithMany("FormaPagamentos")
+                    b.HasOne("RG2System_Garage.Domain.Entities.FormaPagamento", "FormaPagamento")
+                        .WithMany()
                         .HasForeignKey("FormaPagamentoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("RG2System_Garage.Domain.Entities.OrdemServico", "OrdemServico")
-                        .WithMany()
+                        .WithMany("FormaPagamentos")
                         .HasForeignKey("OrdemServicoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
