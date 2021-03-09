@@ -431,7 +431,7 @@
         </ReportItems>
         <OmitBorderOnPageBreak>true</OmitBorderOnPageBreak>
         <Top>0.12643cm</Top>
-        <Left>1.03937cm</Left>
+        <Left>1.04354cm</Left>
         <Height>3.30116cm</Height>
         <Width>16.01875cm</Width>
         <Style>
@@ -447,7 +447,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Orçamento</Value>
+                <Value>Ordem de Serviço</Value>
                 <Style>
                   <FontFamily>Arial Black</FontFamily>
                 </Style>
@@ -460,9 +460,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
         <Top>3.48149cm</Top>
-        <Left>7.79875cm</Left>
+        <Left>7.90579cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Width>3.66417cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -778,13 +778,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>3.20405cm</Width>
+              <Width>3.23151cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>7.55323cm</Width>
+              <Width>7.58069cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.17909cm</Width>
+              <Width>5.20655cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -835,7 +835,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Descricao</Value>
+                              <Value>Descricao Pagamentos</Value>
                               <Style>
                                 <Color>White</Color>
                               </Style>
@@ -908,7 +908,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value EvaluationMode="Constant" />
+                              <Value>=RowNumber("DataSetORPagamentos")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -993,6 +993,83 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>TOTAL</Value>
+                              <Style>
+                                <FontFamily>Arial Black</FontFamily>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>2</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox15">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Sum(Fields!Valor.Value)</Value>
+                              <Style>
+                                <FontFamily>Arial Black</FontFamily>
+                                <Format>C2</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox4</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -1020,15 +1097,18 @@
                 <TablixMember />
               </TablixMembers>
             </TablixMember>
+            <TablixMember>
+              <KeepWithGroup>Before</KeepWithGroup>
+            </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
         <FixedColumnHeaders>true</FixedColumnHeaders>
         <KeepTogether>true</KeepTogether>
         <DataSetName>DataSetORPagamentos</DataSetName>
-        <Top>9.07215cm</Top>
+        <Top>8.7864cm</Top>
         <Left>1.03937cm</Left>
-        <Height>1.2cm</Height>
-        <Width>15.93637cm</Width>
+        <Height>1.8cm</Height>
+        <Width>16.01875cm</Width>
         <ZIndex>12</ZIndex>
         <Style>
           <Border />
@@ -1038,7 +1118,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>15.93637cm</Width>
+              <Width>16.01875cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1135,10 +1215,10 @@
         <FixedColumnHeaders>true</FixedColumnHeaders>
         <KeepTogether>true</KeepTogether>
         <DataSetName>DataSetOrdemServico</DataSetName>
-        <Top>10.7374cm</Top>
+        <Top>10.78503cm</Top>
         <Left>1.03937cm</Left>
         <Height>1.2cm</Height>
-        <Width>15.93637cm</Width>
+        <Width>16.01875cm</Width>
         <ZIndex>13</ZIndex>
         <Style>
           <Border />
@@ -1558,48 +1638,16 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>4.71018in</Height>
+    <Height>12.80523cm</Height>
     <Style />
   </Body>
-  <Width>7.66762in</Width>
+  <Width>18.10583cm</Width>
   <Page>
     <PageFooter>
-      <Height>4.64978cm</Height>
+      <Height>3.51735cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="Textbox25">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Válido por 10 dias</Value>
-                  <Style>
-                    <FontFamily>Arial Narrow</FontFamily>
-                    <FontSize>8pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox25</rd:DefaultName>
-          <Top>3.94923cm</Top>
-          <Left>0.12283cm</Left>
-          <Height>0.6cm</Height>
-          <Width>3.05787cm</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
         <Textbox Name="PageNumber">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -1615,11 +1663,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
-          <Top>3.94923cm</Top>
-          <Left>7.79875cm</Left>
+          <Top>2.67089cm</Top>
+          <Left>7.80292cm</Left>
           <Height>0.6cm</Height>
           <Width>2.5cm</Width>
-          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1645,11 +1692,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox27</rd:DefaultName>
-          <Top>0.68394cm</Top>
-          <Left>1.03937cm</Left>
+          <Top>0.10583cm</Top>
+          <Left>0.99057cm</Left>
           <Height>0.6cm</Height>
           <Width>2.5cm</Width>
-          <ZIndex>2</ZIndex>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1675,11 +1722,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Observacao</rd:DefaultName>
-          <Top>1.38978cm</Top>
-          <Left>0.99057cm</Left>
+          <Top>0.81167cm</Top>
+          <Left>0.94177cm</Left>
           <Height>1.75338cm</Height>
           <Width>16.34384cm</Width>
-          <ZIndex>3</ZIndex>
+          <ZIndex>2</ZIndex>
           <Style>
             <Border>
               <Style>Solid</Style>
